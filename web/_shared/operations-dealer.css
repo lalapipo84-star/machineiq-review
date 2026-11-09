@@ -30,7 +30,6 @@ body[data-ops-page="dealer"] .dlr-auto{padding:14px 16px;border-radius:4px;backg
 body[data-ops-page="dealer"] .dlr-auto h4{margin:0 0 8px;font-size:13px}
 body[data-ops-page="dealer"] .dlr-auto ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:13px}
 body[data-ops-page="dealer"] .dlr-auto b{display:inline-block;min-width:110px;color:#555;font-weight:600}
-body[data-ops-page="dealer"] .dlr-chip{display:inline-block;margin:0 4px 4px 0;padding:2px 8px;border-radius:10px;background:var(--c-info-bg,#eef2ff);color:var(--c-info,#3b5bdb);font-size:12px;font-weight:600}
 body[data-ops-page="dealer"] .dlr-muted{color:var(--c-mute,#888)}
 body[data-ops-page="dealer"] .dlr-actions{display:flex;justify-content:space-between;gap:8px;padding-top:4px}
 body[data-ops-page="dealer"] .dlr-card .ops-inline-message{margin:0}

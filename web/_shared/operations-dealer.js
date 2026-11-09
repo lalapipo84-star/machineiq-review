@@ -90,14 +90,12 @@
           field('사용 여부', '<input class="inp" value="사용 (활성)" readonly>') + '</div>' +
           '<p class="ops-inline-message">업체를 만들면 이 그룹이 함께 생성됩니다. 그룹이 사용 안 함이면 고객·딜러 화면에서 차량이 보이지 않으므로 기본 그룹은 항상 사용 상태로 만듭니다.</p>';
       } else if (step === 3) {
-        var m = appMenusFor(k.role);
         body = '<div class="dlr-grid">' + field('대표 계정 ID (이메일)', '<div class="dlr-inline"><input class="inp" type="email" name="email" maxlength="100" required value="' + e(draft.email) + '" placeholder="예) owner@dealer.co.kr"><button type="button" class="btn" data-dlr-check="email">중복 확인</button></div><p class="dlr-hint" data-dlr-msg="email">' + checkMsg('email') + '</p>') +
           field('대표자명', '<input class="inp" name="person" maxlength="40" required value="' + e(draft.person) + '">') +
           field('연락처', '<input class="inp" name="phone" maxlength="30" value="' + e(draft.phone) + '" placeholder="예) 010-1234-5678">') +
           field('권한', '<input class="inp" value="' + e(k.roleLabel + ' (' + k.roleCode + ')') + '" readonly>') + '</div>' +
           '<div class="dlr-auto"><h4>계정 생성 시 함께 저장되는 설정</h4><ul>' +
             '<li><b>소속</b> ' + e(draft.name || '(업체명)') + ' / ' + e(draft.group) + '</li>' +
-            '<li><b>모바일 메뉴 권한</b> ' + (m.menus.length ? m.menus.map(function (x) { return '<span class="dlr-chip">' + e(x[1]) + '</span>'; }).join('') : '<span class="dlr-muted">없음</span>') + ' <span class="dlr-muted">· ' + e(m.source) + ' 기준</span></li>' +
             '<li><b>초기 비밀번호</b> 임시 비밀번호를 대표 계정 이메일로 발송, 첫 로그인 때 변경</li>' +
           '</ul></div>';
       } else {
