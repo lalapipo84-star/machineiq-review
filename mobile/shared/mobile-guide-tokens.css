@@ -1,0 +1,67 @@
+:root {
+  /* LIN-Q Digital UI Style Guide v1.0 — inherited web tokens */
+  --linq-color-brand: #ff3600;
+  --linq-color-primary-fill: #d92e00;
+  --linq-color-primary-pressed: #cc2b00;
+  --linq-color-text: #1e1e1e;
+  --linq-color-text-strong: #403d3c;
+  --linq-color-text-muted: #706d6c;
+  --linq-color-surface: #ffffff;
+  --linq-color-surface-muted: #f7f7f6;
+  --linq-color-page: #f4f5f4;
+  --linq-color-border: #d5d6d2;
+  --linq-color-border-subtle: #ececea;
+  --linq-color-disabled: #cccccc;
+  --linq-color-success: #0aa656;
+  --linq-color-warning: #ff9f0a;
+  --linq-color-warning-text: #6e4300;
+  --linq-color-danger: #992100;
+  --linq-color-info: #17a2b8;
+  --linq-color-brand-soft: #fff5f3;
+  --linq-color-brand-border: #ffd0c4;
+  --linq-color-success-soft: #e6f7ec;
+  --linq-color-warning-soft: #fff4e6;
+  --linq-color-danger-soft: #fff0ed;
+  --linq-focus-ring: 0 0 0 2px #ffffff, 0 0 0 4px var(--linq-color-brand);
+
+  /* Shared web component geometry, inherited without mobile reinterpretation. */
+  --linq-radius-control: 4px;
+  --linq-radius-card: 8px;
+  --linq-radius-pill: 999px;
+  --linq-shadow-card-active: 0 2px 10px rgba(255,54,0,.06);
+  --linq-font-caption: 12px;
+  --linq-font-control: 13px;
+  --linq-font-body: 14px;
+  --linq-font-section: 16px;
+  --linq-font-page: 22px;
+  --linq-line-meta: 18px;
+  --linq-line-label: 18px;
+  --linq-line-body: 20px;
+  --linq-line-kpi: 32px;
+
+  /* Mobile addendum — layout and interaction only */
+  --linq-mobile-max-width: 480px;
+  --linq-mobile-header-height: 60px;
+  --linq-mobile-nav-height: 68px;
+  --linq-mobile-touch-min: 44px;
+  --linq-mobile-sheet-radius: 16px;
+  --linq-mobile-card-radius: var(--linq-radius-card);
+  --linq-mobile-page-gutter: 18px;
+  --linq-mobile-gap-xs: 6px;
+  --linq-mobile-gap-sm: 10px;
+  --linq-mobile-gap-md: 14px;
+}
+
+:where(button, a, input, select, textarea, [role="button"]):focus-visible {
+  outline: 0;
+  box-shadow: var(--linq-focus-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

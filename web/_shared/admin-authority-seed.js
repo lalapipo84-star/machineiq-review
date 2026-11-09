@@ -1,0 +1,136 @@
+/* Existing WEB management account fixtures reused for the Admin review. */
+window.MIQAdminAuthoritySeed={
+  "users": [
+    {
+      "id": "admin@sejonglog.co.kr",
+      "email": "admin@sejonglog.co.kr",
+      "name": "김정수",
+      "role": "내부 사용자",
+      "company": "(주)세종물류중부지점",
+      "managedBy": "",
+      "group": "전체",
+      "phone": "010-****-1234",
+      "created": "2024-03-11 09:12",
+      "lastLogin": "2026-06-28 14:05",
+      "active": true
+    },
+    {
+      "id": "cs.lee@sejonglog.co.kr",
+      "email": "cs.lee@sejonglog.co.kr",
+      "name": "이철수",
+      "role": "내부 사용자",
+      "company": "(주)세종물류중부지점",
+      "managedBy": "",
+      "group": "전체",
+      "phone": "010-****-2201",
+      "created": "2024-05-02 10:41",
+      "lastLogin": "2026-05-19 11:22",
+      "active": true
+    },
+    {
+      "id": "dealer.park@sejonglog.co.kr",
+      "email": "dealer.park@sejonglog.co.kr",
+      "name": "박민아",
+      "role": "딜러 대표",
+      "company": "세종모터스",
+      "managedBy": "",
+      "group": "기본그룹",
+      "phone": "010-****-3345",
+      "created": "2024-07-15 13:20",
+      "lastLogin": "2026-06-30 09:48",
+      "active": true
+    },
+    {
+      "id": "dealer.choi@sejonglog.co.kr",
+      "email": "dealer.choi@sejonglog.co.kr",
+      "name": "최유진",
+      "role": "딜러 대표",
+      "company": "한빛상사",
+      "managedBy": "",
+      "group": "기본그룹",
+      "phone": "010-****-4417",
+      "created": "2025-01-08 08:55",
+      "lastLogin": "2026-06-12 16:31",
+      "active": true
+    },
+    {
+      "id": "staff.jung@sejonglog.co.kr",
+      "email": "staff.jung@sejonglog.co.kr",
+      "name": "정도현",
+      "role": "딜러 직원",
+      "company": "세종모터스",
+      "managedBy": "dealer.park@sejonglog.co.kr",
+      "group": "테스트그룹",
+      "phone": "010-****-5502",
+      "created": "2025-02-20 15:07",
+      "lastLogin": "2026-04-27 10:12",
+      "active": true
+    },
+    {
+      "id": "staff.kang@sejonglog.co.kr",
+      "email": "staff.kang@sejonglog.co.kr",
+      "name": "강서연",
+      "role": "딜러 직원",
+      "company": "한빛상사",
+      "managedBy": "dealer.choi@sejonglog.co.kr",
+      "group": "기본그룹",
+      "phone": "010-****-6613",
+      "created": "2025-04-03 11:33",
+      "lastLogin": "2026-06-22 13:59",
+      "active": true
+    },
+    {
+      "id": "leader.yoon@customer.co.kr",
+      "email": "leader.yoon@customer.co.kr",
+      "name": "윤태호",
+      "role": "고객 대표",
+      "company": "(주)세종물류중부지점",
+      "managedBy": "dealer.park@sejonglog.co.kr",
+      "group": "전체",
+      "phone": "010-****-7724",
+      "created": "2025-05-27 09:02",
+      "lastLogin": "2026-03-11 17:40",
+      "active": true
+    },
+    {
+      "id": "leader.shin@customer.co.kr",
+      "email": "leader.shin@customer.co.kr",
+      "name": "신동욱",
+      "role": "고객 대표",
+      "company": "동욱운수",
+      "managedBy": "dealer.choi@sejonglog.co.kr",
+      "group": "전체",
+      "phone": "010-****-8830",
+      "created": "2025-08-14 10:15",
+      "lastLogin": "2026-06-05 08:27",
+      "active": true
+    },
+    {
+      "id": "user.oh@customer.co.kr",
+      "email": "user.oh@customer.co.kr",
+      "name": "오하늘",
+      "role": "고객 직원",
+      "company": "(주)세종물류중부지점",
+      "managedBy": "leader.yoon@customer.co.kr",
+      "group": "물류1팀",
+      "phone": "010-****-9941",
+      "created": "2025-11-02 16:48",
+      "lastLogin": "2026-02-18 12:03",
+      "active": true
+    },
+    {
+      "id": "user.lim@customer.co.kr",
+      "email": "user.lim@customer.co.kr",
+      "name": "임재현",
+      "role": "고객 직원",
+      "company": "동욱운수",
+      "managedBy": "leader.shin@customer.co.kr",
+      "group": "테스트그룹",
+      "phone": "010-****-1057",
+      "created": "2026-01-19 14:22",
+      "lastLogin": "2026-06-18 10:36",
+      "active": true
+    }
+  ],
+  "source": "Mgmt User/mgmt-user-tobe.html"
+};

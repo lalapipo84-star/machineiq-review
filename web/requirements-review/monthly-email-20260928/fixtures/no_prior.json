@@ -1,0 +1,464 @@
+{
+  "templateId": "MIQ-MAIL-004",
+  "fixture": true,
+  "scenario": "no_prior",
+  "report": {
+    "companyName": "한빛물류 주식회사",
+    "groupName": "기본그룹",
+    "targetMonth": "2026-09",
+    "previousMonth": "2026-08",
+    "periodStart": "2026-09-01T00:00:00+09:00",
+    "periodEndExclusive": "2026-10-01T00:00:00+09:00",
+    "periodLabel": "2026.09.01 – 2026.09.30",
+    "timeZone": "Asia/Seoul",
+    "scheduledAt": "2026-10-01T09:00:00+09:00",
+    "generatedAt": "2026.10.01 09:00",
+    "consumablesAsOf": "2026.10.01 09:00",
+    "links": {
+      "reportUrl": null,
+      "settingsUrl": null
+    },
+    "dataNotice": "Synthetic layout fixture, not collected records. Backend owns aggregation, rounding, deltas, eligibility and local-month boundaries."
+  },
+  "summary": {
+    "operatingRate": {
+      "unit": "%",
+      "differenceUnit": "pp",
+      "previous": {
+        "value": null,
+        "display": null,
+        "state": "no_prior"
+      },
+      "current": {
+        "value": 50,
+        "display": "50",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "50",
+          "en": "50",
+          "de": "50",
+          "ar": "50",
+          "es": "50",
+          "fr": "50",
+          "it": "50",
+          "ja": "50"
+        }
+      },
+      "difference": {
+        "value": null,
+        "display": null,
+        "state": "no_prior"
+      }
+    },
+    "efficiencyRate": {
+      "unit": "%",
+      "differenceUnit": "pp",
+      "previous": {
+        "value": null,
+        "display": null,
+        "state": "no_prior"
+      },
+      "current": {
+        "value": 82,
+        "display": "82",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "82",
+          "en": "82",
+          "de": "82",
+          "ar": "82",
+          "es": "82",
+          "fr": "82",
+          "it": "82",
+          "ja": "82"
+        }
+      },
+      "difference": {
+        "value": null,
+        "display": null,
+        "state": "no_prior"
+      }
+    },
+    "shockCnt": {
+      "unit": "events",
+      "differenceUnit": "events",
+      "previous": {
+        "value": null,
+        "display": null,
+        "state": "no_prior"
+      },
+      "current": {
+        "value": 46,
+        "display": "46",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "46",
+          "en": "46",
+          "de": "46",
+          "ar": "46",
+          "es": "46",
+          "fr": "46",
+          "it": "46",
+          "ja": "46"
+        }
+      },
+      "difference": {
+        "value": null,
+        "display": null,
+        "state": "no_prior"
+      }
+    },
+    "fuelLh": {
+      "unit": "L/H",
+      "differenceUnit": "L/H",
+      "previous": {
+        "value": null,
+        "display": null,
+        "state": "no_prior"
+      },
+      "current": {
+        "value": 4.2,
+        "display": "4.2",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "4.2",
+          "en": "4.2",
+          "de": "4,2",
+          "ar": "4.2",
+          "es": "4,2",
+          "fr": "4,2",
+          "it": "4,2",
+          "ja": "4.2"
+        }
+      },
+      "difference": {
+        "value": null,
+        "display": null,
+        "state": "no_prior"
+      }
+    },
+    "batteryRate": {
+      "unit": "%",
+      "differenceUnit": "pp",
+      "previous": {
+        "value": null,
+        "display": null,
+        "state": "no_prior"
+      },
+      "current": {
+        "value": 58,
+        "display": "58",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "58",
+          "en": "58",
+          "de": "58",
+          "ar": "58",
+          "es": "58",
+          "fr": "58",
+          "it": "58",
+          "ja": "58"
+        }
+      },
+      "difference": {
+        "value": null,
+        "display": null,
+        "state": "no_prior"
+      }
+    },
+    "distance": {
+      "unit": "km",
+      "differenceUnit": "km",
+      "previous": {
+        "value": null,
+        "display": null,
+        "state": "no_prior"
+      },
+      "current": {
+        "value": 1216,
+        "display": "1,216",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "1,216",
+          "en": "1,216",
+          "de": "1.216",
+          "ar": "1,216",
+          "es": "1216",
+          "fr": "1 216",
+          "it": "1216",
+          "ja": "1,216"
+        }
+      },
+      "difference": {
+        "value": null,
+        "display": null,
+        "state": "no_prior"
+      }
+    },
+    "operatingTime": {
+      "unit": "H",
+      "differenceUnit": "H",
+      "previous": {
+        "value": null,
+        "display": null,
+        "state": "no_prior"
+      },
+      "current": {
+        "value": 500,
+        "display": "500",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "500",
+          "en": "500",
+          "de": "500",
+          "ar": "500",
+          "es": "500",
+          "fr": "500",
+          "it": "500",
+          "ja": "500"
+        }
+      },
+      "difference": {
+        "value": null,
+        "display": null,
+        "state": "no_prior"
+      }
+    }
+  },
+  "serviceCount": {
+    "totRepairCount": {
+      "value": 3,
+      "display": "3",
+      "state": "available",
+      "unit": "events",
+      "displayByLocale": {
+        "ko": "3",
+        "en": "3",
+        "de": "3",
+        "ar": "3",
+        "es": "3",
+        "fr": "3",
+        "it": "3",
+        "ja": "3"
+      }
+    },
+    "totScheduleCount": {
+      "value": 5,
+      "display": "5",
+      "state": "available",
+      "unit": "items",
+      "displayByLocale": {
+        "ko": "5",
+        "en": "5",
+        "de": "5",
+        "ar": "5",
+        "es": "5",
+        "fr": "5",
+        "it": "5",
+        "ja": "5"
+      }
+    },
+    "totErrorCount": {
+      "value": 7,
+      "display": "7",
+      "state": "available",
+      "unit": "events",
+      "displayByLocale": {
+        "ko": "7",
+        "en": "7",
+        "de": "7",
+        "ar": "7",
+        "es": "7",
+        "fr": "7",
+        "it": "7",
+        "ja": "7"
+      }
+    },
+    "totBatteryErrorCount": {
+      "value": 2,
+      "display": "2",
+      "state": "available",
+      "unit": "events",
+      "displayByLocale": {
+        "ko": "2",
+        "en": "2",
+        "de": "2",
+        "ar": "2",
+        "es": "2",
+        "fr": "2",
+        "it": "2",
+        "ja": "2"
+      }
+    }
+  },
+  "operatingSummary": {
+    "workingTime": {
+      "value": 410,
+      "display": "410",
+      "state": "available",
+      "displayByLocale": {
+        "ko": "410",
+        "en": "410",
+        "de": "410",
+        "ar": "410",
+        "es": "410",
+        "fr": "410",
+        "it": "410",
+        "ja": "410"
+      }
+    },
+    "idleTime": {
+      "value": 90,
+      "display": "90",
+      "state": "available",
+      "displayByLocale": {
+        "ko": "90",
+        "en": "90",
+        "de": "90",
+        "ar": "90",
+        "es": "90",
+        "fr": "90",
+        "it": "90",
+        "ja": "90"
+      }
+    },
+    "offTime": {
+      "value": 500,
+      "display": "500",
+      "state": "available",
+      "displayByLocale": {
+        "ko": "500",
+        "en": "500",
+        "de": "500",
+        "ar": "500",
+        "es": "500",
+        "fr": "500",
+        "it": "500",
+        "ja": "500"
+      }
+    },
+    "workingTimeRate": {
+      "value": 41,
+      "display": "41",
+      "state": "available",
+      "displayByLocale": {
+        "ko": "41",
+        "en": "41",
+        "de": "41",
+        "ar": "41",
+        "es": "41",
+        "fr": "41",
+        "it": "41",
+        "ja": "41"
+      }
+    },
+    "idleTimeRate": {
+      "value": 9,
+      "display": "9",
+      "state": "available",
+      "displayByLocale": {
+        "ko": "9",
+        "en": "9",
+        "de": "9",
+        "ar": "9",
+        "es": "9",
+        "fr": "9",
+        "it": "9",
+        "ja": "9"
+      }
+    },
+    "offTimeRate": {
+      "value": 50,
+      "display": "50",
+      "state": "available",
+      "displayByLocale": {
+        "ko": "50",
+        "en": "50",
+        "de": "50",
+        "ar": "50",
+        "es": "50",
+        "fr": "50",
+        "it": "50",
+        "ja": "50"
+      }
+    },
+    "basis": {
+      "code": "working_idle_off_total",
+      "value": 1000,
+      "unit": "H",
+      "state": "available"
+    },
+    "operatingRateBasis": {
+      "code": "server_confirmed_reference_hours",
+      "value": 1000,
+      "unit": "H",
+      "state": "fixture_only"
+    }
+  },
+  "shockSummary": {
+    "shock3Cnt": {
+      "value": 30,
+      "display": "30",
+      "state": "available",
+      "displayByLocale": {
+        "ko": "30",
+        "en": "30",
+        "de": "30",
+        "ar": "30",
+        "es": "30",
+        "fr": "30",
+        "it": "30",
+        "ja": "30"
+      }
+    },
+    "shock4Cnt": {
+      "value": 12,
+      "display": "12",
+      "state": "available",
+      "displayByLocale": {
+        "ko": "12",
+        "en": "12",
+        "de": "12",
+        "ar": "12",
+        "es": "12",
+        "fr": "12",
+        "it": "12",
+        "ja": "12"
+      }
+    },
+    "shock5Cnt": {
+      "value": 4,
+      "display": "4",
+      "state": "available",
+      "displayByLocale": {
+        "ko": "4",
+        "en": "4",
+        "de": "4",
+        "ar": "4",
+        "es": "4",
+        "fr": "4",
+        "it": "4",
+        "ja": "4"
+      }
+    },
+    "attentionCount": {
+      "value": 16,
+      "display": "16",
+      "state": "available",
+      "displayByLocale": {
+        "ko": "16",
+        "en": "16",
+        "de": "16",
+        "ar": "16",
+        "es": "16",
+        "fr": "16",
+        "it": "16",
+        "ja": "16"
+      }
+    }
+  },
+  "chart": {
+    "included": false,
+    "reason": "Comparison values presented in a semantic table; no browser JS charts or derived image values."
+  }
+}

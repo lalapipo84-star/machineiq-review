@@ -1,0 +1,5 @@
+/* Card and chart motion; original final geometry, colors and values. */
+@property --dm-progress{syntax:'<number>';inherits:false;initial-value:1}
+/* dc-donut already rotates -90deg in the original CSS: keep the gradient at 0deg. */
+.dr-preview .dc-donut{background:conic-gradient(var(--ratio-color) 0 calc(var(--share)*var(--dm-progress)),#eaf0f3 calc(var(--share)*var(--dm-progress)) 100%)}
+.dr-preview .dwi-ring{background:conic-gradient(from 270deg,#ff3600 0 calc(var(--dm-share)*var(--dm-progress)),#eaf0f3 calc(var(--dm-share)*var(--dm-progress)) 100%)!important}

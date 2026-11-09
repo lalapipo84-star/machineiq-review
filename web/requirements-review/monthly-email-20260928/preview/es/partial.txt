@@ -1,0 +1,37 @@
+[Bobcat Machine IQ] Informe mensual - 한빛물류 주식회사 / 기본그룹
+
+한빛물류 주식회사 / 기본그룹
+2026.09.01 – 2026.09.30 (Asia/Seoul)
+Solo se recopilaron datos parciales. Los valores cubren esos datos; se omiten los cambios respecto al mes anterior.
+Comparación mensual
+Utilización: 48 % → 50 % (Datos parciales) / Cambio — (Sin datos)
+Eficiencia operativa: 80 % → 82 % (Datos parciales) / Cambio — (Sin datos)
+Impactos: 60 eventos → 46 eventos (Datos parciales) / Cambio — (Sin datos)
+Consumo de combustible por hora: 4,6 L/h → 4,2 L/h (Datos parciales) / Cambio — (Sin datos)
+Nivel de carga de la batería: 55 % → — (Sin datos) / Cambio — (Sin datos)
+Distancia recorrida: 1100 km → 1216 km (Datos parciales) / Cambio — (Sin datos)
+Tiempo de funcionamiento: 480 h → 500 h (Datos parciales) / Cambio — (Sin datos)
+Intervenciones: 3 eventos (Datos parciales)
+Consumibles pendientes: 5 elementos (Datos parciales)
+Fallos del vehículo: 7 eventos (Datos parciales)
+Fallos de batería: 2 eventos (Datos parciales)
+Tiempo de trabajo: 410 h (Datos parciales) / 41 % (Datos parciales)
+Tiempo de espera: 90 h (Datos parciales) / 9 % (Datos parciales)
+Tiempo sin uso: 500 h (Datos parciales) / 50 % (Datos parciales)
+Sensible · Nivel 3: 30 eventos (Datos parciales)
+Precaución · Nivel 4: 12 eventos (Datos parciales)
+Advertencia · Nivel 5: 4 eventos (Datos parciales)
+Precaución + advertencia: 16 eventos (Datos parciales)
+
+Consumibles pendientes · Datos a: 2026.10.01 09:00 · Asia/Seoul
+
+Las diferencias de tasas se expresan en puntos porcentuales (pp). — indica un valor no disponible o no calculable, distinto de un cero medido.
+El mantenimiento y los fallos son eventos del periodo. Los consumibles son elementos pendientes de sustitución en la fecha de referencia indicada.
+Las proporciones usan la suma del tiempo de trabajo, espera y sin uso. No se muestran si el total es cero o falta la base.
+Sensible, precaución y advertencia son recuentos separados. Precaución + advertencia suma esos dos niveles; el nivel 3 solo no es el total.
+Tras iniciar sesión, cambie la recepción en Mi cuenta → Correo de informes periódicos.
+Datos a: 2026.10.01 09:00 · Asia/Seoul
+Este informe refleja la fecha de referencia indicada. La información del sitio puede cambiar después.
+Este correo se proporciona a clientes que han aceptado recibir informes mensuales.
+Este correo se ha enviado automáticamente. Si necesita ayuda, póngase en contacto con atención al cliente.
+Atención al cliente: help.machineiq@doosan.com

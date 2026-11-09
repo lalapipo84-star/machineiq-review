@@ -1,0 +1,37 @@
+[Bobcat Machine IQ] Report mensile - 한빛물류 주식회사 / 기본그룹
+
+한빛물류 주식회사 / 기본그룹
+2026.09.01 – 2026.09.30 (Asia/Seoul)
+Non ci sono dati del mese precedente per il confronto. Sono mostrati solo i valori disponibili del mese corrente.
+Confronto mensile
+Utilizzo: — (Mese precedente assente) → 50 % / Variazione — (Mese precedente assente)
+Efficienza operativa: — (Mese precedente assente) → 82 % / Variazione — (Mese precedente assente)
+Urti: — (Mese precedente assente) → 46 eventi / Variazione — (Mese precedente assente)
+Consumo di carburante orario: — (Mese precedente assente) → 4,2 L/h / Variazione — (Mese precedente assente)
+Livello di carica della batteria: — (Mese precedente assente) → 58 % / Variazione — (Mese precedente assente)
+Distanza percorsa: — (Mese precedente assente) → 1216 km / Variazione — (Mese precedente assente)
+Tempo di funzionamento: — (Mese precedente assente) → 500 h / Variazione — (Mese precedente assente)
+Interventi: 3 eventi
+Consumabili da sostituire: 5 elementi
+Guasti del veicolo: 7 eventi
+Guasti della batteria: 2 eventi
+Tempo di lavoro: 410 h / 41 %
+Tempo di attesa: 90 h / 9 %
+Tempo di inutilizzo: 500 h / 50 %
+Sensibile · Livello 3: 30 eventi
+Attenzione · Livello 4: 12 eventi
+Avviso · Livello 5: 4 eventi
+Attenzione + avviso: 16 eventi
+
+Consumabili da sostituire · Dati al: 2026.10.01 09:00 · Asia/Seoul
+
+Le differenze tra percentuali sono espresse in punti percentuali (pp). — indica un valore assente o non calcolabile, distinto da uno zero misurato.
+Manutenzione e guasti sono eventi del periodo. I consumabili sono gli elementi da sostituire alla data di riferimento indicata.
+Le quote usano la somma dei tempi di lavoro, attesa e inutilizzo. Non sono mostrate se il totale è zero o manca la base.
+Sensibile, attenzione e avviso sono conteggi separati. Attenzione + avviso somma questi due livelli; il solo livello 3 non è il totale.
+Dopo l’accesso, modifica la ricezione in Il mio account → E-mail dei report periodici.
+Dati al: 2026.10.01 09:00 · Asia/Seoul
+Il report riflette la data di riferimento indicata. Le informazioni sul sito possono cambiare in seguito.
+Questa e-mail è destinata ai clienti che hanno acconsentito ai report mensili.
+Questa email è stata inviata automaticamente. Per assistenza, contatti il servizio clienti.
+Servizio clienti: help.machineiq@doosan.com

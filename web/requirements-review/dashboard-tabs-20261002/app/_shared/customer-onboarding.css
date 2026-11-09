@@ -1,0 +1,7 @@
+.aae-onboarding { max-width:640px; margin:64px auto; }
+.aae-onboarding .aae-reg-section { padding:40px; text-align:center; }
+.aae-onboarding h1 { margin:0 0 16px; font-size:24px; line-height:1.4; color:var(--aae-ink); }
+.aae-onboarding p { margin:0 0 12px; font-size:14px; line-height:1.7; color:var(--aae-muted); }
+.aae-onboarding__actions { display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin-top:24px; }
+.aae-onboarding__actions a { display:inline-flex; align-items:center; justify-content:center; text-decoration:none; }
+@media(max-width:700px){.aae-onboarding{margin:24px auto}.aae-onboarding .aae-reg-section{padding:28px 20px}}

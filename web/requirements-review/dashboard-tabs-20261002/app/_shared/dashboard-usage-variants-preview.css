@@ -1,0 +1,79 @@
+/* Selected card layout; all other dashboard components keep their existing design. */
+#dcLive[hidden],#dcPeriod[hidden]{display:none!important}
+.dc-usage-preview{height:auto;scroll-margin-top:78px}
+.dc-usage-preview .dc-head{min-height:53px;padding:10px 14px;gap:12px}
+.dc-usage-preview .dc-head .dc-table-tools{margin-left:auto;min-height:0;padding:0}
+.dc-usage-preview .dc-card-meta:empty{display:none}
+.dc-usage-preview .dc-body{padding:0;flex:none}
+.dc-usage-preview .dc-table-scroll{flex:none}
+.dc-usage-cards .dc-table-scroll{overflow:visible}
+.dc-usage-context{display:flex;align-items:center;gap:8px;padding:0 14px 10px;font-size:12px;line-height:18px;color:var(--dc-muted);flex-wrap:wrap}
+.dc-usage-metric{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
+.dc-usage-metric .dc-company-alert-value{padding:0;color:var(--dc-ink)}
+.dc-usage-note{font-size:12px;line-height:17px;color:var(--dc-muted);white-space:nowrap}
+.dc-usage-totals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.dc-usage-total{min-width:0;display:flex;flex-direction:column;gap:3px}
+.dc-usage-total>span{font-size:13px;line-height:18px;color:var(--dc-muted)}
+.dc-usage-total>div{display:flex;align-items:baseline;gap:4px;white-space:nowrap}
+.dc-usage-total b{font-size:20px;line-height:26px;font-weight:600;letter-spacing:-.3px}
+.dc-usage-total small{font-size:12px;line-height:17px;color:var(--dc-muted)}
+body.dc-canvas .dc-usage-preview .dc-table-empty{height:88px!important}
+@container dashboard-content (max-width:1040px){
+ .dc-usage-preview .dc-head{flex-wrap:wrap}
+ .dc-usage-preview .dc-head .dc-table-tools{order:1;width:100%;justify-content:flex-start}
+}
+
+/* Company identity, driving totals and energy readings have distinct visual levels. */
+.dc-usage-list{gap:14px 12px}
+.dc-usage-tile{gap:0;padding:0;overflow:hidden;border-color:#dfe5eb}
+.dc-usage-tile .dc-company-tile-head{padding:11px 12px;background:#f5f6f8;border-bottom:1px solid #e1e7ed;min-height:73px}
+.dc-usage-tile .dc-company-identity{border-left:3px solid #ff3600;padding-left:8px}
+.dc-usage-tile .dc-entity-name{color:var(--dc-ink);font-weight:700}
+.dc-usage-tile .dc-company-rate{gap:2px}
+.dc-usage-tile .dc-company-rate strong{color:#d74722;font-size:25px;line-height:29px}
+.dc-usage-tile .dc-usage-totals{gap:0;padding:14px 12px;background:#fff}
+.dc-usage-tile .dc-usage-total{align-items:center;text-align:center;gap:4px}
+.dc-usage-tile .dc-usage-total+ .dc-usage-total{border-left:1px solid #e6ebf0}
+.dc-usage-tile .dc-usage-total>span{color:#425261;font-weight:600}
+.dc-usage-tile .dc-usage-total b{font-size:23px;line-height:28px}
+.dc-usage-tile .dc-company-alerts{margin:0 12px 12px;padding:10px 0 0;border-top:1px solid #e1e7ed;border-bottom:0;gap:0}
+.dc-usage-tile .dc-usage-metric{align-items:center;text-align:center;gap:5px;padding:0 5px}
+.dc-usage-tile .dc-usage-metric+.dc-usage-metric{border-left:1px solid #edf0f3}
+.dc-usage-tile .dc-company-alert-label{color:#425261;font-weight:500;font-size:13px;gap:4px}
+.dc-usage-tile [data-metric="shock"] .dc-company-alert-label svg{color:#bd8508}
+.dc-usage-tile [data-metric="fuel"] .dc-company-alert-label svg{color:#ed5427}
+.dc-usage-tile [data-metric="batt"] .dc-company-alert-label svg{color:#0aa656}
+.dc-usage-tile .dc-company-alert-value b{font-size:19px;line-height:24px}
+.dc-usage-tile .dc-company-alert-value small{color:var(--dc-muted)}
+.dc-usage-preview.is-expanded .dc-usage-list{padding-bottom:16px}
+.dc-usage-table.is-expanded .dc-table tbody tr:nth-child(even){background:#f8fafb}
+
+/* Candidate selection is a draft; the adjacent search button applies it. */
+#dcLive,#dcPeriod{overflow:visible}
+#dcLive>.dc-head,#dcPeriod>.dc-head{position:relative;z-index:2}
+.dc-entity-search{display:flex;align-items:center;gap:6px;margin:0}
+.dc-entity-input{position:relative}
+.dc-table-tools .dc-entity-search input{width:188px}
+.dc-entity-submit{height:31px;padding:0 12px;border:1px solid #ff3600;border-radius:6px;background:#ff3600;color:#fff;font:inherit;font-size:13px;white-space:nowrap;cursor:pointer}
+.dc-entity-submit:disabled{opacity:.4;cursor:default}
+.dc-entity-suggestions{position:absolute;z-index:20;top:calc(100% + 4px);right:0;min-width:280px;max-width:360px;max-height:240px;overflow:auto;padding:4px;border:1px solid #dde3e8;border-radius:6px;background:#fff;box-shadow:0 5px 16px #27343f18}
+.dc-entity-suggestions[hidden]{display:none}
+.dc-entity-suggestions button{display:block;width:100%;padding:8px 10px;border:0;border-radius:3px;background:#fff;color:var(--dc-ink);font:inherit;font-size:13px;line-height:19px;text-align:left;cursor:pointer}
+.dc-entity-suggestions button:hover,.dc-entity-suggestions button[aria-selected="true"]{background:#fff1eb;color:#d74722}
+.dc-entity-suggestions p{margin:0;padding:8px 10px;color:var(--dc-muted);font-size:13px}
+
+/* The selected preview keeps the existing cards and makes each service count actionable. */
+#dcLive .dc-company-alert-link{border-radius:4px;cursor:pointer;min-width:0;text-decoration:none;align-items:center;text-align:center}
+#dcLive .dc-company-alert-link .dc-company-alert-value{background:transparent}
+#dcLive .dc-company-alert-link .dc-company-alert-label{color:inherit}
+#dcLive .dc-company-alert-link.is-zero .dc-company-alert-value{color:var(--dc-muted)}
+#dcLive .dc-company-alert-link .dc-company-alert-value small{color:var(--dc-muted)}
+#dcLive .dc-company-alert-link:hover{background:transparent}
+#dcLive .dc-company-alert-link:hover,#dcLive .dc-company-alert-link:hover .dc-company-alert-label{text-decoration:none}
+#dcLive .dc-alert-link-arrow{font-size:16px;line-height:17px;margin-left:2px;color:#81909a}
+#dcLive .dc-company-alert-link:focus-visible{outline:2px solid #ff360080;outline-offset:3px}
+
+/* English labels use the same typography; compact only the menu's inner gaps. */
+@media(max-width:1260px){
+ html[lang="en"] body.miq-current-shell.dc-canvas.miq-dashboard-widgets-preview .gnb__item>a{padding-inline:2px}
+}

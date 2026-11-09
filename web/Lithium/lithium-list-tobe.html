@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<script src="../_shared/common-logic.js?v=d77b14750704&amp;rev=15dd4911055c"></script>
+<link rel="stylesheet" href="../_shared/korean-layout.css?v=9e980f3cddea&amp;rev=495db444ef75"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>리튬배터리 · MACHINE IQ</title>
+<script src="../_shared/customer-access.js?v=e12eedbcb072&amp;rev=e12eedbcb072"></script>
+<link rel="icon" type="image/x-icon" href="../_shared/favicon.ico"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap"/>
+<link rel="stylesheet" href="../_shared/mockup.css?v=bed1f0069135&amp;rev=1b84f0f6030b"/>
+<link rel="stylesheet" href="../_shared/content-system.css?v=d8f94e7e5049&amp;rev=ae90e4581dc8"/>
+<link rel="stylesheet" href="../_shared/chart-common.css?v=fc1c23dcf6af&amp;rev=fc1c23dcf6af"/>
+<link rel="stylesheet" href="../_shared/lithium-list.css?v=ef3bc70e1fd3&amp;rev=51d7fc10ac66"/>
+<link rel="stylesheet" href="../_shared/form-controls.css?v=6fda272acdcc&amp;rev=9debe1b59fae"/>
+<link rel="stylesheet" href="../_shared/list-pagination.css?v=0069e48c1009&amp;rev=0069e48c1009">
+<link rel="stylesheet" data-current-shell href="../_shared/current-shell.css?v=eabe5a26bfe9&amp;rev=0e55e64ed211"/>
+<link rel="stylesheet" data-operations-navigation href="../_shared/operations-navigation.css?v=1cffa21a9777&amp;rev=1cffa21a9777"/>
+<style>body.miq-current-shell>#gnb{min-height:64px}</style>
+<script defer blocking="render" src="../_mock-data/generated/fleet.generated.js?v=52fa65a2dce1&amp;rev=52fa65a2dce1"></script>
+<script defer blocking="render" src="../_mock-data/generated/observation-profiles.generated.js?v=1be92dd7a845&amp;rev=4054b4937190"></script>
+<script defer blocking="render" src="../_shared/vehicle-observations.js?v=550edc6b3b85&amp;rev=b5e24277418e"></script>
+<script defer blocking="render" src="../_shared/meeting-model.js?v=48be9a58ad27&amp;rev=48be9a58ad27"></script>
+<script defer blocking="render" src="../_shared/chart-common.js?v=28a8b1161c0e&amp;rev=28a8b1161c0e"></script>
+<script defer blocking="render" src="../_shared/list-pagination.js?v=4b500130528b&amp;rev=4b500130528b"></script>
+<script defer blocking="render" src="../_shared/fleet.js?v=b0f68e558a52&amp;rev=b0f68e558a52"></script>
+<script src="../_shared/admin-context.js?v=7c4adfea6980"></script>
+<script defer blocking="render" src="../_shared/nav.js?v=a2d47c90bbe1"></script>
+<script defer blocking="render" src="../_shared/lnb-tree.js?v=92f5ceffdd3b&amp;rev=92f5ceffdd3b"></script>
+<script defer blocking="render" src="../_shared/lithium-list-model.js?v=ad33389c02d5&amp;rev=ad33389c02d5"></script>
+<script defer blocking="render" src="../_shared/lithium-list.js?v=bd278ee28b58&amp;rev=bd278ee28b58"></script>
+</head>
+<body data-current-bootstrap="ready" class="miq-current-shell miq-content-system miq-lithium-list" data-lithium-list="true" data-target-profile="full" data-gnb="anlz" data-sub="lithium" data-variant="tobe" data-base="../">
+<div id="gnb"></div>
+<div class="layout">
+  <aside class="lnb" id="lnb"></aside>
+  <main class="main">
+    <div class="page-head">
+      <div class="page-head__bc">운행이력 &gt; 리튬배터리</div>
+    </div>
+    <div class="miq-title-period-row li-list-title-row">
+      <h1 class="page-head__title">리튬배터리</h1>
+      <div class="miq-analysis-scope" id="lithiumListScope" data-miq-scope-placement="title" aria-label="현재 조회 범위"></div>
+      <label class="li-list-abnormal"><input id="lithiumAbnormal" type="checkbox"/> 상태이상만 보기</label>
+    </div>
+    <div class="tbl-wrap">
+      <table class="tbl li-list-table" aria-label="리튬배터리 차량 목록">
+        <colgroup><col style="width:20%"/><col style="width:14%"/><col style="width:14%"/><col style="width:11%"/><col style="width:11%"/><col style="width:10%"/><col style="width:20%"/></colgroup>
+        <thead><tr>
+          <th aria-sort="none"><button type="button" class="table-sort" data-sort-key="vin" aria-pressed="false">호기<span class="sort-ind" aria-hidden="true">↕</span></button></th>
+          <th class="c" aria-sort="none"><button type="button" class="table-sort" data-sort-key="soc" aria-pressed="false">배터리 잔량 (SOC)<span class="sort-ind" aria-hidden="true">↕</span></button></th>
+          <th class="c" aria-sort="none"><button type="button" class="table-sort" data-sort-key="soh" aria-pressed="false">성능 최대치 (SOH)<span class="sort-ind" aria-hidden="true">↕</span></button></th>
+          <th class="c" aria-sort="none"><button type="button" class="table-sort" data-sort-key="workMinutes" aria-pressed="false">작업 예상시간<span class="sort-ind" aria-hidden="true">↕</span></button></th>
+          <th class="c" aria-sort="none"><button type="button" class="table-sort" data-sort-key="chargeMinutes" aria-pressed="false">예상 충전시간<span class="sort-ind" aria-hidden="true">↕</span></button></th>
+          <th class="c" aria-sort="none"><button type="button" class="table-sort" data-sort-key="smartCharge" aria-pressed="false">스마트 충전<span class="sort-ind" aria-hidden="true">↕</span></button></th>
+          <th class="c">상태</th>
+        </tr></thead>
+        <tbody id="lithiumListBody"></tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

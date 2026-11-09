@@ -1,0 +1,254 @@
+{
+  "templateId": "MIQ-MAIL-004",
+  "fixture": true,
+  "scenario": "missing",
+  "report": {
+    "companyName": "한빛물류 주식회사",
+    "groupName": "기본그룹",
+    "targetMonth": "2026-09",
+    "previousMonth": "2026-08",
+    "periodStart": "2026-09-01T00:00:00+09:00",
+    "periodEndExclusive": "2026-10-01T00:00:00+09:00",
+    "periodLabel": "2026.09.01 – 2026.09.30",
+    "timeZone": "Asia/Seoul",
+    "scheduledAt": "2026-10-01T09:00:00+09:00",
+    "generatedAt": "2026.10.01 09:00",
+    "consumablesAsOf": "2026.10.01 09:00",
+    "links": {
+      "reportUrl": null,
+      "settingsUrl": null
+    },
+    "dataNotice": "Synthetic layout fixture, not collected records. Backend owns aggregation, rounding, deltas, eligibility and local-month boundaries."
+  },
+  "summary": {
+    "operatingRate": {
+      "unit": "%",
+      "differenceUnit": "pp",
+      "previous": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      },
+      "current": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      },
+      "difference": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      }
+    },
+    "efficiencyRate": {
+      "unit": "%",
+      "differenceUnit": "pp",
+      "previous": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      },
+      "current": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      },
+      "difference": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      }
+    },
+    "shockCnt": {
+      "unit": "events",
+      "differenceUnit": "events",
+      "previous": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      },
+      "current": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      },
+      "difference": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      }
+    },
+    "fuelLh": {
+      "unit": "L/H",
+      "differenceUnit": "L/H",
+      "previous": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      },
+      "current": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      },
+      "difference": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      }
+    },
+    "batteryRate": {
+      "unit": "%",
+      "differenceUnit": "pp",
+      "previous": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      },
+      "current": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      },
+      "difference": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      }
+    },
+    "distance": {
+      "unit": "km",
+      "differenceUnit": "km",
+      "previous": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      },
+      "current": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      },
+      "difference": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      }
+    },
+    "operatingTime": {
+      "unit": "H",
+      "differenceUnit": "H",
+      "previous": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      },
+      "current": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      },
+      "difference": {
+        "value": null,
+        "display": null,
+        "state": "missing"
+      }
+    }
+  },
+  "serviceCount": {
+    "totRepairCount": {
+      "value": null,
+      "display": null,
+      "state": "missing",
+      "unit": "events"
+    },
+    "totScheduleCount": {
+      "value": null,
+      "display": null,
+      "state": "missing",
+      "unit": "items"
+    },
+    "totErrorCount": {
+      "value": null,
+      "display": null,
+      "state": "missing",
+      "unit": "events"
+    },
+    "totBatteryErrorCount": {
+      "value": null,
+      "display": null,
+      "state": "missing",
+      "unit": "events"
+    }
+  },
+  "operatingSummary": {
+    "workingTime": {
+      "value": null,
+      "display": null,
+      "state": "missing"
+    },
+    "idleTime": {
+      "value": null,
+      "display": null,
+      "state": "missing"
+    },
+    "offTime": {
+      "value": null,
+      "display": null,
+      "state": "missing"
+    },
+    "workingTimeRate": {
+      "value": null,
+      "display": null,
+      "state": "missing"
+    },
+    "idleTimeRate": {
+      "value": null,
+      "display": null,
+      "state": "missing"
+    },
+    "offTimeRate": {
+      "value": null,
+      "display": null,
+      "state": "missing"
+    },
+    "basis": {
+      "code": null,
+      "value": null,
+      "unit": "H",
+      "state": "missing"
+    },
+    "operatingRateBasis": {
+      "code": null,
+      "value": null,
+      "unit": "H",
+      "state": "missing"
+    }
+  },
+  "shockSummary": {
+    "shock3Cnt": {
+      "value": null,
+      "display": null,
+      "state": "missing"
+    },
+    "shock4Cnt": {
+      "value": null,
+      "display": null,
+      "state": "missing"
+    },
+    "shock5Cnt": {
+      "value": null,
+      "display": null,
+      "state": "missing"
+    },
+    "attentionCount": {
+      "value": null,
+      "display": null,
+      "state": "missing"
+    }
+  },
+  "chart": {
+    "included": false,
+    "reason": "Comparison values presented in a semantic table; no browser JS charts or derived image values."
+  }
+}

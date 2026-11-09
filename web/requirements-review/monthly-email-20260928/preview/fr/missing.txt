@@ -1,0 +1,37 @@
+[Bobcat Machine IQ] Rapport mensuel - 한빛물류 주식회사 / 기본그룹
+
+한빛물류 주식회사 / 기본그룹
+2026.09.01 – 2026.09.30 (Asia/Seoul)
+Aucune donnée collectée n’est disponible pour cette période. Les valeurs absentes ne sont pas remplacées par zéro.
+Comparaison mensuelle
+Taux d’utilisation: — (Aucune donnée) → — (Aucune donnée) / Écart — (Aucune donnée)
+Efficacité opérationnelle: — (Aucune donnée) → — (Aucune donnée) / Écart — (Aucune donnée)
+Chocs: — (Aucune donnée) → — (Aucune donnée) / Écart — (Aucune donnée)
+Carburant consommé par heure: — (Aucune donnée) → — (Aucune donnée) / Écart — (Aucune donnée)
+Niveau de charge de la batterie: — (Aucune donnée) → — (Aucune donnée) / Écart — (Aucune donnée)
+Distance parcourue: — (Aucune donnée) → — (Aucune donnée) / Écart — (Aucune donnée)
+Heures de fonctionnement: — (Aucune donnée) → — (Aucune donnée) / Écart — (Aucune donnée)
+Interventions: — (Aucune donnée)
+Consommables à remplacer: — (Aucune donnée)
+Défauts du véhicule: — (Aucune donnée)
+Défauts de batterie: — (Aucune donnée)
+Temps de travail: — (Aucune donnée) / — (Aucune donnée)
+Temps d’attente: — (Aucune donnée) / — (Aucune donnée)
+Temps d’inutilisation: — (Aucune donnée) / — (Aucune donnée)
+Sensible · Niveau 3: — (Aucune donnée)
+Attention · Niveau 4: — (Aucune donnée)
+Alerte · Niveau 5: — (Aucune donnée)
+Attention + alerte: — (Aucune donnée)
+
+Consommables à remplacer · Données au: 2026.10.01 09:00 · Asia/Seoul
+
+Les écarts de taux sont en points de pourcentage (pp). — indique une valeur absente ou non calculable, distincte d’un zéro mesuré.
+L’entretien et les défauts sont comptés sur la période. Les consommables correspondent aux éléments à remplacer à la date de référence indiquée.
+Les parts de temps utilisent la somme du travail, de l’attente et de l’inutilisation. Elles ne sont pas affichées si le total est nul ou la base absente.
+Sensible, attention et alerte sont des comptes distincts. Attention + alerte regroupe ces deux niveaux ; le niveau 3 seul ne représente pas le total.
+Après connexion, modifiez la réception dans Mon compte → Paramètres e-mail des rapports réguliers.
+Données au: 2026.10.01 09:00 · Asia/Seoul
+Ce rapport correspond à la date de référence indiquée. Les informations du site peuvent évoluer ensuite.
+Cet e-mail est destiné aux clients ayant accepté de recevoir les rapports mensuels.
+Ce message est envoyé automatiquement. Pour toute question, veuillez contacter l’assistance.
+Assistance: help.machineiq@doosan.com

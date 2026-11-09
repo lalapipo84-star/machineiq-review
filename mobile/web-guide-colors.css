@@ -1,0 +1,88 @@
+/* Customer HTML color tokens. 2026-09-23: error/danger red is unified;
+   other battery/shock levels and the brand/action palette stay unchanged. */
+:root, body {
+  --linq-color-brand:#ff3600;
+  --linq-color-primary-fill:#d92e00;
+  --linq-color-primary-pressed:#cc2b00;
+  --linq-color-text:#000000;
+  --linq-color-text-strong:#000000;
+  --linq-color-text-muted:#777777;
+  --linq-color-surface:#ffffff;
+  --linq-color-surface-muted:#f7f7f7;
+  --linq-color-page:#f4f5f7;
+  --linq-color-border:#dfdfdf;
+  --linq-color-border-subtle:#e5e7eb;
+  --linq-color-disabled:#cccccc;
+  --linq-color-success:#0aa656;
+  --linq-color-warning:#ff9f0a;
+  --linq-color-warning-text:#ff9f0a;
+  --linq-color-danger:#992100;
+  --linq-color-info:#3b5bdb;
+  --linq-color-brand-soft:#fff5f3;
+  --linq-color-brand-border:#ffd0c4;
+  --linq-color-success-soft:#e6f7ec;
+  --linq-color-warning-soft:#fff9db;
+  --linq-color-danger-soft:#ffe3e3;
+}
+body.customer-prototype {
+  /* r68: user-selected default action color matches the header brand. */
+  --customer-button-fill:var(--linq-color-brand);
+  --customer-button-hover:var(--linq-color-primary-fill);
+  --customer-button-hover-border:var(--linq-color-primary-pressed);
+  --customer-button-pressed:var(--linq-color-primary-pressed);
+  --customer-button-pressed-border:#bf2900;
+}
+.customer-prototype .period-tabs button.is-active { background-color:#111111; }
+.customer-prototype .mobile-status-tabs { --tone-line:#d5dee3; --tone-charcoal:#000000; }
+.customer-prototype .push-history-item[data-push-category="other"] > svg { color:var(--linq-color-info); }
+.customer-prototype .push-history-item[data-push-category="shock"] > svg { color:var(--linq-color-warning); }
+/* The web guide retains brand orange for authentication primary actions. */
+body:not(.customer-prototype) :is(.login-actions button,.signup-primary,.recovery-primary):not(:disabled) { background-color:var(--linq-color-brand); }
+body:not(.customer-prototype) :is(.login-actions button,.signup-primary,.recovery-primary):not(:disabled):active { background-color:var(--linq-color-primary-pressed); }
+
+/* 2026-09-13: latest user-approved communication badge mapping.
+   Source: current WEB Map .st-pill.ok / .st-pill.off.
+   Connected green / disconnected gray replace the earlier site-alert mapping.
+   Scoped tokens preserve unrelated service, battery and warning colors. */
+body.customer-prototype {
+  --customer-communication-connected-bg:#e6f7ec;
+  --customer-communication-connected-text:#2b8a3e;
+  --customer-communication-offline-bg:#f1f3f5;
+  --customer-communication-offline-text:#868e96;
+}
+.customer-prototype .status-pill[title="통신연결"] {
+  background:var(--customer-communication-connected-bg);
+  color:var(--customer-communication-connected-text);
+}
+.customer-prototype .status-pill.is-offline[title="통신연결"] {
+  background:var(--customer-communication-offline-bg);
+  color:var(--customer-communication-offline-text);
+}
+/* Dashboard emphasis matches the vehicle shortcut brand; error icons match PUSH. */
+.customer-prototype { --customer-error-icon:var(--linq-color-danger); }
+.customer-prototype .health-kpis :is([data-service-focus="error"],[data-service-focus="due"]) > strong,
+.customer-prototype .health-kpis :is([data-service-focus="error"],[data-service-focus="due"]) .dashboard-kpi__label svg {
+  color:var(--linq-color-brand);
+}
+.customer-prototype .service-category-tabs [data-service="error"]:not(.is-active) > svg,
+.customer-prototype .error-service-item.is-state-danger .error-service-heading svg,
+.customer-prototype .push-history-item[data-push-category="error"] > svg {
+  color:var(--customer-error-icon);
+}
+
+/* 2026-10-12: mobile main text and actual field values are black.
+   Preserve the former charcoal only where it is a fill or lookup placeholder;
+   muted descriptions, status/brand colors and white-on-dark text are unchanged. */
+body {
+  --customer-control-dark-fill:#333333;
+  --customer-lookup-placeholder:#333333;
+}
+body.mobile-type-compact :is(input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]):not([type="reset"]),textarea,select) {
+  color:var(--linq-color-text);
+}
+body.mobile-type-compact .login-field input::placeholder {
+  color:var(--customer-lookup-placeholder);
+}
+.customer-prototype .detail-secondary-button:not(:disabled):not([aria-disabled="true"]) {
+  color:var(--linq-color-text);
+}

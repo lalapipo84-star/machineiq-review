@@ -1,0 +1,14 @@
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const app=path.resolve(process.argv[2]||path.join(__dirname,'..')),read=f=>fs.readFileSync(path.join(app,f),'utf8');
+const tokens=new Map([...read('web-guide-colors.css').matchAll(/(--[\w-]+)\s*:\s*([^;{}]+);/g)].map(m=>[m[1],m[2].trim()]));
+for(const key of ['--linq-color-text','--linq-color-text-strong','--tone-charcoal'])assert.equal(tokens.get(key),'#000000',key);
+for(const [key,value] of [['--linq-color-text-muted','#777777'],['--linq-color-brand','#ff3600'],['--linq-color-danger','#992100'],['--linq-color-success','#0aa656'],['--customer-control-dark-fill','#333333'],['--customer-lookup-placeholder','#333333']])assert.equal(tokens.get(key),value,'Preserved exception '+key);
+assert(read('web-guide-colors.css').includes('input:not([type="checkbox"]):not([type="radio"])'),'Value rule must not recolor radio/checkbox state');
+assert(read('web-guide-colors.css').includes('textarea,select)'));
+assert(!/input\[(?:readonly|disabled)\].*text-muted/.test(read('web-guide-colors.css')),'Read-only values stay primary, not muted');
+assert(read('customer.css').includes('input::placeholder { color:var(--customer-lookup-placeholder);'));
+assert(!/background:var\(--linq-color-text(?:-strong)?\)/.test(read('customer.css')),'Charcoal backgrounds are separate from black foreground tokens');
+assert(read('customer.css').includes('background:var(--customer-control-dark-fill); color:#fff;'));
+const entries=['index.html',...(fs.existsSync(path.join(app,'owner-dashboard-preview.html'))?['owner-dashboard-preview.html']:[]),'login.html','signup.html','find-password.html',...['400','401','403','500','503'].map(c=>'Common/'+c+'.html')];
+for(const f of entries)assert(read(f).includes('web-guide-colors.css?v=20261012-r139'),'New color cache '+f);
+console.log('PASS mobile black text: single existing foreground tokens; '+entries.length+' entrypoints; actual input/select/textarea values including readonly; placeholder/muted/status/brand/white/dark-fill exceptions preserved.');

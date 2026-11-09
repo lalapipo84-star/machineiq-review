@@ -1,0 +1,37 @@
+[Bobcat Machine IQ] Monthly report - 한빛물류 주식회사 / 기본그룹
+
+한빛물류 주식회사 / 기본그룹
+2026.09.01 – 2026.09.30 (Asia/Seoul)
+Aggregated results for the reporting period.
+Month comparison
+Utilization: 48 % → 50 % / Change +2 pp
+Operating efficiency: 80 % → 82 % / Change +2 pp
+Impacts: 60 events → 46 events / Change -14 events
+Fuel consumption per hour: 4.6 L/h → 4.2 L/h / Change -0.4 L/h
+Battery charge level: 55 % → 58 % / Change +3 pp
+Distance traveled: 1,100 km → 1,216 km / Change +116 km
+Operating time: 480 h → 500 h / Change +20 h
+Maintenance records: 3 events
+Consumables due: 5 items
+Vehicle faults: 7 events
+Battery faults: 2 events
+Working time: 410 h / 41 %
+Idle time: 90 h / 9 %
+Unused time: 500 h / 50 %
+Sensitive · Level 3: 30 events
+Caution · Level 4: 12 events
+Warning · Level 5: 4 events
+Caution + warning: 16 events
+
+Consumables due · As of: 2026.10.01 09:00 · Asia/Seoul
+
+Rate differences are percentage points (pp). — means unavailable or not calculable, and is distinct from a measured zero.
+Maintenance and faults are event counts within the reporting period. Consumables are items due for replacement at the stated reference time.
+Time shares use the sum of working, idle and unused time. Shares are omitted when the total is zero or the basis is unavailable.
+Sensitive, caution and warning are separate event counts. Caution + warning combines those two levels; sensitive events alone are not the total.
+After signing in, change monthly report delivery in My account → Regular report Email settings.
+As of: 2026.10.01 09:00 · Asia/Seoul
+This report reflects the stated reference time. Information on the website may change later.
+This email is provided to customers who have opted in to monthly reports.
+This is an automated email. Please contact customer support if you need help.
+Customer support: help.machineiq@doosan.com

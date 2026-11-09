@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<script src="../_shared/common-logic.js?v=d77b14750704&amp;rev=15dd4911055c"></script>
+<link rel="stylesheet" href="../_shared/korean-layout.css?v=9e980f3cddea&amp;rev=495db444ef75"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>로그인 · MACHINE IQ</title>
+<script src="../_shared/customer-access.js?v=e12eedbcb072&amp;rev=e12eedbcb072"></script>
+<link rel="icon" type="image/x-icon" href="../_shared/favicon.ico"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap"/>
+<link rel="stylesheet" href="../_shared/mockup.css?v=bed1f0069135&amp;rev=1b84f0f6030b"/>
+<link rel="stylesheet" href="../_shared/prelogin-shell.css?v=28d5a9ff2aba&amp;rev=57deadc32cab"/>
+<link rel="stylesheet" href="../_shared/auth-account-enhancements.css?v=fef0b25d76b5&amp;rev=9bec4a7b9dec"/>
+<link rel="stylesheet" href="../_shared/form-controls.css?v=6fda272acdcc&amp;rev=9debe1b59fae"/>
+</head>
+<body data-shell="none" data-variant="tobe" data-base="../" data-auth-page="login">
+<div class="aae-shell">
+  <header data-miq-auth-header data-base="../"></header>
+
+  <main class="aae-main aae-main--compact">
+    <div class="aae-page-heading">
+      <h1>로그인</h1>
+      <p>등록한 사용자 ID 또는 이메일로 Fleet Portal에 로그인하세요.</p>
+    </div>
+
+    <section class="aae-card" aria-labelledby="loginCardTitle">
+      <div class="aae-card__body">
+        <div class="aae-card__head">
+          <h2 class="aae-card__title" id="loginCardTitle">계정 로그인</h2>
+          <p class="aae-card__desc">비밀번호는 12자 이상이며 영문·숫자·특수문자를 포함해야 합니다.</p>
+        </div>
+
+        <form class="aae-form" id="loginForm" novalidate>
+          <div class="aae-field">
+            <label class="aae-label" for="loginIdentifier">사용자 ID 또는 이메일 <span class="aae-required" aria-hidden="true">*</span></label>
+            <input class="aae-control" id="loginIdentifier" name="identifier" type="text" value="fleet.admin@sejong-log.co.kr" autocomplete="username" aria-describedby="loginIdentifierError" required/>
+            <span class="aae-error" id="loginIdentifierError" data-error-for="loginIdentifier"></span>
+          </div>
+
+          <div class="aae-field">
+            <label class="aae-label" for="loginPassword">비밀번호 <span class="aae-required" aria-hidden="true">*</span></label>
+            <div class="aae-control-wrap">
+              <input class="aae-control" id="loginPassword" name="password" type="password" value="password12!@" autocomplete="current-password" aria-describedby="loginPasswordHelp loginPasswordError" required/>
+              <button class="aae-password-toggle" type="button" data-password-toggle="loginPassword" aria-pressed="false">표시</button>
+            </div>
+            <span class="aae-help" id="loginPasswordHelp">12자 이상 · 영문 + 숫자 + 특수문자</span>
+            <span class="aae-error" id="loginPasswordError" data-error-for="loginPassword"></span>
+          </div>
+
+          <div class="aae-login-tools">
+            <label class="aae-check"><input id="rememberIdentifier" type="checkbox"/><span>아이디 저장</span></label>
+            <a href="../Find%20Password/find-password-tobe.html">비밀번호 찾기</a>
+          </div>
+
+          <div class="aae-retry" id="loginRetry" aria-live="polite" hidden></div>
+          <div class="aae-alert is-danger" id="loginLocked" hidden>
+            계정이 잠겼습니다. <a href="mailto:help.machineiq@doosan.com"><strong>help.machineiq@doosan.com</strong></a>으로 잠금 해제와 비밀번호 초기화를 요청하세요.
+          </div>
+          <div class="aae-alert" id="loginStatus" role="status" aria-live="polite" hidden></div>
+          <button class="aae-button aae-button--primary aae-button--wide" id="loginSubmit" type="submit">로그인</button>
+        </form>
+
+        <section id="forcedPasswordPanel" hidden aria-labelledby="forcedPasswordTitle">
+          <div class="aae-card__head">
+            <h2 class="aae-card__title" id="forcedPasswordTitle">새 비밀번호 설정</h2>
+            <p class="aae-card__desc">임시 비밀번호로 로그인했습니다. 새 비밀번호를 설정해야 서비스를 이용할 수 있습니다.</p>
+          </div>
+          <form class="aae-form" id="forcedPasswordForm" novalidate>
+            <div class="aae-field">
+              <label class="aae-label" for="forcedPassword">새 비밀번호 <span class="aae-required" aria-hidden="true">*</span></label>
+              <div class="aae-control-wrap">
+                <input class="aae-control" id="forcedPassword" type="password" autocomplete="new-password" aria-describedby="forcedPasswordHelp forcedPasswordError" required/>
+                <button class="aae-password-toggle" type="button" data-password-toggle="forcedPassword" aria-pressed="false">표시</button>
+              </div>
+              <span class="aae-help" id="forcedPasswordHelp">12자 이상 · 영문 + 숫자 + 특수문자</span>
+              <span class="aae-error" id="forcedPasswordError" data-error-for="forcedPassword"></span>
+            </div>
+            <div class="aae-field">
+              <label class="aae-label" for="forcedPasswordConfirm">새 비밀번호 확인 <span class="aae-required" aria-hidden="true">*</span></label>
+              <div class="aae-control-wrap">
+                <input class="aae-control" id="forcedPasswordConfirm" type="password" autocomplete="new-password" aria-describedby="forcedPasswordConfirmError" required/>
+                <button class="aae-password-toggle" type="button" data-password-toggle="forcedPasswordConfirm" aria-pressed="false">표시</button>
+              </div>
+              <span class="aae-error" id="forcedPasswordConfirmError" data-error-for="forcedPasswordConfirm"></span>
+            </div>
+            <div class="aae-alert" id="forcedPasswordStatus" role="status" aria-live="polite" hidden></div>
+            <button class="aae-button aae-button--primary aae-button--wide" type="submit">변경 후 계속</button>
+          </form>
+        </section>
+
+        <div class="aae-link-row" id="loginLinks">
+          <span>아직 계정이 없나요?</span>
+          <a href="../registration/web-registration-tobe-v3.html">회원가입</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="../_shared/prelogin-shell.js?v=92d5b06358b6&amp;rev=1ef2bda7d29f"></script>
+<script src="../_shared/auth-account-enhancements.js?v=da8ceaf97ed3&amp;rev=0a8cada7e4a3"></script>
+</body>
+</html>

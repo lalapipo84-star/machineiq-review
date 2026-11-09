@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<script src="../_shared/common-logic.js?v=d77b14750704&amp;rev=15dd4911055c"></script>
+<link rel="stylesheet" href="../_shared/korean-layout.css?v=9e980f3cddea&amp;rev=495db444ef75"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>업체별 현황 · MACHINE IQ</title>
+<script src="../_shared/customer-access.js?v=e12eedbcb072&amp;rev=e12eedbcb072"></script>
+<link rel="icon" type="image/x-icon" href="../_shared/favicon.ico"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap"/>
+<link rel="stylesheet" href="../_shared/mockup.css?v=bed1f0069135&amp;rev=1b84f0f6030b"/>
+<style>
+/* ── 페이지 전용 : 지표 카드 6종 · 지표 전환 · 일자별 막대(hover) ── */
+.filter-bar .inp--sm{width:116px;flex:0 0 auto;text-align:center}
+.filter-bar .sep{font-size:12px;color:#999}
+.filter-bar .co-sel{width:auto;min-width:200px}
+.filter-bar .co-k{font-size:12px;color:#888}
+
+/* 지표 카드 : 값이 서로 겹치지 않도록 막대와 수치 영역을 분리한다 */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px;margin-bottom:14px}
+.kpi{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:16px 16px 14px;text-align:center}
+.kpi__t{font-size:13px;font-weight:700;color:#000000}
+.kpi__d{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:700;border-radius:20px;padding:2px 9px;margin-top:8px}
+.kpi__d.up{background:#ffe8e3;color:#e03131}
+.kpi__d.down{background:#e7f0ff;color:#1c7ed6}
+.kpi__d.flat{background:#f1f3f5;color:#868e96}
+.kpi__bars{display:flex;align-items:flex-end;justify-content:center;gap:20px;height:104px;margin-top:14px}
+.kpi__b{width:40px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.kpi__bar{width:100%;border-radius:2px 2px 0 0;min-height:4px}
+.kpi__b.prev .kpi__bar{background:#e3e5e8}
+.kpi__b.cur .kpi__bar{background:#7893b3}
+/* 수치는 막대 위가 아니라 아래 목록으로 분리 → 6칸 배치에서도 겹치지 않는다 */
+.kpi__vals{margin-top:12px;border-top:1px solid #f4f5f6;padding-top:10px;display:flex;flex-direction:column;gap:5px}
+.kpi__row{display:flex;align-items:baseline;gap:8px;font-size:12px}
+.kpi__row .k{display:inline-flex;align-items:center;gap:5px;color:#999}
+.kpi__row .k i{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.kpi__row .v{margin-left:auto;font-weight:700;color:#000000;white-space:nowrap}
+.kpi__row.prev .v{color:#999;font-weight:600}
+
+/* 지표 전환 */
+.metric-tabs{display:flex;border:1px solid #e0e0e0;border-radius:8px 8px 0 0;overflow:hidden;background:#fff;border-bottom:none}
+.metric-tabs button{flex:1;border:none;background:#fff;padding:13px 8px;font-size:13px;font-weight:600;color:#666;cursor:pointer;border-right:1px solid #eef0f2}
+.metric-tabs button:last-child{border-right:none}
+.metric-tabs button:hover{background:#fafbfc;color:#000000}
+.metric-tabs button.active{background:#1a1a1a;color:#fff}
+.chart-box{background:#fff;border:1px solid #e0e0e0;border-radius:0 0 8px 8px;padding:18px 20px;margin-bottom:14px}
+.chart-head{display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+.chart-head__name{font-size:15px;font-weight:700}
+.lg{display:flex;gap:12px;font-size:11px;color:#888}
+.lg .li{display:inline-flex;align-items:center;gap:5px}
+.lg .sw{width:9px;height:9px;border-radius:50%}
+.chart-hint{margin-left:auto;font-size:11px;color:#999}
+
+/* 막대 : 화면 너비에 맞춤 · 라벨 대신 hover */
+.chart-wrap{position:relative}
+.bar-chart{width:100%;height:340px;display:block}
+.bar-chart .grid{stroke:#f1f3f5;stroke-width:1;stroke-dasharray:3 3}
+.bar-chart .axis{stroke:#e9ecef;stroke-width:1}
+.bar-chart text{font-size:10px;fill:#aaa;font-family:'Noto Sans KR',sans-serif}
+.bar-chart .b.prev{fill:#e3e5e8}
+.bar-chart .b.cur{fill:#7893b3}
+.bar-chart .hit{fill:transparent;cursor:pointer}
+.bar-chart .col.on .b.prev{fill:#cdd1d6}
+.bar-chart .col.on .b.cur{fill:#5b7fa6}
+.tip-box{position:absolute;pointer-events:none;display:none;background:#1a1a1a;color:#fff;border-radius:6px;
+         padding:8px 10px;font-size:11px;line-height:1.7;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.18);z-index:5}
+.tip-box b{font-size:12px}
+.tip-box .r{display:flex;gap:8px}
+.tip-box .r i{width:8px;height:8px;border-radius:50%;margin-top:5px;flex-shrink:0}
+.tip-box .r span{margin-left:auto;font-weight:700}
+</style>
+<link rel="stylesheet" href="../_shared/content-system.css?v=d8f94e7e5049&amp;rev=ae90e4581dc8"/>
+<link rel="stylesheet" href="../_shared/report-enhancements.css?v=dceeccfe9513&amp;rev=f569bba7510c"/>
+<link rel="stylesheet" href="../_shared/chart-common.css?v=fc1c23dcf6af&amp;rev=fc1c23dcf6af"/>
+<link rel="stylesheet" href="../_shared/form-controls.css?v=6fda272acdcc&amp;rev=9debe1b59fae"/>
+<link rel="stylesheet" href="../_shared/list-pagination.css?v=0069e48c1009&amp;rev=0069e48c1009">
+<link rel="stylesheet" data-current-shell href="../_shared/current-shell.css?v=eabe5a26bfe9&amp;rev=0e55e64ed211"/>
+<link rel="stylesheet" data-operations-navigation href="../_shared/operations-navigation.css?v=1cffa21a9777&amp;rev=1cffa21a9777"/>
+<style>body.miq-current-shell>#gnb{min-height:64px}</style>
+<script defer blocking="render" src="../_mock-data/generated/fleet.generated.js?v=52fa65a2dce1&amp;rev=52fa65a2dce1"></script>
+<script defer blocking="render" src="../_mock-data/generated/observation-profiles.generated.js?v=1be92dd7a845&amp;rev=4054b4937190"></script>
+<script defer blocking="render" src="../_shared/vehicle-observations.js?v=550edc6b3b85&amp;rev=b5e24277418e"></script>
+<script defer blocking="render" src="../_shared/meeting-model.js?v=48be9a58ad27&amp;rev=48be9a58ad27"></script>
+<script defer blocking="render" src="../_shared/chart-common.js?v=28a8b1161c0e&amp;rev=28a8b1161c0e"></script>
+<script defer blocking="render" src="../_shared/report-series.js?v=c676889771d9&amp;rev=c676889771d9"></script>
+<script defer blocking="render" src="../_shared/list-pagination.js?v=4b500130528b&amp;rev=4b500130528b"></script>
+<script defer blocking="render" src="../_shared/fleet.js?v=b0f68e558a52&amp;rev=b0f68e558a52"></script>
+<script defer blocking="render" src="../_shared/nav.js?v=f5f9b1d00606&amp;rev=5ae862e16c37"></script>
+<script defer blocking="render" src="../_shared/report-scope.js?v=32a98349891b&amp;rev=32a98349891b"></script>
+<script type="module" blocking="render">
+/* ══════════════════════════════════════════════════════════════
+   업체별 현황 Mock-up 인터랙션 (리포트 · LNB 없음)
+     1) 업체 선택 + 기간(일 / 주 / 월)
+     2) 지표 6종 : 운영효율 · 충격횟수 · 연료소비량 · 배터리 충전량 · 운행거리 · 운행시간
+     3) 카드 = 일자별 값의 합계(건 · Km · H) 또는 평균(% · L/H) → 차트와 값이 일치
+     4) 막대는 폭을 좁혀 스크롤 없이 표시하고, 수치는 hover 툴팁으로 제공
+   ══════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  var SCOPE = window.MIQReportScope;
+  var COMPANIES = SCOPE.items;
+  MIQCommon.view.set(document.getElementById('coSel'),"innerHTML",COMPANIES.map(function(c){return '<option>'+c+'</option>';}).join(''));
+  var METRICS = MIQReportSeries.metrics;
+  var PAGE_QUERY = new URLSearchParams(location.search);
+  var PERIOD = MIQReportSeries.periods(PAGE_QUERY);
+  var initialPeriod = { day: 'd', week: 'w', month: 'm', custom: 'c' }[PAGE_QUERY.get('period')] || PAGE_QUERY.get('period') || 'm';
+  if (!PERIOD[initialPeriod]) initialPeriod = 'm';
+  if (PAGE_QUERY.get('from') && PAGE_QUERY.get('to') && MIQCharts.axis(initialPeriod,PAGE_QUERY.get('from'),PAGE_QUERY.get('to')).n) PERIOD[initialPeriod] = Object.assign({}, PERIOD[initialPeriod], {from:PAGE_QUERY.get('from'),to:PAGE_QUERY.get('to')});
+  var state = {
+    co: COMPANIES[0],
+    period: initialPeriod,
+    metric: 'eff',
+    customFrom: PERIOD.c.from,
+    customTo: PERIOD.c.to
+  };
+
+  var rd = MIQReportSeries.round;
+  function fmt(n, m) { return n===null||n===undefined?'—':window.MIQCommon.numbers.integer(n, true) + m.unit; }
+  function metric(key) { return MIQReportSeries.metric(key); }
+
+  function build(key) {
+    var range = PERIOD[state.period];
+    return MIQReportSeries.status(SCOPE.resolve(state.co), key, state.period, range.from, range.to);
+  }
+
+  /* ── ① 지표 카드 ── */
+  function renderKpis() {
+    MIQCommon.view.set(document.getElementById('kpiGrid'),"innerHTML",METRICS.map(function (mm) {
+      var d = build(mm.key);
+      var comparable=d.cur!==null&&d.prev!==null;
+      var diff = comparable?Math.round(d.cur)-Math.round(d.prev):null;
+      var favorable = comparable && diff !== 0 && ((diff > 0) === mm.betterHigh);
+      var cls = !comparable || diff === 0 ? 'flat' : (favorable ? 'good' : 'bad');
+      var arrow = !comparable || diff === 0 ? '–' : (diff > 0 ? '▲' : '▼');
+      var max = Math.max(d.cur, d.prev) || 1;
+      var hp = d.prev===null?0:Math.max(4, d.prev / max * 88), hc = d.cur===null?0:Math.max(4, d.cur / max * 88);
+      return "<div class='kpi' data-k='" + mm.key + "'>"
+        + "<div class='kpi__t'>" + mm.label + (mm.key === 'fuel' ? '/H' : '') + "</div>"
+        + "<div class='kpi__d " + cls + "'>" + (comparable?arrow+' '+fmt(Math.abs(diff),Object.assign({},mm,{unit:mm.unit==='%'?'%p':mm.unit})):'—') + "</div>"
+        + "<div class='kpi__bars' " + MIQCharts.tipAttrs(mm.label + '\n' + PERIOD[state.period].from + ' ~ ' + PERIOD[state.period].to + '\n' + PERIOD[state.period].prev + ' ' + fmt(d.prev, mm) + '\n' + PERIOD[state.period].cur + ' ' + fmt(d.cur, mm)) + ">"
+        + "<div class='kpi__b prev'><span class='kpi__bar' style='height:" + hp.toFixed(1) + "px'></span></div>"
+        + "<div class='kpi__b cur'><span class='kpi__bar' style='height:" + hc.toFixed(1) + "px'></span></div>"
+        + "</div>"
+        + "<div class='kpi__vals'>"
+        + "<div class='kpi__row prev'><span class='k'><i style='background:#e3e5e8'></i>" + PERIOD[state.period].prev
+        + "</span><span class='v'>" + fmt(d.prev, mm) + "</span></div>"
+        + "<div class='kpi__row cur'><span class='k'><i style='background:#ff3600'></i>" + PERIOD[state.period].cur
+        + "</span><span class='v'>" + fmt(d.cur, mm) + "</span></div>"
+        + "</div></div>";
+    }).join(''));
+  }
+
+  MIQCharts.bind(document.getElementById('kpiGrid'));
+  /* ── ② 지표 탭 ── */
+  function renderTabs() {
+    MIQCommon.view.set(document.getElementById('metricTabs'),"innerHTML",METRICS.map(function (mm) {
+      return "<button type='button' data-metric='" + mm.key + "'" + (state.metric === mm.key ? " class='active'" : "") + ">"
+        + mm.label + "</button>";
+    }).join(''));
+  }
+
+  /* ── ② 막대 차트 (스크롤 없음 · hover 툴팁) ── */
+  var L = 52, T = 20, B = 270, H = 310;
+  var W = 960, R = 946;
+  function r2(n, k) { var p = Math.pow(10, k || 0); return Math.round(n * p) / p; }
+  function useWidth(el) {
+    var w = Math.round(el.getBoundingClientRect().width) || el.clientWidth || 960;
+    W = Math.max(560, w); R = W - 14;
+    MIQCommon.view.call(el,"setAttribute",['viewBox','0 0 ' + W + ' ' + H]);
+  }
+
+  function renderChart(d) {
+    var el = document.getElementById('chart');
+    useWidth(el);
+    var vals = [];
+    d.cols.forEach(function (c) { if(c.prev!==null)vals.push(c.prev); if (c.cur !== null) vals.push(c.cur); });
+    var top = Math.max.apply(null, vals) || 1;
+    var step = Math.pow(10, Math.floor(Math.log(top) / Math.LN10)) / 2;
+    var max = Math.ceil(top / step) * step;
+    var countAxis = d.m.key === 'shock' ? MIQCharts.countsAxis(vals) : null;
+    if (countAxis) max = countAxis.max;
+    var y = function (v) { return B - v / max * (B - T); };
+    var band = (R - L) / d.cols.length;
+    var bw = Math.max(2.5, Math.min(11, band * 0.32));   /* 막대 폭을 좁혀 너비에 맞춤 */
+
+    var svg = '';
+    var gridTicks = countAxis ? countAxis.ticks : Array.from({length:9}, function(_, index){return max * index / 8;});
+    gridTicks.forEach(function (t) {
+      svg += "<line class='grid' x1='" + L + "' y1='" + r2(y(t), 1) + "' x2='" + R + "' y2='" + r2(y(t), 1) + "'/>"
+        + "<text x='" + (L - 8) + "' y='" + r2(y(t) + 3, 1) + "' text-anchor='end'>" + window.MIQCommon.numbers.integer(t) + "</text>";
+    });
+    svg += "<line class='axis' x1='" + L + "' y1='" + B + "' x2='" + R + "' y2='" + B + "'/>"
+      + "<line class='axis' x1='" + L + "' y1='" + T + "' x2='" + L + "' y2='" + B + "'/>";
+
+    d.cols.forEach(function (c, i) {
+      var cx = L + band * (i + 0.5);
+      svg += "<g class='col' data-i='" + i + "'>";
+      svg += "<rect class='b prev' x='" + r2(cx - bw - 1, 1) + "' y='" + r2(y(c.prev), 1) + "' width='" + r2(bw, 1)
+        + "' height='" + r2(B - y(c.prev), 1) + "'/>";
+      if (c.cur !== null) {
+        svg += "<rect class='b cur' x='" + r2(cx + 1, 1) + "' y='" + r2(y(c.cur), 1) + "' width='" + r2(bw, 1)
+          + "' height='" + r2(B - y(c.cur), 1) + "'/>";
+      }
+      svg += "<rect class='hit' x='" + r2(cx - band / 2, 1) + "' y='" + T + "' width='" + r2(band, 1) + "' height='" + r2(B - T, 1) + "'/>"
+        + "</g>";
+      var axisLabel = MIQCharts.tickLabel(d.labels, i, R-L);
+      svg += "<text x='" + r2(cx, 1) + "' y='" + (B + 18) + "' text-anchor='middle'>" + axisLabel + "</text>";
+    });
+    document.getElementById('tip').style.display = 'none';
+    MIQCommon.view.set(el,"innerHTML",svg);
+
+    var tip = document.getElementById('tip'), wrap = document.getElementById('chartWrap');
+    tip.setAttribute('data-i18n-count', d.m.key);
+    Array.prototype.forEach.call(el.querySelectorAll('g.col'), function (g) {
+      var i = +MIQCommon.view.call(g,"getAttribute",['data-i']), c = d.cols[i];
+      g.addEventListener('mouseenter', function (ev) {
+        g.classList.add('on');
+        var rows = "<b>" + d.detailLabels[i] + "</b>"
+          + "<div class='r'><i style='background:#e3e5e8'></i>" + PERIOD[state.period].prev + "<span>" + fmt(c.prev, d.m) + "</span></div>";
+        if (c.cur === null) rows += "<div class='r'><i style='background:#ff3600'></i>" + PERIOD[state.period].cur + "<span>집계 전</span></div>";
+        else {
+          var diff = rd(c.cur - c.prev, d.m.dec);
+          rows += "<div class='r'><i style='background:#ff3600'></i>" + PERIOD[state.period].cur + "<span>" + fmt(c.cur, d.m) + "</span></div>"
+            + "<div class='r'><i style='background:transparent'></i>증감<span>" + (diff > 0 ? '▲ ' : diff < 0 ? '▼ ' : '') + fmt(Math.abs(diff), d.m) + "</span></div>";
+        }
+        MIQCommon.view.set(tip,"innerHTML",rows);
+        tip.style.display = 'block';
+        move(ev);
+      });
+      g.addEventListener('mousemove', move);
+      g.addEventListener('mouseleave', function () { g.classList.remove('on'); tip.style.display = 'none'; });
+      function move(ev) {
+        var box = wrap.getBoundingClientRect();
+        var x = (ev.clientX || 0) - box.left, yy = (ev.clientY || 0) - box.top;
+        tip.style.left = Math.max(0, Math.min(box.width - 200, x + 12)) + 'px';
+        tip.style.top = Math.max(0, yy - 80) + 'px';
+      }
+    });
+  }
+
+  var reportReady = false;
+  function render() {
+    if (!reportReady) {  return; }
+    renderKpis();
+    renderTabs();
+    var d = build(state.metric);
+    MIQCommon.view.set(document.getElementById('chartName'),"textContent",d.m.label);
+    renderChart(d);
+
+    Array.prototype.forEach.call(document.querySelectorAll('[data-lbl-cur]'), function (el) { MIQCommon.view.set(el,"textContent",PERIOD[state.period].cur); });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-lbl-prev]'), function (el) { MIQCommon.view.set(el,"textContent",PERIOD[state.period].prev); });
+    MIQCommon.view.set(document.getElementById('chartHint'),"textContent",(state.period === 'd' ? 'ⓘ 시간대별 값입니다.'
+       : state.period === 'c' ? 'ⓘ 선택 기간의 일자별 값입니다.'
+       : 'ⓘ 일자별 값입니다.')
+      + ' 막대에 마우스를 올리면 수치가 표시됩니다.');
+  }
+
+  /* ── 이벤트 ── */
+  var co = document.getElementById('coSel');
+  MIQCommon.view.set(co,"innerHTML",COMPANIES.map(function (c) { return "<option>" + c + "</option>"; }).join(''));
+  co.addEventListener('change', function () { state.co = co.value; render(); });
+
+  document.getElementById('periodTabs').addEventListener('click', function (e) {
+    if (this.closest('.finder, .filter-bar').__miqPeriodController) return;
+    var b = e.target.closest('button[data-period]');
+    if (!b) return;
+    state.period = MIQCommon.view.call(b,"getAttribute",['data-period']);
+    render();
+  });
+  (document.getElementById('periodTabs').closest('.finder, .filter-bar') || document.getElementById('periodTabs')).addEventListener('miq:period-change', function (event) {
+    var detail = event.detail || {};
+    state.period = detail.period || state.period;
+    if (!PERIOD[state.period]) state.period = 'm';
+    PERIOD[state.period].from = detail.startDate || PERIOD[state.period].from;
+    PERIOD[state.period].to = detail.endDate || PERIOD[state.period].to;
+    if (state.period === 'c') { state.customFrom = PERIOD.c.from; state.customTo = PERIOD.c.to; }
+    render();
+  });
+  document.getElementById('metricTabs').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-metric]');
+    if (!b) return;
+    state.metric = MIQCommon.view.call(b,"getAttribute",['data-metric']);
+    render();
+  });
+  document.getElementById('btnSearch').addEventListener('click', function () {
+    if (this.closest('.finder, .filter-bar').__miqPeriodController) return;
+    if (state.period === 'c') {
+      var from = document.getElementById('dFrom').value;
+      var to = document.getElementById('dTo').value;
+      if (!from || !to || from > to) return;
+      state.customFrom = from;
+      state.customTo = to;
+    }
+    render();
+  });
+
+  window.MIQReportInit = function () {
+    reportReady = true;
+    render();
+  MIQCharts.observeSize(document.getElementById('chart'), function(){renderChart(build(state.metric));});
+  };
+})();
+</script>
+<script defer blocking="render" src="../_shared/report-enhancements.js?v=d46a09fbf19f&amp;rev=d46a09fbf19f"></script>
+</head>
+<body data-current-bootstrap="ready" data-period-presets="dwm" class="miq-current-shell miq-content-system miq-report-enhanced" data-gnb="rpt" data-sub="rptstatus" data-variant="tobe" data-base="../">
+
+<div id="gnb"></div>
+
+<div class="layout">
+  <aside class="lnb" aria-label="리포트 메뉴"></aside>
+  <main class="main">
+    <div class="page-head">
+      <div class="page-head__title">업체별 현황</div>
+      <div class="page-head__bc">
+        리포트 &gt; 업체별 현황 ·
+        <a href="../Report%20Comparison/report-comparison-tobe.html">업체별 비교</a> ·
+        <a href="../Report%20Heatmap/report-heatmap-tobe.html">업체별 히트맵</a>
+      </div>
+    </div>
+
+    <!-- 기간 필터: 업체 선택은 업체별 비교와 같은 본문 보조 행으로 이동한다. -->
+    <div class="filter-bar">
+      <span class="co-k">업체</span>
+      <select class="inp inp--sm co-sel" id="coSel" aria-label="업체 선택"></select>
+      <div class="grow"></div>
+      <span class="period-tabs" id="periodTabs">
+        <button type="button" data-period="d">일</button>
+        <button type="button" data-period="w">주</button>
+        <button class="active" type="button" data-period="m">월</button>
+        </span>
+      <input class="inp inp--sm" id="dFrom" type="date" value="2026-08-01" aria-label="조회 시작일"/>
+      <span class="sep">~</span>
+      <input class="inp inp--sm" id="dTo" type="date" value="2026-08-31" aria-label="조회 종료일"/>
+      <button class="btn btn--sm btn--dark" type="button" id="btnSearch">조회</button>
+    </div>
+
+    <!-- ═══════ ① 지표 6종 (이전 기간 대비) ═══════ -->
+    <div class="kpi-grid" id="kpiGrid"></div>
+
+    <!-- ═══════ ② 지표별 일자 추이 ═══════ -->
+    <div class="metric-tabs" id="metricTabs"></div>
+    <div class="chart-box">
+      <div class="chart-head">
+        <span class="chart-head__name" id="chartName">운영효율</span>
+        <span class="lg">
+          <span class="li"><span class="sw" style="background:#e3e5e8"></span><span data-lbl-prev>전월</span></span>
+          <span class="li"><span class="sw" style="background:#ff3600"></span><span data-lbl-cur>금월</span></span>
+        </span>
+        <span class="chart-hint" id="chartHint"></span>
+      </div>
+      <div class="chart-wrap" id="chartWrap">
+        <svg class="bar-chart" viewBox="0 0 960 340" role="img" aria-label="지표 일자별 추이" id="chart"></svg>
+        <div class="tip-box" id="tip"></div>
+      </div>
+    </div>
+
+    <div class="note">
+      <b>TO-BE 개선 사항</b>
+      <ul>
+        <li><span class="tag-new">개선</span> <b>본문 업체 선택</b> — 전역 조회 대상을 제거하고 기간 조회 바로 아래에서 단일 업체를 선택합니다.</li>
+        <li><span class="tag-asis">삭제</span> <b>지표 카드 하단 표 제거</b> — 카드와 같은 값을 반복하던 전월/금월 표를 없애고, 세부 수치는 차트 <b>hover</b>로 확인합니다. 운영률·배터리 충전 횟수처럼 해석이 모호한 항목도 함께 정리했습니다.</li>
+        <li><span class="tag-new">신규</span> <b>제공 지표를 6종으로 확정</b> — 운영효율 · 충격횟수 · 연료소비량 · 배터리 충전량 · 운행거리 · 운행시간.</li>
+        <li><span class="tag-new">신규</span> <b>카드 값과 차트 값의 정합</b> — 카드 수치는 일자별 값의 합계(충격 · 거리 · 시간) 또는 평균(효율 · 연비 · 충전량)으로 계산해 차트와 어긋나지 않습니다.</li>
+        <li><span class="tag-new">신규</span> <b>월 조회에서 가로 스크롤 제거</b> — 막대 폭을 좁혀 31일을 화면 너비에 맞추고, <b>막대 위 수치 라벨 대신 hover 툴팁</b>으로 전월 · 금월 · 증감을 보여줍니다.</li>
+        <li><span class="tag-keep">유지</span> 업체 선택, 우측 상단 <b>일 / 주 / 월</b> 기간 조회, 지표 6종 탭 전환, 전월 대비 증감 배지.</li>
+      </ul>
+    </div>
+  </main>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

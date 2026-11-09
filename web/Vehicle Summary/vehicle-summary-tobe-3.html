@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<script src="../_shared/common-logic.js?v=d77b14750704&amp;rev=15dd4911055c"></script>
+<link rel="stylesheet" href="../_shared/korean-layout.css?v=9e980f3cddea&amp;rev=495db444ef75"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>요약정보 · MACHINE IQ</title>
+<script src="../_shared/customer-access.js?v=e12eedbcb072&amp;rev=e12eedbcb072"></script>
+<link rel="icon" type="image/x-icon" href="../_shared/favicon.ico"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap"/>
+<link rel="stylesheet" href="../_shared/gnb.css?v=b9f0ddfcf14c&amp;rev=d6e9d1b776a5"/>
+<link rel="stylesheet" href="../_shared/content-system.css?v=d8f94e7e5049&amp;rev=ae90e4581dc8"/>
+<link rel="stylesheet" href="../_shared/vehicle-summary-options.css?v=0aeeca9f1a11&amp;rev=ca1b26932059"/>
+<link rel="stylesheet" href="../_shared/form-controls.css?v=6fda272acdcc&amp;rev=9debe1b59fae"/>
+<link rel="stylesheet" href="../_shared/list-pagination.css?v=0069e48c1009&amp;rev=0069e48c1009">
+<link rel="stylesheet" data-current-shell href="../_shared/current-shell.css?v=eabe5a26bfe9&amp;rev=0e55e64ed211"/>
+<link rel="stylesheet" data-operations-navigation href="../_shared/operations-navigation.css?v=1cffa21a9777&amp;rev=1cffa21a9777"/>
+<style>body.miq-current-shell>#gnb{min-height:64px}</style>
+<script defer blocking="render" src="../_mock-data/generated/fleet.generated.js?v=52fa65a2dce1&amp;rev=52fa65a2dce1"></script>
+<script defer blocking="render" src="../_mock-data/generated/observation-profiles.generated.js?v=1be92dd7a845&amp;rev=4054b4937190"></script>
+<script defer blocking="render" src="../_shared/vehicle-observations.js?v=550edc6b3b85&amp;rev=b5e24277418e"></script>
+<script defer blocking="render" src="../_shared/meeting-model.js?v=48be9a58ad27&amp;rev=48be9a58ad27"></script>
+<script defer blocking="render" src="../_shared/list-pagination.js?v=4b500130528b&amp;rev=4b500130528b"></script>
+<script defer blocking="render" src="../_shared/fleet.js?v=b0f68e558a52&amp;rev=b0f68e558a52"></script>
+<script src="../_shared/admin-context.js?v=7c4adfea6980"></script>
+<script defer blocking="render" src="../_shared/nav.js?v=a2d47c90bbe1"></script>
+<script defer blocking="render" src="../_shared/lnb-tree.js?v=92f5ceffdd3b&amp;rev=92f5ceffdd3b"></script>
+<script defer blocking="render" src="../_shared/summary-row-model.js?v=8ec5759511a3&amp;rev=8ec5759511a3"></script>
+<script defer blocking="render" src="../_shared/service-records.js?v=057b92280fec&amp;rev=057b92280fec"></script>
+<script defer blocking="render" src="../_shared/service-demo-data.js?v=dcd01d3f4b36&amp;rev=dcd01d3f4b36"></script>
+<script defer blocking="render" src="../_shared/vehicle-summary-options.js?v=810a39fb83a9&amp;rev=810a39fb83a9"></script>
+</head>
+<body data-current-bootstrap="ready" class="miq-current-shell miq-content-system miq-content-summary miq-summary-option" data-summary-option="expand" data-gnb="anlz" data-sub="summary" data-variant="tobe" data-base="../">
+
+<div id="gnb"></div>
+
+<div class="layout">
+  <aside class="lnb" id="lnb"></aside>
+
+  <main class="main">
+    <div class="summary-content miq-content-frame">
+      <header class="summary-titlebar">
+        <div class="summary-heading">
+          <h1 class="miq-page-title">요약정보</h1>
+          <span class="miq-page-scope" id="scopeTitle">- 전체</span>
+        </div>
+        <div class="filter-bar">
+          <div class="period-tabs" id="periodTabs" role="group" aria-label="조회 기간 단위">
+            <button type="button" data-period="d">일</button>
+            <button type="button" data-period="w">주</button>
+            <button type="button" class="active" data-period="m">월</button>
+            <button type="button" data-period="c">사용자설정</button>
+            </div>
+          <div class="date-range" id="dateRange">
+            <input type="date" value="2026-07-01" disabled aria-label="조회 시작일"/>
+            <span>~</span>
+            <input type="date" value="2026-07-31" disabled aria-label="조회 종료일"/>
+          </div>
+          <button type="button" class="btn-search miq-button miq-button--primary" id="runSearch">조회</button>
+        </div>
+      </header>
+
+      <section class="option-kpi" id="summaryKpi" aria-label="선택 기간 핵심 지표"></section>
+      <div class="option-toolbar" id="optionToolbar"></div>
+      <section class="option-list" id="vehicleList" aria-label="차량 운행 목록"></section>
+      <div class="option-live" id="optionLive" aria-live="polite"></div>
+    </div>
+  </main>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

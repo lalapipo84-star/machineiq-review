@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<script src="../_shared/common-logic.js?v=15dd4911055c"></script>
+<link rel="stylesheet" href="../_shared/korean-layout.css?v=495db444ef75"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ALERT 현황 · MACHINE IQ</title>
+<script src="../_shared/customer-access.js?v=e12eedbcb072"></script>
+<link rel="icon" type="image/x-icon" href="../_shared/favicon.ico?v=7ee3a7570075"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap"/>
+<link rel="stylesheet" href="../_shared/mockup.css?v=1b84f0f6030b"/>
+<link rel="stylesheet" href="../_shared/form-controls.css?v=9debe1b59fae"/>
+<link rel="stylesheet" data-current-shell href="../_shared/current-shell.css?v=0e55e64ed211"/>
+<style>body.miq-current-shell>#gnb{min-height:64px}</style>
+<script src="../_shared/admin-context.js?v=7c4adfea6980"></script>
+<script defer blocking="render" src="../_shared/nav.js?v=a2d47c90bbe1"></script>
+<link rel="stylesheet" href="../_shared/admin-alert-list.css?v=d5f12b86eca9"/>
+<script defer src="../_shared/admin-monitoring-model.js?v=bc4b386a2225"></script>
+<script defer src="../_shared/admin-alert-list.js?v=93348b5fd7a4"></script>
+</head>
+<body class="miq-current-shell" data-current-bootstrap="ready" data-gnb="admstatus" data-sub="alerts" data-ops-page="admin-alerts" data-monitoring-page="alerts" data-variant="tobe" data-base="../" data-target-selector="none" data-screen-id="MHMIQ-ADM-013">
+<div id="gnb"></div>
+<div class="layout">
+  <main class="main ops-main ami-surface">
+    <div class="page-head">
+      <h1 class="page-head__title">ALERT 현황</h1>
+      <form class="search" id="searchForm">
+        <input type="search" aria-label="단말기 일련번호 또는 코드" id="q" class="inp mono" placeholder="단말기 일련번호 · 코드" autocomplete="off">
+        <button class="btn primary" type="submit">조회</button>
+      </form>
+    </div>
+    <p class="desc">미동의 EAI를 30회 호출하고도 추적성부품 정보를 받지 못했거나(추적성부품등록 누락), EAI 응답의 COMPANY·PKMT 코드가 마스터 DB에 없을 때(New Company Code, New PKMT Code) Alert이 등록됩니다. 원인을 조치한 뒤 실패했던 인터페이스를 API/EAI 현황에서 다시 호출해 성공하면 처리 완료할 수 있습니다.</p>
+
+    <div class="taskbar">
+      <div class="tabs" id="tabs" role="group" aria-label="Alert 유형"></div>
+      <div class="filters">
+        <select aria-label="처리 상태" id="fState" class="inp">
+          <option value="open">미처리</option>
+          <option value="closed">처리 완료</option>
+          <option value="">상태 전체</option>
+        </select>
+        <input type="date" form="searchForm" aria-label="조회 시작일" id="fFrom" class="inp" value="2026-09-01">
+        <span>~</span>
+        <input type="date" form="searchForm" aria-label="조회 종료일" id="fTo" class="inp" value="2026-11-03">
+      </div>
+    </div>
+
+    <div class="list-head">
+      <span class="count" id="count"></span>
+      <div class="actions">
+        <button class="btn" type="button" id="exportAlerts">내보내기</button>
+        <button class="btn primary" id="bulkClose" disabled>선택 처리 완료</button>
+      </div>
+    </div>
+    <div class="tbl-wrap">
+      <table id="alertTable">
+        <thead><tr>
+          <th class="chk"><input type="checkbox" id="chkAll" aria-label="조회 결과 중 처리 가능한 Alert 전체 선택"></th>
+          <th aria-sort="descending"><button type="button" class="sort" data-sort="at">발생일시 <span>▼</span></button></th><th aria-sort="none"><button type="button" class="sort" data-sort="type">유형 <span>↕</span></button></th><th>단말기 일련번호</th><th>내용</th><th>수신 인터페이스</th><th>상태</th><th>처리</th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <div id="alertPagination" class="alert-pagination"></div>
+    <p class="notice info">로컬 검토용 예시 데이터입니다. 수동 호출과 처리 완료는 이 브라우저의 예시 상태에만 반영되며 실제 인터페이스를 호출하지 않습니다.</p>
+  </main>
+</div>
+<div class="ami-overlay">
+<div class="drawer-bg" id="drawerBg"></div>
+<aside class="drawer" id="drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="dTitle" data-screen-id="MHMIQ-ADM-013-P01" inert>
+  <header><h3 id="dTitle"></h3><button class="close" id="dClose" aria-label="닫기">×</button></header>
+  <div class="body" id="dBody"></div>
+  <footer><button class="btn primary" id="dClose2">처리 완료</button></footer>
+</aside>
+
+<!-- 처리 완료 모달 -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle" aria-describedby="mSub" data-screen-id="MHMIQ-ADM-013-P02">
+    <h3 id="mTitle">Alert 처리 완료</h3>
+    <div class="msub" id="mSub"></div>
+    <div class="notice info" id="mInfo" style="margin:12px 0 0"></div>
+    <div class="actions">
+      <button class="btn" id="mCancel">취소</button>
+      <button class="btn primary" id="mRun">처리 완료</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<script src="../_shared/common-logic.js?v=d77b14750704&amp;rev=15dd4911055c"></script>
+<link rel="stylesheet" href="../_shared/korean-layout.css?v=9e980f3cddea&amp;rev=495db444ef75"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>그룹 · MACHINE IQ</title>
+<script src="../_shared/customer-access.js?v=e12eedbcb072&amp;rev=e12eedbcb072"></script>
+<link rel="icon" type="image/x-icon" href="../_shared/favicon.ico"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap"/>
+<link rel="stylesheet" href="../_shared/mockup.css?v=bed1f0069135&amp;rev=1b84f0f6030b"/>
+<link rel="stylesheet" href="../_shared/list-controls.css?v=bbb25360b177&amp;rev=bbb25360b177"/>
+<link rel="stylesheet" href="../_shared/map-management-enhancements.css?v=04d0c0eb8994&amp;rev=752e0eff1bd2"/>
+<style>
+/* TO-BE 전용: 양방향 차량 배정 패널 */
+.xfer{display:grid;grid-template-columns:minmax(0,1fr) 96px minmax(0,1fr);gap:12px;align-items:stretch}
+.xfer__col{border:1px solid #e5e7eb;border-radius:8px;background:#fff;display:flex;flex-direction:column}
+.xfer__hd{padding:10px 12px;border-bottom:1px solid #f0f0f0;font-size:12px;font-weight:700;display:flex;align-items:center;gap:6px}
+.xfer__hd .tail{margin-left:auto;font-weight:400;color:#aaa}
+.xfer__list{max-height:290px;overflow:auto}
+.xfer__it{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid #f7f7f7;font-size:12px}
+.xfer__it:last-child{border-bottom:none}
+.xfer__it:hover{background:#fcfcfd}
+.xfer__it .vin{color:#aaa;font-size:11px}
+.xfer__it .sp{margin-left:auto}
+.xfer__mid{display:flex;flex-direction:column;justify-content:center;gap:8px}
+.prev-row{display:flex;align-items:center;gap:8px;font-size:12px;padding:7px 0;border-bottom:1px solid #f5f5f5}
+.prev-row:last-child{border-bottom:none}
+.prev-row .k{width:92px;color:#666}
+.prev-row .b4{width:50px;text-align:right;color:#999;font-weight:600}
+.prev-row .ar{color:#ccc}
+.prev-row .af{flex:0 0 104px;min-width:0;text-align:right;font-weight:700;white-space:nowrap}
+.warn-box{background:#fff9db;border:1px solid #ffe08a;border-radius:6px;padding:11px 14px;font-size:12px;color:#7a5b00;line-height:1.75}
+.warn-box b{color:#5c4400}
+.warn-box.bad{background:#ffe3e3;border-color:#ffc9c9;color:#8c2a2a}
+.warn-box.bad b{color:#e03131}
+.mtx-note{font-size:11px;color:#999;font-weight:400}
+.role-gated.is-hidden{display:none}
+
+/* ── 그룹 기본 충격 레벨 (TB_GROUP.SHOCK3~5) ── */
+.thr-cell{font-size:inherit;color:#666;white-space:nowrap}
+.just-saved{background:#fff5f3!important;transition:background .4s}
+</style>
+<link rel="stylesheet" href="../_shared/form-controls.css?v=6fda272acdcc&amp;rev=9debe1b59fae"/>
+<link rel="stylesheet" href="../_shared/vehicle-transfer.css?v=0ab37216acea&amp;rev=c481975e51f5"/>
+<link rel="stylesheet" href="../_shared/list-pagination.css?v=0069e48c1009&amp;rev=0069e48c1009">
+<link rel="stylesheet" data-current-shell href="../_shared/current-shell.css?v=eabe5a26bfe9&amp;rev=0e55e64ed211"/>
+<link rel="stylesheet" data-operations-navigation href="../_shared/operations-navigation.css?v=1cffa21a9777&amp;rev=1cffa21a9777"/>
+<style>body.miq-current-shell>#gnb{min-height:64px}</style>
+<script defer blocking="render" src="../_mock-data/generated/fleet.generated.js?v=52fa65a2dce1&amp;rev=52fa65a2dce1"></script>
+<script defer blocking="render" src="../_mock-data/generated/observation-profiles.generated.js?v=1be92dd7a845&amp;rev=4054b4937190"></script>
+<script defer blocking="render" src="../_shared/vehicle-observations.js?v=550edc6b3b85&amp;rev=b5e24277418e"></script>
+<script defer blocking="render" src="../_shared/meeting-model.js?v=48be9a58ad27&amp;rev=48be9a58ad27"></script>
+<script defer blocking="render" src="../_shared/list-pagination.js?v=4b500130528b&amp;rev=4b500130528b"></script>
+<script defer blocking="render" src="../_shared/nav.js?v=f5f9b1d00606&amp;rev=5ae862e16c37"></script>
+<script defer blocking="render" src="../_shared/management-list-header.js?v=e7b38983fee6&amp;rev=e7b38983fee6"></script>
+<script defer blocking="render" src="../_shared/shock-range.js?v=116d60080401&amp;rev=116d60080401"></script>
+<script type="module" blocking="render">
+/* ══════ 그룹 등록/수정 모달 : 기본 정보 + 충격 레벨 3구간(민감 · 주의 · 경고) ══════ */
+(function () {
+  'use strict';
+  var DEFAULT_THR = [1.2, 1.8, 2.5];                /* 신규 등록 시 업체 기본값 */
+
+  var modal = document.getElementById('grpModal');
+  var title = modal.querySelector('.modal__title');
+  var inputs = modal.querySelectorAll('.form-grid input');
+  var timezone = modal.querySelector('.form-grid select');
+  var zones = Array.prototype.slice.call(document.querySelectorAll('#grpZones .zone b'));
+  var foot = document.getElementById('grpThrFoot');
+  var impact = document.getElementById('grpThrImpact');
+  var saved = DEFAULT_THR.slice();                  /* 열었을 때의 저장값 */
+  var current = null;                               /* 수정 중인 행의 버튼 */
+  var rng = MIQ.shockRange(document.getElementById('grpRng'), {
+    values: DEFAULT_THR,
+    onChange: function () { paint(); }
+  });
+
+  function fmt(v) { return v.map(function (x) { return x.toFixed(1); }); }
+
+  function paint() {
+    var v = rng.get();
+    rng.texts().forEach(function (t, i) { if (zones[i]) MIQCommon.view.set(zones[i],"textContent",t); });
+    var diff = v.some(function (x, i) { return Math.abs(x - saved[i]) > 0.001; });
+    MIQCommon.view.set(foot,"innerHTML",diff
+      ? '현재 저장값 <b>' + fmt(saved).join(' / ') + ' g</b> 와 <b style="color:#ff3600">다름</b> — 저장 시 이 그룹의 기본 판정 기준이 교체됩니다'
+      : '현재 저장값 <b>' + fmt(saved).join(' / ') + ' g</b> 와 동일합니다');
+  }
+
+  function setImpact(veh, ovr) {
+    var apply = Math.max(0, veh - ovr);
+    MIQCommon.view.set(impact,"innerHTML",'이 그룹 소속 <b>차량 ' + veh + '대</b> 중 차량별 재정의 <b>' + ovr + '대</b>를 제외한 <b>' + apply + '대</b>에 적용됩니다. ' +
+      '단말기가 이 기준으로 레벨별 건수를 집계하므로 <b>저장 후 단말 반영까지 시차</b>가 있고, <b>지난 기간 집계는 소급 재계산되지 않습니다</b>.');
+  }
+
+  document.addEventListener('click', function (e) {
+    var trigger = e.target.closest('[data-group-mode]');
+    if (!trigger) return;
+    if (trigger.dataset.groupMode === 'create') {
+      current = null;
+      MIQCommon.view.set(title,"textContent",'그룹 등록');
+      inputs[1].value = '';
+      inputs[2].value = '';
+      timezone.selectedIndex = 0;
+      saved = DEFAULT_THR.slice();
+      rng.set(saved);
+      MIQCommon.view.set(impact,"innerHTML",'신규 그룹은 <b>업체 기본값</b>으로 시작합니다. 차량을 배정하면 이 구간으로 충격 레벨이 판정됩니다.');
+      paint();
+      return;
+    }
+    current = trigger;
+    var cells = trigger.closest('tr').children;
+    MIQCommon.view.set(title,"textContent",'그룹 수정 — ' + MIQCommon.view.get(cells[1],"textContent").trim());
+    inputs[0].value = MIQCommon.view.get(cells[0],"textContent").trim();
+    inputs[1].value = MIQCommon.view.get(cells[1],"textContent").trim();
+    inputs[2].value = MIQCommon.view.get(cells[2],"textContent").trim();
+    Array.prototype.forEach.call(timezone.options, function (option) {
+      option.selected = MIQCommon.view.get(option,"textContent").indexOf(MIQCommon.view.get(cells[3],"textContent").trim()) === 0;
+    });
+    saved = (trigger.dataset.shock || DEFAULT_THR.join(',')).split(',').map(Number);
+    rng.set(saved);
+    setImpact(parseInt(trigger.dataset.veh || '0', 10), parseInt(trigger.dataset.ovr || '0', 10));
+    paint();
+  });
+
+})();
+</script>
+<script defer blocking="render" src="../_shared/vehicle-transfer.js?v=a6a3a56283f9&amp;rev=a6a3a56283f9"></script>
+<script defer blocking="render" src="../_shared/table-layout.js?v=4ff473044488&amp;rev=4ff473044488"></script>
+<script defer blocking="render" src="../_shared/map-management-enhancements.js?v=77ba9aaf3401&amp;rev=77ba9aaf3401"></script>
+<script defer blocking="render" src="../_shared/management-table-spacing.js?v=e7cf6862c684&amp;rev=e7cf6862c684"></script>
+</head>
+<body class="miq-current-shell" data-current-bootstrap="ready" data-gnb="mgmt" data-sub="group" data-variant="tobe" data-base="../">
+
+<div id="gnb"></div>
+
+<div class="layout">
+  <!-- ═══════ MAIN ═══════ -->
+  <main class="main miq-mgmt-page" style="width:100%">
+    <div class="page-head">
+    <div class="page-head__title" data-mgmt-page-title>그룹</div>
+      <div class="page-head__bc"><a href="../Mgmt%20User/mgmt-user-tobe.html">관리기능</a>&gt; 그룹</div>
+    </div>
+
+    <!-- ═══════ 검색 · 필터 (기간 필터 대신) ═══════ -->
+    <div class="filter-bar filter-bar--left" data-mgmt-list-controls></div>
+    <!-- ═══════ 탭 ═══════ -->
+    <div class="miq-mgmt-taskbar" data-mgmt-taskbar>
+      <div class="tabs" role="tablist" aria-label="그룹 관리 업무" data-mgmt-tabs>
+        <button class="active" type="button" id="tabBtnList" role="tab" aria-selected="true" aria-controls="tabList" tabindex="0" data-tab="tabList">그룹 목록</button>
+        <button class="role-gated" type="button" id="tabBtnAssign" role="tab" aria-selected="false" aria-controls="tabAssign" tabindex="-1" data-tab="tabAssign">차량 배정 <span class="mm-tab-count" id="groupAssignmentTabCount">42</span></button>
+      </div>
+    </div>
+
+    <!-- ── 그룹 목록 ── -->
+    <div class="tab-pane miq-mgmt-pane active" id="tabList" role="tabpanel" aria-labelledby="tabBtnList">
+      <div class="list-head miq-mgmt-list-head">
+        <div class="miq-list-summary-actions">
+          <span class="list-head__count" role="status" aria-live="polite" aria-atomic="true">총 <b id="groupResult">4</b>개 그룹 <span class="mm-list-summary__secondary">등록 <b id="groupRegistered">3</b>개 · 미배정 <b id="groupUnassigned">1</b>개</span></span>
+        </div>
+        <div class="tools miq-mgmt-primary-actions" data-mgmt-primary-actions></div>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl miq-management-table">
+          <thead><tr><th>업체명</th><th>그룹명</th><th>위치</th><th>Timezone</th><th class="c">충격 레벨 (민감 / 주의 / 경고 · g)</th><th class="r">보유차량</th><th class="r">사용자수</th><th class="c" data-mgmt-compact>관리</th></tr></thead>
+          <tbody>
+            <tr><td>(주)세종물류중부지점</td><td class="strong">기본그룹</td><td>세종 물류센터 A동</td><td>Asia/Seoul</td><td class="c thr-cell">1.2 / 1.8 / 2.5</td><td class="r strong">18</td><td class="r">3</td><td class="c"><button class="btn btn--sm role-gated" data-modal-open="grpModal" data-group-mode="edit" data-shock="1.2,1.8,2.5" data-veh="18" data-ovr="1">수정</button> <button class="btn btn--sm btn--danger role-gated" data-modal-open="delModal">삭제</button></td></tr>
+            <tr><td>(주)세종물류중부지점</td><td class="strong">테스트그룹</td><td>세종 R&amp;D 테스트장</td><td>Asia/Seoul</td><td class="c thr-cell">1.0 / 1.6 / 2.2</td><td class="r">12</td><td class="r">3</td><td class="c"><button class="btn btn--sm role-gated" data-modal-open="grpModal" data-group-mode="edit" data-shock="1.0,1.6,2.2" data-veh="12" data-ovr="0">수정</button> <button class="btn btn--sm btn--danger role-gated" data-modal-open="delModal">삭제</button></td></tr>
+            <tr><td>(주)세종물류중부지점</td><td class="strong">물류1팀</td><td>청주 제2물류센터</td><td>Asia/Seoul</td><td class="c thr-cell">1.3 / 1.9 / 2.6</td><td class="r">10</td><td class="r">2</td><td class="c"><button class="btn btn--sm role-gated" data-modal-open="grpModal" data-group-mode="edit" data-shock="1.3,1.9,2.6" data-veh="10" data-ovr="1">수정</button> <button class="btn btn--sm btn--danger role-gated" data-modal-open="delModal">삭제</button></td></tr>
+            <tr><td>(주)세종물류중부지점</td><td class="strong mute">미배정</td><td class="mute">-</td><td>Asia/Seoul</td><td class="c mute">업체 기본값 상속</td><td class="r mute">2</td><td class="r mute">0</td><td class="c">-</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── 차량 배정 (양방향 이동 패널) ── -->
+    <div class="tab-pane miq-mgmt-pane miq-mgmt-pane--transfer miq-vehicle-transfer" id="tabAssign" role="tabpanel" aria-labelledby="tabBtnAssign">
+      <div class="box mm-transfer-workspace">
+        <div class="box__head mm-request-head mm-transfer-head">
+          <div class="mm-transfer-title-wrap">
+            <span class="box__name" id="groupAssignmentTitle">차량 배정</span>
+            <span class="mm-context-tip">
+              <button class="mm-context-tip__trigger" id="groupAssignmentTipButton" type="button" aria-expanded="false" aria-controls="groupAssignmentTip">ⓘ 배정 영향 안내</button>
+              <span class="mm-context-tip__panel" id="groupAssignmentTip" role="tooltip" hidden>
+                이동 차량에는 새 그룹의 근무시간과 충격 판정 기준이 적용되며, 그룹별 대시보드·사용시간·운영효율의 대당 평균도 다시 계산됩니다.
+              </span>
+            </span>
+          </div>
+          <label class="box__tools mm-transfer-target" for="groupAssignmentTarget">
+            <span>대상 그룹</span>
+            <select class="inp inp--sm" id="groupAssignmentTarget">
+              <option value="기본그룹">기본그룹 (18대)</option>
+              <option value="테스트그룹">테스트그룹 (12대)</option>
+              <option value="물류1팀">물류1팀 (10대)</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="xfer">
+          <!-- 좌 : 미배정 / 타그룹 -->
+          <div class="xfer__col">
+            <div class="xfer__hd">미배정 · 타그룹 차량 <span class="tail" id="groupAssignmentSourceMeta">8대 표시</span></div>
+            <div style="padding:8px 12px;border-bottom:1px solid #f5f5f5;display:flex;gap:6px">
+              <input class="inp inp--sm" style="flex:1" placeholder="기종 · 차대번호 검색"/>
+              <select class="inp inp--sm" id="groupAssignmentSourceGroup" style="width:120px"><option value="">전체 그룹</option><option value="미배정">미배정 (2대)</option><option value="테스트그룹">테스트그룹 (12대)</option><option value="물류1팀">물류1팀 (10대)</option></select>
+            </div>
+            <div class="xfer__list">
+              <div class="xfer__it"><input type="checkbox"/><span class="fuel-icon engine sm"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="12" height="8" rx="1"/><path d="M16 12h4v4h-4"/></svg></span><b>D70S-9</b><span class="vin">FDB21_224030182</span><span class="sp badge gray">미배정</span></div>
+              <div class="xfer__it"><input type="checkbox"/><span class="fuel-icon lead sm"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="15" height="9" rx="2"/><line x1="21" y1="11" x2="21" y2="14"/></svg></span><b>B25SE-7</b><span class="vin">FBA36_225380008</span><span class="sp badge gray">미배정</span></div>
+              <div class="xfer__it"><input type="checkbox" checked/><span class="fuel-icon lithium sm"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="15" height="9" rx="2"/><line x1="21" y1="11" x2="21" y2="14"/></svg></span><b>B25S-7</b><span class="vin">FBA25_224250118</span><span class="sp badge gray">테스트그룹</span></div>
+              <div class="xfer__it"><input type="checkbox" checked/><span class="fuel-icon engine sm"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="12" height="8" rx="1"/><path d="M16 12h4v4h-4"/></svg></span><b>D30S-9</b><span class="vin">FBD30_113920071</span><span class="sp badge gray">테스트그룹</span></div>
+              <div class="xfer__it"><input type="checkbox"/><span class="fuel-icon lead sm"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="15" height="9" rx="2"/><line x1="21" y1="11" x2="21" y2="14"/></svg></span><b>B18S-7</b><span class="vin">FBA18_224250246</span><span class="sp badge gray">테스트그룹</span></div>
+              <div class="xfer__it"><input type="checkbox"/><span class="fuel-icon lithium sm"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="15" height="9" rx="2"/><line x1="21" y1="11" x2="21" y2="14"/></svg></span><b>B20S-7</b><span class="vin">FBA20_224250203</span><span class="sp badge gray">물류1팀</span></div>
+              <div class="xfer__it"><input type="checkbox"/><span class="fuel-icon engine sm"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="12" height="8" rx="1"/><path d="M16 12h4v4h-4"/></svg></span><b>D25S-9</b><span class="vin">FBD25_113920108</span><span class="sp badge gray">물류1팀</span></div>
+            </div>
+          </div>
+
+          <!-- 이동 버튼 -->
+          <div class="xfer__mid">
+            <button class="btn btn--pri" type="button" data-transfer-action="assign">▶ 배정</button>
+            <button class="btn" type="button" data-transfer-action="release">◀ 해제</button>
+            <button class="btn btn--sm" type="button" data-transfer-action="assign-visible">표시 전체 ▶</button>
+            <button class="btn btn--sm" type="button" data-transfer-action="release-visible">◀ 표시 전체</button>
+          </div>
+
+          <!-- 우 : 대상 그룹 -->
+          <div class="xfer__col">
+            <div class="xfer__hd">기본그룹 <span class="badge pri">18대</span> <span class="tail" id="groupAssignmentTargetMeta">4대 표시</span></div>
+            <div style="padding:8px 12px;border-bottom:1px solid #f5f5f5;display:flex;gap:6px">
+              <input class="inp inp--sm" style="flex:1" placeholder="기종 · 차대번호 검색"/>
+              <button class="btn btn--sm" type="button" data-transfer-action="clear-selection">선택 해제</button>
+            </div>
+            <div class="xfer__list">
+              <div class="xfer__it"><input type="checkbox"/><span class="fuel-icon lithium sm"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="15" height="9" rx="2"/><line x1="21" y1="11" x2="21" y2="14"/></svg></span><b>B30S-7</b><span class="vin">FBA32_224250271</span><span class="sp badge ok">기존</span></div>
+              <div class="xfer__it"><input type="checkbox"/><span class="fuel-icon engine sm"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="12" height="8" rx="1"/><path d="M16 12h4v4h-4"/></svg></span><b>D25S-9</b><span class="vin">FBD25_113920044</span><span class="sp badge ok">기존</span></div>
+              <div class="xfer__it"><input type="checkbox"/><span class="fuel-icon lead sm"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="15" height="9" rx="2"/><line x1="21" y1="11" x2="21" y2="14"/></svg></span><b>B18S-7</b><span class="vin">FBA18_224250094</span><span class="sp badge ok">기존</span></div>
+              <div class="xfer__it"><input type="checkbox"/><span class="fuel-icon lithium sm"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="15" height="9" rx="2"/><line x1="21" y1="11" x2="21" y2="14"/></svg></span><b>B16S-7</b><span class="vin">FBA16_224250155</span><span class="sp badge ok">기존</span></div>
+              <div class="xfer__it" style="background:#fff5f3"><input type="checkbox" checked/><span class="fuel-icon lithium sm"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="15" height="9" rx="2"/><line x1="21" y1="11" x2="21" y2="14"/></svg></span><b>B25S-7</b><span class="vin">FBA25_224250118</span><span class="sp badge pri">추가 예정</span></div>
+              <div class="xfer__it" style="background:#fff5f3"><input type="checkbox" checked/><span class="fuel-icon engine sm"><svg viewBox="0 0 24 24"><rect x="4" y="9" width="12" height="8" rx="1"/><path d="M16 12h4v4h-4"/></svg></span><b>D30S-9</b><span class="vin">FBD30_113920071</span><span class="sp badge pri">추가 예정</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mm-transfer-review">
+          <div class="mm-transfer-review__body">
+            <strong>변경 내역</strong>
+            <div class="mm-transfer-change-list" id="groupAssignmentChangeList" role="status" aria-live="polite"><span class="mm-transfer-change-empty">변경 없음</span></div>
+          </div>
+          <div class="mm-transfer-actions">
+            <button class="btn" id="groupAssignmentReset" type="button" data-transfer-action="reset" disabled>변경 취소</button>
+            <button class="btn btn--pri" id="groupAssignmentSave" type="button" data-transfer-action="save" disabled>변경 저장</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- 차량 배정 저장 전 영향 확인 -->
+<div class="dim" id="groupAssignmentConfirmModal">
+  <div class="modal sm" role="dialog" aria-modal="true" aria-labelledby="groupAssignmentConfirmTitle">
+    <div class="modal__head">
+      <div class="modal__title" id="groupAssignmentConfirmTitle">차량 배정 변경 확인</div>
+      <button class="modal__x" type="button" data-modal-close aria-label="차량 배정 변경 확인 창 닫기">✕</button>
+    </div>
+    <div class="modal__body">
+      <p class="mm-transfer-confirm-summary" id="groupAssignmentConfirmSummary"></p>
+      <div class="mm-transfer-confirm-list" id="groupAssignmentConfirmList"></div>
+      <ul class="mm-transfer-confirm-effects">
+        <li>이동 후 새 그룹의 근무시간과 충격 판정 기준이 적용됩니다.</li>
+        <li>그룹별 대당 평균 지표가 변경된 차량 수를 기준으로 다시 계산됩니다.</li>
+      </ul>
+    </div>
+    <div class="modal__foot">
+      <button class="btn" type="button" data-modal-close>취소</button>
+      <button class="btn btn--pri" id="groupAssignmentConfirmSave" type="button">변경 내용 저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ 그룹 등록/수정 모달 ═══════ -->
+<div class="dim" id="grpModal">
+  <div class="modal lg">
+    <div class="modal__head"><div class="modal__title">그룹 수정 — 기본그룹</div><button class="modal__x" data-modal-close>✕</button></div>
+    <div class="modal__body">
+      <div class="form-grid">
+        <div class="fld col-2"><span class="fld__k">업체명</span><input class="inp" value="(주)세종물류중부지점" readonly/></div>
+        <div class="fld col-2"><span class="fld__k">그룹명<span class="req">*</span></span><input class="inp" value="기본그룹"/></div>
+        <div class="fld col-2"><span class="fld__k">위치</span><input class="inp" value="세종 물류센터 A동"/></div>
+        <div class="fld col-2"><span class="fld__k">Timezone<span class="req">*</span></span><select class="inp"><option selected>Asia/Seoul (UTC+9)</option><option>Asia/Ho_Chi_Minh (UTC+7)</option><option>Asia/Tokyo (UTC+9)</option><option>Europe/Berlin (UTC+2)</option></select></div>
+      </div>
+
+      <div class="sub-head" style="margin-top:20px">충격 레벨 기본 설정 <span class="tail">민감 · 주의 · 경고 기준 · 단위 g</span></div>
+      <div class="mm-form-help">
+        이 그룹 소속 차량의 <b>기본 충격 판정 기준</b>입니다. 핸들을 드래그해 민감 · 주의 · 경고 3구간을 정합니다.
+        <b>관리기능 &gt; 차량 · 수정</b>에서 재정의한 장비는 그 값이 우선합니다.
+      </div>
+
+      <div id="grpRng"></div>
+      <div class="zones" id="grpZones">
+        <span class="zone ign"><i></i>미집계 <b>0 ~ 1.2 g</b></span>
+        <span class="zone s3"><i></i>민감 <b>1.2 ~ 1.8 g</b></span>
+        <span class="zone s4"><i></i>주의 <b>1.8 ~ 2.5 g</b></span>
+        <span class="zone s5"><i></i>경고 <b>2.5 g 이상</b></span>
+      </div>
+      <div class="mm-form-status" id="grpThrFoot" role="status" aria-live="polite">현재 저장값과 동일합니다.</div>
+
+      <div class="mm-form-warning" id="grpThrImpact">
+        이 그룹 소속 <b>차량 18대</b> 중 차량별 재정의 <b>1대</b>를 제외한 <b>17대</b>에 적용됩니다.
+        단말기가 이 기준으로 레벨별 건수를 집계하므로 <b>저장 후 단말 반영까지 시차</b>가 있고, <b>지난 기간 집계는 소급 재계산되지 않습니다</b>.
+      </div>
+    </div>
+    <div class="modal__foot"><button class="btn" data-modal-close>취소</button><button class="btn btn--pri" id="grpSave">저장</button></div>
+  </div>
+</div>
+
+<!-- ═══════ 그룹 삭제 확인 모달 ═══════ -->
+<div class="dim" id="delModal">
+  <div class="modal">
+    <div class="modal__head">
+      <div class="modal__title">그룹 삭제 확인 — 기본그룹</div>
+      <button class="modal__x" data-modal-close>✕</button>
+    </div>
+    <div class="modal__body">
+      <div class="warn-box bad">
+        <b>이 그룹에는 차량 18대 · 사용자 3명이 연결되어 있습니다.</b>
+        삭제 전 각 항목의 처리 방식을 지정해야 합니다.
+      </div>
+      <div class="tbl-wrap" style="margin-top:14px">
+        <table class="tbl miq-management-table">
+          <thead><tr><th>연결 항목</th><th class="r">수량</th><th>처리 방식</th></tr></thead>
+          <tbody>
+            <tr><td class="strong">소속 차량</td><td class="r">18대</td>
+              <td><select class="inp inp--sm" id="deleteGroupVehicleTarget"><option value="미배정">미배정으로 이관 (기본)</option><option value="테스트그룹">테스트그룹에 이관</option><option value="물류1팀">물류1팀에 이관</option></select></td></tr>
+            <tr><td class="strong">소속 사용자</td><td class="r">3명</td>
+              <td><select class="inp inp--sm" id="deleteGroupUserTarget"><option value="전체">전사(전체)로 변경 — 권한 유지</option><option value="테스트그룹">테스트그룹에 이관</option><option value="물류1팀">물류1팀에 이관</option></select></td></tr>
+            <tr><td class="strong">근무시간 설정</td><td class="r">1건</td>
+              <td><span class="mm-cell-note">함께 삭제 · 이관 차량은 업체 설정 상속</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="sub-head">삭제 후 예상 결과</div>
+      <div class="prev-row" data-delete-preview="removed"><span class="k">기본그룹</span><span class="b4">18대</span><span class="ar">→</span><span class="af" style="color:#e03131">삭제</span><span class="badge bad" style="margin-left:auto">그룹 제거</span></div>
+      <div class="prev-row" data-delete-preview="vehicles"><span class="k">미배정</span><span class="b4">0대</span><span class="ar">→</span><span class="af" style="color:#ff3600">18대</span><span class="badge warn" style="margin-left:auto">+18</span></div>
+      <div class="prev-row" data-delete-preview="users"><span class="k">소속 사용자</span><span class="b4">3명</span><span class="ar">→</span><span class="af">전사(전체)</span><span class="badge info" style="margin-left:auto">권한 유지</span></div>
+      <div class="prev-row" data-delete-preview="groups"><span class="k">전체 그룹</span><span class="b4">4개</span><span class="ar">→</span><span class="af">3개</span><span class="badge info" style="margin-left:auto">합계 42대 유지</span></div>
+      <div class="mm-form-warning">
+        이관 차량에는 선택한 대상의 근무시간이 적용되며, <b>계획 가동시간과 운영률이 다시 계산</b>됩니다.
+        운행이력 데이터 자체는 삭제되지 않으며, 삭제 이력은 보관됩니다.
+      </div>
+    </div>
+    <div class="modal__foot">
+      <button class="btn" data-modal-close>취소</button>
+      <button class="btn btn--danger">위 처리 방식으로 그룹 삭제</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

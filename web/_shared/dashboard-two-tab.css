@@ -1,0 +1,42 @@
+/* Adopted normal-size two-tab dashboard; shared dashboard CSS owns card dimensions. */
+.dr-tablist{display:flex;align-self:stretch;gap:28px;margin:0;border-bottom:1px solid #dfe5eb;flex:none}
+.dr-tablist button{position:relative;min-height:35px;padding:0 4px;border:0;background:transparent;color:#667785;font:inherit;font-size:15px;font-weight:500;white-space:nowrap}
+.dr-tablist button{display:inline-flex;align-items:center;gap:7px}
+.dr-preview .dr-icon{width:16px;height:16px;flex:none;vertical-align:-3px}
+.dr-preview h2,.dr-preview .dc-ratio-heading>strong,.dr-preview .dc-metric-label,.dr-preview .dc-usage-total>span,.dr-preview .dc-chart-stat>span,.dr-preview .dc-company-rate>span{display:flex;align-items:center;gap:6px}
+.dr-preview .dc-head h2>.dr-icon{width:24px;height:24px;padding:4px;border-radius:8px;background:#f5f6f8;color:var(--dc-muted)}
+.dr-preview .dr-panel-heading h2>.dr-icon,.dr-preview .dc-trends-head h2>.dr-icon,.dr-preview .period-heading h2>.dr-icon{width:28px;height:28px;padding:6px;border-radius:8px;background:#fff1eb;color:var(--dc-orange)}
+.dr-preview #dcFleet .dc-head h2>.dr-icon,.dr-preview #dcBattery .dc-head h2>.dr-icon{background:#edf8f3;color:var(--dc-green)}
+.dr-preview #dcAttention .dc-head h2>.dr-icon,.dr-preview #dcToday .dc-head h2>.dr-icon,.dr-preview #dcEfficiency .dc-head h2>.dr-icon,.dr-preview #dcFuel .dc-head h2>.dr-icon,.dr-preview #dcSummary .dc-head h2>.dr-icon{background:#fff1eb;color:var(--dc-orange)}
+.dr-preview #dcShock .dc-head h2>.dr-icon{background:#fff8e9;color:var(--dc-soon)}
+.dr-preview .dc-kpi.is-primary .dr-icon{color:#ff3600}
+.dr-preview .dc-alert-icon .dr-icon{width:22px;height:22px}
+.dr-preview .dc-company-alert-label .dr-icon{width:14px;height:14px}
+.dr-preview .dc-company-identity>span{display:flex;align-items:center;gap:3px}
+.dr-preview .dc-company-identity>span>.dr-icon,.dr-preview .dc-company-rate>span>.dr-icon,.dr-preview .dc-state-labels .dr-icon{width:12px;height:12px}
+.dr-preview .dc-entity-name{display:flex;align-items:center;gap:5px}
+.dr-preview .dc-entity-name>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dr-preview .dwi-label .dr-icon{color:#ff3600}
+.dr-preview .dwi-row:nth-child(2) .dwi-label .dr-icon,.dr-preview .dwi-total .dr-icon{color:#7e8c96}
+.dr-preview .dc-entity-submit,.dr-preview #dcYearForm button{display:inline-flex;align-items:center;justify-content:center;gap:5px}
+.dr-preview .dc-state-labels .is-running .dr-icon{color:#ff3600}
+.dr-preview .dc-state-labels .is-idle .dr-icon,.dr-preview .dc-state-labels .is-offline .dr-icon{color:#7e8c96}
+.dr-tablist button[aria-selected=true]{color:#000000;font-weight:700}
+.dr-tablist button[aria-selected=true]::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:3px;border-radius:2px;background:#ff3600}
+/* Original dashboard CSS owns card sizes, padding, columns and gaps. */
+.dr-grouped-preview .dashboard-titlebar h1{flex:none}
+.dr-grouped-preview .dashboard-titlebar>.dr-tablist{margin-inline-start:24px}
+.dr-grouped-preview .dr-panel{grid-column:1/-1;min-width:0;display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.dr-grouped-preview .dr-panel[hidden]{display:none!important}
+.dr-grouped-preview .dr-panel>.dc-card{grid-column:1/-1}
+.dr-grouped-preview .dr-tablist button[hidden]{display:none}
+.dr-grouped-preview .dc-head h2{color:var(--dc-ink);gap:8px}
+.dr-grouped-preview .dc-card{border-radius:14px;box-shadow:0 6px 18px #27343f08;transition:box-shadow 160ms ease,border-color 160ms ease}
+.dr-grouped-preview .dc-trends{border-radius:14px}
+.dr-grouped-preview .dc-company-tile{border-radius:12px;box-shadow:0 4px 14px #27343f06}
+@container dashboard-content (max-width:1100px){
+ .dr-grouped-preview .dc-period-six{gap:0}
+ .dr-grouped-preview .dc-metric-number,.dr-grouped-preview .dc-metric-number strong{line-height:36px}
+}
+@media(hover:hover){.dr-grouped-preview .dc-card:hover{border-color:#d5dee3;box-shadow:0 9px 24px #27343f0d}}
+@media(prefers-reduced-motion:reduce){.dr-grouped-preview .dc-card{transition:none}}

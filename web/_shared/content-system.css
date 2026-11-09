@@ -1,0 +1,415 @@
+/*
+ * MACHINE IQ information-first content system
+ * Pilot scope: Dashboard + Vehicle Summary.
+ *
+ * This file defines semantic content tokens and components only. Page layout,
+ * chart composition and table column widths stay in each target HTML. The
+ * current shell (GNB/LNB/target selector/footer) remains the source of truth.
+ */
+
+body.miq-content-system {
+  --miq-content-brand: #ff3600;
+  --miq-content-navy: #003263;
+  --miq-content-slate: #000000;
+  --miq-content-slate-muted: #5a6579;
+  --miq-content-text-strong: #000000;
+  --miq-content-text: #000000;
+  --miq-content-muted: #767676;
+  --miq-content-disabled: #999;
+  --miq-content-line: var(--miq-line, #eaeaea);
+  --miq-content-control-line: #dfdfdf;
+  --miq-content-surface: #fff;
+  --miq-content-surface-soft: #f9f9f9;
+  --miq-content-surface-info: #f1f8fe;
+  --miq-content-success: #00ad83;
+  --miq-content-warning: #ff9d3b;
+  --miq-content-danger: #ec2d2d;
+  --miq-content-info: #003263;
+  --miq-content-radius-panel: 8px;
+  --miq-content-radius-inner: 6px;
+  --miq-content-radius-control: 4px;
+  --miq-content-space-1: 6px;
+  --miq-content-space-2: 10px;
+  --miq-content-space-3: 14px;
+  --miq-content-space-4: 18px;
+  --miq-content-space-5: 24px;
+  --miq-type-page: 24px;
+  --miq-type-section: 18px;
+  --miq-type-group: 15px;
+  --miq-type-body: 14px;
+  --miq-type-label: 13px;
+  --miq-type-meta: 12px;
+  --miq-type-kpi: 24px;
+  --miq-content-motion-fast: 160ms;
+  --miq-content-motion-base: 280ms;
+  color: var(--miq-content-text);
+  font-variant-numeric: tabular-nums;
+}
+
+body.miq-content-system .miq-content-frame {
+  width: 100%;
+  max-width: 1600px;
+  min-width: 0;
+  margin-inline: auto;
+}
+
+body.miq-content-system .miq-page-head {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  margin: 0 0 var(--miq-content-space-4);
+}
+
+body.miq-content-system .miq-page-title {
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  color: var(--miq-content-text-strong);
+  font-size: var(--miq-type-page);
+  font-weight: 700;
+  line-height: 32px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body.miq-content-system .miq-page-scope {
+  margin-left: var(--miq-content-space-1);
+  color: var(--miq-content-brand);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+body.miq-content-system .miq-section-head {
+  display: flex;
+  align-items: center;
+  gap: var(--miq-content-space-4);
+  min-width: 0;
+  min-height: 40px;
+}
+
+body.miq-content-system .miq-section-title {
+  min-width: 0;
+  margin: 0;
+  color: var(--miq-content-text-strong);
+  font-size: var(--miq-type-section);
+  font-weight: 700;
+  line-height: 26px;
+}
+
+body.miq-content-system .miq-section-meta {
+  color: var(--miq-content-muted);
+  font-size: var(--miq-type-meta);
+  font-weight: 500;
+  line-height: 18px;
+}
+
+body.miq-content-system .miq-section-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--miq-content-space-1);
+  margin-left: auto;
+}
+
+body.miq-content-system .miq-panel {
+  min-width: 0;
+  color: var(--miq-content-text);
+  border: 1px solid var(--miq-content-control-line);
+  border-radius: var(--miq-content-radius-panel);
+  background: var(--miq-content-surface);
+}
+
+body.miq-content-system .miq-panel--padded {
+  padding: var(--miq-content-space-4);
+}
+
+body.miq-content-system .miq-panel--primary {
+  border-color: var(--miq-content-line);
+  box-shadow: none;
+}
+
+body.miq-content-system .miq-panel--soft {
+  background: var(--miq-content-surface-soft);
+}
+
+/*
+ * 의미 그룹형 개요
+ * 대시보드와 운행이력은 같은 판단 단위(범위/상태/성과/예외)를 사용하되,
+ * 열 수와 콘텐츠 구성은 각 화면에서 결정한다.
+ */
+body.miq-content-system .miq-overview-grid {
+  display: grid;
+  min-width: 0;
+}
+
+body.miq-content-system .miq-metric-group {
+  min-width: 0;
+}
+
+body.miq-content-system .miq-metric-group__title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--miq-content-slate);
+  font-size: var(--miq-type-group);
+  font-weight: 700;
+  line-height: 22px;
+  white-space: nowrap;
+}
+
+body.miq-content-system .miq-metric-group__title::before {
+  content: '';
+  width: 3px;
+  height: 15px;
+  flex: 0 0 3px;
+  border-radius: 2px;
+  background: var(--miq-content-navy);
+}
+
+body.miq-content-system .miq-metric {
+  min-width: 0;
+}
+
+body.miq-content-system .miq-metric__label {
+  color: #666;
+  font-size: var(--miq-type-label);
+  font-weight: 600;
+  line-height: 18px;
+}
+
+body.miq-content-system .miq-metric__value {
+  color: var(--miq-content-text-strong);
+  font-size: var(--miq-type-kpi);
+  font-weight: 700;
+  line-height: 30px;
+  white-space: nowrap;
+}
+
+body.miq-content-system .miq-metric__unit,
+body.miq-content-system .miq-metric__meta {
+  color: var(--miq-content-muted);
+  font-size: var(--miq-type-meta);
+  font-weight: 500;
+  line-height: 18px;
+}
+
+body.miq-content-system .miq-kpi-grid {
+  display: grid;
+  min-width: 0;
+}
+
+body.miq-content-system .miq-kpi-grid--cards {
+  gap: 8px;
+}
+
+body.miq-content-system .miq-kpi-grid--cards > .miq-kpi {
+  border: 1px solid #eaeaea;
+  border-radius: var(--miq-content-radius-inner);
+  background: var(--miq-content-surface-soft);
+}
+
+body.miq-content-system .miq-kpi-grid--divided {
+  gap: 0;
+}
+
+body.miq-content-system .miq-kpi-grid--divided > .miq-kpi + .miq-kpi {
+  border-left: 1px solid #eaeaea;
+}
+
+body.miq-content-system .miq-kpi {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0;
+  min-height: 64px;
+  padding: var(--miq-content-space-2) var(--miq-content-space-3);
+  gap: 4px;
+}
+
+body.miq-content-system .miq-kpi__label {
+  color: var(--miq-content-muted);
+  font-size: var(--miq-type-label);
+  font-weight: 600;
+  line-height: 18px;
+  word-break: keep-all;
+}
+
+body.miq-content-system .miq-kpi__value {
+  max-width: 100%;
+  color: var(--miq-content-text-strong);
+  font-size: var(--miq-type-kpi);
+  font-weight: 700;
+  line-height: 30px;
+  white-space: nowrap;
+}
+
+body.miq-content-system .miq-kpi__unit,
+body.miq-content-system .miq-kpi__meta {
+  color: var(--miq-content-muted);
+  font-size: var(--miq-type-meta);
+  font-weight: 500;
+  line-height: 18px;
+}
+
+body.miq-content-system .miq-kpi.is-success .miq-kpi__value { color: var(--miq-content-success); }
+body.miq-content-system .miq-kpi.is-warning .miq-kpi__value { color: var(--miq-content-warning); }
+body.miq-content-system .miq-kpi.is-danger .miq-kpi__value { color: var(--miq-content-danger); }
+body.miq-content-system .miq-kpi.is-info .miq-kpi__value { color: var(--miq-content-info); }
+
+body.miq-content-system .miq-number {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.01em;
+}
+
+body.miq-content-system .miq-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 24px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: var(--miq-type-meta);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+body.miq-content-system .miq-status.is-success { color: var(--miq-content-success); background: var(--miq-content-surface-soft); }
+body.miq-content-system .miq-status.is-warning { color: #000000; background: var(--miq-content-surface-soft); }
+body.miq-content-system .miq-status.is-danger { color: var(--miq-content-danger); background: var(--miq-content-surface-soft); }
+body.miq-content-system .miq-status.is-muted { color: var(--miq-content-muted); background: var(--miq-content-surface-soft); }
+
+body.miq-content-system .miq-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--miq-content-text);
+  font-size: var(--miq-type-body);
+  font-variant-numeric: tabular-nums;
+}
+
+body.miq-content-system .miq-data-table th {
+  height: 42px;
+  padding: 0 var(--miq-content-space-2);
+  color: var(--miq-content-muted);
+  border-bottom: 1px solid #eaeaea;
+  background: var(--miq-content-surface-info);
+  font-size: var(--miq-type-label);
+  font-weight: 600;
+  line-height: 18px;
+  vertical-align: middle;
+}
+
+body.miq-content-system .miq-data-table td {
+  height: 50px;
+  padding: 0 var(--miq-content-space-2);
+  border-bottom: 1px solid #eaeaea;
+  font-size: var(--miq-type-body);
+  line-height: 20px;
+  vertical-align: middle;
+}
+
+body.miq-content-system .miq-data-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+body.miq-content-system .miq-entity-cell {
+  min-width: 0;
+  text-align: left;
+}
+
+body.miq-content-system .miq-entity-cell__primary {
+  display: block;
+  overflow: hidden;
+  color: var(--miq-content-text-strong);
+  font-size: var(--miq-type-body);
+  font-weight: 700;
+  line-height: 20px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body.miq-content-system .miq-entity-cell__primary:hover {
+  color: var(--miq-content-brand);
+  text-decoration: underline;
+}
+
+body.miq-content-system .miq-entity-cell__secondary {
+  display: block;
+  overflow: hidden;
+  margin-top: 2px;
+  color: var(--miq-content-muted);
+  font-size: var(--miq-type-meta);
+  font-weight: 500;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body.miq-content-system .miq-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 12px;
+  color: var(--miq-content-muted);
+  font-size: var(--miq-type-meta);
+  line-height: 18px;
+}
+
+body.miq-content-system .miq-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--miq-content-line);
+  border-radius: var(--miq-content-radius-control);
+  background: var(--miq-content-surface);
+  color: var(--miq-content-text-strong);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+body.miq-content-system .miq-button--primary {
+  color: #fff;
+  border-color: var(--miq-content-brand);
+  background: var(--miq-content-brand);
+}
+
+body.miq-content-system .miq-button:focus-visible,
+body.miq-content-system .miq-help:focus-visible,
+body.miq-content-system .miq-entity-cell__primary:focus-visible {
+  outline: 2px solid var(--miq-content-brand);
+  outline-offset: 2px;
+}
+
+body.miq-content-system .miq-help {
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin-left: 3px;
+  padding: 0;
+  color: var(--miq-content-muted);
+  border: 1px solid #dfdfdf;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: help;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.miq-content-system *,
+  body.miq-content-system *::before,
+  body.miq-content-system *::after {
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

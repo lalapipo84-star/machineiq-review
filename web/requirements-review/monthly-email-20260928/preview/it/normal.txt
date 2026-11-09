@@ -1,0 +1,37 @@
+[Bobcat Machine IQ] Report mensile - 한빛물류 주식회사 / 기본그룹
+
+한빛물류 주식회사 / 기본그룹
+2026.09.01 – 2026.09.30 (Asia/Seoul)
+Risultati aggregati per il periodo del report.
+Confronto mensile
+Utilizzo: 48 % → 50 % / Variazione +2 pp
+Efficienza operativa: 80 % → 82 % / Variazione +2 pp
+Urti: 60 eventi → 46 eventi / Variazione -14 eventi
+Consumo di carburante orario: 4,6 L/h → 4,2 L/h / Variazione -0,4 L/h
+Livello di carica della batteria: 55 % → 58 % / Variazione +3 pp
+Distanza percorsa: 1100 km → 1216 km / Variazione +116 km
+Tempo di funzionamento: 480 h → 500 h / Variazione +20 h
+Interventi: 3 eventi
+Consumabili da sostituire: 5 elementi
+Guasti del veicolo: 7 eventi
+Guasti della batteria: 2 eventi
+Tempo di lavoro: 410 h / 41 %
+Tempo di attesa: 90 h / 9 %
+Tempo di inutilizzo: 500 h / 50 %
+Sensibile · Livello 3: 30 eventi
+Attenzione · Livello 4: 12 eventi
+Avviso · Livello 5: 4 eventi
+Attenzione + avviso: 16 eventi
+
+Consumabili da sostituire · Dati al: 2026.10.01 09:00 · Asia/Seoul
+
+Le differenze tra percentuali sono espresse in punti percentuali (pp). — indica un valore assente o non calcolabile, distinto da uno zero misurato.
+Manutenzione e guasti sono eventi del periodo. I consumabili sono gli elementi da sostituire alla data di riferimento indicata.
+Le quote usano la somma dei tempi di lavoro, attesa e inutilizzo. Non sono mostrate se il totale è zero o manca la base.
+Sensibile, attenzione e avviso sono conteggi separati. Attenzione + avviso somma questi due livelli; il solo livello 3 non è il totale.
+Dopo l’accesso, modifica la ricezione in Il mio account → E-mail dei report periodici.
+Dati al: 2026.10.01 09:00 · Asia/Seoul
+Il report riflette la data di riferimento indicata. Le informazioni sul sito possono cambiare in seguito.
+Questa e-mail è destinata ai clienti che hanno acconsentito ai report mensili.
+Questa email è stata inviata automaticamente. Per assistenza, contatti il servizio clienti.
+Servizio clienti: help.machineiq@doosan.com

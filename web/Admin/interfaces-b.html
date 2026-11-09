@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<script src="../_shared/common-logic.js?v=15dd4911055c"></script>
+<link rel="stylesheet" href="../_shared/korean-layout.css?v=495db444ef75"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>API/EAI 현황 Type B · MACHINE IQ</title>
+<script src="../_shared/customer-access.js?v=e12eedbcb072"></script>
+<link rel="icon" type="image/x-icon" href="../_shared/favicon.ico?v=7ee3a7570075"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap"/>
+<link rel="stylesheet" href="../_shared/mockup.css?v=1b84f0f6030b"/>
+<link rel="stylesheet" href="../_shared/form-controls.css?v=9debe1b59fae"/>
+<link rel="stylesheet" data-current-shell href="../_shared/current-shell.css?v=0e55e64ed211"/>
+<style>body.miq-current-shell>#gnb{min-height:64px}</style>
+<script src="../_shared/admin-context.js?v=7c4adfea6980"></script>
+<script defer blocking="render" src="../_shared/nav.js?v=a2d47c90bbe1"></script>
+<link rel="stylesheet" href="../_shared/admin-interface-monitor-b.css?v=f6ac79a4f313"/>
+<script defer blocking="render" src="../_shared/admin-monitoring-model.js?v=bc4b386a2225"></script>
+<script defer blocking="render" src="../_shared/admin-interface-monitor-b.js?v=8879bba1c870"></script>
+</head>
+<body class="miq-current-shell" data-current-bootstrap="ready" data-gnb="admstatus" data-sub="interfacesB" data-ops-page="admin-interfaces-b" data-monitoring-page="interfaces-b" data-variant="tobe" data-base="../" data-target-selector="none" data-screen-id="MHMIQ-ADM-012">
+<div id="gnb"></div>
+<div class="layout">
+  <main class="main ops-main amb-surface">
+    <div class="page-head">
+      <h1 class="page-head__title">API/EAI 현황 Type B</h1>
+      <div class="page-head__bc"><a href="interfaces-b.html?role=internal&amp;portal=admin">어드민</a>&gt; API/EAI 현황 Type B</div>
+      <form class="search" id="searchForm">
+        <select id="searchType" aria-label="검색 구분">
+          <option value="tid">단말기 일련번호</option>
+          <option value="equnr">차대번호</option>
+        </select>
+        <input id="searchInput" aria-label="단말기 일련번호 또는 차대번호" class="mono" placeholder="예) TMS24K0018876" autocomplete="off">
+        <button class="btn primary" type="submit">조회</button>
+      </form>
+    </div>
+    <section id="opsContent" aria-label="API/EAI 현황 Type B">
+<p class="desc">단말기 일련번호나 차대번호로 차량 한 대의 인터페이스 상태와 호출 이력을 확인하고, 필요하면 수동으로 다시 호출합니다.</p>
+<div id="result"></div>
+</section>
+    <noscript>이 화면을 사용하려면 JavaScript를 켜 주세요.</noscript>
+  </main>
+</div>
+
+<div class="amb-overlay">
+<!-- 수동 호출 모달 -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle" data-screen-id="MHMIQ-ADM-012-P02" tabindex="-1">
+    <h3 id="mTitle"></h3>
+    <div class="sub" id="mSub"></div>
+    <div id="mNotice"></div>
+    <label>호출 파라미터</label>
+    <table class="ftable" id="mParams"></table>
+    <label for="mReason">호출 사유 (작업 이력에 남습니다)</label>
+    <textarea id="mReason" required maxlength="500" placeholder="예) 생산팀 ERP 등록 완료 연락받아 재조회"></textarea>
+    <div class="actions">
+      <button class="btn" id="mCancel">취소</button>
+      <button class="btn primary" id="mRun">호출</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+</body>
+</html>

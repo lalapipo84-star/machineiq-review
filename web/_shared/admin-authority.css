@@ -1,0 +1,7 @@
+/* Selected-customer/dealer context only; existing Operations controls and grid own the layout. */
+body[data-gnb="admaccess"] .admin-context-summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;margin:0 0 16px;background:#fff;border:1px solid var(--miq-line,#dedede);border-radius:4px}
+body[data-gnb="admaccess"] .admin-context-summary>div{display:flex;align-items:center;gap:16px;min-width:0}
+body[data-gnb="admaccess"] .admin-context-summary strong{font-size:15px;color:#000;overflow-wrap:anywhere}
+body[data-gnb="admaccess"] .admin-context-summary span{color:#777;font-size:12px}
+body[data-gnb="admaccess"] .admin-detail-tabs{margin-bottom:16px}
+body[data-gnb="admaccess"] .ops-taskbar .admin-detail-tabs{margin-bottom:0}

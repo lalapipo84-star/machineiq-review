@@ -1,0 +1,20 @@
+.favorite-category-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;font-size:13px}
+.favorite-category-bar label{display:flex;align-items:center;gap:8px;white-space:nowrap;flex-shrink:0}
+.favorite-category-bar select{width:220px;min-width:190px;max-width:100%;height:40px;padding:0 12px;border:1px solid #ddd;border-radius:4px;background:#fff;color:inherit;font:inherit}
+.favorite-category-bar .btn{margin-left:auto}
+.favorite-category-feedback{min-height:20px;margin:12px 0;color:#687586;font-size:13px}
+.favorite-category-table th,.favorite-category-table td{overflow-wrap:anywhere}
+.favorite-category-table th:nth-child(2),.favorite-category-table td:nth-child(2){width:110px;text-align:right}
+.favorite-category-table th:last-child,.favorite-category-table td:last-child{width:160px;text-align:center}
+.favorite-category-table .btn+.btn{margin-left:6px}
+.favorite-category-table-wrap{border:1px solid #e5e7eb;border-radius:8px;overflow:auto}
+.favorite-category-table-wrap table{min-width:520px}
+.favorite-category-note{color:#687586;font-size:13px;margin:12px 0 0}
+.favorite-move{display:flex;align-items:center;gap:8px;padding:12px;border-top:1px solid #eee;flex-wrap:wrap;margin-top:auto;font-size:12px}
+.favorite-move select{flex:1;min-width:130px}
+.favorite-category-name{font-size:12px;font-weight:400;color:#687586}
+#favoriteCategoryDialog,#favoriteCategoryEditor{--service-ink:#000000;--service-line:#dfdfdf;--service-brand:#ff3600;--service-brand-dark:#d92e00;--service-soft:#f8f9fa;width:480px}
+#categoryFormStatus:empty{display:none}
+body.miq-current-shell[data-favorite-summary="true"] .miq-target-selector.is-hierarchy .miq-target-selector__row>.miq-target-selector__control{flex:1 1 0;min-width:0}
+body.miq-current-shell[data-favorite-summary="true"] .miq-target-selector.is-hierarchy .miq-target-selector__control>select{flex:1 1 0;width:100%;min-width:0}
+body.miq-current-shell[data-gnb="interest"][data-sub="categories"] .layout:not(.miq-side-collapsed)>aside.lnb:not([hidden]){display:block}

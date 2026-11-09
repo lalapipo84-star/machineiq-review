@@ -1,0 +1,10 @@
+.mobile-preauth-header { position:sticky; z-index:100; top:0; display:flex; align-items:center; justify-content:space-between; gap:var(--linq-mobile-gap-md); height:var(--linq-mobile-header-height); padding:0 var(--linq-mobile-page-gutter); border-bottom:1px solid var(--linq-color-border); background:var(--linq-color-surface); }
+.mobile-preauth-header__brand { display:flex; align-items:center; min-width:0; }
+.mobile-preauth-header__brand img { display:block; width:174px; max-width:100%; height:auto; }
+.mobile-preauth-header__language { flex:0 0 auto; }
+.mobile-preauth-header__language select { height:36px; padding:0 30px 0 12px; color:var(--linq-color-text-muted); border:1px solid var(--linq-color-border); border-radius:var(--linq-radius-pill); background:var(--linq-color-surface); font-size:var(--linq-font-caption); outline:0; }
+.mobile-preauth-header__language select:focus { border-color:var(--linq-color-brand); box-shadow:var(--linq-focus-ring); }
+@media (max-width:360px) {
+  .mobile-preauth-header { padding:0 14px; }
+  .mobile-preauth-header__brand img { width:158px; }
+}

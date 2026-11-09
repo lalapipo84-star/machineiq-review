@@ -1,0 +1,28 @@
+.vehicle-errors .sec-head{justify-content:space-between}
+.vehicle-errors-count{font-size:13px;color:#768396}
+.vehicle-errors-count b{color:#000000}
+.vehicle-errors .table-wrap{margin:18px 22px 24px;border:1px solid #dfdfdf;border-radius:8px;overflow:auto}
+.vehicle-errors table{width:100%;min-width:760px;border-collapse:collapse;table-layout:fixed;font-size:13px}
+.vehicle-errors th{background:#f3f4f5;color:#687586;font-size:12px;font-weight:600;padding:11px 8px;border-bottom:1px solid #dfdfdf;text-align:center;white-space:nowrap}
+.vehicle-errors th button{border:0;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.vehicle-errors .sort{margin-left:5px;color:#91a0b1}
+.vehicle-errors th small{font-size:10px;color:#9ca3af;font-weight:400}
+.vehicle-errors td{padding:12px 8px;text-align:center;border-bottom:1px solid #f3f3f3;overflow-wrap:anywhere}
+.vehicle-errors tr:last-child td{border-bottom:0}
+.vehicle-errors td.left{text-align:left}
+.vehicle-errors .state{display:inline-flex;border-radius:12px;padding:4px 9px;font-size:11px;font-weight:600}
+.vehicle-errors .state.now{background:#ffe3e3;color:#fa5252}
+.vehicle-errors .state.past{background:#f1f3f5;color:#868e96}
+.vehicle-errors .type{display:inline-flex;padding:3px 8px;border:1px solid #e5e7eb;background:#f8f9fa;border-radius:12px;font-size:11px}
+.vehicle-errors .errcode,.vehicle-errors .meta-stack{display:flex;flex-direction:column;align-items:center;gap:4px}
+.vehicle-errors .errcode__main,.vehicle-errors .meta-stack strong{font-size:13px;font-weight:600}
+.vehicle-errors .errcode__sub,.vehicle-errors .meta-stack span{font-size:11px;color:#999}
+.vehicle-errors .level{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;font-size:12px;font-weight:600}
+.vehicle-errors .level.a{background:#ffe3e3;color:#e03131}
+.vehicle-errors .level.b{background:#fff3bf;color:#e67700}
+.vehicle-errors .level.c{background:#e7f5ff;color:#1c7ed6}
+.vehicle-errors .pdf{border:1px solid #ffd8cf;background:#fff;color:#ff3600;border-radius:4px;padding:5px 10px;font-size:11px;cursor:pointer}
+.vehicle-errors .pdf:hover{background:#fff5f3;border-color:#ff3600}
+.vehicle-errors td.vehicle-errors-empty{height:120px;color:#768396}
+#vehicleErrorDocument{--service-ink:#000000;--service-line:#dfdfdf;--service-brand:#ff3600;--service-brand-dark:#d92e00;--service-soft:#f8f9fa}
+@media print{body.is-printing-vehicle-error>*:not(#vehicleErrorDocument){display:none!important}body.is-printing-vehicle-error #vehicleErrorDocument{position:static;display:block;width:100%;max-height:none;border:0;box-shadow:none}body.is-printing-vehicle-error .service-dialog__foot,body.is-printing-vehicle-error .service-dialog__close{display:none}}

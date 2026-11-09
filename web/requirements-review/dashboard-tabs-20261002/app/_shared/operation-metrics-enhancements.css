@@ -1,0 +1,821 @@
+/*
+ * 운행이력 > 사용시간 / 운영효율 전용 보강
+ * 현재 Vehicle Summary C의 정보 밀도와 Bobcat 제한 팔레트를 재사용한다.
+ * 범주 구분은 Orange / Charcoal / Gray, 상태 경고만 Success / Warning / Danger를 쓴다.
+ */
+body.miq-operation-metrics {
+  --metrics-orange: #ff3600;
+  --metrics-orange-dark: #d92e00;
+  --metrics-navy: #003263;
+  --metrics-charcoal: #333;
+  --metrics-muted: #767676;
+  --metrics-line: #d5dee3;
+  --metrics-soft: #f3f4f5;
+  --metrics-work: #ff3600;
+  --metrics-idle: #4d5359;
+  --metrics-off: #d9dde1;
+  --metrics-success: #00ad83;
+  --metrics-warning: #ff9d3b;
+  --metrics-danger: #ec2d2d;
+  --metrics-trend-positive: #158737;
+  --metrics-trend-negative: #992100;
+  --c-primary: var(--metrics-orange);
+  --c-primary-dk: var(--metrics-orange-dark);
+  --c-primary-lt: #fff3ef;
+  --c-primary-bd: #ffc3b3;
+  --c-ink: var(--metrics-charcoal);
+  --c-body: var(--metrics-charcoal);
+  --c-mute: var(--metrics-muted);
+  --c-mute2: var(--metrics-muted);
+  --c-line: var(--metrics-line);
+  --c-line2: var(--metrics-line);
+  --c-line3: #e7eaed;
+  --c-bg: #fff;
+  --c-soft: var(--metrics-soft);
+  --c-ok: var(--metrics-success);
+  --c-warn: var(--metrics-warning);
+  --c-bad: var(--metrics-danger);
+  --c-info: var(--metrics-navy);
+  --c-off: #9ca3aa;
+  --miq-content-brand: var(--metrics-orange);
+  --miq-content-navy: var(--metrics-orange);
+  --miq-content-slate: var(--metrics-charcoal);
+  --miq-content-muted: var(--metrics-muted);
+  --miq-content-control-line: var(--metrics-line);
+  color: #000000;
+  background: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+body.miq-operation-metrics .main {
+  min-width: 0;
+}
+
+body.miq-operation-metrics .page-head__title {
+  margin: 0;
+  color: #000000;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+body.miq-operation-metrics .page-head__title .sub {
+  margin-left: 4px;
+  color: var(--metrics-orange);
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+body.miq-operation-metrics .metrics-breadcrumb {
+  min-height: 18px;
+  margin-bottom: 4px;
+}
+
+body.miq-operation-metrics .filter-bar .inp--sm {
+  width: 132px;
+  flex: 0 0 132px;
+  height: 40px;
+  padding: 0 9px;
+  text-align: center;
+}
+
+body.miq-operation-metrics .filter-bar .sep {
+  color: var(--metrics-muted);
+  font-size: 13px;
+}
+
+body.miq-operation-metrics .filter-bar input[readonly] {
+  color: var(--metrics-muted);
+  background: #f5f5f5;
+  cursor: default;
+}
+
+body.miq-operation-metrics .filter-bar input:not([readonly]) {
+  color: #000000;
+  background: #fff;
+  cursor: pointer;
+}
+
+body.miq-operation-metrics button:focus-visible,
+body.miq-operation-metrics a:focus-visible,
+body.miq-operation-metrics summary:focus-visible,
+body.miq-operation-metrics .cal__day:focus-visible,
+body.miq-operation-metrics .bar-chart .col:focus {
+  outline: 2px solid var(--metrics-orange);
+  outline-offset: 2px;
+}
+
+body.miq-operation-metrics .btn-search,
+body.miq-operation-metrics .btn--pri {
+  color: #fff;
+  border-color: var(--metrics-orange);
+  background: var(--metrics-orange);
+}
+
+body.miq-operation-metrics .btn-search:not(:disabled):hover,
+body.miq-operation-metrics .btn--pri:not(:disabled):hover,
+body.miq-operation-metrics .btn-search:not(:disabled):focus-visible,
+body.miq-operation-metrics .btn--pri:not(:disabled):focus-visible {
+  border-color: #cc2b00;
+  background: var(--metrics-orange-dark);
+}
+
+body.miq-operation-metrics .metrics-feedback {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  min-height: 0;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+  color: var(--metrics-muted);
+  font-size: 12px;
+  line-height: 18px;
+  text-align: right;
+}
+
+body.miq-operation-metrics .metrics-feedback.is-error {
+  position: static;
+  width: auto;
+  height: auto;
+  min-height: 18px;
+  margin: -10px 0 8px;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+  color: var(--metrics-danger);
+  font-weight: 700;
+}
+
+body.miq-operation-metrics .box,
+body.miq-operation-metrics .eff-top__main,
+body.miq-operation-metrics .top5 {
+  border-color: var(--metrics-line);
+  box-shadow: none;
+}
+
+body.miq-operation-metrics .box.total {
+  border-color: var(--metrics-line);
+  box-shadow: none;
+}
+
+body.miq-operation-metrics .box__name,
+body.miq-operation-metrics .top5__t,
+body.miq-operation-metrics .chart-head__name,
+body.miq-operation-metrics .sub-head {
+  color: #000000;
+}
+
+body.miq-operation-metrics .box__name::before,
+body.miq-operation-metrics .top5__t::before,
+body.miq-operation-metrics .chart-head__name::before,
+body.miq-operation-metrics .sub-head::before {
+  display: inline-block;
+  width: 3px;
+  height: 14px;
+  margin-right: 7px;
+  border-radius: 2px;
+  background: var(--metrics-orange);
+  content: '';
+  vertical-align: -2px;
+}
+
+body.miq-operation-metrics .box__badge,
+body.miq-operation-metrics .badge.pri {
+  color: var(--metrics-orange-dark);
+  border: 1px solid #ffc3b3;
+  background: #fff3ef;
+}
+
+body.miq-operation-metrics .badge.gray {
+  color: #626970;
+  background: #eef0f2;
+}
+
+body.miq-operation-metrics .badge.warn {
+  color: #7a4400;
+  background: #fff1df;
+}
+
+body.miq-operation-metrics .badge.bad {
+  color: #a71919;
+  background: #fdeaea;
+}
+
+body.miq-operation-metrics .legend {
+  gap: 14px;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-style: solid;
+  border-color: var(--metrics-line);
+  color: var(--metrics-muted);
+  background: #fff;
+}
+
+body.miq-operation-metrics .lg .sw,
+body.miq-operation-metrics .legend .sw {
+  border-radius: 2px;
+}
+
+body.miq-operation-metrics .note[hidden],
+body.miq-operation-metrics [hidden] {
+  display: none !important;
+}
+
+body.miq-operation-metrics .metrics-table-fallback {
+  margin-top: 12px;
+  border-top: 1px solid #e7eaed;
+}
+
+body.miq-operation-metrics .metrics-table-fallback summary {
+  width: max-content;
+  margin: 10px 0 0 auto;
+  color: var(--metrics-muted);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+body.miq-operation-metrics .metrics-table-fallback[open] summary {
+  margin-bottom: 10px;
+  color: var(--metrics-orange-dark);
+}
+
+body.miq-operation-metrics .tbl-wrap {
+  border-color: var(--metrics-line);
+}
+
+body.miq-operation-metrics .tbl th {
+  color: #000000;
+  background: #f1f1f1;
+}
+
+body.miq-operation-metrics .tbl td {
+  color: #000000;
+}
+
+body.miq-operation-metrics .metrics-tip {
+  position: fixed;
+  z-index: 260;
+  max-width: 260px;
+  padding: 9px 11px;
+  color: #fff;
+  border-radius: 5px;
+  background: #252525;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, .2);
+  font-size: 12px;
+  line-height: 1.55;
+  pointer-events: none;
+}
+
+/* 운영효율 */
+body.miq-current-shell.miq-operation-efficiency .metrics-breadcrumb {
+  margin-bottom: 12px;
+}
+
+body.miq-current-shell.miq-operation-efficiency .miq-title-period-row {
+  margin-bottom: 16px;
+}
+
+body.miq-operation-efficiency .eff-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  align-items: stretch;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+body.miq-operation-efficiency .eff-top__main,
+body.miq-operation-efficiency .top5 {
+  padding: 16px 18px;
+  border-radius: 8px;
+  background: #fff;
+}
+
+body.miq-operation-efficiency .eff-top__main {
+  display: flex;
+  flex-direction: column;
+}
+
+body.miq-operation-efficiency .metrics-section-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+body.miq-operation-efficiency .metrics-section-head h2 {
+  margin: 0;
+  color: #000000;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+body.miq-operation-efficiency .metrics-section-head h2::before {
+  display: inline-block;
+  width: 3px;
+  height: 15px;
+  margin-right: 7px;
+  border-radius: 2px;
+  background: var(--metrics-orange);
+  content: '';
+  vertical-align: -2px;
+}
+
+body.miq-operation-efficiency .metrics-section-head p {
+  margin: 3px 0 0 10px;
+  color: var(--metrics-muted);
+  font-size: 12px;
+}
+
+body.miq-operation-efficiency .efficiency-total {
+  color: #000000;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+body.miq-operation-efficiency .efficiency-total small {
+  margin-left: 4px;
+  color: var(--metrics-muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+body.miq-operation-efficiency .eff-top__visual {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 0;
+}
+
+body.miq-operation-efficiency .eff-top__visual > .lg {
+  justify-content: flex-end;
+  min-height: 16px;
+  margin: 0 0 8px;
+}
+
+body.miq-operation-efficiency .split {
+  height: 66px;
+  border-color: #e4e7ea;
+  border-radius: 5px;
+  background: #f5f6f7;
+}
+
+body.miq-operation-efficiency .split__seg {
+  overflow: hidden;
+  min-width: 0;
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: -.1px;
+  white-space: nowrap;
+  transition: width .3s ease;
+}
+
+body.miq-operation-efficiency .split__seg.work {
+  background: var(--metrics-work);
+}
+
+body.miq-operation-efficiency .split__seg.idle {
+  color: #fff;
+  background: var(--metrics-idle);
+}
+
+body.miq-operation-efficiency .pct-axis span {
+  color: #8b9299;
+  font-size: 10px;
+}
+
+body.miq-operation-efficiency .top5 {
+  width: auto;
+}
+
+body.miq-operation-efficiency .top5 ol {
+  padding-left: 22px;
+}
+
+body.miq-operation-efficiency .top5 li {
+  min-height: 34px;
+  padding: 6px 0;
+  border-bottom-color: #e7eaed;
+  font-size: 12px;
+}
+
+body.miq-operation-efficiency .top5 a {
+  color: #000000;
+  text-decoration: none;
+}
+
+body.miq-operation-efficiency .top5 a:hover {
+  color: var(--metrics-orange-dark);
+  text-decoration: underline;
+}
+
+body.miq-operation-efficiency .top5 li .n {
+  color: var(--metrics-muted);
+  font-size: 12px;
+}
+
+body.miq-operation-efficiency .box {
+  padding: 16px 18px;
+}
+
+body.miq-operation-efficiency .chart-head {
+  margin-bottom: 4px;
+}
+
+body.miq-operation-efficiency .chart-hint {
+  max-width: 58%;
+  color: var(--metrics-muted);
+  line-height: 17px;
+  text-align: right;
+}
+
+body.miq-operation-efficiency .chart-uncollected {
+  flex: 0 0 auto;
+  padding: 3px 8px;
+  color: #626970;
+  border: 1px solid #d5d9dd;
+  border-radius: 10px;
+  background: #f3f4f5;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+body.miq-operation-efficiency .bar-chart {
+  height: 300px;
+}
+
+body.miq-operation-efficiency .bar-chart .grid {
+  stroke: #e5e8eb;
+}
+
+body.miq-operation-efficiency .bar-chart .axis {
+  stroke: #cfd4d8;
+}
+
+body.miq-operation-efficiency .bar-chart text {
+  fill: #747b82;
+  font-size: 11px;
+}
+
+body.miq-operation-efficiency .bar-chart .seg.work {
+  fill: var(--metrics-work);
+}
+
+body.miq-operation-efficiency .bar-chart .seg.idle {
+  fill: var(--metrics-idle);
+}
+
+body.miq-operation-efficiency .bar-chart .col:hover .seg,
+body.miq-operation-efficiency .bar-chart .col:focus .seg {
+  filter: brightness(.86);
+}
+
+body.miq-operation-efficiency .bar-chart.is-animating .seg {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: metrics-bar-in .42s cubic-bezier(.2, .75, .3, 1) both;
+  animation-delay: var(--bar-delay, 0ms);
+}
+
+body.miq-operation-efficiency .tip-box {
+  color: #fff;
+  background: #252525;
+}
+
+/* 사용시간 */
+body.miq-usage-time .wt-bar {
+  gap: 12px 18px;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  color: var(--metrics-muted);
+  border-color: var(--metrics-line);
+  border-radius: 7px;
+  background: #f7f7f7;
+}
+
+body.miq-usage-time .wt-bar b {
+  color: #000000;
+}
+
+body.miq-usage-time .wt-bar .seg {
+  border-color: var(--metrics-line);
+}
+
+body.miq-usage-time .wt-bar .seg button {
+  min-height: 32px;
+  color: #000000;
+  border-color: var(--metrics-line);
+}
+
+body.miq-usage-time .wt-bar .seg button.active {
+  color: #fff;
+  background: var(--metrics-charcoal);
+}
+
+body.miq-usage-time .month-nav {
+  color: #000000;
+  font-size: 16px;
+}
+
+body.miq-usage-time .month-nav button {
+  color: #000000;
+  border-color: var(--metrics-line);
+}
+
+body.miq-usage-time .month-nav button:hover {
+  color: var(--metrics-orange-dark);
+  border-color: var(--metrics-orange);
+}
+
+body.miq-usage-time .stat-cells.c6 {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0;
+}
+
+body.miq-usage-time .stat-cells.c6 .cell {
+  min-height: 83px;
+  padding: 9px 10px;
+  border: 0;
+  border-right: 1px solid #e4e7ea;
+  border-radius: 0;
+  background: #fff;
+}
+
+body.miq-usage-time .stat-cells.c6 .cell:last-child {
+  border-right: 0;
+}
+
+body.miq-usage-time .stat-cells.c6 .cell.hl {
+  background: #fff6f3;
+}
+
+body.miq-usage-time .stat-cells .cell__v {
+  color: #000000 !important;
+  font-size: 21px;
+}
+
+body.miq-usage-time .stat-cells .cell:nth-child(1) .cell__v,
+body.miq-usage-time .stat-cells .cell.hl .cell__v {
+  color: var(--metrics-orange-dark) !important;
+}
+
+body.miq-usage-time .stat-cells .cell__k {
+  color: var(--metrics-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+body.miq-usage-time .stat-cells .cell__d {
+  color: #58616a;
+  font-size: 11px;
+}
+body.miq-usage-time .stat-cells .cell__d.up { color: var(--metrics-trend-positive); }
+body.miq-usage-time .stat-cells .cell__d.down { color: var(--metrics-trend-negative); }
+body.miq-usage-time .stat-cells .cell__d.flat { color: var(--metrics-muted); }
+
+body.miq-usage-time .rate-bar em,
+body.miq-usage-time .rate-bar.pri em {
+  background: var(--metrics-orange);
+}
+
+body.miq-usage-time .usage-layout {
+  grid-template-columns: minmax(0, 1fr) 286px;
+  gap: 12px;
+}
+
+body.miq-usage-time .usage-layout .box {
+  padding: 14px 15px;
+}
+
+body.miq-usage-time .cal {
+  gap: 5px;
+}
+
+body.miq-usage-time .cal__dow {
+  color: var(--metrics-muted);
+  font-size: 12px;
+}
+
+body.miq-usage-time .cal__dow.sun,
+body.miq-usage-time .cal__d.sun {
+  color: var(--metrics-danger);
+}
+
+body.miq-usage-time .cal__dow.sat,
+body.miq-usage-time .cal__d.sat {
+  color: var(--metrics-navy);
+}
+
+body.miq-usage-time .cal__day {
+  min-height: 99px;
+  padding: 7px;
+  border-color: #e2e5e8;
+  border-radius: 5px;
+}
+
+body.miq-usage-time .cal__day:hover,
+body.miq-usage-time .cal__day:focus-visible {
+  border-color: var(--metrics-orange);
+  box-shadow: 0 2px 8px rgba(255, 54, 0, .09);
+}
+
+body.miq-usage-time .cal__day.today {
+  border-color: var(--metrics-orange);
+  box-shadow: inset 0 0 0 1px var(--metrics-orange);
+}
+
+body.miq-usage-time .cal__day.void {
+  border-color: #e7eaed;
+  background: #f6f7f8;
+}
+
+body.miq-usage-time .cal__day.is-outside-range {
+  opacity: .35;
+  filter: grayscale(1);
+  pointer-events: none;
+}
+
+body.miq-usage-time .cal__bar {
+  height: 7px;
+  background: #eef0f2;
+}
+
+body.miq-usage-time .cal__bar i.work,
+body.miq-usage-time .legend .sw[data-kind="work"] {
+  background: var(--metrics-work) !important;
+}
+
+body.miq-usage-time .cal__bar i.idle,
+body.miq-usage-time .legend .sw[data-kind="idle"] {
+  background: var(--metrics-idle) !important;
+}
+
+body.miq-usage-time .cal__bar i.off,
+body.miq-usage-time .legend .sw[data-kind="off"] {
+  background: var(--metrics-off) !important;
+}
+
+body.miq-usage-time .cal.is-animating .cal__bar i,
+body.miq-usage-time .stack-chart.is-animating .stk__seg {
+  transform-origin: left center;
+  animation: metrics-width-in .38s ease-out both;
+}
+
+body.miq-usage-time .cal__rate {
+  color: #000000 !important;
+  font-size: 15px;
+}
+
+body.miq-usage-time .cal__kv {
+  color: var(--metrics-muted);
+  font-size: 10px;
+}
+
+body.miq-usage-time .flag.ot {
+  color: #7a4400;
+  background: #fff1df;
+}
+
+body.miq-usage-time .flag.sk {
+  color: #a71919;
+  background: #fdeaea;
+}
+
+body.miq-usage-time .flag.lo {
+  color: #4e555c;
+  background: #e8eaec;
+}
+
+body.miq-usage-time .usage-insights .box {
+  margin-bottom: 10px;
+}
+
+body.miq-usage-time .dow-row {
+  margin-bottom: 7px;
+  color: var(--metrics-muted);
+  font-size: 12px;
+}
+
+body.miq-usage-time .dow-row .k,
+body.miq-usage-time .dow-row .v {
+  color: #000000 !important;
+}
+
+body.miq-usage-time .dow-row .track {
+  height: 7px;
+  background: #e7eaed;
+}
+
+body.miq-usage-time .dow-row .track i {
+  background: var(--metrics-orange) !important;
+}
+
+body.miq-usage-time .dow-row:nth-of-type(6) .track i,
+body.miq-usage-time .dow-row:nth-of-type(7) .track i {
+  background: #9da4ab !important;
+}
+
+body.miq-usage-time .stack-chart .stk__seg.pri {
+  background: var(--metrics-orange) !important;
+}
+
+body.miq-usage-time .stack-chart .stk__seg.prev {
+  background: #aeb4ba !important;
+}
+
+body.miq-usage-time .alert-item {
+  border-bottom-color: #e7eaed;
+}
+
+body.miq-usage-time .alert-item .t {
+  color: var(--metrics-muted);
+  line-height: 17px;
+}
+
+body.miq-usage-time .usage-table-pane .box__tools {
+  color: var(--metrics-muted);
+  font-size: 11px;
+}
+
+body.miq-usage-time .modal .stat-cells .cell__v {
+  color: #000000 !important;
+}
+
+body.miq-usage-time .modal .stat-cells .cell:first-child .cell__v,
+body.miq-usage-time .modal .stat-cells .cell.hl .cell__v {
+  color: var(--metrics-orange-dark) !important;
+}
+
+body.miq-usage-time .modal__x:hover {
+  color: var(--metrics-orange-dark);
+}
+
+body.miq-usage-time .modal__foot a.btn {
+  text-decoration: none;
+}
+
+body.miq-usage-time .tip:focus .tip__box,
+body.miq-usage-time .tip:focus-within .tip__box {
+  display: block;
+}
+
+body.miq-usage-time .metrics-vehicle-link {
+  color: #000000;
+  text-decoration: none;
+}
+
+body.miq-usage-time .metrics-vehicle-link:hover {
+  color: var(--metrics-orange-dark);
+  text-decoration: underline;
+}
+
+body.miq-usage-time.hide-period-comparison .box.total .cell__d {
+  visibility: hidden;
+}
+
+@keyframes metrics-bar-in {
+  from { opacity: .2; transform: scaleY(.05); }
+  to { opacity: 1; transform: scaleY(1); }
+}
+
+@keyframes metrics-width-in {
+  from { opacity: .25; transform: scaleX(.05); }
+  to { opacity: 1; transform: scaleX(1); }
+}
+
+@media (max-width: 1500px) {
+  body.miq-usage-time .usage-layout { grid-template-columns: minmax(0, 1fr) 268px; }
+  body.miq-usage-time .stat-cells.c6 .cell { padding-inline: 6px; }
+}
+
+@media (max-width: 1260px) {
+  body.miq-operation-efficiency .eff-top { grid-template-columns: minmax(0, 1fr); }
+  body.miq-usage-time .usage-layout { grid-template-columns: 1fr; }
+  body.miq-usage-time .usage-insights { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  body.miq-usage-time .stat-cells.c6 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  body.miq-usage-time .stat-cells.c6 .cell:nth-child(3) { border-right: 0; }
+  body.miq-usage-time .stat-cells.c6 .cell:nth-child(-n+3) { border-bottom: 1px solid #e4e7ea; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.miq-operation-metrics *,
+  body.miq-operation-metrics *::before,
+  body.miq-operation-metrics *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+body.miq-operation-metrics .btn-search:not(:disabled):active,
+body.miq-operation-metrics .btn--pri:not(:disabled):active {border-color:#bf2900;background:#cc2b00}

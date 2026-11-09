@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<script src="../_shared/common-logic.js?v=d77b14750704&amp;rev=15dd4911055c"></script>
+<link rel="stylesheet" href="../_shared/korean-layout.css?v=9e980f3cddea&amp;rev=495db444ef75"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>지도 · MACHINE IQ</title>
+<script src="../_shared/customer-access.js?v=e12eedbcb072&amp;rev=e12eedbcb072"></script>
+<link rel="icon" type="image/x-icon" href="../_shared/favicon.ico"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap"/>
+<link rel="stylesheet" href="../_shared/mockup.css?v=bed1f0069135&amp;rev=1b84f0f6030b"/>
+<link rel="stylesheet" href="../_shared/map-management-enhancements.css?v=04d0c0eb8994&amp;rev=752e0eff1bd2"/>
+<link rel="stylesheet" href="../_shared/google-map.css?v=85549a72b26d&amp;rev=bef05dc24478"/>
+<style>
+/* ── 페이지 전용 : 상태 범례 · 지도 · 장비목록 ── */
+.st-lg{margin-left:auto;display:flex;gap:14px;font-size:12px;color:#555;align-items:center}
+.st-lg .li{display:inline-flex;align-items:center;gap:5px}
+.st-lg .pin{display:inline-block;width:19px;height:24px;flex-shrink:0}
+
+.map-mock{height:636px;margin-bottom:18px;border-radius:16px}
+.map-pop__t{font-size:13px;font-weight:700;margin-bottom:8px;padding-right:16px}
+.map-pop__r{display:flex;gap:10px;font-size:11px;color:#888;padding:3px 0}
+.map-pop__r b{margin-left:auto;color:#000000;font-weight:700}
+.map-pop__go{display:inline-block;margin-top:8px;font-size:11px;font-weight:700;color:#ff3600;text-decoration:none}
+
+.list-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+.list-head__t{font-size:15px;font-weight:700}
+.list-head__t .sub{color:#888;font-weight:500;font-size:13px}
+.list-tools{margin-left:auto;display:flex;align-items:center;gap:16px}
+.list-actions{display:flex;align-items:center;gap:6px}
+.st-pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;line-height:18px;font-weight:600;padding:2px 8px;border-radius:20px}
+.st-pill i{width:6px;height:6px;border-radius:50%}
+.st-pill.ok{background:#e6f7ec;color:#2b8a3e}
+.st-pill.ok i{background:#0aa656}
+.st-pill.bad{background:#ffe8e3;color:#e03131}
+.st-pill.bad i{background:#e03131}
+.st-pill.off{background:#f1f3f5;color:#868e96}
+.st-pill.off i{background:#adb5bd}
+.st-pill.unknown{background:#f6f7f8;color:#767676}
+.st-pill.unknown i{background:#fff;border:1px solid #adb5bd;box-sizing:border-box}
+</style>
+<link rel="stylesheet" href="../_shared/form-controls.css?v=6fda272acdcc&amp;rev=9debe1b59fae"/>
+<link rel="stylesheet" href="../_shared/list-pagination.css?v=0069e48c1009&amp;rev=0069e48c1009">
+<link rel="stylesheet" data-current-shell href="../_shared/current-shell.css?v=eabe5a26bfe9&amp;rev=0e55e64ed211"/>
+<link rel="stylesheet" data-operations-navigation href="../_shared/operations-navigation.css?v=1cffa21a9777&amp;rev=1cffa21a9777"/>
+<style>body.miq-current-shell>#gnb{min-height:64px}</style>
+<script defer blocking="render" src="../_mock-data/generated/fleet.generated.js?v=52fa65a2dce1&amp;rev=52fa65a2dce1"></script>
+<script defer blocking="render" src="../_mock-data/generated/observation-profiles.generated.js?v=1be92dd7a845&amp;rev=4054b4937190"></script>
+<script defer blocking="render" src="../_shared/vehicle-observations.js?v=550edc6b3b85&amp;rev=b5e24277418e"></script>
+<script defer blocking="render" src="../_shared/meeting-model.js?v=48be9a58ad27&amp;rev=48be9a58ad27"></script>
+<script defer blocking="render" src="../_shared/list-pagination.js?v=4b500130528b&amp;rev=4b500130528b"></script>
+<script defer blocking="render" src="../_shared/table-layout.js?v=4ff473044488&amp;rev=4ff473044488"></script>
+<script defer blocking="render" src="../_shared/fleet.js?v=b0f68e558a52&amp;rev=b0f68e558a52"></script>
+<script defer blocking="render" src="../_shared/nav.js?v=f5f9b1d00606&amp;rev=5ae862e16c37"></script>
+<script defer blocking="render" src="../_shared/service-demo-data.js?v=dcd01d3f4b36&amp;rev=dcd01d3f4b36"></script>
+<script defer blocking="render" src="../_shared/service-records.js?v=057b92280fec&amp;rev=057b92280fec"></script>
+<script defer blocking="render" src="../_shared/dashboard-current-metrics.js?v=88df0eb8ae84&amp;rev=88df0eb8ae84"></script>
+<script defer blocking="render" src="../_shared/map-positions.js?v=f0538ed3d6b1&amp;rev=f0538ed3d6b1"></script>
+<script defer blocking="render" src="../_shared/map-popup.js?v=11d5d4fa0d88&amp;rev=11d5d4fa0d88"></script>
+<script type="module" blocking="render">
+/* ══════════════════════════════════════════════════════════════
+   지도 인터랙션
+     1) 업체 · 그룹 · 분류 · 차량 선택 범위를 지도 영역 · 집계 · 장비목록에 반영
+     2) Google 지도 API 연결 시 아이콘/목록 선택과 동일 팝업, GPS 이동경로 표시. 미설정 시 기본 임베드 제공
+     3) 기존 차량 위치 · 주소 · 시각은 원본 캡처 사용. 고객 직원용 3대는 demo:true로 구분한 시연 위치.
+   시간별 가동 지표는 별도 시연 데이터이며 수집되지 않은 이동 경로는 생성하지 않는다.
+   ══════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  /* Captured positions retain their original VIN, address and timestamp.
+     The three demo:true positions are explicit demonstration data, not GPS captures.
+     Hourly operating metrics remain separate from the location capture time. */
+  var positionByVin = new Map((window.MIQMapPositions || []).map(function (position) { return [position.vin, position]; }));
+  var scopedFleet = MIQ.FLEET_CATALOG || MIQ.FLEET;
+  scopedFleet = MIQCommon.roles.filterVehicles(document.body.dataset.managementRole, scopedFleet);
+  var DATA = scopedFleet.map(function (v) {
+    var position = positionByVin.get(v.vin);
+    var hourly = MIQMeeting.hourlyVehicle(v, MIQMeeting.hourlyWindow());
+    return {
+      model: v.model, vin: v.vin, group: v.group, type: v.type,
+      st: hourly.status, connected: v.conn, conn: v.conn === true ? '연결' : v.conn === false ? '미연결' : '수집 전',
+      dataTime: hourly.dataTime, posTime: position ? position.lastDatetime : null,
+      runH: hourly.runH === null ? null : Math.round(hourly.runH * 10) / 10,
+      idle: v.conn === true ? (hourly.idle ? 1 : 0) : null,
+      err: hourly.fault, battErr: v.conn === true && hourly.fault && v.type !== '엔진' ? 1 : 0,
+      addr: position ? position.address : '위치 정보 미수집', hasPosition: !!position,
+      lat: position ? position.lat : null, lng: position ? position.lng : null,
+      shock: typeof v.shock==='number' ? v.shock : null
+    };
+  });
+  var state = { rows: DATA, label: '전체차량', q: '', sortKey: null, sortDir: 1, sel: null };
+  var hourlyStamp=document.createElement('p');hourlyStamp.className='chart-hint';hourlyStamp.id='mapHourlyBasis';
+  var listTitle=document.querySelector('.list-head__t');if(listTitle)listTitle.insertAdjacentElement('afterend',hourlyStamp);
+
+  var rowFilter=null;
+  var tablePager=MIQ.createListPager(document.getElementById('eqBody').closest('table').parentElement,{pageSize:20,onChange:render});
+  function scoped() {
+    return state.rows.filter(function (r) {
+      if(rowFilter&&!rowFilter(r))return false;
+      if (!state.q) return true;
+      return MIQCommon.search.normalize(r.model + ' ' + r.vin).indexOf(MIQCommon.search.normalize(state.q)) >= 0;
+    });
+  }
+
+  /* ── 상태 집계 · 범례 ── */
+  function renderCounts(rows) {
+    var c = { off: 0, unknown: 0, bad: 0, ok: 0 };
+    rows.forEach(function (r) { c[r.st]++; });
+    MIQCommon.view.set(document.getElementById('cntOff'),"textContent",c.off);
+    MIQCommon.view.set(document.getElementById('cntUnknown'),"textContent",c.unknown);
+    MIQCommon.view.set(document.getElementById('cntBad'),"textContent",c.bad);
+    MIQCommon.view.set(document.getElementById('cntOk'),"textContent",c.ok);
+    MIQCommon.view.set(document.getElementById('runCnt'),"textContent",rows.filter(function (r) { return r.runH > 0; }).length);
+    var vins=new Set(rows.map(function(r){return r.vin;})),w=MIQMeeting.hourlyWindow();
+    var currentFleet=scopedFleet.filter(function(v){return vins.has(v.vin);});
+    var faults=MIQDashboardCurrent.faults(MIQServiceDemo.createCurrent(currentFleet,w),w,null,true);
+    var supplies=MIQServiceRecords.records.filter(function(r){return r.kind==='supply'&&r.supplyState==='need'&&vins.has(r.vin);}).length;
+    var shocks=rows.filter(function(r){return r.shock!==null;});
+    var counts={owned:rows.length,fault:faults,shock:shocks.length?shocks.reduce(function(n,r){return n+r.shock;},0):null,supply:supplies};
+    Object.keys(counts).forEach(function(key){MIQCommon.view.set(document.querySelector('[data-map-count="'+key+'"]'),"textContent",counts[key]===null?'—':counts[key].toLocaleString('ko-KR'));});
+  }
+
+  /* ── 위치 팝업 ── */
+  function renderPop() {
+    var box = document.getElementById('pop');
+    var row = state.sel && scoped().find(function(value) { return value.vin === state.sel; });
+    box.replaceChildren();
+    if (!row) return;
+    var href = window.MIQMapData && MIQMapData.detailUrl ? MIQMapData.detailUrl(row.vin, 'map-popup') : '../Vehicle%20Detail/vehicle-detail-tobe.html?veh=' + encodeURIComponent(row.vin);
+    var popup = MIQMapPopup.createVehicle(row, {detailHref:href,onClose:function(){select(null);}});
+    var routeButton = document.createElement('button');
+    routeButton.type='button';routeButton.className='map-pop__go map-pop__route';MIQCommon.view.set(routeButton,"textContent",'이동 경로 ›');
+    routeButton.addEventListener('click',function(){document.dispatchEvent(new CustomEvent('miq:map-route',{detail:{vin:row.vin}}));});
+    popup.appendChild(routeButton);box.appendChild(popup);
+  }
+
+  /* ── 장비목록 ── */
+  var COLS = ['model', 'vin', 'dataTime', 'runH', 'conn', 'idle', 'err', 'battErr', 'posTime', 'addr'];
+  function sortRows(rows) {
+    if (!state.sortKey) return rows;
+    var k = state.sortKey, dir = state.sortDir;
+    return rows.slice().sort(function (a, b) {
+      var x = a[k], y = b[k];
+      if (x === null) x = -1;
+      if (y === null) y = -1;
+      if (typeof x === 'string' || typeof y === 'string') return String(x).localeCompare(String(y), 'ko') * dir;
+      return (x - y) * dir;
+    });
+  }
+  function renderTable(rows) {
+    var body = document.getElementById('eqBody');
+    MIQTableLayout.fit(body.closest('table'),[90,190,174,120,105,88,105,150,190,330]);
+    var pageRows = tablePager.slice(rows);
+    if (!rows.length) {
+      MIQCommon.view.set(body,"innerHTML","<tr><td colspan='10' style='padding:36px;color:#aaa'>조회 조건에 해당하는 장비가 없습니다.</td></tr>");
+      return;
+    }
+    MIQCommon.view.set(body,"innerHTML",pageRows.map(function (r) {
+      var connectionClass = r.connected === true ? 'ok' : r.connected === false ? 'off' : 'unknown';
+      function num(v) { return v === null || v === 0 ? "<span class='zero'>" + (v === null ? '-' : 0) + "</span>" : MIQCommon.numbers.integer(v); }
+      return "<tr data-vin='" + r.vin + "'" + (state.sel === r.vin ? " class='sel'" : "") + ">"
+        + "<td>" + r.model + "</td>"
+        + "<td class='vin'>" + r.vin + "</td>"
+        + "<td>" + (r.dataTime || "<span class='zero'>-</span>") + "</td>"
+        + "<td>" + num(r.runH) + "</td>"
+        + "<td><span class='st-pill " + connectionClass + "'><i></i>" + r.conn + "</span></td>"
+        + "<td>" + num(r.idle) + "</td>"
+        + "<td>" + num(r.err) + "</td>"
+        + "<td>" + num(r.battErr) + "</td>"
+        + "<td>" + (r.posTime || "<span class='zero'>-</span>") + "</td>"
+        + "<td class='addr'>" + r.addr + "</td>"
+        + "</tr>";
+    }).join(''));
+
+    Array.prototype.forEach.call(body.querySelectorAll('tr[data-vin]'), function (tr) {
+      tr.addEventListener('click', function () { select(MIQCommon.view.call(tr,"getAttribute",['data-vin'])); });
+    });
+  }
+  function renderHead() {
+    Array.prototype.forEach.call(document.querySelectorAll('#eqHead th'), function (th) {
+      var on = MIQCommon.view.call(th,"getAttribute",['data-key']) === state.sortKey;
+      th.classList.toggle('sorted', on);
+      MIQCommon.view.set(th.querySelector('.ind'),"textContent",on ? (state.sortDir === 1 ? '↑' : '↓') : '↕');
+      MIQCommon.view.call(th,"setAttribute",['aria-sort',on ? (state.sortDir === 1 ? 'ascending' : 'descending') : 'none']);
+    });
+  }
+
+  function select(vin) {
+    state.sel = (state.sel === vin) ? null : vin;
+    render();
+  }
+
+  function render() {
+    var rows = sortRows(scoped());
+    if(state.sel&&!rows.some(function(row){return row.vin===state.sel;}))state.sel=null;
+    renderCounts(rows);
+    renderTable(rows);
+    renderHead();
+    renderPop();
+    document.dispatchEvent(new CustomEvent('miq:map-rendered'));
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.st-lg .pin'),function(el){var st=['off','unknown','bad','ok'].find(function(s){return el.classList.contains(s);});el.replaceChildren(MIQMapPopup.createIcon('엔진',st));});
+  var fullButton=document.querySelector('.miq-map-fullscreen'),mapHost=document.getElementById('map');
+  var previousOverflow='';
+  function updateFullscreenButton(){var full=document.fullscreenElement===mapHost||mapHost.classList.contains('is-expanded');MIQCommon.view.set(fullButton,"textContent",full?'⛶ 닫기':'⛶ 전체화면');MIQCommon.view.call(fullButton,"setAttribute",['aria-label',full?'지도 전체화면 닫기':'지도 전체화면']);}
+  function expandInWindow(expand){if(expand){previousOverflow=document.body.style.overflow;document.body.style.overflow='hidden';}else document.body.style.overflow=previousOverflow;mapHost.classList.toggle('is-expanded',expand);updateFullscreenButton();}
+  fullButton.addEventListener('click',function(){
+    if(document.fullscreenElement===mapHost){document.exitFullscreen();return;}
+    if(mapHost.classList.contains('is-expanded')){expandInWindow(false);return;}
+    if(mapHost.requestFullscreen)mapHost.requestFullscreen().catch(function(){expandInWindow(true);});
+    else expandInWindow(true);
+  });
+  document.addEventListener('fullscreenchange',updateFullscreenButton);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&mapHost.classList.contains('is-expanded'))expandInWindow(false);});
+  /* ── 이벤트 ── */
+  document.getElementById('eqHead').addEventListener('click', function (e) {
+    var th = e.target.closest('th[data-key]');
+    if (!th) return;
+    var k = MIQCommon.view.call(th,"getAttribute",['data-key']);
+    if (state.sortKey === k) state.sortDir = -state.sortDir;
+    else { state.sortKey = k; state.sortDir = 1; }
+    render();
+  });
+  document.addEventListener('miq:target-change', function () {
+    /* 상단 조회 범위가 바뀌면 이전 차량 선택만 지우고, 공통 필터가 같은 프레임에서
+       업체·그룹·분류를 적용하도록 전체 42대 재렌더 플래시는 만들지 않는다. */
+    state.sel = null;
+    MIQCommon.view.set(document.getElementById('pop'),"innerHTML",'');
+    Array.prototype.forEach.call(document.querySelectorAll('#eqBody tr.sel'), function (element) {
+      element.classList.remove('sel', 'on');
+    });
+  });
+  document.querySelector('.map-type').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-view]');
+    if (!b) return;
+    Array.prototype.forEach.call(this.querySelectorAll('button'), function (x) { x.classList.remove('active'); });
+    b.classList.add('active');
+    if(window.MIQGoogleMap)MIQGoogleMap.setType(MIQCommon.view.call(b,"getAttribute",['data-view']));
+  });
+
+  window.MIQMapData={rows:DATA,select:select,getSelectedVin:function(){return state.sel||'';},setSelectedVin:function(vin){state.sel=scoped().some(function(row){return row.vin===vin;})?vin:null;render();},setFilter:function(fn){rowFilter=fn;},refresh:render,getVisibleRows:function(){return sortRows(scoped());},setSearch:function(value){state.q=value;render();}};
+  var hourlyClock=MIQMeeting.watchHourly(function(w){
+    var fleet=scopedFleet;
+    DATA.forEach(function(row,i){
+      var v=fleet[i],sample=MIQMeeting.hourlyVehicle(v,w);
+      row.st=sample.status;row.dataTime=sample.dataTime;
+      row.connected=sample.known?sample.connected:null;
+      row.conn=row.connected===true?'연결':row.connected===false?'미연결':'수집 전';
+      row.runH=sample.runH===null?null:Math.round(sample.runH*10)/10;
+      row.idle=sample.connected?(sample.idle?1:0):null;
+      row.err=sample.fault;row.battErr=sample.connected&&sample.fault&&v.type!=='엔진'?1:0;
+    });
+    MIQCommon.view.set(hourlyStamp,"textContent",w.date+' '+w.to+' 기준 · 1시간 단위 · Asia/Seoul · 가동시간 00:00 ~ '+w.to);
+    render();
+  });
+  window.addEventListener('pageshow',hourlyClock.refresh);
+  window.addEventListener('focus',hourlyClock.refresh);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)hourlyClock.refresh();});
+})();
+</script>
+<script defer blocking="render" src="../_shared/google-map-config.js?v=2f0d911bfb6b&amp;rev=2f0d911bfb6b"></script>
+<script defer blocking="render" src="../_shared/map-route-model.js?v=4f7bb7f08c3b&amp;rev=4f7bb7f08c3b"></script>
+<script defer blocking="render" src="../_shared/common-errors.js?v=d2b8a50e3a7f&amp;rev=d2b8a50e3a7f"></script>
+<script defer blocking="render" src="../_shared/map-route-source.js?v=f670c7a5af50&amp;rev=f670c7a5af50"></script>
+<script defer blocking="render" src="../_shared/map-route-demo.js?v=5d148d9a372e&amp;rev=5d148d9a372e"></script>
+<script defer blocking="render" src="../_shared/map-route-preview.js?v=42e70c8ca378&amp;rev=42e70c8ca378"></script>
+<script defer blocking="render" src="../_shared/google-map-sdk.js?v=488032de1194&amp;rev=aa0536f8b039"></script>
+<script defer blocking="render" src="../_shared/google-map.js?v=35c48498c2a2&amp;rev=48fccde6f76d"></script>
+<script defer blocking="render" src="../_shared/map-management-enhancements.js?v=77ba9aaf3401&amp;rev=77ba9aaf3401"></script>
+</head>
+<body class="miq-current-shell" data-current-bootstrap="ready" data-gnb="map" data-sub="map" data-variant="tobe" data-base="../">
+
+<div id="gnb"></div>
+
+<div class="layout miq-no-side">
+  <!-- ═══════ MAIN ═══════ -->
+  <main class="main">
+    <div class="page-head">
+      <div class="page-head__bc">
+        <a href="map-tobe.html">지도</a> &gt; 지도 · 이동경로
+      </div>
+    </div>
+    <div class="page-head">
+    <div class="page-head__title">지도 <span class="sub" data-lnb-label hidden>- 전체차량</span></div>
+      <div class="st-lg">
+        <span class="li"><span class="pin off"></span>미연결 <b id="cntOff">0</b></span>
+        <span class="li"><span class="pin unknown"></span>통신 미수집 <b id="cntUnknown">0</b></span>
+        <span class="li"><span class="pin bad"></span>Fault <b id="cntBad">0</b></span>
+        <span class="li"><span class="pin ok"></span>정상 <b id="cntOk">0</b></span>
+      </div>
+    </div>
+    <div class="miq-analysis-scope" id="mapScopeSummary" data-miq-scope-placement="title" aria-label="현재 조회 범위"></div>
+
+    <!-- ═══════ ① 지도 : 상태별 마커 색 구분 ═══════ -->
+    <div class="map-mock" id="map">
+      <div id="googleMapCanvas" role="region" aria-label="Google 지도"></div>
+      <div class="map-type">
+        <button class="active" type="button" data-view="map">지도</button>
+        <button type="button" data-view="sat">위성</button>
+      </div>
+      <div id="pop"></div>
+      <div class="miq-map-summary" aria-label="조회 범위 지도 집계">
+        <a class="miq-map-count" data-map-summary-link="owned" href="../Vehicle%20Summary/vehicle-summary-tobe-3.html" title="차량 요약정보로 이동"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16V9.5l2.2-4h11.6l2.2 4V16M5 16v2m14-2v2M3 11h18M7 14h.01M17 14h.01"/></svg><span class="miq-map-count-label">보유 차량</span></span><strong><b data-map-count="owned">0</b><small>대</small></strong></a>
+        <a class="miq-map-count" data-map-summary-link="fault" href="../Service/service-error-tobe.html" title="오늘 00:00부터 현재 집계 기준 시각까지의 고장 발생 내역으로 이동"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3L2 21h20L12 3zM12 9v5M12 17v1"/></svg><span class="miq-map-count-label">고장</span></span><strong><b data-map-count="fault">0</b><small>건</small></strong></a>
+        <a class="miq-map-count" data-map-summary-link="supply" href="../Service/service-supply-tobe.html?state=need" title="현재 교체가 필요한 소모품 목록으로 이동"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3a6 6 0 0 0-7 8L2 16a3 3 0 0 0 4 4l5-5a6 6 0 0 0 8-7l-4 4-3-3 4-4z"/></svg><span class="miq-map-count-label">교체 필요</span></span><strong><b data-map-count="supply">0</b><small>개</small></strong></a>
+        <a class="miq-map-count" data-i18n-count="shock" data-map-summary-link="shock" href="../Shock/shock-tobe.html" title="조회 차량의 충격 리포트로 이동"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h4l3-8 6 16 3-8h4"/></svg><span class="miq-map-count-label">충격</span></span><strong><b data-map-count="shock">—</b><small>건</small></strong></a>
+      </div>
+      <button type="button" class="miq-map-fullscreen" aria-label="지도 전체화면">⛶ 전체화면</button>
+    </div>
+
+    <!-- ═══════ ② 장비목록 ═══════ -->
+    <div class="list-head">
+      <span class="list-head__t">장비목록 <span class="sub">- 금일 가동장비 : <b id="runCnt">0</b> 대</span></span>
+      <div class="list-tools">
+        <div class="filter-bar miq-list-search" role="search" aria-label="장비목록 조회">
+          <input class="inp" type="search" id="eqQ" maxlength="100" autocomplete="off" placeholder="모델명 · 차대번호" aria-label="모델 또는 차량 검색"/>
+          <button class="btn-search" type="button" id="btnMapSearch">조회</button>
+        </div>
+        <div class="list-actions miq-list-actions">
+          <button class="btn" type="button" id="btnExport">내보내기</button>
+        </div>
+      </div>
+    </div>
+    <div class="tbl-wrap eq-table-wrap" style="margin-bottom:14px">
+      <table class="eq-tbl">
+        <thead><tr id="eqHead">
+          <th data-key="model">모델명<span class="ind">▲▼</span></th>
+          <th data-key="vin">차대번호<span class="ind">▲▼</span></th>
+          <th data-key="dataTime">Data Time<span class="ind">▲▼</span></th>
+          <th data-key="runH">총 가동시간<span class="ind">▲▼</span></th>
+          <th data-key="conn">통신연결<span class="ind">▲▼</span></th>
+          <th data-key="idle">미가동<span class="ind">▲▼</span></th>
+          <th data-key="err">에러 건수<span class="ind">▲▼</span></th>
+          <th data-key="battErr">배터리 에러 건수<span class="ind">▲▼</span></th>
+          <th data-key="posTime">위치 기준 시간<span class="ind">▲▼</span></th>
+          <th data-key="addr">주소<span class="ind">▲▼</span></th>
+        </tr></thead>
+        <tbody id="eqBody"></tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <b>TO-BE 개선 사항</b>
+      <ul>
+        <li><span class="tag-new">신규</span> <b>상단 공통 조회 영역</b>에서 업체 · 그룹 · 분류 · 차량을 선택합니다. 선택 범위가 지도 영역 · 상태 집계 · 장비목록에 함께 반영됩니다.</li>
+        <li><span class="tag-new">신규</span> <b>상태별 대수</b> — <b>미연결(회색) · Fault(빨강) · 정상(초록)</b>을 우측 상단 범례와 장비목록에 표시합니다.</li>
+        <li><span class="tag-new">신규</span> <b>장비목록 → 지도 연동</b> — 표의 행을 누르면 Google 지도에 해당 차량의 마지막 수집 위치와 위치 팝업이 표시됩니다. 위치가 수집되지 않은 차량은 별도로 안내합니다.</li>
+        <li><span class="tag-new">신규</span> <b>장비목록 정렬 · 검색</b> — 모든 컬럼 머리글 클릭으로 오름/내림 정렬하고, 모델 · 차대번호로 검색합니다. 값이 없는 항목은 <b>0 대신 '-'</b> 로 표기해 실제 0과 구분합니다.</li>
+        <li><span class="tag-asis">삭제</span> <b>Geofence 구역 · 진출입 탭 제거</b> — MVP 제외 정책에 따라 지도에서 함께 제거했습니다.</li>
+        <li><span class="tag-keep">유지</span> 지도 / 위성 전환, 확대 · 축소, 상태 범례, <b>장비목록</b>(모델명 · 차대번호 · Data Time · 총 가동시간 · 통신상태 · 미가동 · 에러 건수 · 배터리 에러 건수 · 위치 기준 시간 · 주소) 과 내보내기.</li>
+      </ul>
+    </div>
+  </main>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

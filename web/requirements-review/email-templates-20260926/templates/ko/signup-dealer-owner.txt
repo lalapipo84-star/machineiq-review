@@ -1,0 +1,18 @@
+[MACHINE IQ] 회원가입이 완료되었습니다.
+
+{{displayName}}님, MACHINE IQ에 오신 것을 환영합니다.
+아래 계정으로 회원가입이 완료되었습니다.
+사용자 ID: {{userId}}
+회원 구분: 딜러 대표
+
+서비스 이용 안내
+MACHINE IQ 서비스를 이용할 수 있습니다.
+
+서비스 시작: {{registrationUrl}}
+
+로그인 후 권한에 따라 서비스를 이용할 수 있습니다.
+
+본 메일은 MACHINE IQ 회원가입 완료 안내 메일입니다.
+본 메일은 발신 전용입니다. 문의는 고객지원을 이용해 주세요.
+고객지원: {{supportEmail}}
+© {{year}} Bobcat Company. All rights reserved.

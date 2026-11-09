@@ -1,0 +1,37 @@
+/* 운영관리 > 딜러 업체 생성. 목록·모달은 operations.css를 그대로 쓰고, 단계 표시와 입력 카드만 둔다. */
+body[data-ops-page="dealer"] .dlr-wizard{display:grid;gap:16px;max-width:880px}
+body[data-ops-page="dealer"] .dlr-steps{display:flex;gap:0;margin:0;padding:0;list-style:none;counter-reset:none}
+body[data-ops-page="dealer"] .dlr-steps li{flex:1;display:flex;align-items:center;gap:8px;padding:10px 12px;font-size:14px;color:var(--c-mute,#888);border-bottom:2px solid var(--c-line,#e0e0e0)}
+body[data-ops-page="dealer"] .dlr-steps li.is-current{color:#000;font-weight:700;border-bottom-color:var(--c-primary,#ff3600)}
+body[data-ops-page="dealer"] .dlr-steps li.is-done{color:#333;border-bottom-color:var(--c-primary-bd,#ffd0c4)}
+body[data-ops-page="dealer"] .dlr-no{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--c-off-bg,#f1f3f5);color:#666;font-size:12px;font-weight:700;flex-shrink:0}
+body[data-ops-page="dealer"] .is-current .dlr-no{background:var(--c-primary,#ff3600);color:#fff}
+body[data-ops-page="dealer"] .is-done .dlr-no{background:var(--c-primary-lt,#fff5f3);color:var(--c-primary,#ff3600)}
+body[data-ops-page="dealer"] .dlr-card{display:flex;flex-direction:column;gap:14px;padding:20px 22px;background:#fff;border:1px solid var(--c-line,#e0e0e0);border-radius:4px}
+body[data-ops-page="dealer"] .dlr-title{margin:0;font-size:16px;font-weight:700}
+body[data-ops-page="dealer"] .dlr-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 16px}
+body[data-ops-page="dealer"] .dlr-card .ops-field{display:flex;flex-direction:column;gap:6px;font-size:13px;min-width:0}
+body[data-ops-page="dealer"] .dlr-card .ops-field>span{color:var(--c-mute,#888);font-size:12px}
+body[data-ops-page="dealer"] .dlr-card .inp{width:100%;height:40px}
+body[data-ops-page="dealer"] .dlr-card .inp[readonly]{background:var(--c-soft,#fafbfc);color:#555}
+body[data-ops-page="dealer"] .dlr-inline{display:flex;gap:6px}
+body[data-ops-page="dealer"] .dlr-inline .inp{flex:1;min-width:0}
+body[data-ops-page="dealer"] .dlr-inline .btn{flex-shrink:0;height:40px}
+body[data-ops-page="dealer"] .mono{font-family:Consolas,"D2Coding",monospace}
+body[data-ops-page="dealer"] .dlr-hint{margin:0;font-size:12px;color:var(--c-mute,#888)}
+body[data-ops-page="dealer"] .dlr-ok{color:var(--c-ok,#2b8a3e);font-weight:600}
+body[data-ops-page="dealer"] .dlr-bad{color:var(--c-bad,#e03131);font-weight:600}
+body[data-ops-page="dealer"] .dlr-kind{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+body[data-ops-page="dealer"] .dlr-kind__item{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--c-line,#e0e0e0);border-radius:4px;cursor:pointer;font-size:14px}
+body[data-ops-page="dealer"] .dlr-kind__item.is-on{border-color:var(--c-primary,#ff3600);box-shadow:inset 0 0 0 1px var(--c-primary,#ff3600)}
+body[data-ops-page="dealer"] .dlr-kind__item input{accent-color:var(--c-primary,#ff3600);margin:0}
+body[data-ops-page="dealer"] .dlr-code{margin-left:auto;font-family:Consolas,"D2Coding",monospace;font-size:12px;color:var(--c-mute,#888)}
+body[data-ops-page="dealer"] .dlr-auto{padding:14px 16px;border-radius:4px;background:var(--c-soft,#fafbfc);border:1px solid var(--c-line2,#e5e7eb)}
+body[data-ops-page="dealer"] .dlr-auto h4{margin:0 0 8px;font-size:13px}
+body[data-ops-page="dealer"] .dlr-auto ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:13px}
+body[data-ops-page="dealer"] .dlr-auto b{display:inline-block;min-width:110px;color:#555;font-weight:600}
+body[data-ops-page="dealer"] .dlr-chip{display:inline-block;margin:0 4px 4px 0;padding:2px 8px;border-radius:10px;background:var(--c-info-bg,#eef2ff);color:var(--c-info,#3b5bdb);font-size:12px;font-weight:600}
+body[data-ops-page="dealer"] .dlr-muted{color:var(--c-mute,#888)}
+body[data-ops-page="dealer"] .dlr-actions{display:flex;justify-content:space-between;gap:8px;padding-top:4px}
+body[data-ops-page="dealer"] .dlr-card .ops-inline-message{margin:0}
+@media(max-width:900px){body[data-ops-page="dealer"] .dlr-grid,body[data-ops-page="dealer"] .dlr-kind{grid-template-columns:1fr}}

@@ -1,0 +1,925 @@
+{
+  "revision": "2026-10-30-r147",
+  "entry": "login.html",
+  "includeArchives": false,
+  "mapMode": "embedded-google",
+  "containsBrowserMapKey": true,
+  "files": [
+    {
+      "path": "index.html",
+      "sha256": "262c760f7912bf118eba073b5bceb26ec476bceae0eefd89bec0f3620221662c"
+    },
+    {
+      "path": "customer.js",
+      "sha256": "8460218f63c9c4e1eace2a1e136202d8e8b97478ba25a5454166d83371389239"
+    },
+    {
+      "path": "customer.css",
+      "sha256": "a9308fcd82c985ef10dcfdcbd28a50c758d8044278069ecd23301d48dfb36a39"
+    },
+    {
+      "path": "auth-common.js",
+      "sha256": "9e80604df5effa5a3120333f7ee60a9920506c86d2af14f9e2c6a408434503a0"
+    },
+    {
+      "path": "query-controls.js",
+      "sha256": "d77697295687e0d5a9e9119d1e26244fb78337c7dc4f0e2b656cc827a1c8a3e9"
+    },
+    {
+      "path": "home-view.js",
+      "sha256": "c9ced9d8bcbff96db72727e770aceccbe90885cb60625e732bc43fe91f2e5674"
+    },
+    {
+      "path": "release.json",
+      "sha256": "a8f33f7faa4e9769c36f8b225939dea419833abdec8f083ad78b4bb6b3974f46"
+    },
+    {
+      "path": "error-documents.js",
+      "sha256": "641b65ee6a18c1879750a386a60a73ca38e93bd90d12f0e4309cd50a589d76d2"
+    },
+    {
+      "path": "model.js",
+      "sha256": "91c48b63c60be3e87a5f1dfb941f1e982f76c2ad33900e79ecaa8e9ff274836b"
+    },
+    {
+      "path": "login.html",
+      "sha256": "3038a27cabc51a09d1e83d0da000b3a802dc977c6a6efa78080ae1bcefc2b110"
+    },
+    {
+      "path": "login.js",
+      "sha256": "156c297945cb2582e88446da4c8e22bab8480f966be389b9df764c60674f2c3c"
+    },
+    {
+      "path": "signup.html",
+      "sha256": "54713a00357a7f4caf85c1e512c63393eedc483df831655813213eb34f2a4981"
+    },
+    {
+      "path": "signup.js",
+      "sha256": "a404a6824ee56206118413fc5f5609765b3558e79977aa1817c94493fae5bd53"
+    },
+    {
+      "path": "signup-header.js",
+      "sha256": "1996058272d8c1a5d12756ad544fab026b82d04022d70b3fcafb68a259f33f15"
+    },
+    {
+      "path": "find-password.html",
+      "sha256": "f16ed6be11349b790c42ec20e78e4a43def2e6e6d89c9276e5e269b7b7666a91"
+    },
+    {
+      "path": "find-password.js",
+      "sha256": "1bd0b6e3e9f6a45da40d701b449f814436bcb082bae08518375ffc8e567509a5"
+    },
+    {
+      "path": "web-contracts.generated.js",
+      "sha256": "f6a1352eed495f69cff6ac8d16e863b757f5aa5612e1106d3dfd31b29aaac1a7"
+    },
+    {
+      "path": "demo-data.generated.js",
+      "sha256": "922388582ac19ecaeb5faf699cd87157f85dbb81096a69f60b2cc4f5f27cfc5c"
+    },
+    {
+      "path": "web-guide-colors.css",
+      "sha256": "9a63387ebef2c9168db082d181fbb93179c6f85c4d2de849ed4be981777caeb4"
+    },
+    {
+      "path": "owner-dashboard-preview.css",
+      "sha256": "07dbd747aba5043cf28082601506eadc1f4e49c8225e212b5de5863b92bbc27a"
+    },
+    {
+      "path": "vehicle-registration.js",
+      "sha256": "ddd951c76f49b9904e645dc27a7d4bbf45211c34b99ff2955320995ec8cf995d"
+    },
+    {
+      "path": "onboarding.js",
+      "sha256": "015b069dc9e1c8298263d411d1034d33d14245ec52411b483233199a2c133aa5"
+    },
+    {
+      "path": "location-map.js",
+      "sha256": "adf43adce8b0076866eabadc107b4a18fd6976bf1c08af1a421231941b2b478d"
+    },
+    {
+      "path": "map-config.local.js",
+      "sha256": "6ee51f21c4fad02a71f5fc7f491a8c970c45fe6ec94be77b4271ae2320090a53"
+    },
+    {
+      "path": "docs/map-setup.md",
+      "sha256": "4d8c6a2fd0b875695e71068700a8e57530b2df4fc8a38c7c8541ffa892df6646"
+    },
+    {
+      "path": "shared/mobile-guide-tokens.css",
+      "sha256": "431e03f04d68d64b923d51d580a5e52cd3a2fc7e1e046d6765ab4f68bd32e875"
+    },
+    {
+      "path": "shared/mobile.css",
+      "sha256": "042c643cfb934254ae4d17d6f4729a35a8d88a6e5d09df041e13fa95c6485440"
+    },
+    {
+      "path": "shared/mobile-type-compact.css",
+      "sha256": "04cd31e295490e9f55c79906b43f81f397c6742b56bd80ab88ab3e7155cb9fb1"
+    },
+    {
+      "path": "shared/home-tone-c.css",
+      "sha256": "c3e612b0c01df54c8a1c7cedcb2a59048a389709fcb8947254256b85e164d134"
+    },
+    {
+      "path": "shared/mobile-preauth-header.css",
+      "sha256": "15549ab202015b2cf36a55ba902f7060b62e546976f2bf706d72aef66c368ed6"
+    },
+    {
+      "path": "shared/login.css",
+      "sha256": "0120da9466b09885afb1264f79810b85078614a26eeebdc528dce5cd22d7c411"
+    },
+    {
+      "path": "shared/signup.css",
+      "sha256": "3c7c86fa80d75fc7b9e4de0060f1423488cda23711aed07877e4af4e0ce90a29"
+    },
+    {
+      "path": "shared/find-password.css",
+      "sha256": "04b8b42a3a4758366919095bb8e8e47d69f14277916f3896751b32cf9fb8d356"
+    },
+    {
+      "path": "shared/bobcat-machine-iq.svg",
+      "sha256": "7933278a6826bea586621906e64c4a6d85ca8061e612a5886434fe91b63f5625"
+    },
+    {
+      "path": "shared/layouts/vendor/lucide.min.js",
+      "sha256": "3411692820cb8d47543f69496aa25fd603a358f4498046f41c508a5a3342210e"
+    },
+    {
+      "path": "assets/favicon.ico",
+      "sha256": "7ee3a7570075c8f3ec718a0a8a361e9f88af2942bb652de4aa980b7e746770c3"
+    },
+    {
+      "path": "assets/local-fonts.css",
+      "sha256": "362295cb832db12b7bb1b902c444267de302843a9eef8ed1f2f9601d7b0ab57e"
+    },
+    {
+      "path": "assets/fonts/575df625e35e62ed2144.woff2",
+      "sha256": "3861da36d0eb54b3351f55d43c5ca91e732f0f2c6f8769ed475d3ec6fffdb4e5"
+    },
+    {
+      "path": "assets/fonts/53e49b181bc0eb4dce11.woff2",
+      "sha256": "71b97f259df4fdc4c9afa9564e9bb781221c2958f3d50bfbff4825024cf783bd"
+    },
+    {
+      "path": "assets/fonts/c5313fcea99d3d7401ee.woff2",
+      "sha256": "7281418e047de1b4f6123aa5ed97857fac48c4e1080ab7803b6a0747665b7ae1"
+    },
+    {
+      "path": "assets/fonts/13985cc3331c9b65879d.woff2",
+      "sha256": "17129da918ea2daa5b7c41e59a24a18519394b004bb943a42477b818fbdcb370"
+    },
+    {
+      "path": "assets/fonts/83003e89457ec34f4f5c.woff2",
+      "sha256": "bdbf18c2147f3b8dae27dab77136e897e33302f971f4564b12c3da4fbe80c1ea"
+    },
+    {
+      "path": "assets/fonts/d1f817f937f430c87c5a.woff2",
+      "sha256": "0bbd4e665234190ce6a465dcdb3ccbc5fec3540230ed0a5f1ec8e4fec68d2132"
+    },
+    {
+      "path": "assets/fonts/5ebc4c23f4bead52b728.woff2",
+      "sha256": "b78680de0ca4a5b82af650f9c7b32300c633400a7978a17ae406ae7588b60b7f"
+    },
+    {
+      "path": "assets/fonts/2b9407c05fcdaa9e0335.woff2",
+      "sha256": "c5c64d6ea9494ae6a231ac27813a98899c582c36ef8532588753fde0ad19b5df"
+    },
+    {
+      "path": "assets/fonts/1e9888719f5b58f41599.woff2",
+      "sha256": "f049e3c819f100098ca7c967795f8804dee3ea8915716a9fb0d145551ea34a60"
+    },
+    {
+      "path": "assets/fonts/e865df80fa6a5b637a2e.woff2",
+      "sha256": "14173085eb7a70ce51247aae902e2824a40231affe5c67086340b437b01c702c"
+    },
+    {
+      "path": "assets/fonts/41578a1f655bca706e8e.woff2",
+      "sha256": "ae33c538343c38af5b814a2b47c4270a665032715919cbe282ff67421394eef9"
+    },
+    {
+      "path": "assets/fonts/f8e5652d0e99b70505b4.woff2",
+      "sha256": "62bf66342286ac182b6796d0b5c08171c81ad7233563b11f40a70d6ebf44e05e"
+    },
+    {
+      "path": "assets/fonts/a78d30be9355e620c1a7.woff2",
+      "sha256": "f4c76c430a1a1952078c9dd8e2245d325714838a7b4b3401b597628a4f625777"
+    },
+    {
+      "path": "assets/fonts/fa5e229c76a6640c82df.woff2",
+      "sha256": "a34b0164bc99e3cf34a059bdfa4bcab2cd94f6a04b1beb5c021ff9d94fe16012"
+    },
+    {
+      "path": "assets/fonts/d1002fe8101874b2b52c.woff2",
+      "sha256": "9bef1f1a9e7b7d1e0190f98fb3ece20dc505671fb39a2333e8d2e617d4609375"
+    },
+    {
+      "path": "assets/fonts/72f915560052777329ee.woff2",
+      "sha256": "0a9e68adfa8fdd67d06fb78adb2812d094e4842a3bf0a72218801cf31471edaf"
+    },
+    {
+      "path": "assets/fonts/49c5412d8e8f1b0c5650.woff2",
+      "sha256": "be3125ba6ae564183362929617d36505658829d5cf370d173d7f4945aa1a0d33"
+    },
+    {
+      "path": "assets/fonts/59b1a17b98a904f65a83.woff2",
+      "sha256": "0300f785997af852f85c6dd05508ead08a4e6dd256a626a00da3b135d464be85"
+    },
+    {
+      "path": "assets/fonts/b53832444abc8476f1ef.woff2",
+      "sha256": "3c8efefaf5338778b97e49ce50f81ac87bfa4a054047ee40a8d466a2d8ea274d"
+    },
+    {
+      "path": "assets/fonts/3d97149065ebf723a67a.woff2",
+      "sha256": "b11847c60e20c0d8a9614996e36ca2fa37901c83580d8a6f4c9c1a3f0f757314"
+    },
+    {
+      "path": "assets/fonts/8c4f7eb5bb58b666b634.woff2",
+      "sha256": "a1df305f4d0d2790b97c578a07540d34d839815e1f953f4d8e0d9585beff1ab4"
+    },
+    {
+      "path": "assets/fonts/eb2f8c0c3de601df82f4.woff2",
+      "sha256": "38aca236039ea7b1d29e1c0d3cf791fb3752dca9acf98e699279806cfe97ca44"
+    },
+    {
+      "path": "assets/fonts/816a357aad966972fac4.woff2",
+      "sha256": "768b2043f9ea35fabf52a2820e97d41023a62f8c305a79ab091a9f0cf89d17a6"
+    },
+    {
+      "path": "assets/fonts/11525ce75e7193ffa3fe.woff2",
+      "sha256": "ef69248c42aa8a28d823a7557cd43f4210217e94c85a004996a8a27ee9e9d9be"
+    },
+    {
+      "path": "assets/fonts/249d0edb65e5ff9786ef.woff2",
+      "sha256": "d506c4def1b5075d06d724a43e5badc10915aa25420fb728ab14d7ccc5a77137"
+    },
+    {
+      "path": "assets/fonts/a6bd18051b62e2c34872.woff2",
+      "sha256": "b4be1622a4c0a0415c140e1824c8051ed4b34896f963c0313c67a8ed3f6ab859"
+    },
+    {
+      "path": "assets/fonts/6c8a53056d49f6914a62.woff2",
+      "sha256": "c10bf867309caa3e82ab075ccb245af7f13633e20de01bcd8f861081cfc49314"
+    },
+    {
+      "path": "assets/fonts/c34586057954dcaa8dbe.woff2",
+      "sha256": "82dce56af57bf89a525f9e639bdf7ba98ecbed68aa79553160f60de2ff5c1c09"
+    },
+    {
+      "path": "assets/fonts/161cdee37ce937fcb8e7.woff2",
+      "sha256": "9bbf59f00e95996c81afedd38dbd438f9436a6ef084a360bbd65f36d680014ee"
+    },
+    {
+      "path": "assets/fonts/b1a65f91975f9d6490c4.woff2",
+      "sha256": "7a4db36d0c8583d8f34dc8940ec3a45e4b09e9427ee59cb275c17d1d75d6bd0b"
+    },
+    {
+      "path": "assets/fonts/e99685a6cd603a90126b.woff2",
+      "sha256": "d0c5cb446e9e86db80cffaae4df62a8652b55d9011538e2b48c20b0244d9dd5a"
+    },
+    {
+      "path": "assets/fonts/7b58b91008e904879a0c.woff2",
+      "sha256": "4ba18ec04f44f08074bb03350830c33f2664814a91f75a1c53dc95e97ba95f51"
+    },
+    {
+      "path": "assets/fonts/d3cea87ca605bc401062.woff2",
+      "sha256": "b60470d84be80a5ef9b216a42a617de4913f15e160703089863f921e9457836f"
+    },
+    {
+      "path": "assets/fonts/13fd4d363076eb95af03.woff2",
+      "sha256": "fb1c55cd44f95c5f0e02d69b2e37a52e95f01df55e00af51c0449ee44f204bbc"
+    },
+    {
+      "path": "assets/fonts/c06df69d450aaecd51c3.woff2",
+      "sha256": "c33e6e78802eb174fadd448197f196ccfad27b3949c0289096b78238af20343f"
+    },
+    {
+      "path": "assets/fonts/b9b4757bb4d739994bb5.woff2",
+      "sha256": "b494d884301465d934a23274d493d4efe403a67e01ea1ae997c1a461bc3ce9a9"
+    },
+    {
+      "path": "assets/fonts/2668bb9aba5b7e548360.woff2",
+      "sha256": "27d60101432576d2326c3fc7c31274ff8a38e6981f3cdc5cedb0b98cae5c1204"
+    },
+    {
+      "path": "assets/fonts/39fb62153f17b3649c22.woff2",
+      "sha256": "aca240294e58e9297b537bcbc7232a43c58e1e7b8043840b1c8de7dbaddc8efc"
+    },
+    {
+      "path": "assets/fonts/4e453d902933e178cf57.woff2",
+      "sha256": "16279746df830f184e0c0c404809413ed76836f6e87aa6410e97375c463e3158"
+    },
+    {
+      "path": "assets/fonts/34b65a93df5bbd5870ee.woff2",
+      "sha256": "4d712a27cd8ce21f86b9ede5939706240bd22e494fa7a1f0bc7396d12e201a79"
+    },
+    {
+      "path": "assets/fonts/36bf38db9877d4988936.woff2",
+      "sha256": "2a13f2490d87963d3c0278757d728f5c4fc1c5cad18d6ea2e53936309d267a52"
+    },
+    {
+      "path": "assets/fonts/0725d0ec2ec31affb6c6.woff2",
+      "sha256": "a9c3d1e69c2b9cc869816f635a0449f053674489e200ce71f838ae5f8f04834f"
+    },
+    {
+      "path": "assets/fonts/4467c777c54a5270b1c0.woff2",
+      "sha256": "f74032d4e8f706ecbd908d68e1228a410d88e90a1ee69367baa6b8d2a9249e9a"
+    },
+    {
+      "path": "assets/fonts/4923b839b2f85599e273.woff2",
+      "sha256": "8040b7ae56e8c768ccc9249998d35b30ee466a33fbf3227a34fa008fbe66272f"
+    },
+    {
+      "path": "assets/fonts/5744d0ca30190a97cfd3.woff2",
+      "sha256": "be85899aca286cee0d15b20a00f42ed56ecc403329d4d048698a8f74f859daee"
+    },
+    {
+      "path": "assets/fonts/042694909e492cb8e4d7.woff2",
+      "sha256": "40ee6222ed14577bf53e4466da50f5235289e0da8d479004c34f14d201db15ab"
+    },
+    {
+      "path": "assets/fonts/1c2f8c2a389e0da3433a.woff2",
+      "sha256": "4866a0a559e0dd6d5c9ef8f5cbd247a4daa3a9c8a6abec8ff949cde06ae09b06"
+    },
+    {
+      "path": "assets/fonts/437d2ad2b95c23ae8976.woff2",
+      "sha256": "4ac45ae19e5115ffb8c5f8edfe41f58c9fbbac167fed3428db5abaaebf5f6204"
+    },
+    {
+      "path": "assets/fonts/baf9bb457ae58861c21a.woff2",
+      "sha256": "1ad30fe759a0e038181e199ae79c2bc700967d17c3562eadd7fdedc0d440841d"
+    },
+    {
+      "path": "assets/fonts/0f2c926c963661c5ae03.woff2",
+      "sha256": "4924784006540380c9beab4fe127cc8b0b35973f26c9ecd31bf4f89fdc23abd7"
+    },
+    {
+      "path": "assets/fonts/c283bb21055a5173b131.woff2",
+      "sha256": "88629647b500f58e2d74e0c7339b5372eb0ac31b6583ee9a5a973e17a92db339"
+    },
+    {
+      "path": "assets/fonts/f49a2051d4b07fa0f84a.woff2",
+      "sha256": "8ce8dfcc2fad2a92f408d33b5e0af20f4ec329262e95bd60ba9e002aac5d3562"
+    },
+    {
+      "path": "assets/fonts/12fd8faac99f127ce4ee.woff2",
+      "sha256": "7b4ddda196f3ce57720941db2ae1889c32937375b5b4d037c0269ef647bd0c1c"
+    },
+    {
+      "path": "assets/fonts/a7b17966dd79b18f95c6.woff2",
+      "sha256": "45a40cb3a43a406c959196dd0ad7bffbb5a3c45c50365cdbf0906148c9c3854f"
+    },
+    {
+      "path": "assets/fonts/ad31fc52aefbf83e847b.woff2",
+      "sha256": "c5396b0c4028318cbdcf169f3f3d7da6fb3523ed12091e5af1088d5fa77d19e7"
+    },
+    {
+      "path": "assets/fonts/99c309d2447f0b82cd3b.woff2",
+      "sha256": "b18646a948b64ce725e1a426b4e0b0f54f90340ce69ffb9729a51dfe19c400e3"
+    },
+    {
+      "path": "assets/fonts/b65a4b91e8bc92db238e.woff2",
+      "sha256": "297bd37fda24bc1a73dec80660bd8b0fb6b0c8068584a43d111299a4c74145da"
+    },
+    {
+      "path": "assets/fonts/a931d11b21193b211324.woff2",
+      "sha256": "3aa8588dae822bb07d821c61e21d5cbb328935803a5dfce5cd067375778f50cb"
+    },
+    {
+      "path": "assets/fonts/936931001a7155b34e63.woff2",
+      "sha256": "c5f1266baa0787e4b7093593c2b5eb961001dc29e6c9dfb882a87367fce6a488"
+    },
+    {
+      "path": "assets/fonts/b00ebf4855b63dbb1ff3.woff2",
+      "sha256": "499d65c381e42140dbb6e0eb413cc4755ae4734fcac3e724e6ec2148cd789b19"
+    },
+    {
+      "path": "assets/fonts/f5d7cc1d3509728e6366.woff2",
+      "sha256": "70045954fc344c5cd6d4a729e47612d4424e6b26d613745c9058b928149c5c74"
+    },
+    {
+      "path": "assets/fonts/87f69a6780fe83c8afd4.woff2",
+      "sha256": "23abc68d31b9008ead2d2557abec37ac375b6734b129393707a63023c7c29f36"
+    },
+    {
+      "path": "assets/fonts/37767d607558cafdb291.woff2",
+      "sha256": "bc4291982ecc7d4d1955382a564f0092f4d4b4af54e632ec5d5f238a7d62b433"
+    },
+    {
+      "path": "assets/fonts/cecdcc873ac7a6da4bd9.woff2",
+      "sha256": "a36cd66e100c3ae59335a0771cedcc68c8cadf06883a50af3d8045f53bd47301"
+    },
+    {
+      "path": "assets/fonts/3859e94565e8a0ed72dd.woff2",
+      "sha256": "dd7719232de03f667d8aafaef3f5ae71f011f43edfd624546decd9a8cf22b298"
+    },
+    {
+      "path": "assets/fonts/6754aa1b7597256590f2.woff2",
+      "sha256": "3da5b88ce6bbbb42e33c17a0b1b446342e56f7e270add0f4e40e5703a91c077e"
+    },
+    {
+      "path": "assets/fonts/261d69ae4db5c060ebf9.woff2",
+      "sha256": "e58cd74f4b9f3a558f5417360470f0033637436d878acd75a193d755bf9e52ba"
+    },
+    {
+      "path": "assets/fonts/6983297f296e11d65258.woff2",
+      "sha256": "91065b61043d7ef8ee08137ee9053056f832fba51a4b36b16c11323d6c89cfed"
+    },
+    {
+      "path": "assets/fonts/237dc5b72e6edd764ba5.woff2",
+      "sha256": "ba3f084ff680654c308e4e40e6d90bf56a7717702ec89ee60946574d1f1c05ed"
+    },
+    {
+      "path": "assets/fonts/6c988913684de77b92a2.woff2",
+      "sha256": "aed822d90d953436f3d15e2172374a2838954efb27f106fdb38f9fb131c5c8a6"
+    },
+    {
+      "path": "assets/fonts/cdce66a0fca03c0887c0.woff2",
+      "sha256": "2ccc6ff28adfdf7b4683226022c9e22941cefbac2674e28561c18b590c6311bc"
+    },
+    {
+      "path": "assets/fonts/a1268ef22c2735b463b4.woff2",
+      "sha256": "aea3fb176095a6bdc4a075f44267da858012b72741499925295d308feb85ee36"
+    },
+    {
+      "path": "assets/fonts/7345e0c0001912e247c0.woff2",
+      "sha256": "4ebc089e15c07f287f24dad0236d79a9b4f8be282a89392fed42df8b863444d1"
+    },
+    {
+      "path": "assets/fonts/31deee42019cc98ab842.woff2",
+      "sha256": "210b80ddfa82cc3a98b51d72addde32633d63642b01b9fc6a3e1d4538340f740"
+    },
+    {
+      "path": "assets/fonts/fe875308722db22f2f43.woff2",
+      "sha256": "34cbd2e2a3c7ea6aaa1ca57353ed68c806222a8caa0937b21ca3457f6c1d5c72"
+    },
+    {
+      "path": "assets/fonts/5bfc40618b07b935c270.woff2",
+      "sha256": "50f05146e6524134f63b9657ef675b90316b298a2e91c3bb40cceb0e5306d748"
+    },
+    {
+      "path": "assets/fonts/f3a81cc0eb0f042bac40.woff2",
+      "sha256": "9995f9e2926269d68499f14f85ea51f9ba9aee2605e87ad2a1a92686cf6d981f"
+    },
+    {
+      "path": "assets/fonts/bc17339e9453d50432a6.woff2",
+      "sha256": "e1b8280c9f5c957799ddd34f9193bbb42f63205df8dc81b15d941b6e10b8a5a3"
+    },
+    {
+      "path": "assets/fonts/289c5b2e7e20a7043717.woff2",
+      "sha256": "34698f6cb44fb932a81addb2bb18988879aa85be018f2298f87542de7aa53994"
+    },
+    {
+      "path": "assets/fonts/38eb63d02845200a993f.woff2",
+      "sha256": "bd75d5b9cef6c0e1d1c33d82a47f69aac34bd0e9ef65c72d5cd5af14ca93c33b"
+    },
+    {
+      "path": "assets/fonts/669b65fe1c946126b882.woff2",
+      "sha256": "07033ae1744806138f7f4ddd8aa92eaca697c9c9e58154a69cb9cfda3c5674a9"
+    },
+    {
+      "path": "assets/fonts/beb4ad77668d0d46896c.woff2",
+      "sha256": "3192fb37c0097dd6067b6a855f35a34a710ba8732b8a0b57ea881460d3149d3c"
+    },
+    {
+      "path": "assets/fonts/bd0a231ce242813aaeb4.woff2",
+      "sha256": "fca9004ef1d6a3a73dbb6581d055670e9d6fa9e261d0811d437e1f95d615cc7b"
+    },
+    {
+      "path": "assets/fonts/2bd3f4d0cc0419019281.woff2",
+      "sha256": "a3fda4dc21493df5afcd2250b53ce74133ba87b344bb4b55a7ca73afe8746199"
+    },
+    {
+      "path": "assets/fonts/b8832c716239a1608ea0.woff2",
+      "sha256": "daa54d456acb6350d045bcac78928b2f4589076eac758c776ec6f1fd384599e8"
+    },
+    {
+      "path": "assets/fonts/047b77bee7f8bc8a8b63.woff2",
+      "sha256": "4f3c8bdc30a810d960b8182c83408744dac3256d343a935205f3adf2f9bc2866"
+    },
+    {
+      "path": "assets/fonts/5601983ab7bace87bd46.woff2",
+      "sha256": "2c92585b47c61f275f50a766094aad778d04374e0b310ea7fb99ec0024c5501e"
+    },
+    {
+      "path": "assets/fonts/4c444fec34a574c446d4.woff2",
+      "sha256": "4171fc4ee04cbbe6570a6d60f1dcf2e00664263b70db91c12dd30d8e2cd7b245"
+    },
+    {
+      "path": "assets/fonts/98b5646801f3a8efcf4a.woff2",
+      "sha256": "3e18cbe399921b2d779273826b02ba38b3e2ee31a1c5761e1257afbb9a5c40f8"
+    },
+    {
+      "path": "assets/fonts/8c1a30106b5507031c3d.woff2",
+      "sha256": "c3510a055ae1e1c9d78d3e68e69da722dd8a3105a5e69aee2fc1c9ef7c9e33bf"
+    },
+    {
+      "path": "assets/fonts/1a0cc8d3e9e663c088ec.woff2",
+      "sha256": "65c732fe80c4b022649032b0ca897d44da312111a815c109220c122fbaee0147"
+    },
+    {
+      "path": "assets/fonts/1de1e254026e617fc214.woff2",
+      "sha256": "d9839c7e42d7e58ee8dada2cab255ce594a2aea929179ed9ab4b10b7af10700c"
+    },
+    {
+      "path": "assets/fonts/efab65133a2e3ab8a05a.woff2",
+      "sha256": "811a7f2a0c4fff533b43d3687e31c6d6b516365548cff0d5286e876c2ab85206"
+    },
+    {
+      "path": "assets/fonts/42b84d3a56a9bed2ee01.woff2",
+      "sha256": "ae4408b276bb649deb77ae2145a310cc12b6979989edb72aedf2a942d877a658"
+    },
+    {
+      "path": "assets/fonts/76e6967813e7ab62e019.woff2",
+      "sha256": "4776bd32aee03549c4288005b257be4f06e8de90dffcd9f55c6699e485d97fbb"
+    },
+    {
+      "path": "assets/fonts/db847a974d602c4e0c16.woff2",
+      "sha256": "671d9829370fc25c1e3da974f35b7bf68f4f944c8265609d7e0cbb0cd7ee0dc9"
+    },
+    {
+      "path": "assets/fonts/faed85a7bce7f0812e7c.woff2",
+      "sha256": "7de168c13cb394eef1e6fa0c779f59628b1de5676db5f45d83edc2ba1eb5eff7"
+    },
+    {
+      "path": "assets/fonts/1b3fd5da0e8288f581ca.woff2",
+      "sha256": "70077a3b110b8717e1ff85a9b9525ed3e0dfb8b61e9b47318dfe1c1f47773a65"
+    },
+    {
+      "path": "assets/fonts/93648e9d5389908c3b09.woff2",
+      "sha256": "af344646e3382ef03bfc693a63d334a1ff409fa948ab7919b128e1c8b9e86b15"
+    },
+    {
+      "path": "assets/fonts/bceff6463c359357a1ff.woff2",
+      "sha256": "0b424ef6881e42a73d698e251919dbe5dc381a9190bd1278f5f7a276eef0ef36"
+    },
+    {
+      "path": "assets/fonts/2aeb125853a7a27ffa57.woff2",
+      "sha256": "95045eda53125c4cc2655aebca8203a38831186d39d54223f7aeeef3a02924a3"
+    },
+    {
+      "path": "assets/fonts/17c177617d5f6543ccea.woff2",
+      "sha256": "883b6298e4e94168f26845865cf9eb1e1b6ef9e9b2d95b4e7615e8a3dbad4d5c"
+    },
+    {
+      "path": "assets/fonts/c03138b6ff07c8c749b5.woff2",
+      "sha256": "10e0676c89aad2b4fad449698b9cea46f18da4767e26455619ce57669b46867f"
+    },
+    {
+      "path": "assets/fonts/aab24ec596793113407f.woff2",
+      "sha256": "aa6b5671f4158c303d850771c97769f7c5af4364724afb27cfe7d1dfdf34046f"
+    },
+    {
+      "path": "assets/fonts/a0bb1ab25f2a3f331fbe.woff2",
+      "sha256": "5a9c2053668f781a875e725ec72db67fd44e728b8ec69d45dc3a1f4346ec3b43"
+    },
+    {
+      "path": "assets/fonts/6026c3dd6baf2633413a.woff2",
+      "sha256": "750b7a008eef7a4c81f29f173c93961087c27f93042130a514de54f955576291"
+    },
+    {
+      "path": "assets/fonts/a5851c607b9c194b4e5e.woff2",
+      "sha256": "ae4707a72e4660e8db06899b24b62708b82411857d824b56ed6c6d1521b7a4a8"
+    },
+    {
+      "path": "assets/fonts/c22fe01fca164a898c67.woff2",
+      "sha256": "afba414987102133c5250cb0865ff93d4f4bd6def8dc3222747dca5dada0c3f8"
+    },
+    {
+      "path": "assets/fonts/7c6de3002210fe0ef509.woff2",
+      "sha256": "c22ebbb440bca97b15b4db671c81c9bc5aec9d20f1c562d318d6a9fa88e655e9"
+    },
+    {
+      "path": "assets/fonts/e875a1b71774a64a7236.woff2",
+      "sha256": "53125e3d74e595bf3b3a20d3d15ed7b56e2c3dd61bd1c3a64fb79ceeadd07d7e"
+    },
+    {
+      "path": "assets/fonts/5e663411c9f0ce6ef081.woff2",
+      "sha256": "273bb462b5e609e2740907f1270b8859ac79a4d46a6e8a997c6eae9b7835451b"
+    },
+    {
+      "path": "assets/fonts/c4930cfd8d91d9ccfc5a.woff2",
+      "sha256": "9ec3df1c9a0c1df8904a9a989f6cd428ea17e76ee02d613ad260c22c1d916075"
+    },
+    {
+      "path": "assets/fonts/5e13586524e4b27baa20.woff2",
+      "sha256": "1275deebcaa012e526b58684c30327dbeb1a923c0e3b4f5a8626be29f3e6ff66"
+    },
+    {
+      "path": "assets/fonts/f96bc352aff45cb4e6f6.woff2",
+      "sha256": "9ba79ece28902db625900fc4727308cda9e04cf2be3de362d280de222d1e7822"
+    },
+    {
+      "path": "assets/fonts/28dd4b9e0355c600fa8a.woff2",
+      "sha256": "efb7e8d1175cde7cc99dac99fb47a74be01afeef6810f34cd6887678991108b1"
+    },
+    {
+      "path": "assets/fonts/6c9372cf9c7dd285c7f4.woff2",
+      "sha256": "771102ea71b52ec266607baa28becc9658675fd47c34b94accef3a38b85d48d6"
+    },
+    {
+      "path": "assets/fonts/df39af79b15ef6c88ec6.woff2",
+      "sha256": "5e02a302c52e0b6c11a3761221ce1ecb8965c78fca4ca4587ecfae48bb75da8a"
+    },
+    {
+      "path": "assets/fonts/c78f833919710bc080f9.woff2",
+      "sha256": "85a68fced20fc9d0d799f2b64b670387438f72205dfda50e2cccd4c1af1c9042"
+    },
+    {
+      "path": "assets/fonts/874512e8fbd452861159.woff2",
+      "sha256": "a37f045e0387b128f3f8c59db92a8e6e32d6ff467d0efe8ac12c6a4f0504b5fc"
+    },
+    {
+      "path": "assets/fonts/35b414701b5b6accc3d1.woff2",
+      "sha256": "12f2407b1bf32d201792a1f6635364cefea5b9c1ea1a3196c91823042b4fa2bb"
+    },
+    {
+      "path": "assets/fonts/c8d3a9aa917b06b706a0.woff2",
+      "sha256": "eafc6e0d06f94cb50c420548a6f1d51357f9faf052bca038c0b6bbcd4cdd49bb"
+    },
+    {
+      "path": "assets/fonts/46eb7b7fcb9eea8f4093.woff2",
+      "sha256": "e4bedfe7c5a6162df7d2eb72df4960d49664addb0cb843ecd345e66365cf902e"
+    },
+    {
+      "path": "assets/fonts/da23aa082bec1e6b66d6.woff2",
+      "sha256": "72795dcd57624f5273807a6445e203307ff08ca8bdb2d58fd8a8301283a0af87"
+    },
+    {
+      "path": "assets/fonts/b98bd1643051c497f3d9.woff2",
+      "sha256": "2ee54080f0b0dee4fb2a9365ec8b3e3269d7720a7d7f2d62c2913088842e1326"
+    },
+    {
+      "path": "assets/fonts/54dc4394a39583c5db64.woff2",
+      "sha256": "95dd03b930aca04ab393f625101f7367e3abc83b3b09e6074de1fc081ba6fd1c"
+    },
+    {
+      "path": "assets/fonts/378793266a617dca9c6d.woff2",
+      "sha256": "2809606237a64bd9c1461e727f369ddfd77a350e4900fffe64e8bfe16a2b3454"
+    },
+    {
+      "path": "assets/fonts/d2c37667ab34ed9c8fcf.woff2",
+      "sha256": "197ef1e4874d6f8f59bcb8f303029b7fd40aebd7a23aa96c1b649b3faea5d57c"
+    },
+    {
+      "path": "assets/fonts/a5de8562f3e71d80332b.woff2",
+      "sha256": "08ea4cf0a7c61077656395aa7dc728a6d184ee4bdae03a1bc34c17ee97e8f31c"
+    },
+    {
+      "path": "assets/fonts/187f7f97f1f1f2c6e6a3.woff2",
+      "sha256": "7abb700b280437b795e68b3a85a1dcbfdf04bb815555762033ade4f7894f2554"
+    },
+    {
+      "path": "assets/fonts/5788f695d4d515e72730.woff2",
+      "sha256": "a093b888254afd7deb8e37cccfd434e7d06ed47d22cfed9621631d80e1e81554"
+    },
+    {
+      "path": "assets/fonts/c9cd65148af3a3ad2f6f.woff2",
+      "sha256": "8f80f993e523f2e6c2d097552740fd26331658da23ffad31d26edcdd3aeec370"
+    },
+    {
+      "path": "assets/fonts/fa05f58692f9f221e1a6.woff2",
+      "sha256": "cc762462ea67b7815649ea3cc005699e3b95b3244b59eb2ce2d22e3ad33497c2"
+    },
+    {
+      "path": "assets/fonts/15e4e18f7f0b68ee43e2.woff2",
+      "sha256": "d5bab8e28732fe3d10dcef4f77b9c248605bbb2a87d289a2539251ceafab536a"
+    },
+    {
+      "path": "assets/fonts/b877d76363543389ea06.woff2",
+      "sha256": "d8e4fe0452aa2076429a9bb5d8757d00a994dd95986cf950e9a1a371b9a072a0"
+    },
+    {
+      "path": "data/fleet.generated.js",
+      "sha256": "52fa65a2dce156546aaab3ded1481c5d27700ca226307e976ef2b780572f9c84"
+    },
+    {
+      "path": "serve.cjs",
+      "sha256": "7994b8c10b0471f05faa54dac80976983e0ec8f6046ab8bfd03c1cfdb8b05235"
+    },
+    {
+      "path": "tests/package.cjs",
+      "sha256": "fe73f98cf40dc601ebbebb0cf9bae9cee58f7cff8fae695625d49c63621774e8"
+    },
+    {
+      "path": "tests/dashboard.cjs",
+      "sha256": "fe68c506be2abd9bb6b406317e34b2b7ff95a9c196850c362757dec5fbb585a0"
+    },
+    {
+      "path": "tests/auth.cjs",
+      "sha256": "c0b9ec4ba0287fbfcbe58bff9070b78c559357b5d686750f6cad14a9319e579b"
+    },
+    {
+      "path": "README.md",
+      "sha256": "a6a3720bbe1344383da8e23da6f92dcbf134940ee86622dd3d6e1feac94ed489"
+    },
+    {
+      "path": "licenses/Lucide-0.468.0-LICENSE.txt",
+      "sha256": "1e7290b35280a048667bbf0ebabac1c7fd52a75300e8b2946ac165715997f2bc"
+    },
+    {
+      "path": "licenses/Feather-MIT-LICENSE.txt",
+      "sha256": "308028e93fcf84972523cdf6e616f73168546b4953895f516d01287f16fe7bee"
+    },
+    {
+      "path": "licenses/NotoSansKR-OFL.txt",
+      "sha256": "babcfe66c8a098b2fa279bc724a3a342f8124f77ce18941fbcc1bbb39823cded"
+    },
+    {
+      "path": "licenses/OpenSans-OFL.txt",
+      "sha256": "01cd5ffb3a528c219a86e49a814c6c53bd8a69b9a3c305dd237074ba1c811af7"
+    },
+    {
+      "path": "docs/danger-color-r91.md",
+      "sha256": "7db4d285405202a078cef4788122a717fbf682ac71b127c8fd9565b1a6118604"
+    },
+    {
+      "path": "docs/vehicle-chart-r95.md",
+      "sha256": "80471dc7210877ccba4a4c4ae033c51196eaad382f2df541c518d583fbe2e6f8"
+    },
+    {
+      "path": "docs/daily-chart-r96.md",
+      "sha256": "fff512df3891cac8f8011c789cd457df8eb24b089c1bbd498b50675b26f3b520"
+    },
+    {
+      "path": "docs/source-cleanup-r89.md",
+      "sha256": "670818944d03429aa6177ed6034070d818da5cc741656271a62afa53e4645bb9"
+    },
+    {
+      "path": "docs/dashboard-main-20260919.md",
+      "sha256": "61a9ba2cf9676014dbd3902867c4854d913cc77b6a43a4f6b2e777f82a31c189"
+    },
+    {
+      "path": "docs/staff-home-v7.md",
+      "sha256": "a49bb8189dcea50f94fcbdad8b0567837213c8491d51cd1dbd5f93052199e240"
+    },
+    {
+      "path": "docs/home-efficiency-r88.md",
+      "sha256": "476197c4f8069dd52fb276afa5183ab551ae8a3f5fe0504b577db8f23ac04ec7"
+    },
+    {
+      "path": "docs/missing-data-r87.md",
+      "sha256": "eb9df7dfc7785ea42cad6f28a6fb1b7268afa1a8e4d3bafe2c024c89ffe0141e"
+    },
+    {
+      "path": "docs/repair-history-r86.md",
+      "sha256": "e6f4e68575ec51744e64582bb30452eb18117a5a5727c49fd1447aa7a7041237"
+    },
+    {
+      "path": "docs/efficiency-label-r84.md",
+      "sha256": "b374049f6a4b0ff527d833c8074d6d6c7896632c09e4333c5d6e74ef7fd9e0e8"
+    },
+    {
+      "path": "docs/android-qr-test.md",
+      "sha256": "8da8da86e6964372602af87a4991f3aed0543ae138de4a46c8ef11d0f49de2bb"
+    },
+    {
+      "path": "docs/android-qr-registry.json",
+      "sha256": "17217b72b8edcd36693caf84e8edab8fd8f72010569a5b88b51c354113333bdf"
+    },
+    {
+      "path": ".gitattributes",
+      "sha256": "b7036180f6a97bbdbb6ad4f1998a9c62b2cc4b2f85af3b333cfbc11b2511ac8f"
+    },
+    {
+      "path": "docs/screen-registry.json",
+      "sha256": "fe68921d5f5f2384691ffece1427d508f09c4bbe5670d61a0534281381f2568e"
+    },
+    {
+      "path": "docs/menu-page-registry.json",
+      "sha256": "554f8771614369d9d9f924a74ebbae51f1fac8a78f3559d2c98b2e511eed581e"
+    },
+    {
+      "path": "docs/figjam-detail-r46.json",
+      "sha256": "0f8737e72e289075b5daa2f824745ad86de45544fe3d23ff7ffc68bb3ed24f58"
+    },
+    {
+      "path": "docs/supply-reset.md",
+      "sha256": "9a713af7ec0bb22bf77b9b75a5b84e46297ae99e09e84514d90d0ab2a3472590"
+    },
+    {
+      "path": "docs/MACHINE_IQ_모바일_스타일가이드_20260913.pdf",
+      "sha256": "523d8ba9750455b266530594a420117decd8e70ecf72909ab199d766380bc970"
+    },
+    {
+      "path": "docs/MACHINE_IQ_모바일_메뉴_페이지_구조도_20260913.xlsx",
+      "sha256": "e7021feaeec46a028ca45af7bf4ce170de13823050360f0ca0df65585ab587af"
+    },
+    {
+      "path": "tests/supply-reset.cjs",
+      "sha256": "2e3b129f5c49812207ef5b37c7ef4d39a7a248044927bd4a7f4d374d0a511f6c"
+    },
+    {
+      "path": "tests/helpers/customer-mobile-harness.js",
+      "sha256": "aa542e1c3f6b035b4e1a604d26d48a5d26b62b4ef4e0156b74e3488f629e016e"
+    },
+    {
+      "path": "tests/next-week-demo.cjs",
+      "sha256": "327162298dc1fe5c0c7b2808d3b6fb9c1013fb4d65be1630f9cdb0559158293a"
+    },
+    {
+      "path": "tests/summary-map.cjs",
+      "sha256": "8d70f196a39038e8c0a873974a4ef6f09ece6236bd2882418f2515b767bdc1ec"
+    },
+    {
+      "path": "tests/soc.cjs",
+      "sha256": "ff12c10ecb02ddc9a7f1ad3dbb04098f53b3643a07fc297e3a91f09c7d925067"
+    },
+    {
+      "path": "tests/error.cjs",
+      "sha256": "6ac321e3a2e1b3fb0ab976f31e847aa3d2a5b475179e9d541ca8e3166caf5bc3"
+    },
+    {
+      "path": "tests/lithium-shock.cjs",
+      "sha256": "114281187925253946412f834471ada689d9c0e0a38adadfc16fa0f024f1e249"
+    },
+    {
+      "path": "docs/html-delivery.md",
+      "sha256": "4302bef563947521a390f1f6fd6f1a907699ffa4dd6a1942cb238b227480aece"
+    },
+    {
+      "path": "docs/android-github.md",
+      "sha256": "dad8aa4d10194d833c9798f9369d29090c024fe1fde4f6bdb1c0870635330156"
+    },
+    {
+      "path": "downloads/MACHINE_IQ_MOBILE_HTML_20260913.zip",
+      "sha256": "802a8b41a8123b2bf4ca19da1c88585a93e7cdcfedfb71984e2426d234b787ec"
+    },
+    {
+      "path": "downloads/MACHINE_IQ_MOBILE_HTML_20260913_r44.zip",
+      "sha256": "f8ce4703deb2708ccbfdfdcb42ff75b0ee7e8113e85ac25a22a6f0a3f21b8de7"
+    },
+    {
+      "path": "downloads/MACHINE_IQ_MOBILE_HTML_20260913_r45.zip",
+      "sha256": "a3f0db4e7c3f274620e8307a526263f1f55cb44e547eded55a0310996518b8e6"
+    },
+    {
+      "path": "downloads/MACHINE_IQ_MOBILE_HTML_20260913_r46.zip",
+      "sha256": "2f567cd0eab0e1e11e766aa33ff70c100550683781d2d297875c5342041a7566"
+    },
+    {
+      "path": "downloads/Machine-IQ-Customer-GitHub-v0.2.0-20260921-debug.apk",
+      "sha256": "71feff53754e9d38fdc4c4dd9df47b40052dc6dfe90e6cc42f1c541c8f1b9f40"
+    },
+    {
+      "path": "downloads/Machine-IQ-Customer-Location-Notifications-QR-v0.1.3-20260920-r87-debug.apk",
+      "sha256": "16fa7106db105d6f20efa3b48beede66507bb1e4767b9f224930d47b1da0865c"
+    },
+    {
+      "path": "vendor/markerclusterer-2.6.2.min.js",
+      "sha256": "be2e870ae3c790bf24c3ec2bed3d0aad2dccdfab4071365527ee10baaac2b1f4"
+    },
+    {
+      "path": "licenses/GoogleMaps-MarkerClusterer-2.6.2-LICENSE.txt",
+      "sha256": "50e6751797c50dedd75ef1b8a0d9e42f5f8472e9fbce91f34718e9f97b0c780a"
+    },
+    {
+      "path": "licenses/GoogleMaps-MarkerClusterer-2.6.2-THIRD-PARTY.txt",
+      "sha256": "535b9e3bae9230b1669d5e7f067e978455e802465fe2f41c91a928a71c488d98"
+    },
+    {
+      "path": "tests/summary-default.cjs",
+      "sha256": "8d6193fb6e0b0cab6bc50eb9f93f552f8eee9fa3deb5bfeaa85fb880102c1500"
+    },
+    {
+      "path": "Common/400.html",
+      "sha256": "f97c22e93f0022ed7716627afd248badf8638641e320c953ee34971b01715c97"
+    },
+    {
+      "path": "Common/401.html",
+      "sha256": "dbaf311ec8cc1498c0da4f2db54af47d02d7a754518cf2002e8a07b687a5e608"
+    },
+    {
+      "path": "Common/403.html",
+      "sha256": "917b7dc216b3ae7a12907b4e050492e70e2fcc269b43b6ddba4106717215bef2"
+    },
+    {
+      "path": "Common/500.html",
+      "sha256": "3d65e78aab65f0c458611496f2428c79ce9f5e139341e9739eccadc7fdc2d670"
+    },
+    {
+      "path": "Common/http-error-page.js",
+      "sha256": "72fe427fab57fcf7f56ebb234ebadc6217b5035a836c670cf1271a79aa16ad51"
+    },
+    {
+      "path": "Common/503.html",
+      "sha256": "ceec711a06bcecc6aaf5f84bd2774202320a3f70ef7726e32b2760aca3f5df5c"
+    },
+    {
+      "path": "tests/black-text.cjs",
+      "sha256": "bdf660cee31d52567609f2ae4c545c09c547a07df63b9968feed1e663b7beb57"
+    },
+    {
+      "path": "auth-layout.css",
+      "sha256": "2b136c84c315a8464c35a42434d05462e18819bec6de0014de5cff46805a1ecd"
+    },
+    {
+      "path": "login-dormant.css",
+      "sha256": "6c1d801072ec8d3d02582bcae7f5e31d77098c4295e06ba1fab0f93049130fcd"
+    },
+    {
+      "path": "dormant-login.js",
+      "sha256": "84f44b3e64a90539b8bda5682303cc9ebc41a23fb05eba731d8a3264c3a4632c"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+/* Management and operations use the same list controls.
+   Field focus: form-controls.css. Button appearance/sizes: mockup.css.
+   Keep page-specific field widths and responsive layout in each page stylesheet. */
+body:where(.miq-current-shell[data-variant="tobe"]) :is(.miq-mgmt-taskbar,.ops-taskbar){
+  display:flex;align-items:flex-end;gap:12px;min-height:48px;box-sizing:border-box;
+  margin-bottom:18px;border-bottom:1px solid var(--c-line)
+}
+body.miq-current-shell[data-variant="tobe"] :is(.miq-mgmt-taskbar,.ops-taskbar)>.tabs{
+  flex-wrap:nowrap;margin:0;border:0
+}
+body.miq-current-shell[data-variant="tobe"] :is(.miq-mgmt-taskbar,.ops-taskbar)>.tabs>button{
+  flex:0 0 auto;white-space:nowrap;height:44px;min-height:44px;box-sizing:border-box;line-height:20px
+}
+body.miq-current-shell[data-variant="tobe"] :is(.miq-mgmt-taskbar__label,.ops-taskbar__label){
+  display:inline-flex;align-items:center;flex:0 0 auto;height:44px;box-sizing:border-box;
+  padding:11px 18px;margin-bottom:-1px;line-height:20px;
+  border-bottom:2px solid var(--mm-accent);color:var(--mm-accent);
+  font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:700;white-space:nowrap
+}
+body.miq-current-shell[data-variant="tobe"]:is(.miq-section-mgmt,.miq-section-ops) :is(.miq-mgmt-taskbar>.miq-mgmt-filter-bar,.ops-task-filters){
+  display:flex;align-items:center;gap:6px;min-width:0;margin:0 0 7px auto
+}
+body.miq-current-shell[data-variant="tobe"] :is(.ops-list-head>.ops-actions,.mm-request-batch){
+  display:flex;align-items:center;flex-wrap:nowrap;gap:8px;margin-left:auto
+}
+body.miq-current-shell[data-variant="tobe"] :is(.ops-list-head>.ops-actions,.mm-request-batch)>.btn{
+  white-space:nowrap;flex-shrink:0
+}
+body.miq-current-shell[data-variant="tobe"] .ops-list-head>.ops-actions:has(.btn:not([data-ops-export]))>[data-ops-export],
+body.miq-current-shell[data-variant="tobe"] .mm-request-batch>.mm-request-export{
+  margin-right:12px
+}

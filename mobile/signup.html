@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <title>MACHINE IQ 사용자 회원가입</title>
+  <link rel="icon" href="./assets/favicon.ico">
+  <link rel="stylesheet" href="./assets/local-fonts.css">
+  <link rel="stylesheet" href="./shared/mobile-guide-tokens.css?v=20260904-3">
+  <link rel="stylesheet" href="./shared/mobile-preauth-header.css?v=20260905-2">
+  <link rel="stylesheet" href="./shared/signup.css?v=20260905-3">
+  <link rel="stylesheet" href="./shared/mobile-type-compact.css?v=20260907-1">
+  <link rel="stylesheet" href="./web-guide-colors.css?v=20261012-r139">
+</head>
+<body class="mobile-type-compact mobile-tone-c" data-mobile-home="./index.html" data-mobile-login="./login.html">
+  <div class="signup-app">
+    <header data-mobile-preauth-header data-brand-href="./login.html"></header>
+
+    <main class="signup-main" data-screen-id="LQ-AUTH-002">
+      <nav class="signup-steps" aria-label="회원가입 단계">
+        <button class="is-active" type="button" data-signup-step="agreement" aria-current="step"><b>1</b><span>약관 동의</span></button>
+        <button type="button" data-signup-step="details"><b>2</b><span>정보 입력</span></button>
+        <button type="button" data-signup-step="complete" disabled><b>3</b><span>가입 완료</span></button>
+      </nav>
+
+      <section class="signup-stage" id="signup-agreement" aria-labelledby="signup-agreement-title">
+        <header class="signup-stage__heading"><small>STEP 1</small><h1 id="signup-agreement-title">약관 동의</h1><p>MACHINE IQ 서비스 이용을 위해 필수 약관에 동의해 주세요.</p></header>
+        <div class="agreement-all">
+          <label class="signup-check"><input type="checkbox" id="signup-agree-all"><span><b>전체 동의</b><small>선택 약관까지 모두 동의합니다.</small></span></label>
+        </div>
+        <div class="agreement-list">
+          <article class="agreement-item">
+            <div><label class="signup-check"><input type="checkbox" data-signup-term data-required-term><span>개인정보 수집 및 이용 <em>필수</em></span></label><button type="button" data-term-toggle aria-expanded="false" aria-controls="signup-term-1">보기<i data-lucide="chevron-down"></i></button></div>
+            <p id="signup-term-1" hidden>회원가입과 서비스 제공을 위해 이름, 계정, 연락처, 소속 및 장비 정보를 수집합니다.</p>
+          </article>
+          <article class="agreement-item">
+            <div><label class="signup-check"><input type="checkbox" data-signup-term data-required-term><span>개인(위치)정보의 제3자 제공 <em>필수</em></span></label><button type="button" data-term-toggle aria-expanded="false" aria-controls="signup-term-2">보기<i data-lucide="chevron-down"></i></button></div>
+            <p id="signup-term-2" hidden>차량 관리와 승인 처리를 위해 필요한 범위에서 지정된 딜러 또는 고객사에 정보를 제공합니다.</p>
+          </article>
+          <article class="agreement-item">
+            <div><label class="signup-check"><input type="checkbox" data-signup-term data-required-term><span>개인(위치)정보의 처리위탁 <em>필수</em></span></label><button type="button" data-term-toggle aria-expanded="false" aria-controls="signup-term-3">보기<i data-lucide="chevron-down"></i></button></div>
+            <p id="signup-term-3" hidden>서비스 운영에 필요한 개인정보 처리 업무를 계약된 수탁사에 위탁합니다.</p>
+          </article>
+          <article class="agreement-item">
+            <div><label class="signup-check"><input type="checkbox" data-signup-term data-required-term><span>개인위치정보 제3자 제공 통지 <em>필수</em></span></label><button type="button" data-term-toggle aria-expanded="false" aria-controls="signup-term-4">보기<i data-lucide="chevron-down"></i></button></div>
+            <p id="signup-term-4" hidden>개인위치정보 제3자 제공 내역을 약관에 정한 방법으로 통지합니다.</p>
+          </article>
+          <article class="agreement-item">
+            <div><label class="signup-check"><input type="checkbox" data-signup-term><span>개인정보 수집 및 이용 <i>선택</i></span></label><button type="button" data-term-toggle aria-expanded="false" aria-controls="signup-term-5">보기<i data-lucide="chevron-down"></i></button></div>
+            <p id="signup-term-5" hidden>서비스 개선과 맞춤 안내를 위한 개인정보 이용은 선택 사항입니다.</p>
+          </article>
+          <article class="agreement-item">
+            <div><label class="signup-check"><input type="checkbox" data-signup-term><span>마케팅 목적 개인정보 이용 <i>선택</i></span></label><button type="button" data-term-toggle aria-expanded="false" aria-controls="signup-term-6">보기<i data-lucide="chevron-down"></i></button></div>
+            <p id="signup-term-6" hidden>신제품과 서비스 안내 수신은 선택 사항이며 언제든 철회할 수 있습니다.</p>
+          </article>
+        </div>
+        <p class="signup-inline-message" id="signup-agreement-status" role="status" aria-live="polite"></p>
+        <button class="signup-primary" id="signup-continue" type="button" disabled>동의하고 정보 입력</button>
+      </section>
+
+      <section class="signup-stage" id="signup-details" aria-labelledby="signup-details-title" hidden>
+        <header class="signup-stage__heading"><small>STEP 2</small><h1 id="signup-details-title">정보 입력</h1><p>회원가입에 필요한 정보를 입력해 주세요.</p></header>
+        <form id="signup-form" novalidate>
+          <section class="signup-card" aria-labelledby="account-section-title">
+            <h2 id="account-section-title">계정 정보</h2>
+            <div class="signup-fields">
+              <label class="signup-field"><span>이름 <em>*</em></span><input id="signup-name" name="name" type="text" autocomplete="name" data-required><small data-error-for="signup-name"></small></label>
+              <div class="signup-field"><label for="signup-user-id">사용자 ID <em>*</em></label><div class="signup-control-row"><input id="signup-user-id" name="userId" type="text" placeholder="이메일 형식 또는 아이디 (영어, 숫자 6자리 이상)" autocomplete="username" data-required><button type="button" id="signup-check-id">중복확인</button></div><small data-error-for="signup-user-id"></small><p class="field-status" id="signup-user-id-status" role="status"></p></div>
+              <div class="signup-field"><label for="signup-email">인증 이메일 <em>*</em></label><div class="signup-control-row"><input id="signup-email" name="email" type="email" autocomplete="email" placeholder="name@example.com" data-required><button type="button" id="signup-send-email">코드 발송</button></div><small data-error-for="signup-email"></small></div>
+              <div class="signup-field"><label for="signup-email-code">인증 코드 <em>*</em></label><div class="signup-control-row signup-control-row--code"><input id="signup-email-code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="6자리" disabled><button type="button" id="signup-verify-email" disabled>확인</button><button type="button" id="signup-resend-email" disabled>재발송</button></div><div class="verification-meta"><span id="signup-email-status" role="status"></span><b id="signup-email-timer">03:00</b></div><small data-error-for="signup-email-code"></small></div>
+              <div class="signup-field"><label for="signup-password">비밀번호 <em>*</em></label><div class="password-control"><input id="signup-password" name="password" type="password" autocomplete="new-password" data-required><button type="button" data-password-toggle="signup-password" aria-label="비밀번호 표시"><i data-lucide="eye"></i></button></div><p class="field-help">영문·숫자·특수문자를 포함해 12자 이상</p><small data-error-for="signup-password"></small></div>
+              <div class="signup-field"><label for="signup-password-confirm">비밀번호 확인 <em>*</em></label><div class="password-control"><input id="signup-password-confirm" name="passwordConfirm" type="password" autocomplete="new-password" data-required><button type="button" data-password-toggle="signup-password-confirm" aria-label="비밀번호 표시"><i data-lucide="eye"></i></button></div><small data-error-for="signup-password-confirm"></small></div>
+            </div>
+          </section>
+
+          <section class="signup-card" aria-labelledby="contact-section-title">
+            <h2 id="contact-section-title">국가 · 연락처 · 주소</h2>
+            <div class="signup-fields">
+              <label class="signup-field"><span>국가 <em>*</em></span><select id="signup-country" name="country" data-required><option value="">국가를 선택하세요</option><option value="KR" selected>대한민국 (Korea)</option><option value="US">미국 (United States)</option><option value="CN">중국 (China)</option><option value="JP">일본 (Japan)</option><option value="DE">독일 (Germany)</option><option value="AU">호주 (Australia)</option><option value="GB">영국 (United Kingdom)</option><option value="FR">프랑스 (France)</option></select><small data-error-for="signup-country"></small></label>
+              <div class="signup-field"><label for="signup-phone">전화번호 <em>*</em></label><div class="phone-control"><span id="signup-phone-prefix">+82</span><input id="signup-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="국가번호 제외 숫자" data-required></div><small data-error-for="signup-phone"></small></div>
+              <label class="signup-field"><span>주 / 도</span><input id="signup-state" name="state" type="text" autocomplete="address-level1" placeholder="선택 입력"></label>
+              <label class="signup-field"><span>도시 <em>*</em></span><input id="signup-city" name="city" type="text" autocomplete="address-level2" data-required><small data-error-for="signup-city"></small></label>
+              <label class="signup-field"><span>상세주소 <em>*</em></span><input id="signup-address" name="address" type="text" autocomplete="street-address" placeholder="도로명, 건물명, 상세 위치" data-required><small data-error-for="signup-address"></small></label>
+            </div>
+          </section>
+
+          <section class="signup-card" aria-labelledby="role-section-title">
+            <h2 id="role-section-title">소속 정보</h2>
+            <fieldset class="signup-role-field"><legend>역할 / 구분 <em>*</em></legend><div class="signup-role-list">
+              <label><input type="radio" name="signupRole" value="customer-owner" checked><span><b>고객 대표</b><small>업체명 입력 후 회원가입</small></span></label>
+              <label><input type="radio" name="signupRole" value="customer-employee"><span><b>고객 직원</b><small>등록된 소속 업체 선택</small></span></label>
+            </div></fieldset>
+            <div class="signup-fields signup-role-fields">
+              <div class="signup-field" data-role-scope="customer-owner customer-employee"><label for="signup-company" id="signup-company-label">업체명 <em>*</em></label><div class="company-autocomplete"><input id="signup-company" name="company" type="text" autocomplete="off" data-required placeholder="업체명을 입력하세요"><div class="company-list" id="signup-company-list" role="listbox" hidden></div></div><p class="field-help" id="signup-company-help">업체명을 직접 입력해 주세요. 대표자명은 가입자 이름을 사용합니다.</p><small data-error-for="signup-company"></small></div>
+            </div>
+          </section>
+
+          <p class="signup-form-status" id="signup-form-status" role="status" aria-live="polite"></p>
+          <div class="signup-form-actions"><button type="button" id="signup-cancel">취소</button><button class="signup-primary" type="submit" id="signup-submit">회원가입</button></div>
+        </form>
+      </section>
+
+      <section class="signup-stage signup-complete" id="signup-complete" aria-labelledby="signup-complete-title" data-screen-id="LQ-AUTH-005" hidden>
+        <div class="signup-complete__icon"><i data-lucide="check"></i></div>
+        <small>STEP 3</small>
+        <h1 id="signup-complete-title">회원가입이 완료되었습니다.</h1>
+        <p id="signup-complete-copy">서비스를 이용하려면 차량 등록이 필요합니다.</p>
+        <div class="completion-notice"><i data-lucide="info"></i><p id="signup-vehicle-help">차량을 등록하고 승인받으면 서비스를 이용할 수 있습니다.</p></div>
+        <button class="signup-primary" type="button" id="signup-next">차량 등록</button>
+      </section>
+    </main>
+  </div>
+  <script src="./shared/layouts/vendor/lucide.min.js"></script>
+  <script src="./signup-header.js?v=20260921-r88"></script>
+  <script src="./onboarding.js?v=20261019-r142"></script>
+  <script src="./auth-common.js?v=20261014-r141"></script>
+  <script src="./signup.js?v=20260924-r111"></script>
+</body>
+</html>

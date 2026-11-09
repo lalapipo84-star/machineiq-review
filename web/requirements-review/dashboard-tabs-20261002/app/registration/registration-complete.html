@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<script src="../_shared/common-logic.js?v=d77b14750704&amp;rev=15dd4911055c"></script>
+<link rel="stylesheet" href="../_shared/korean-layout.css?v=9e980f3cddea&amp;rev=495db444ef75"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>회원가입 완료 · MACHINE IQ</title>
+<script src="../_shared/customer-access.js?v=e12eedbcb072&amp;rev=e12eedbcb072"></script>
+<link rel="icon" href="../_shared/favicon.ico"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap"/>
+<link rel="stylesheet" href="../_shared/prelogin-shell.css?v=28d5a9ff2aba&amp;rev=57deadc32cab"/>
+<link rel="stylesheet" href="../_shared/auth-account-enhancements.css?v=fef0b25d76b5&amp;rev=9bec4a7b9dec"/>
+<link rel="stylesheet" href="../_shared/customer-onboarding.css?v=60f1f73b4161&amp;rev=60f1f73b4161"/>
+</head>
+<body data-shell="none" data-auth-page="registration-complete" data-screen-id="LQ-AUTH-005">
+<div class="aae-shell">
+  <header data-miq-auth-header data-base="../"></header>
+  <main class="aae-main">
+    <section class="aae-onboarding aae-registration" aria-labelledby="completionTitle">
+      <div class="aae-reg-section">
+        <h1 id="completionTitle">회원가입이 완료되었습니다.</h1>
+        <p id="completionMessage">서비스를 이용하려면 차량 등록이 필요합니다.</p>
+        <p id="completionHelp">차량을 등록하고 승인받으면 서비스를 이용할 수 있습니다.</p>
+        <div class="aae-onboarding__actions">
+          <a class="aae-button aae-button--primary" id="completionNext" href="../Mgmt%20Vehicle/mgmt-vehicle-tobe.html?role=customer_owner&amp;register=1">차량 등록</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="../_shared/prelogin-shell.js?v=92d5b06358b6&amp;rev=1ef2bda7d29f"></script>
+<script>
+(function(){
+  var access=window.MIQCustomerAccess,customer=access.isCustomer(access.role());
+  document.getElementById('completionNext').href=access.url(customer?'vehicle':'dashboard');
+  if(access.role()==='customer_staff'){
+    MIQCommon.view.set(document.getElementById('completionHelp'),"textContent",'소속 업체 대표가 차량을 등록하고 조회 그룹에 배정하면 서비스를 이용할 수 있습니다.');
+    MIQCommon.view.set(document.getElementById('completionNext'),"textContent",'차량 등록 확인');
+  }
+  if(!customer){
+    MIQCommon.view.set(document.getElementById('completionMessage'),"textContent",'MACHINE IQ 서비스를 이용할 수 있습니다.');
+    document.getElementById('completionHelp').hidden=true;
+    MIQCommon.view.set(document.getElementById('completionNext'),"textContent",'서비스 시작');
+  }
+})();
+</script>
+</body>
+</html>

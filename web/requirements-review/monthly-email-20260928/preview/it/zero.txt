@@ -1,0 +1,37 @@
+[Bobcat Machine IQ] Report mensile - 한빛물류 주식회사 / 기본그룹
+
+한빛물류 주식회사 / 기본그룹
+2026.09.01 – 2026.09.30 (Asia/Seoul)
+Gli zeri confermati restano visibili. Le percentuali senza base di calcolo sono indicate con —.
+Confronto mensile
+Utilizzo: — (Non calcolabile) → — (Non calcolabile) / Variazione — (Non calcolabile)
+Efficienza operativa: — (Non calcolabile) → — (Non calcolabile) / Variazione — (Non calcolabile)
+Urti: 0 eventi → 0 eventi / Variazione 0 eventi
+Consumo di carburante orario: 0 L/h → 0 L/h / Variazione 0 L/h
+Livello di carica della batteria: 0 % → 0 % / Variazione 0 pp
+Distanza percorsa: 0 km → 0 km / Variazione 0 km
+Tempo di funzionamento: 0 h → 0 h / Variazione 0 h
+Interventi: 0 eventi
+Consumabili da sostituire: 0 elementi
+Guasti del veicolo: 0 eventi
+Guasti della batteria: 0 eventi
+Tempo di lavoro: 0 h / — (Non calcolabile)
+Tempo di attesa: 0 h / — (Non calcolabile)
+Tempo di inutilizzo: 0 h / — (Non calcolabile)
+Sensibile · Livello 3: 0 eventi
+Attenzione · Livello 4: 0 eventi
+Avviso · Livello 5: 0 eventi
+Attenzione + avviso: 0 eventi
+
+Consumabili da sostituire · Dati al: 2026.10.01 09:00 · Asia/Seoul
+
+Le differenze tra percentuali sono espresse in punti percentuali (pp). — indica un valore assente o non calcolabile, distinto da uno zero misurato.
+Manutenzione e guasti sono eventi del periodo. I consumabili sono gli elementi da sostituire alla data di riferimento indicata.
+Le quote usano la somma dei tempi di lavoro, attesa e inutilizzo. Non sono mostrate se il totale è zero o manca la base.
+Sensibile, attenzione e avviso sono conteggi separati. Attenzione + avviso somma questi due livelli; il solo livello 3 non è il totale.
+Dopo l’accesso, modifica la ricezione in Il mio account → E-mail dei report periodici.
+Dati al: 2026.10.01 09:00 · Asia/Seoul
+Il report riflette la data di riferimento indicata. Le informazioni sul sito possono cambiare in seguito.
+Questa e-mail è destinata ai clienti che hanno acconsentito ai report mensili.
+Questa email è stata inviata automaticamente. Per assistenza, contatti il servizio clienti.
+Servizio clienti: help.machineiq@doosan.com

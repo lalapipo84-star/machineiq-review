@@ -1,0 +1,55 @@
+/* Fourth proposal only. Keep the existing order, gaps, colors and navigation. */
+.dr-scale-preview{--ds-chart-height:164px}
+.dr-scale-preview .dashboard-titlebar h1{font-size:28px!important;line-height:38px}
+.dr-scale-preview .dr-tablist button{font-size:17px}
+.dr-scale-preview .dc-head h2,.dr-scale-preview .dc-trends-head h2,.dr-scale-preview .period-heading h2{font-size:18px;line-height:27px;font-weight:700}
+.dr-scale-preview .dc-card>.dc-head{min-height:45px}
+.dr-scale-preview .dc-overview-row>.dc-card{height:228px}
+.dr-scale-preview .dc-ratio-heading>strong{font-size:16px;line-height:24px}
+.dr-scale-preview .dc-ratio-heading>span{font-size:13px;line-height:19px}
+.dr-scale-preview .dc-ratio-heading{margin-bottom:6px}
+.dr-scale-preview #dcFleet .dc-donut{width:116px;height:116px}
+.dr-scale-preview #dcFleet .dc-donut>div{width:92px;height:92px}
+.dr-scale-preview #dcFleet .dc-donut strong{font-size:34px;line-height:40px}
+.dr-scale-preview .dc-ratio-legend>span{font-size:14px;line-height:19px}
+.dr-scale-preview .dc-ratio-legend b{font-size:20px;line-height:25px}
+.dr-scale-preview #dcToday .dwi-ring{width:156px;height:156px;flex-basis:156px}
+.dr-scale-preview #dcToday .dwi-ring-center{width:122px;height:122px}
+.dr-scale-preview #dcToday .dwi-ring strong{font-size:40px;line-height:44px}
+.dr-scale-preview #dcToday .dwi-label{font-size:15px;line-height:22px}
+.dr-scale-preview #dcToday .dwi-value strong{font-size:30px;line-height:35px}
+.dr-scale-preview #dcToday .dwi-total strong{font-size:22px;line-height:27px}
+.dr-scale-preview #dcAttention .dc-maintenance-label{font-size:16px;line-height:23px}
+.dr-scale-preview #dcAttention .dc-maintenance-value{height:44px}
+.dr-scale-preview #dcAttention .dc-maintenance-value strong{font-size:38px;line-height:44px}
+.dr-scale-preview .dc-trends .dc-head{min-height:43px}
+.dr-scale-preview .dc-trends .dc-card{height:auto;min-height:264px}
+.dr-scale-preview .dc-trends .dc-body{flex:none}
+.dr-scale-preview .dc-trends .dc-chart{height:var(--ds-chart-height)}
+.dr-scale-preview .dc-chart text{font-size:12.5px}
+.dr-scale-preview .dc-chart-stat>span,.dr-scale-preview .dc-chart-stat>small{font-size:13px}
+.dr-scale-preview .dc-chart-stat>div{line-height:39px}
+.dr-scale-preview .dc-chart-stat strong{font-size:32px;line-height:39px}
+.dr-scale-preview .dc-metric-label,.dr-scale-preview .dc-per-note{font-size:14px;line-height:21px}
+.dr-scale-preview .dc-metric-number strong{font-size:30px;line-height:40px}
+.dr-scale-preview .dc-kpi.is-primary .dc-metric-number strong{font-size:36px}
+.dr-scale-preview .dc-summary-card{height:auto;min-height:166px}
+.dr-scale-preview .dc-summary-card .dc-body{flex:none;padding-block:8px}
+.dr-scale-preview .dc-period-six{height:auto}
+.dr-scale-preview .dc-company-identity .dc-entity-name{font-size:16px;line-height:24px}
+.dr-scale-preview .dc-company-rate strong,.dr-scale-preview .dc-company-alert-value b{font-size:26px;line-height:31px}
+.dr-scale-preview .dc-card,.dr-scale-preview .dc-company-tile{transition:none}
+@container dashboard-content (max-width:1400px){
+ .dr-scale-preview #dcFleet .dc-donut{width:106px;height:106px}
+ .dr-scale-preview #dcFleet .dc-donut>div{width:84px;height:84px}
+ .dr-scale-preview #dcToday .dwi-ring{width:140px;height:140px;flex-basis:140px}
+ .dr-scale-preview #dcToday .dwi-ring-center{width:108px;height:108px}
+ .dr-scale-preview #dcToday .dwi-layout{gap:14px}
+}
+@container dashboard-content (max-width:1040px){
+ .dr-scale-preview .dashboard-titlebar{flex-wrap:wrap}
+ .dr-scale-preview .dc-overview-row #dcToday{height:180px}
+ .dr-scale-preview #dcToday .dwi-ring{width:116px;height:116px;flex-basis:116px}
+ .dr-scale-preview #dcToday .dwi-ring-center{width:90px;height:90px}
+ .dr-scale-preview #dcToday .dwi-ring strong{font-size:32px;line-height:36px}
+}

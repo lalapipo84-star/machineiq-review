@@ -1,0 +1,37 @@
+[Bobcat Machine IQ] Monthly report - 한빛물류 주식회사 / 기본그룹
+
+한빛물류 주식회사 / 기본그룹
+2026.09.01 – 2026.09.30 (Asia/Seoul)
+Confirmed zero values remain zero. Rates without a calculation basis are shown as —.
+Month comparison
+Utilization: — (Not calculable) → — (Not calculable) / Change — (Not calculable)
+Operating efficiency: — (Not calculable) → — (Not calculable) / Change — (Not calculable)
+Impacts: 0 events → 0 events / Change 0 events
+Fuel consumption per hour: 0 L/h → 0 L/h / Change 0 L/h
+Battery charge level: 0 % → 0 % / Change 0 pp
+Distance traveled: 0 km → 0 km / Change 0 km
+Operating time: 0 h → 0 h / Change 0 h
+Maintenance records: 0 events
+Consumables due: 0 items
+Vehicle faults: 0 events
+Battery faults: 0 events
+Working time: 0 h / — (Not calculable)
+Idle time: 0 h / — (Not calculable)
+Unused time: 0 h / — (Not calculable)
+Sensitive · Level 3: 0 events
+Caution · Level 4: 0 events
+Warning · Level 5: 0 events
+Caution + warning: 0 events
+
+Consumables due · As of: 2026.10.01 09:00 · Asia/Seoul
+
+Rate differences are percentage points (pp). — means unavailable or not calculable, and is distinct from a measured zero.
+Maintenance and faults are event counts within the reporting period. Consumables are items due for replacement at the stated reference time.
+Time shares use the sum of working, idle and unused time. Shares are omitted when the total is zero or the basis is unavailable.
+Sensitive, caution and warning are separate event counts. Caution + warning combines those two levels; sensitive events alone are not the total.
+After signing in, change monthly report delivery in My account → Regular report Email settings.
+As of: 2026.10.01 09:00 · Asia/Seoul
+This report reflects the stated reference time. Information on the website may change later.
+This email is provided to customers who have opted in to monthly reports.
+This is an automated email. Please contact customer support if you need help.
+Customer support: help.machineiq@doosan.com

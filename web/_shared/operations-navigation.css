@@ -1,0 +1,9 @@
+/* Make room for the additional internal-only GNB entry at existing compact
+   desktop widths. Content, LNB, typography and all other roles are unchanged. */
+@media(max-width:1450px){
+  body.miq-current-shell.miq-has-operations .gnb{gap:12px}
+  body.miq-current-shell.miq-has-operations .gnb__menu{min-width:0}
+  body.miq-current-shell.miq-has-operations .gnb__item{min-width:76px}
+  body.miq-current-shell.miq-has-operations .gnb__item>a{padding-inline:6px;white-space:nowrap}
+  body.miq-current-shell.miq-has-operations[data-variant="tobe"] .gnb__right{flex-basis:390px;min-width:390px}
+}

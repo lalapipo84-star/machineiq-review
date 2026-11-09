@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <title>MACHINE IQ 고객 로그인</title>
+  <link rel="icon" href="./assets/favicon.ico">
+  <link rel="stylesheet" href="./assets/local-fonts.css">
+  <link rel="stylesheet" href="./shared/mobile-guide-tokens.css?v=20260904-3">
+  <link rel="stylesheet" href="./shared/mobile-preauth-header.css?v=20260905-1">
+  <link rel="stylesheet" href="./shared/login.css?v=20260905-5">
+  <link rel="stylesheet" href="./shared/mobile-type-compact.css?v=20260907-1">
+  <link rel="stylesheet" href="./web-guide-colors.css?v=20261012-r139">
+  <link rel="stylesheet" href="./login-dormant.css?v=20261014-r141">
+  <link rel="stylesheet" href="./auth-layout.css?v=20261030-r145">
+</head>
+<body data-screen-id="LQ-AUTH-003" class="mobile-type-compact mobile-tone-c" data-mobile-home="./index.html" data-mobile-login="./login.html">
+  <main class="login-page">
+    <header data-mobile-preauth-header data-brand-href="./login.html"></header>
+
+    <section class="login-card" aria-labelledby="login-title">
+      <div class="login-card__head">
+        <h1 id="login-title">로그인</h1>
+        <p>Bobcat MachineIQ Fleet Portal</p>
+        <span>등록된 이메일 아이디로 로그인하세요.</span>
+      </div>
+
+      <form id="mobile-login-form">
+        <label class="login-field"><span>아이디 (이메일)<em>*</em></span><input id="login-id" name="userId" type="text" value="fleet.admin@sejong-log.co.kr" autocomplete="username" required></label>
+        <label class="login-field"><span>비밀번호<em>*</em></span><span class="password-input"><input id="login-password" name="password" type="password" value="password12!@" autocomplete="current-password" required><button type="button" id="password-toggle" aria-label="비밀번호 표시"><i data-lucide="eye"></i></button></span><small>12자 이상 · 숫자 + 영문 + 특수문자 조합</small></label>
+        <div class="save-id-row"><label class="save-id"><input id="save-id" type="checkbox" checked><span>아이디 저장하기</span></label><span class="save-id-help">다음 접속 시 이메일 자동 입력</span></div>
+
+        <div class="login-actions">
+          <button class="login-submit" type="submit">로그인</button>
+        </div>
+        <nav class="account-links" aria-label="계정 메뉴"><a href="./find-password.html">비밀번호 찾기</a><i></i><a href="./signup.html">회원가입</a></nav>
+      </form>
+
+      <section id="forced-password-panel" hidden data-screen-id="LQ-AUTH-003-T01" aria-labelledby="forced-password-title">
+        <div class="login-card__head"><h2 id="forced-password-title">새 비밀번호 설정</h2><p>임시 비밀번호를 새 비밀번호로 변경해 주세요.</p></div>
+        <form id="forced-password-form" style="display:grid;gap:16px">
+          <label class="login-field"><span>새 비밀번호<em>*</em></span><input id="forced-password" type="password" autocomplete="new-password" required><small>12자 이상 · 숫자 + 영문 + 특수문자 조합</small></label>
+          <label class="login-field"><span>새 비밀번호 확인<em>*</em></span><input id="forced-password-confirm" type="password" autocomplete="new-password" required></label>
+          <div class="login-actions"><button type="submit">변경 후 계속</button></div>
+        </form>
+      </section>
+    </section>
+
+    <footer class="login-footer">©2024 Bobcat Company. ALL RIGHTS RESERVED.</footer>
+  </main>
+  <dialog id="dormant-login-dialog" class="customer-dormant-dialog" data-screen-id="MHMIQ-AUTH-003-P02" data-state="closed" aria-labelledby="dormant-login-title" aria-describedby="dormant-login-description dormant-login-email dormant-login-note">
+    <header><h2 id="dormant-login-title">휴면계정 안내</h2></header>
+    <div class="customer-dormant-dialog__body">
+      <p id="dormant-login-description"></p>
+      <p id="dormant-login-email" class="customer-dormant-dialog__email"></p>
+      <p id="dormant-login-status" role="status" aria-live="polite" aria-atomic="true" hidden></p>
+      <p id="dormant-login-note" class="customer-dormant-dialog__note">화면 시연용입니다. 실제 이메일은 발송되지 않습니다.</p>
+    </div>
+    <footer><button id="dormant-login-cancel" type="button">취소</button><button id="dormant-login-primary" type="button">임시 비밀번호 받기</button></footer>
+  </dialog>
+  <div class="login-toast" role="status" aria-live="polite" hidden></div>
+  <script src="./shared/layouts/vendor/lucide.min.js"></script>
+  <script src="./signup-header.js?v=20260921-r88"></script>
+  <script src="./onboarding.js?v=20261019-r142"></script>
+  <script src="./auth-common.js?v=20261014-r141"></script>
+  <script src="./dormant-login.js?v=20261014-r141"></script>
+  <script src="./login.js?v=20261014-r141"></script>
+</body>
+</html>

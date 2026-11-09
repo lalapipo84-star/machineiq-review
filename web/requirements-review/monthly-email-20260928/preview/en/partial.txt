@@ -1,0 +1,37 @@
+[Bobcat Machine IQ] Monthly report - 한빛물류 주식회사 / 기본그룹
+
+한빛물류 주식회사 / 기본그룹
+2026.09.01 – 2026.09.30 (Asia/Seoul)
+Only part of the data was collected. Values cover the available data; changes from the prior month are omitted.
+Month comparison
+Utilization: 48 % → 50 % (Partial data) / Change — (No data)
+Operating efficiency: 80 % → 82 % (Partial data) / Change — (No data)
+Impacts: 60 events → 46 events (Partial data) / Change — (No data)
+Fuel consumption per hour: 4.6 L/h → 4.2 L/h (Partial data) / Change — (No data)
+Battery charge level: 55 % → — (No data) / Change — (No data)
+Distance traveled: 1,100 km → 1,216 km (Partial data) / Change — (No data)
+Operating time: 480 h → 500 h (Partial data) / Change — (No data)
+Maintenance records: 3 events (Partial data)
+Consumables due: 5 items (Partial data)
+Vehicle faults: 7 events (Partial data)
+Battery faults: 2 events (Partial data)
+Working time: 410 h (Partial data) / 41 % (Partial data)
+Idle time: 90 h (Partial data) / 9 % (Partial data)
+Unused time: 500 h (Partial data) / 50 % (Partial data)
+Sensitive · Level 3: 30 events (Partial data)
+Caution · Level 4: 12 events (Partial data)
+Warning · Level 5: 4 events (Partial data)
+Caution + warning: 16 events (Partial data)
+
+Consumables due · As of: 2026.10.01 09:00 · Asia/Seoul
+
+Rate differences are percentage points (pp). — means unavailable or not calculable, and is distinct from a measured zero.
+Maintenance and faults are event counts within the reporting period. Consumables are items due for replacement at the stated reference time.
+Time shares use the sum of working, idle and unused time. Shares are omitted when the total is zero or the basis is unavailable.
+Sensitive, caution and warning are separate event counts. Caution + warning combines those two levels; sensitive events alone are not the total.
+After signing in, change monthly report delivery in My account → Regular report Email settings.
+As of: 2026.10.01 09:00 · Asia/Seoul
+This report reflects the stated reference time. Information on the website may change later.
+This email is provided to customers who have opted in to monthly reports.
+This is an automated email. Please contact customer support if you need help.
+Customer support: help.machineiq@doosan.com

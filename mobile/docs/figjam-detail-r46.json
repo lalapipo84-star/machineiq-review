@@ -1,0 +1,86 @@
+{
+  "revision": "2026-09-13-r46",
+  "fileKey": "c4kCb5sPboVFEqnKFkAMfW",
+  "rootSectionId": "887:8864",
+  "url": "https://www.figma.com/board/c4kCb5sPboVFEqnKFkAMfW?node-id=887-8864",
+  "created": [],
+  "sections": [
+    {
+      "id": "889:9050",
+      "purpose": "차량 상세·충격·배터리 입력/출력",
+      "modified": [
+        "889:9085",
+        "889:9309",
+        "889:9219",
+        "889:9283"
+      ]
+    },
+    {
+      "id": "890:9253",
+      "purpose": "에러 상세 대신 등록 PDF 파일 출력",
+      "modified": [
+        "890:9288",
+        "890:9306",
+        "890:9311",
+        "890:9342",
+        "890:9407"
+      ]
+    },
+    {
+      "id": "892:9436",
+      "purpose": "알림 → 차량·수신일 조건의 에러 목록 및 리튬/충격 정의",
+      "modified": [
+        "892:9488",
+        "892:9497",
+        "892:9567",
+        "892:9471",
+        "892:9523"
+      ]
+    }
+  ],
+  "screenIds": [
+    "LQ-OPS-002",
+    "LQ-OPS-005",
+    "LQ-OPS-007",
+    "LQ-SVC-001-T02",
+    "LQ-COM-004"
+  ],
+  "retiredMobileImplementation": "LQ-SVC-004: 모바일의 과거 #error는 서비스 에러 목록으로 연결. 전역 웹 ID는 유지하고 재사용하지 않음.",
+  "scope": "실행 중인 보드를 먼저 읽고 기존 노드의 텍스트·표 셀만 변경. 새 노드·메뉴·팝업 생성 없음.",
+  "preserved": "섹션·노드 좌표, 폭·높이, 스타일, 기존 분기 진입선·연결선 끝점, 사용자 수정 레이아웃 보존.",
+  "verifiedConnections": [
+    {
+      "id": "890:9266",
+      "from": "890:9256",
+      "to": "890:9261"
+    },
+    {
+      "id": "890:9293",
+      "from": "890:9261",
+      "to": "890:9288"
+    },
+    {
+      "id": "890:9311",
+      "from": "890:9288",
+      "to": "890:9306",
+      "label": "PDF 있는 항목만"
+    },
+    {
+      "id": "892:9458",
+      "from": "892:9444",
+      "to": "892:9453"
+    },
+    {
+      "id": "892:9493",
+      "from": "892:9453",
+      "to": "892:9488"
+    }
+  ],
+  "verification": "각 변경 섹션의 스크린샷에서 글자 잘림·겹침 없음 및 분기 진입선 확인. 표는 화면 옆/아래 정의 위치 유지; 파일 출력은 화면 ID를 부여하지 않음.",
+  "implementation": "웹 시연 모델의 리튬 상태 3종과 시간 규칙 재사용. 역할/VIN별 브라우저 충전 설정 저장, 실제 명령 없음. 충격 분류는 시연 이벤트, 기존 총수 일치. P0003 PDF는 시연 참고자료.",
+  "sourceRegistries": [
+    "docs/ux/customer-mobile-screen-registry.json",
+    "docs/ux/customer-mobile-ia-registry.json"
+  ],
+  "previousArtifacts": "기존 메뉴 구조도 Excel과 스타일 가이드 PDF는 제작 시점 스냅샷. 최신 입출력 정의는 JSON 등록부."
+}

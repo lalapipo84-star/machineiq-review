@@ -1,0 +1,118 @@
+html[data-miq-locale="pending"] body { visibility: hidden; }
+/* Translated labels use the existing typography, components and color tokens. */
+html:not([lang="ko"]) button, html:not([lang="ko"]) .btn { overflow-wrap: normal; }
+html:not([lang="ko"]) th { overflow-wrap: normal; word-break: normal; line-height: 1.4; }
+html:not([lang="ko"]) body th { overflow-wrap: normal !important; word-break: normal !important; }
+html:not([lang="ko"]) .gnb__nav { min-width: 0; }
+html:not([lang="ko"]) .gnb__nav a { white-space: nowrap; }
+html:not([lang="ko"]) body th,
+html:not([lang="ko"]) body th .table-sort,
+html:not([lang="ko"]) body th .service-sort-button { white-space: normal !important; }
+html:not([lang="ko"]) body th .table-sort,
+html:not([lang="ko"]) body th .service-sort-button { max-width: 100%; height: auto; min-height: 24px; }
+html:not([lang="ko"]) body th .ops-sort { display: inline-flex; align-items: center; gap: 3px; white-space: normal; max-width: 100%; }
+html:not([lang="ko"]) body th .ops-sort span { flex: 0 0 auto; margin-left: 0; }
+html:not([lang="ko"]) .expand-table .table-sort { gap: 4px; }
+html:not([lang="ko"]) .expand-table .table-sort .sort-ind { position: static; left: auto; flex: 0 0 8px; }
+html:not([lang="ko"]) .xfer__mid .btn { white-space: nowrap; }
+html:not([lang="ko"]) body.miq-current-shell[data-variant="tobe"] .gnb__role select { width: 146px; min-width: 146px; }
+/* Share the existing row width instead of moving the last company below it. */
+html:not([lang="ko"]) body.miq-report-enhanced .miq-report-company-controls .co-wrap { flex-wrap: nowrap; }
+html:not([lang="ko"]) body.miq-report-enhanced .miq-report-company-controls .co-wrap > select,
+html:not([lang="ko"]) body.miq-report-enhanced .miq-report-company-controls .co-wrap > .co-item { flex: 0 1 auto; min-width: 0; }
+html:not([lang="ko"]) body.miq-report-enhanced .miq-report-company-controls .co-item select { min-width: 0; max-width: 100%; }
+@media (min-width: 1200px) {
+  html:not([lang="ko"]) .xfer { grid-template-columns: minmax(0,1fr) max-content minmax(0,1fr); }
+}
+/* Keep the existing shell/chart geometry; Arabic prose reads right to left. */
+html[lang="ar"] body { direction: ltr; }
+html[lang="ar"] :is(h1,h2,h3,h4,p,label,button,th,td,small) { direction: rtl; unicode-bidi: plaintext; }
+html[lang="ar"] :is(input[type="email"],input[type="number"],input[type="date"],input[type="time"],input[type="tel"],input[type="password"],[translate="no"],.gnb__language select) { direction: ltr; unicode-bidi: isolate; }
+html[lang="ar"] :is(.dc-entity-name,.dc-company-rate strong,.dc-maintenance-value strong,.dwi-value,.dwi-ring strong) { direction: ltr; unicode-bidi: isolate; }
+/* Common navigation fits translated words before using a second row. */
+html:root:not([lang="ko"]) body.miq-current-shell .gnb { flex-wrap: nowrap; height: 64px; gap: 0 6px; }
+html:root:not([lang="ko"]) body.miq-current-shell .gnb__logo { order: 0; flex: 0 0 235px; height: 64px; }
+html:root:not([lang="ko"]) body.miq-current-shell .gnb__menu { order: 0; flex: 1 1 auto; min-width: 0; }
+html:root:not([lang="ko"]) body.miq-current-shell .gnb__item { flex: 1 0 auto; min-width: max-content; }
+html:root:not([lang="ko"]) body.miq-current-shell .gnb__item > a { padding-inline: 5px; white-space: nowrap; overflow-wrap: normal; hyphens: none; }
+html:root:not([lang="ko"]) body.miq-current-shell .gnb__right { order: 0; flex: 0 0 auto; min-width: 0; min-height: 64px; }
+html:root:not([lang="ko"]) body.miq-current-shell .gnb__account { max-width: 160px; line-height: 1.35; white-space: normal; }
+html:root:not([lang="ko"]) body.miq-current-shell[data-variant="tobe"] .gnb__role select { field-sizing: content; width: auto; min-width: 146px; }
+html:root:not([lang="ko"]) body.miq-current-shell .gnb[data-locale-rows="2"] { flex-wrap: wrap; height: auto; }
+html:root:not([lang="ko"]) body.miq-current-shell .gnb[data-locale-rows="2"] .gnb__right { margin-left: auto; }
+html:root:not([lang="ko"]) body.miq-current-shell .gnb[data-locale-rows="2"] .gnb__menu { order: 1; flex: 1 0 100%; }
+html:not([lang="ko"]):not([lang="en"]) .dc-canvas .dc-head h2 { white-space: normal; }
+
+/* Labels may wrap at words; numeric values and units remain complete. */
+html:not([lang="ko"]) body :is(th,th .table-sort,th .service-sort-button,th .ops-sort) { hyphens: auto; }
+html:not([lang="ko"]) body.miq-current-shell .miq-side-item { gap: 5px; padding-block: 10px; }
+html:not([lang="ko"]) body.miq-current-shell .miq-side-item > span:first-child { white-space: normal; overflow-wrap: anywhere; hyphens: auto; }
+html:not([lang="ko"]) body.miq-current-shell .miq-side-count { flex-shrink: 0; }
+html:not([lang="ko"]) body.miq-current-shell .miq-title-scope-heading,
+html:not([lang="ko"]) body.miq-current-shell .summary-heading { flex-wrap: wrap; }
+html:not([lang="ko"]) body.miq-current-shell .summary-heading .miq-page-title { flex-shrink: 0; }
+html:not([lang="ko"]) body[data-gnb="ops"] .ops-taskbar { flex-wrap: wrap; gap: 8px; }
+html:not([lang="ko"]) body[data-gnb="ops"] .ops-task-filters { flex-wrap: wrap; min-width: 0; overflow: visible; }
+html:not([lang="ko"]) body[data-gnb="ops"] .ops-table [data-ops-cell="compact"] :is(.mm-inline-actions,.ops-inline-actions) { flex-wrap: wrap; }
+html:not([lang="ko"]) body[data-gnb="ops"] .ops-table [data-ops-cell="compact"] { white-space: normal; hyphens: auto; }
+html:not([lang="ko"]) body[data-gnb="ops"] .ops-table .btn { height: auto; min-height: 30px; white-space: normal; }
+html:not([lang="ko"]) body[data-gnb="ops"] .ops-table td { white-space: normal; hyphens: auto; }
+html:not([lang="ko"]) body.miq-report-enhanced .main { container-type: inline-size; }
+html:not([lang="ko"]) body.miq-report-enhanced .kpi__t { white-space: normal; overflow: visible; overflow-wrap: anywhere; hyphens: auto; }
+html:not([lang="ko"]) body.miq-report-enhanced .kpi__row { display: grid; grid-template-columns: minmax(0,1fr) max-content; align-items: center; gap: 4px 8px; }
+html:not([lang="ko"]) body.miq-report-enhanced .kpi__row .v { flex: 0 0 auto; margin-left: auto; overflow: visible; white-space: nowrap; }
+@container (max-width: 1250px) {
+  html:not([lang="ko"]) body.miq-current-shell.miq-report-enhanced.miq-page-rptstatus .main .kpi-grid { grid-template-columns: repeat(3,minmax(0,1fr)) !important; }
+}
+html:not([lang="ko"]):not([lang="en"]) .metrics { display: grid; grid-template-columns: repeat(auto-fit,minmax(225px,1fr)); gap: 20px; align-items: stretch; }
+html:not([lang="ko"]):not([lang="en"]) .metrics > .metric-div { display: none; }
+html:not([lang="ko"]):not([lang="en"]) .metrics .metric { min-width: 0; padding: 0; border: 0; }
+html:not([lang="ko"]):not([lang="en"]) .metric__ic { flex-shrink: 0; }
+html:not([lang="ko"]):not([lang="en"]) .metric__body { min-width: 0; }
+html:not([lang="ko"]):not([lang="en"]) .metric__k { flex-wrap: wrap; overflow-wrap: normal; hyphens: auto; }
+html:not([lang="ko"]):not([lang="en"]) .metric__v { white-space: nowrap; }
+html:not([lang="ko"]) .miq-map-summary { grid-template-columns: 144px; }
+html:not([lang="ko"]) .miq-map-fullscreen { width: 144px; white-space: normal; height: auto; min-height: 40px; padding-block: 6px; line-height: 1.3; }
+html:not([lang="ko"]) .miq-map-count > span { height: auto; min-height: 36px; padding: 4px; white-space: normal; line-height: 1.3; hyphens: auto; }
+html:not([lang="ko"]) .miq-map-count > strong { flex-wrap: wrap; align-content: center; column-gap: 4px; line-height: 1.15; }
+html:not([lang="ko"]) .miq-map-count small { white-space: nowrap; }
+html:not([lang="ko"]) .miq-lithium-list .battery-status__value { white-space: normal; overflow-wrap: anywhere; hyphens: auto; }
+html:not([lang="ko"]) .miq-lithium-list .battery-status__text { white-space: normal; overflow-wrap: anywhere; hyphens: auto; }
+html:not([lang="ko"]) body.miq-usage-time .ct__row { gap: 2px 6px; }
+html:not([lang="ko"]) body.miq-usage-time .ct__k { min-width: 0; white-space: normal; overflow-wrap: anywhere; hyphens: auto; }
+html:not([lang="ko"]) body.miq-usage-time .ct__v { flex: 0 0 auto; }
+html:not([lang="ko"]) .affiliation .vehicle-type { flex-wrap: wrap; gap: 3px 8px; }
+html:not([lang="ko"]) .metric-pair > span { display: flex; flex-wrap: wrap; gap: 2px 6px; }
+html:not([lang="ko"]) .metric-pair strong { flex: 0 0 auto; margin-left: auto; overflow: visible; white-space: nowrap; }
+html:not([lang="ko"]) .kpi-strip-a .kpi-value { flex-wrap: wrap; white-space: normal; }
+html:not([lang="ko"]) .kpi-strip-a .kpi-value small { white-space: normal; overflow: visible; }
+html:not([lang="ko"]) .kpi-strip-a .kpi-label { white-space: normal; overflow: visible; hyphens: auto; }
+html:not([lang="ko"]) body .efficiency-daily-axis > span { white-space: normal; overflow-wrap: anywhere; hyphens: auto; }
+html:not([lang="ko"]) body.miq-service-enhanced[data-gnb="srvc"] .main .service-data-table :is(th,td)[data-service-column] { padding-inline: 8px; }
+html:not([lang="ko"]) body.miq-service-enhanced[data-gnb="srvc"] .main .service-data-table [data-service-column="date"] { white-space: normal; }
+html:not([lang="ko"]) body.miq-service-enhanced[data-gnb="srvc"] .main .service-data-table :is([data-service-column="supply"],[data-service-column="part"],[data-service-column="description"]) { word-break: normal; hyphens: auto; }
+html:not([lang="ko"]) body.miq-service-enhanced[data-gnb="srvc"] .main .service-data-table .progress__meta { flex-wrap: wrap; }
+html:not([lang="ko"]) body.miq-current-shell .summary-titlebar { flex-wrap: wrap; }
+html:not([lang="ko"]) body.miq-current-shell .summary-titlebar .summary-heading { flex: 1 0 auto; }
+html:not([lang="ko"]) .eq-table-wrap td { white-space: normal; overflow-wrap: anywhere; }
+html:not([lang="ko"]) .eq-table-wrap td .pill { white-space: normal; height: auto; min-height: 22px; }
+html body[class] .hm__x { white-space: normal; overflow-wrap: anywhere; line-height: 1.3; }
+html:not([lang="ko"]) body.miq-current-shell .miq-title-period-row { flex-wrap: wrap; }
+html:not([lang="ko"]) body.miq-current-shell .miq-title-scope-heading { flex: 1 0 auto; max-width: 100%; }
+html:not([lang="ko"]) body.miq-current-shell .miq-scope-summary { flex-wrap: wrap; line-height: 1.35; }
+html:not([lang="ko"]) body.miq-service-enhanced[data-gnb="srvc"] .main .service-data-table :is(.meta-stack,.meta-stack strong,.meta-stack span,.errcode,.errcode__main) { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+html:not([lang="ko"]) body.miq-service-enhanced[data-gnb="srvc"] .main .service-data-table :is(.state,.type,.done) { white-space: normal; max-width: 100%; height: auto; min-height: 22px; line-height: 1.4; overflow-wrap: anywhere; }
+html:not([lang="ko"]) body.miq-service-enhanced[data-gnb="srvc"] .main .service-data-table .errcode__main { flex-wrap: wrap; white-space: normal; }
+html:not([lang="ko"]) body th :is(.table-sort,.service-sort-button,.ops-sort) { overflow-wrap: anywhere; }
+html:not([lang="ko"]) .miq-management-table .cls-badge { white-space: normal; overflow-wrap: anywhere; }
+html:not([lang="ko"]) .top5 li span.row { flex-wrap: wrap; }
+html:not([lang="ko"]) .miq-list-pagination { flex-wrap: wrap; gap: 8px 16px; }
+html:not([lang="ko"]) body[data-gnb="ops"] .ops-list-head { flex-wrap: wrap; }
+html:not([lang="ko"]) body[data-gnb="ops"] .ops-list-head > .ops-actions { flex-wrap: wrap; max-width: 100%; }
+html[lang="ko"] .affiliation .vehicle-type { flex-wrap: wrap; }
+body.miq-current-shell .tbl-wrap:has(> table[data-wide-vehicle-list]) { overflow-x: auto !important; }
+html:not([lang="ko"]) body.miq-current-shell .miq-management-table .badge { white-space: normal; height: auto; line-height: 1.4; }
+html:not([lang="ko"]) .mm-request-kpis { grid-auto-rows: auto; }
+html:not([lang="ko"]) .mm-request-kpi { display: grid; grid-row: span 3; grid-template-rows: subgrid; }
+html:not([lang="ko"]) :is(.mm-request-kpi__label,.mm-request-kpi__sub) { white-space: normal; overflow: visible; overflow-wrap: anywhere; hyphens: auto; }
+html:not([lang="ko"]) :is(.mm-approval-grid,.mm-request-detail) dt { white-space: normal; overflow-wrap: anywhere; hyphens: auto; }

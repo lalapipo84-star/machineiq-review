@@ -1,0 +1,17 @@
+/* Login-only dialog. Reuses the current customer dialog geometry and tokens. */
+.customer-dormant-dialog { width:calc(100% - 32px); max-width:448px; max-height:calc(100dvh - 48px); margin:auto; padding:0; overflow:auto; border:1px solid var(--linq-color-border); border-radius:16px; color:var(--linq-color-text); background:var(--linq-color-surface); }
+.customer-dormant-dialog::backdrop { background:rgba(0,0,0,.45); }
+.customer-dormant-dialog > header { padding:16px 16px 0; }
+.customer-dormant-dialog h2 { margin:0; font-size:16px; line-height:24px; }
+.customer-dormant-dialog__body { padding:16px; overflow-wrap:anywhere; }
+.customer-dormant-dialog p { margin:0 0 12px; font-size:var(--linq-font-body); line-height:var(--linq-line-body); }
+.customer-dormant-dialog p:last-child { margin-bottom:0; }
+.customer-dormant-dialog .customer-dormant-dialog__email { font-weight:700; }
+.customer-dormant-dialog .customer-dormant-dialog__note { color:var(--linq-color-text-muted); font-size:var(--linq-font-caption); line-height:var(--linq-line-meta); }
+.customer-dormant-dialog > footer { display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:0 16px 16px; }
+.customer-dormant-dialog[data-state="sent"] > footer,.customer-dormant-dialog[data-state="rateLimited"] > footer { grid-template-columns:1fr; }
+.customer-dormant-dialog button { min-height:44px; padding:8px 12px; border:1px solid var(--linq-color-border); border-radius:var(--linq-radius-control); color:var(--linq-color-text); background:var(--linq-color-surface); font-size:var(--linq-font-control); font-weight:700; }
+.customer-dormant-dialog #dormant-login-primary { border-color:var(--linq-color-primary-fill); color:var(--linq-color-surface); background:var(--linq-color-primary-fill); }
+.customer-dormant-dialog #dormant-login-primary:active { background:var(--linq-color-primary-pressed); }
+.customer-dormant-dialog button:disabled { cursor:default; opacity:.6; }
+.customer-dormant-dialog button:focus-visible { outline:2px solid var(--linq-color-brand); outline-offset:2px; }

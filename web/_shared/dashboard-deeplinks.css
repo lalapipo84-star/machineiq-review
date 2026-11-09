@@ -1,0 +1,25 @@
+/* Dashboard data cells keep the approved visual design and only gain link affordance. */
+.miq-content-dashboard .dashboard-report-link{display:block;color:inherit;text-decoration:none}
+.miq-content-dashboard .dashboard-report-link:hover{text-decoration:underline}
+.miq-content-dashboard .dashboard-report-link:focus-visible{outline:2px solid var(--bobcat-red);outline-offset:2px}
+.miq-content-dashboard .miq-dashboard-link{
+  cursor:pointer;
+  border-radius:4px;
+  transition:background-color .16s ease,box-shadow .16s ease;
+}
+.miq-content-dashboard .miq-dashboard-link:hover{
+  background-color:#fff5f3;
+  box-shadow:0 0 0 3px #fff5f3;
+}
+.miq-content-dashboard .miq-dashboard-link:focus-visible{
+  outline:3px solid rgba(255,54,0,.32);
+  outline-offset:3px;
+}
+.miq-content-dashboard td.miq-dashboard-link:hover,
+.miq-content-dashboard article.miq-dashboard-link:hover,
+.miq-content-dashboard .maintenance-item.miq-dashboard-link:hover{
+  box-shadow:inset 0 0 0 1px #ffd0c4;
+}
+@media (prefers-reduced-motion:reduce){
+  .miq-content-dashboard .miq-dashboard-link{transition:none}
+}

@@ -1,0 +1,15 @@
+/* Shared input value color and focus. Reference: management > user search.
+   Only value color and focus styling are shared; each screen keeps its field size and layout.
+   The important declarations prevent page keyboard rules drawing a second frame.
+   Checkbox/radio/file/range controls and GNB navigation retain their own states. */
+/* Entered and selected values share the primary text color, including readonly
+   values. Preserve placeholders and white navigation controls. */
+body :is(input:not([type]),input[type="text"],input[type="search"],input[type="email"],input[type="password"],input[type="tel"],input[type="url"],input[type="number"],input[type="date"],input[type="datetime-local"],input[type="month"],input[type="week"],input[type="time"],select,textarea):not(.gnb *):not(.miq-auth-header *):not(:placeholder-shown){
+  color:#000000!important;
+  -webkit-text-fill-color:#000000!important;
+}
+body :is(input:not([type]),input[type="text"],input[type="search"],input[type="email"],input[type="password"],input[type="tel"],input[type="url"],input[type="number"],input[type="date"],input[type="datetime-local"],input[type="month"],input[type="week"],input[type="time"],select,textarea):not(.gnb *):focus{
+  border:1px solid #ff3600!important;
+  outline:none!important;
+  box-shadow:none!important;
+}

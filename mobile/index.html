@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ff3600">
+  <title>MACHINE IQ 사용자 모바일</title>
+  <link rel="icon" href="./assets/favicon.ico">
+  <link rel="stylesheet" href="./assets/local-fonts.css">
+  <link rel="stylesheet" href="./shared/mobile-guide-tokens.css?v=20260904-4">
+  <link rel="stylesheet" href="./shared/mobile.css?v=20260907-20">
+  <link rel="stylesheet" href="./shared/mobile-type-compact.css?v=20260907-1">
+  <link rel="stylesheet" href="./shared/home-tone-c.css?v=20260907-2">
+  <link rel="stylesheet" href="./customer.css?v=20261030-r147">
+  <link rel="stylesheet" href="./web-guide-colors.css?v=20261012-r139">
+  <link rel="stylesheet" href="./owner-dashboard-preview.css?v=20261030-r144">
+</head>
+<body class="mobile-type-compact mobile-tone-c customer-prototype owner-dashboard-preview" data-dashboard-mode="main">
+  <div class="mobile-app">
+    <header class="app-header">
+      <button class="header-back" type="button" data-back aria-label="이전 화면" hidden><i data-lucide="chevron-left"></i></button>
+      <div class="brand" id="brand"><img src="./shared/bobcat-machine-iq.svg" alt="Bobcat MACHINE IQ"></div>
+      <strong class="header-title" id="header-title" hidden></strong>
+      <button class="header-button" type="button" data-route="notifications" aria-label="알림 내역 보기"><i data-lucide="bell" aria-hidden="true"></i><b id="notification-count">0</b></button>
+    </header>
+    <main id="main" class="app-view is-active" tabindex="-1"></main>
+    <noscript><p class="empty-state">화면을 보려면 JavaScript를 허용해 주세요.</p></noscript>
+    <nav class="bottom-nav" aria-label="주 메뉴">
+      <button type="button" data-route="home" class="is-active"><i data-lucide="house"></i><span>홈</span></button>
+      <button type="button" data-route="summary"><i data-lucide="truck"></i><span>차량</span></button>
+      <button type="button" data-route="services"><i data-lucide="clipboard-list"></i><span>서비스</span></button>
+      <button type="button" data-route="reports"><i data-lucide="chart-no-axes-combined"></i><span>리포트</span></button>
+      <button type="button" data-route="settings"><i data-lucide="settings"></i><span>설정</span></button>
+    </nav>
+  </div>
+  <dialog class="location-dialog" id="location-dialog" aria-labelledby="location-dialog-title" data-screen-id="LQ-OPS-002-P01">
+    <header><div><small>최종 수신 위치</small><h2 id="location-dialog-title"></h2></div><button type="button" id="location-dialog-close" data-close-map aria-label="지도 닫기"><i data-lucide="x"></i></button></header>
+    <div class="location-dialog-body" id="location-dialog-body">
+    <p id="location-dialog-address"></p>
+    <div class="location-map-frame">
+      <div id="location-map" class="customer-location-map" role="region" aria-label="Google 지도 · 차량 최종 수신 위치"></div>
+      <div class="location-map-status" id="location-map-status" role="status"><span id="location-map-status-text">지도를 불러오는 중입니다.</span><a id="location-map-external" target="_blank" rel="noopener noreferrer" hidden>Google 지도에서 보기</a></div>
+      <button class="location-map-expand" id="location-map-expand" data-expand-map type="button" aria-label="지도 전체보기" aria-expanded="false" aria-controls="location-map" title="지도 전체보기"><i class="map-expand-icon" data-lucide="maximize" aria-hidden="true"></i><i class="map-collapse-icon" data-lucide="minimize" aria-hidden="true"></i><span id="location-map-expand-label">전체보기</span></button>
+    </div>
+    <section class="location-dialog-info" id="location-dialog-info-section" aria-labelledby="location-info-title"><div class="location-info-heading"><h3 id="location-info-title">차량 정보</h3><span id="location-dialog-coordinate"></span></div><dl class="detail-definition" id="location-dialog-info"></dl></section>
+    </div>
+  </dialog>
+  <dialog class="supply-reset-dialog service-center-dialog" id="service-center-dialog" aria-labelledby="service-center-title" data-screen-id="LQ-SVC-001-P01">
+    <header><h2 id="service-center-title">담당 서비스센터</h2><button type="button" data-close-service-center aria-label="서비스센터 닫기"><i data-lucide="x"></i></button></header>
+    <div class="supply-reset-body"><p id="service-center-vehicle"></p><div id="service-center-info"></div></div>
+  </dialog>
+  <dialog class="supply-reset-dialog" id="supply-reset-dialog" aria-labelledby="supply-reset-title" aria-describedby="supply-reset-description" data-screen-id="LQ-SVC-003-P02">
+    <header><h2 id="supply-reset-title">선택 항목 교체 완료</h2><button type="button" data-close-supply-reset aria-label="교체 완료 창 닫기"><i data-lucide="x"></i></button></header>
+    <div class="supply-reset-body"><strong id="supply-reset-count"></strong><ul id="supply-reset-items"></ul><p id="supply-reset-description">처리하면 사용시간이 0H로 초기화되고 상태가 정상으로 변경됩니다.</p></div>
+    <footer><button type="button" class="detail-secondary-button" data-close-supply-reset>취소</button><button type="button" class="report-primary-action" id="supply-reset-confirm" data-confirm-supply-reset>항목 처리</button></footer>
+  </dialog>
+  <dialog class="supply-reset-dialog customer-approval-dialog" id="customer-approval-dialog" aria-labelledby="customer-approval-title" aria-describedby="customer-approval-description" data-screen-id="LQ-MGT-001-P01">
+    <header><h2 id="customer-approval-title">사용자 승인 확인</h2><button type="button" data-close-customer-approval aria-label="사용자 승인 창 닫기"><i data-lucide="x"></i></button></header>
+    <div class="supply-reset-body">
+      <div id="customer-approval-target"></div>
+      <label class="customer-approval-field" id="customer-approval-group-field"><strong>배정 그룹 <span aria-hidden="true">*</span></strong><select id="customer-approval-group" aria-label="배정 그룹" required></select><small>선택한 그룹의 차량 조회 권한으로 승인합니다.</small></label>
+      <div class="customer-approval-field" id="customer-approval-reason-field" hidden><label for="customer-approval-reason-type"><strong>반려 사유 <span aria-hidden="true">*</span></strong></label><select id="customer-approval-reason-type" aria-label="반려 사유 선택"></select><textarea id="customer-approval-reason" rows="3" maxlength="500" aria-label="반려 사유 직접 입력" placeholder="반려 사유를 입력해 주세요." hidden></textarea></div>
+      <p class="error-note" id="customer-approval-error" role="alert" tabindex="-1" hidden></p>
+      <p class="source-note" id="customer-approval-description">선택한 신청의 처리 내용을 확인해 주세요.</p>
+    </div>
+    <footer><button type="button" class="detail-secondary-button" data-close-customer-approval>취소</button><button type="button" class="report-primary-action" id="customer-approval-confirm" data-confirm-customer-approval>승인 처리</button></footer>
+  </dialog>
+  <script src="./shared/layouts/vendor/lucide.min.js"></script>
+  <script src="./error-documents.js?v=20260913-r60"></script>
+  <script src="./web-contracts.generated.js?v=20261002-r125"></script>
+  <script src="./demo-data.generated.js?v=20261022-r143"></script>
+  <script src="./model.js?v=20261014-r140"></script>
+  <script src="./location-map.js?v=20261002-r129"></script>
+  <script src="./home-view.js?v=20261030-r147"></script>
+  <script src="./onboarding.js?v=20261019-r142"></script>
+  <script src="./vehicle-registration.js?v=20261019-r142"></script>
+
+  <script src="./query-controls.js?v=20261030-r144"></script>
+  <script src="./customer.js?v=20261030-r147"></script>
+</body>
+</html>

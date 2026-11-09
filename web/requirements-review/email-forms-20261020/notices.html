@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MACHINE IQ · 공지사항 조회 시안</title><link rel="stylesheet" href="../../_shared/mockup.css"><link rel="stylesheet" href="../../_shared/operations.css"><link rel="stylesheet" href="../../_shared/map-management-enhancements.css"><link rel="stylesheet" href="base-preview.css"><link rel="stylesheet" href="gallery.css"><link rel="stylesheet" href="account-brand-preview.css"><link rel="stylesheet" href="notice-review.css"></head>
+<body data-gnb="ops" data-screen-id="MHMIQ-COM-017" data-notice-view="list">
+<header class="review-header"><a class="brand-link" href="./" aria-label="공통 메일 모음으로"><img src="assets/machine-iq-material-handling-white.png" width="210" height="58" alt="MACHINE IQ MATERIAL HANDLING"></a><span class="header-divider"></span><h1>공지사항 조회 시안</h1><span class="draft">기존 공지 연계 검토용 · 서버 미연결</span></header>
+<main class="viewer-main notice-main">
+ <a class="back-link" href="./">← 공통 메일 모음</a>
+ <div class="viewer-heading"><div><h2>공지사항</h2><p>일반 공지·점검/장애·약관/정책을 구분하는 조회 시안입니다. 아래 3건은 실제 게시 공지가 아닌 예시입니다.</p></div></div>
+ <form id="noticeFilters" class="notice-filters"><label>공지 종류<select id="noticeKind"><option value="">전체</option></select></label><label>검색<input id="noticeQuery" type="search" maxlength="100" placeholder="제목·내용"></label><button type="submit">조회</button></form>
+ <div class="list-head"><span class="list-head__count">공지 <b id="noticeCount">0</b>건</span></div>
+ <div class="tbl-wrap"><table class="tbl notice-table"><caption class="notice-sr-only">공지 종류별 공지사항 목록</caption><thead><tr><th scope="col">공지 종류</th><th scope="col">제목</th><th scope="col">게시일</th><th scope="col">상단 고정</th></tr></thead><tbody id="noticeRows"></tbody></table></div>
+ <p id="noticeEmpty" hidden>조회된 공지가 없습니다.</p><nav class="notice-pagination" aria-label="공지 목록 페이지"><button id="noticePrev" type="button">이전</button><span id="noticePage" aria-live="polite"></span><button id="noticeNext" type="button">다음</button></nav>
+ <section class="notice-explanation"><h3>공지 등록 후 어떻게 보이나요?</h3><p>현재 받아둔 소스는 관리자 등록 → 모바일 알림에서 직접 ‘공지 조회’ → 목록 → 상세 방식입니다. 플릿 웹 진입 화면과 로그인 자동 팝업은 확인되지 않았습니다.</p><p>‘상단 고정’은 목록 순서이며 팝업이 아닙니다. 공지 종류·대상·게시 기간·상단 고정·노출 방식·이메일/PUSH 채널은 서로 다른 설정입니다.</p><p>이 시안은 기존 등록 기능을 재사용할 사용자 조회 화면을 검토하는 용도입니다. AWS나 실제 등록 데이터에 연결하지 않습니다. 개인 휴면 사전 안내는 공개 공지 목록에 게시하지 않습니다.</p><a href="../../Operations/operations-notices.html?role=internal" target="_blank" rel="noopener">기존 관리자 공지 관리 시안 보기 ↗</a> · <a href="https://github.com/giry02/machineiq/blob/main/docs/handoff/TERMS_NOTICE_BACKEND_20261023.md">백엔드 보완 지시 MD</a></section>
+ <noscript>공지 내용을 보려면 JavaScript를 켜 주세요.</noscript>
+</main><script src="notice-data.js"></script><script src="notice-model.js"></script><script src="notice-review.js"></script></body></html>

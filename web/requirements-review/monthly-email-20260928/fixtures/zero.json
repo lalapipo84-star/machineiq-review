@@ -1,0 +1,514 @@
+{
+  "templateId": "MIQ-MAIL-004",
+  "fixture": true,
+  "scenario": "zero",
+  "report": {
+    "companyName": "한빛물류 주식회사",
+    "groupName": "기본그룹",
+    "targetMonth": "2026-09",
+    "previousMonth": "2026-08",
+    "periodStart": "2026-09-01T00:00:00+09:00",
+    "periodEndExclusive": "2026-10-01T00:00:00+09:00",
+    "periodLabel": "2026.09.01 – 2026.09.30",
+    "timeZone": "Asia/Seoul",
+    "scheduledAt": "2026-10-01T09:00:00+09:00",
+    "generatedAt": "2026.10.01 09:00",
+    "consumablesAsOf": "2026.10.01 09:00",
+    "links": {
+      "reportUrl": null,
+      "settingsUrl": null
+    },
+    "dataNotice": "Synthetic layout fixture, not collected records. Backend owns aggregation, rounding, deltas, eligibility and local-month boundaries."
+  },
+  "summary": {
+    "operatingRate": {
+      "unit": "%",
+      "differenceUnit": "pp",
+      "previous": {
+        "value": null,
+        "display": null,
+        "state": "undefined_basis"
+      },
+      "current": {
+        "value": null,
+        "display": null,
+        "state": "undefined_basis"
+      },
+      "difference": {
+        "value": null,
+        "display": null,
+        "state": "undefined_basis"
+      }
+    },
+    "efficiencyRate": {
+      "unit": "%",
+      "differenceUnit": "pp",
+      "previous": {
+        "value": null,
+        "display": null,
+        "state": "undefined_basis"
+      },
+      "current": {
+        "value": null,
+        "display": null,
+        "state": "undefined_basis"
+      },
+      "difference": {
+        "value": null,
+        "display": null,
+        "state": "undefined_basis"
+      }
+    },
+    "shockCnt": {
+      "unit": "events",
+      "differenceUnit": "events",
+      "previous": {
+        "value": 0,
+        "display": "0",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "0",
+          "en": "0",
+          "de": "0",
+          "ar": "0",
+          "es": "0",
+          "fr": "0",
+          "it": "0",
+          "ja": "0"
+        }
+      },
+      "current": {
+        "value": 0,
+        "display": "0",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "0",
+          "en": "0",
+          "de": "0",
+          "ar": "0",
+          "es": "0",
+          "fr": "0",
+          "it": "0",
+          "ja": "0"
+        }
+      },
+      "difference": {
+        "value": 0,
+        "display": "0",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "0",
+          "en": "0",
+          "de": "0",
+          "ar": "0",
+          "es": "0",
+          "fr": "0",
+          "it": "0",
+          "ja": "0"
+        }
+      }
+    },
+    "fuelLh": {
+      "unit": "L/H",
+      "differenceUnit": "L/H",
+      "previous": {
+        "value": 0,
+        "display": "0",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "0",
+          "en": "0",
+          "de": "0",
+          "ar": "0",
+          "es": "0",
+          "fr": "0",
+          "it": "0",
+          "ja": "0"
+        }
+      },
+      "current": {
+        "value": 0,
+        "display": "0",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "0",
+          "en": "0",
+          "de": "0",
+          "ar": "0",
+          "es": "0",
+          "fr": "0",
+          "it": "0",
+          "ja": "0"
+        }
+      },
+      "difference": {
+        "value": 0,
+        "display": "0",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "0",
+          "en": "0",
+          "de": "0",
+          "ar": "0",
+          "es": "0",
+          "fr": "0",
+          "it": "0",
+          "ja": "0"
+        }
+      }
+    },
+    "batteryRate": {
+      "unit": "%",
+      "differenceUnit": "pp",
+      "previous": {
+        "value": 0,
+        "display": "0",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "0",
+          "en": "0",
+          "de": "0",
+          "ar": "0",
+          "es": "0",
+          "fr": "0",
+          "it": "0",
+          "ja": "0"
+        }
+      },
+      "current": {
+        "value": 0,
+        "display": "0",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "0",
+          "en": "0",
+          "de": "0",
+          "ar": "0",
+          "es": "0",
+          "fr": "0",
+          "it": "0",
+          "ja": "0"
+        }
+      },
+      "difference": {
+        "value": 0,
+        "display": "0",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "0",
+          "en": "0",
+          "de": "0",
+          "ar": "0",
+          "es": "0",
+          "fr": "0",
+          "it": "0",
+          "ja": "0"
+        }
+      }
+    },
+    "distance": {
+      "unit": "km",
+      "differenceUnit": "km",
+      "previous": {
+        "value": 0,
+        "display": "0",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "0",
+          "en": "0",
+          "de": "0",
+          "ar": "0",
+          "es": "0",
+          "fr": "0",
+          "it": "0",
+          "ja": "0"
+        }
+      },
+      "current": {
+        "value": 0,
+        "display": "0",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "0",
+          "en": "0",
+          "de": "0",
+          "ar": "0",
+          "es": "0",
+          "fr": "0",
+          "it": "0",
+          "ja": "0"
+        }
+      },
+      "difference": {
+        "value": 0,
+        "display": "0",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "0",
+          "en": "0",
+          "de": "0",
+          "ar": "0",
+          "es": "0",
+          "fr": "0",
+          "it": "0",
+          "ja": "0"
+        }
+      }
+    },
+    "operatingTime": {
+      "unit": "H",
+      "differenceUnit": "H",
+      "previous": {
+        "value": 0,
+        "display": "0",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "0",
+          "en": "0",
+          "de": "0",
+          "ar": "0",
+          "es": "0",
+          "fr": "0",
+          "it": "0",
+          "ja": "0"
+        }
+      },
+      "current": {
+        "value": 0,
+        "display": "0",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "0",
+          "en": "0",
+          "de": "0",
+          "ar": "0",
+          "es": "0",
+          "fr": "0",
+          "it": "0",
+          "ja": "0"
+        }
+      },
+      "difference": {
+        "value": 0,
+        "display": "0",
+        "state": "available",
+        "displayByLocale": {
+          "ko": "0",
+          "en": "0",
+          "de": "0",
+          "ar": "0",
+          "es": "0",
+          "fr": "0",
+          "it": "0",
+          "ja": "0"
+        }
+      }
+    }
+  },
+  "serviceCount": {
+    "totRepairCount": {
+      "value": 0,
+      "display": "0",
+      "state": "available",
+      "unit": "events",
+      "displayByLocale": {
+        "ko": "0",
+        "en": "0",
+        "de": "0",
+        "ar": "0",
+        "es": "0",
+        "fr": "0",
+        "it": "0",
+        "ja": "0"
+      }
+    },
+    "totScheduleCount": {
+      "value": 0,
+      "display": "0",
+      "state": "available",
+      "unit": "items",
+      "displayByLocale": {
+        "ko": "0",
+        "en": "0",
+        "de": "0",
+        "ar": "0",
+        "es": "0",
+        "fr": "0",
+        "it": "0",
+        "ja": "0"
+      }
+    },
+    "totErrorCount": {
+      "value": 0,
+      "display": "0",
+      "state": "available",
+      "unit": "events",
+      "displayByLocale": {
+        "ko": "0",
+        "en": "0",
+        "de": "0",
+        "ar": "0",
+        "es": "0",
+        "fr": "0",
+        "it": "0",
+        "ja": "0"
+      }
+    },
+    "totBatteryErrorCount": {
+      "value": 0,
+      "display": "0",
+      "state": "available",
+      "unit": "events",
+      "displayByLocale": {
+        "ko": "0",
+        "en": "0",
+        "de": "0",
+        "ar": "0",
+        "es": "0",
+        "fr": "0",
+        "it": "0",
+        "ja": "0"
+      }
+    }
+  },
+  "operatingSummary": {
+    "workingTime": {
+      "value": 0,
+      "display": "0",
+      "state": "available",
+      "displayByLocale": {
+        "ko": "0",
+        "en": "0",
+        "de": "0",
+        "ar": "0",
+        "es": "0",
+        "fr": "0",
+        "it": "0",
+        "ja": "0"
+      }
+    },
+    "idleTime": {
+      "value": 0,
+      "display": "0",
+      "state": "available",
+      "displayByLocale": {
+        "ko": "0",
+        "en": "0",
+        "de": "0",
+        "ar": "0",
+        "es": "0",
+        "fr": "0",
+        "it": "0",
+        "ja": "0"
+      }
+    },
+    "offTime": {
+      "value": 0,
+      "display": "0",
+      "state": "available",
+      "displayByLocale": {
+        "ko": "0",
+        "en": "0",
+        "de": "0",
+        "ar": "0",
+        "es": "0",
+        "fr": "0",
+        "it": "0",
+        "ja": "0"
+      }
+    },
+    "workingTimeRate": {
+      "value": null,
+      "display": null,
+      "state": "undefined_basis"
+    },
+    "idleTimeRate": {
+      "value": null,
+      "display": null,
+      "state": "undefined_basis"
+    },
+    "offTimeRate": {
+      "value": null,
+      "display": null,
+      "state": "undefined_basis"
+    },
+    "basis": {
+      "code": "working_idle_off_total",
+      "value": 0,
+      "unit": "H",
+      "state": "available"
+    },
+    "operatingRateBasis": {
+      "code": "server_confirmed_reference_hours",
+      "value": 0,
+      "unit": "H",
+      "state": "fixture_only"
+    }
+  },
+  "shockSummary": {
+    "shock3Cnt": {
+      "value": 0,
+      "display": "0",
+      "state": "available",
+      "displayByLocale": {
+        "ko": "0",
+        "en": "0",
+        "de": "0",
+        "ar": "0",
+        "es": "0",
+        "fr": "0",
+        "it": "0",
+        "ja": "0"
+      }
+    },
+    "shock4Cnt": {
+      "value": 0,
+      "display": "0",
+      "state": "available",
+      "displayByLocale": {
+        "ko": "0",
+        "en": "0",
+        "de": "0",
+        "ar": "0",
+        "es": "0",
+        "fr": "0",
+        "it": "0",
+        "ja": "0"
+      }
+    },
+    "shock5Cnt": {
+      "value": 0,
+      "display": "0",
+      "state": "available",
+      "displayByLocale": {
+        "ko": "0",
+        "en": "0",
+        "de": "0",
+        "ar": "0",
+        "es": "0",
+        "fr": "0",
+        "it": "0",
+        "ja": "0"
+      }
+    },
+    "attentionCount": {
+      "value": 0,
+      "display": "0",
+      "state": "available",
+      "displayByLocale": {
+        "ko": "0",
+        "en": "0",
+        "de": "0",
+        "ar": "0",
+        "es": "0",
+        "fr": "0",
+        "it": "0",
+        "ja": "0"
+      }
+    }
+  },
+  "chart": {
+    "included": false,
+    "reason": "Comparison values presented in a semantic table; no browser JS charts or derived image values."
+  }
+}

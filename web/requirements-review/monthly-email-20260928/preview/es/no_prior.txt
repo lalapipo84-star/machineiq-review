@@ -1,0 +1,37 @@
+[Bobcat Machine IQ] Informe mensual - 한빛물류 주식회사 / 기본그룹
+
+한빛물류 주식회사 / 기본그룹
+2026.09.01 – 2026.09.30 (Asia/Seoul)
+No hay datos del mes anterior para comparar. Solo se muestran los valores disponibles del mes actual.
+Comparación mensual
+Utilización: — (Sin mes anterior) → 50 % / Cambio — (Sin mes anterior)
+Eficiencia operativa: — (Sin mes anterior) → 82 % / Cambio — (Sin mes anterior)
+Impactos: — (Sin mes anterior) → 46 eventos / Cambio — (Sin mes anterior)
+Consumo de combustible por hora: — (Sin mes anterior) → 4,2 L/h / Cambio — (Sin mes anterior)
+Nivel de carga de la batería: — (Sin mes anterior) → 58 % / Cambio — (Sin mes anterior)
+Distancia recorrida: — (Sin mes anterior) → 1216 km / Cambio — (Sin mes anterior)
+Tiempo de funcionamiento: — (Sin mes anterior) → 500 h / Cambio — (Sin mes anterior)
+Intervenciones: 3 eventos
+Consumibles pendientes: 5 elementos
+Fallos del vehículo: 7 eventos
+Fallos de batería: 2 eventos
+Tiempo de trabajo: 410 h / 41 %
+Tiempo de espera: 90 h / 9 %
+Tiempo sin uso: 500 h / 50 %
+Sensible · Nivel 3: 30 eventos
+Precaución · Nivel 4: 12 eventos
+Advertencia · Nivel 5: 4 eventos
+Precaución + advertencia: 16 eventos
+
+Consumibles pendientes · Datos a: 2026.10.01 09:00 · Asia/Seoul
+
+Las diferencias de tasas se expresan en puntos porcentuales (pp). — indica un valor no disponible o no calculable, distinto de un cero medido.
+El mantenimiento y los fallos son eventos del periodo. Los consumibles son elementos pendientes de sustitución en la fecha de referencia indicada.
+Las proporciones usan la suma del tiempo de trabajo, espera y sin uso. No se muestran si el total es cero o falta la base.
+Sensible, precaución y advertencia son recuentos separados. Precaución + advertencia suma esos dos niveles; el nivel 3 solo no es el total.
+Tras iniciar sesión, cambie la recepción en Mi cuenta → Correo de informes periódicos.
+Datos a: 2026.10.01 09:00 · Asia/Seoul
+Este informe refleja la fecha de referencia indicada. La información del sitio puede cambiar después.
+Este correo se proporciona a clientes que han aceptado recibir informes mensuales.
+Este correo se ha enviado automáticamente. Si necesita ayuda, póngase en contacto con atención al cliente.
+Atención al cliente: help.machineiq@doosan.com

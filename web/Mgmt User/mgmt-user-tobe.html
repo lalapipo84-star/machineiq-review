@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<script src="../_shared/common-logic.js?v=d77b14750704&amp;rev=15dd4911055c"></script>
+<link rel="stylesheet" href="../_shared/korean-layout.css?v=9e980f3cddea&amp;rev=495db444ef75"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>사용자 · MACHINE IQ</title>
+<script src="../_shared/customer-access.js?v=e12eedbcb072&amp;rev=e12eedbcb072"></script>
+<link rel="icon" type="image/x-icon" href="../_shared/favicon.ico"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&amp;display=swap"/>
+<link rel="stylesheet" href="../_shared/mockup.css?v=bed1f0069135&amp;rev=1b84f0f6030b"/>
+<link rel="stylesheet" href="../_shared/list-controls.css?v=62cd35e93b1f"/>
+<link rel="stylesheet" href="../_shared/map-management-enhancements.css?v=04d0c0eb8994&amp;rev=752e0eff1bd2"/>
+<style>
+.req-panel .tbl-wrap{margin-top:0}
+.req-panel .box__tools{font-size:11px;color:#888}
+.group-select{min-width:118px;height:30px;padding:4px 28px 4px 8px}
+.row-focus{outline:2px solid #ff3600;outline-offset:-2px}
+.row-focus td{background:#fff5f3!important}
+.role-gated.is-hidden{display:none}
+.role-view-only.is-hidden{display:none}
+.row-hidden{display:none}
+</style>
+<link rel="stylesheet" href="../_shared/form-controls.css?v=6fda272acdcc&amp;rev=9debe1b59fae"/>
+<link rel="stylesheet" href="../_shared/list-pagination.css?v=0069e48c1009&amp;rev=0069e48c1009">
+<link rel="stylesheet" data-current-shell href="../_shared/current-shell.css?v=eabe5a26bfe9&amp;rev=0e55e64ed211"/>
+<link rel="stylesheet" data-operations-navigation href="../_shared/operations-navigation.css?v=1cffa21a9777&amp;rev=1cffa21a9777"/>
+<style>body.miq-current-shell>#gnb{min-height:64px}</style>
+<script defer blocking="render" src="../_mock-data/generated/fleet.generated.js?v=52fa65a2dce1&amp;rev=52fa65a2dce1"></script>
+<script defer blocking="render" src="../_mock-data/generated/observation-profiles.generated.js?v=1be92dd7a845&amp;rev=4054b4937190"></script>
+<script defer blocking="render" src="../_shared/vehicle-observations.js?v=550edc6b3b85&amp;rev=b5e24277418e"></script>
+<script defer blocking="render" src="../_shared/meeting-model.js?v=48be9a58ad27&amp;rev=48be9a58ad27"></script>
+<script defer blocking="render" src="../_shared/list-pagination.js?v=4b500130528b&amp;rev=4b500130528b"></script>
+<script src="../_shared/admin-context.js?v=7c4adfea6980"></script>
+<script defer blocking="render" src="../_shared/nav.js?v=a2d47c90bbe1"></script>
+<script defer blocking="render" src="../_shared/management-list-header.js?v=e7b38983fee6&amp;rev=e7b38983fee6"></script>
+<script defer blocking="render" src="../_shared/table-layout.js?v=4ff473044488&amp;rev=4ff473044488"></script>
+<script defer blocking="render" src="../_shared/map-management-enhancements.js?v=d1df3ff2d4f7&amp;rev=d1df3ff2d4f7"></script>
+<script defer blocking="render" src="../_shared/management-table-spacing.js?v=e7cf6862c684&amp;rev=e7cf6862c684"></script>
+</head>
+<body class="miq-current-shell" data-current-bootstrap="ready" data-gnb="mgmt" data-sub="user" data-variant="tobe" data-base="../">
+<div id="gnb"></div>
+<div class="layout">
+  <main class="main miq-mgmt-page" style="width:100%">
+    <div class="page-head">
+    <div class="page-head__title" data-mgmt-page-title>사용자</div>
+      <div class="page-head__bc"><a href="mgmt-user-tobe.html">관리기능</a>&gt; 사용자</div>
+    </div>
+    <div class="mm-user-tabbar" data-mgmt-taskbar>
+      <div class="tabs mm-user-tabs" role="tablist" aria-label="사용자 관리 업무" data-mgmt-tabs>
+        <button class="active" type="button" id="userTabListBtn" role="tab" aria-selected="true" aria-controls="userListPane" tabindex="0" data-user-tab="list">사용자 목록</button>
+        <button class="is-hidden" type="button" id="userTabApprovalBtn" role="tab" aria-selected="false" aria-controls="reqPanel" tabindex="-1" data-user-tab="approval">계정신청 처리 <span class="mm-tab-count" id="userRequestTabCount">0</span></button>
+      </div>
+    </div>
+
+    <div class="filter-bar filter-bar--left" id="userListFilters" data-mgmt-list-controls></div>
+    <div class="box req-panel mm-user-approval-pane miq-mgmt-pane miq-mgmt-pane--approval is-hidden" id="reqPanel" role="tabpanel" aria-labelledby="userTabApprovalBtn" aria-hidden="true">
+      <div class="box__head mm-request-head">
+        <div>
+          <span class="box__name">계정신청 처리 현황</span>
+          <p class="mm-request-caption" id="userRequestScopeCaption">승인 권한 범위의 신청만 표시합니다.</p>
+        </div>
+        <span class="mm-request-reference">데이터 기준 2026-07-06 14:30</span>
+      </div>
+      <div class="mm-request-kpis" id="userRequestSummary" aria-live="polite"></div>
+      <div class="list-head mm-request-list-head miq-mgmt-list-head" id="userRequestListHead">
+        <span class="list-head__count" role="status" aria-live="polite" aria-atomic="true">총 <b id="userRequestResultCount">0</b>건</span>
+      </div>
+      <div class="filter-bar mm-request-filters mm-user-request-filters" role="search" aria-label="계정신청 목록 조회" data-mgmt-context-controls="approval">
+        <input class="inp" type="search" id="userRequestQuery" maxlength="100" autocomplete="off" placeholder="사용자 ID · 이름 · 업체명 검색" aria-label="계정신청 통합 검색"/>
+        <select class="inp" id="userRequestStatus" aria-label="처리상태"><option value="">처리상태 전체</option><option value="REQ">승인 대기</option><option value="APRV">승인 완료</option><option value="RJCT">반려</option></select>
+        <button class="btn-search" type="button" id="userRequestSearch">조회</button>
+      </div>
+      <div class="mm-request-viewbar">
+        <div class="mm-request-view-tabs" role="group" aria-label="계정신청 목록 필터">
+          <button class="active" type="button" aria-pressed="true" aria-controls="userRequestBody" data-user-request-view="all">전체 신청 <span id="userRequestAllCount">0</span></button>
+          <button type="button" aria-pressed="false" aria-controls="userRequestBody" data-user-request-view="pending">승인 대기 <span id="userRequestPendingCount">0</span></button>
+        </div>
+        <div class="mm-request-batch" id="userRequestBatchBar">
+          <button class="btn mm-request-export" type="button" id="userRequestExport">내보내기</button>
+          <span>선택 <b id="userRequestSelectedCount">0</b>건</span>
+          <button class="btn btn--pri" type="button" id="userRequestBulkApprove" disabled>일괄 승인</button>
+          <button class="btn btn--danger" type="button" id="userRequestBulkReject" disabled>일괄 반려</button>
+        </div>
+      </div>
+      <div class="tbl-wrap mm-request-table-wrap">
+        <table class="tbl miq-management-table mm-request-table mm-request-admin-table mm-user-request-table">
+          <thead><tr><th class="c" data-mgmt-compact><input type="checkbox" id="userRequestSelectAll" aria-label="현재 목록의 승인 대기 건 전체 선택"/></th><th>사용자ID(이메일)</th><th class="c">처리상태</th><th>사용자명</th><th>신청 권한</th><th>업체명</th><th>신청일시</th><th>처리일시</th><th>처리자</th><th class="c" data-mgmt-compact>관리</th></tr></thead>
+          <tbody id="userRequestBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <section class="tab-pane miq-mgmt-pane active" id="userListPane" role="tabpanel" aria-labelledby="userTabListBtn" aria-hidden="false">
+    <div class="list-head miq-mgmt-list-head" id="userListHead">
+      <div class="miq-list-summary-actions">
+        <span class="list-head__count" role="status" aria-live="polite" aria-atomic="true">총 <b id="userCount">10</b>명 <span class="mm-list-summary__secondary" id="userContext"></span></span>
+
+      </div>
+    </div>
+    <div class="tbl-wrap" id="userListTableWrap">
+        <table class="tbl miq-management-table" id="userTable">
+          <thead><tr><th>사용자ID(이메일)</th><th>사용자명</th><th>권한</th><th>업체명</th><th>그룹명</th><th>연락처</th><th>등록일시</th><th>처리일시</th><th class="c" data-mgmt-compact>관리</th></tr></thead>
+          <tbody>
+            <tr data-owner="admin@sejonglog.co.kr" data-company="(주)세종물류중부지점" data-managed-by=""><td class="strong">admin@sejonglog.co.kr</td><td>김정수</td><td>내부 사용자</td><td>(주)세종물류중부지점</td><td><select class="inp group-select role-gated" aria-label="김정수 그룹"><option selected>전체</option><option>기본그룹</option><option>테스트그룹</option><option>물류1팀</option></select><span class="mute role-view-only">전체</span></td><td>010-****-1234</td><td>2024-03-11 09:12</td><td>2026-06-28 14:05</td><td class="c"><button class="btn btn--sm btn--pri role-gated" data-group-mode>그룹 저장</button> <button class="btn btn--sm btn--danger role-gated" data-modal-open="delModal">삭제</button></td></tr>
+            <tr data-owner="cs.lee@sejonglog.co.kr" data-company="(주)세종물류중부지점" data-managed-by=""><td class="strong">cs.lee@sejonglog.co.kr</td><td>이철수</td><td>내부 사용자</td><td>(주)세종물류중부지점</td><td><select class="inp group-select role-gated" aria-label="이철수 그룹"><option selected>전체</option><option>기본그룹</option><option>테스트그룹</option><option>물류1팀</option></select><span class="mute role-view-only">전체</span></td><td>010-****-2201</td><td>2024-05-02 10:41</td><td>2026-05-19 11:22</td><td class="c"><button class="btn btn--sm btn--pri role-gated" data-group-mode>그룹 저장</button> <button class="btn btn--sm btn--danger role-gated" data-modal-open="delModal">삭제</button></td></tr>
+            <tr class="sel" data-owner="dealer.park@sejonglog.co.kr" data-company="세종모터스" data-managed-by=""><td class="strong">dealer.park@sejonglog.co.kr</td><td>박민아</td><td>딜러 대표</td><td>세종모터스</td><td><select class="inp group-select role-gated" aria-label="박민아 그룹"><option selected>기본그룹</option><option>테스트그룹</option><option>물류1팀</option><option>전체</option></select><span class="mute role-view-only">기본그룹</span></td><td>010-****-3345</td><td>2024-07-15 13:20</td><td>2026-06-30 09:48</td><td class="c"><button class="btn btn--sm btn--pri role-gated" data-group-mode>그룹 저장</button> <button class="btn btn--sm btn--danger role-gated" data-modal-open="delModal">삭제</button></td></tr>
+            <tr data-owner="dealer.choi@sejonglog.co.kr" data-company="한빛상사" data-managed-by=""><td class="strong">dealer.choi@sejonglog.co.kr</td><td>최유진</td><td>딜러 대표</td><td>한빛상사</td><td><select class="inp group-select role-gated" aria-label="최유진 그룹"><option selected>기본그룹</option><option>테스트그룹</option><option>물류1팀</option><option>전체</option></select><span class="mute role-view-only">기본그룹</span></td><td>010-****-4417</td><td>2025-01-08 08:55</td><td>2026-06-12 16:31</td><td class="c"><button class="btn btn--sm btn--pri role-gated" data-group-mode>그룹 저장</button> <button class="btn btn--sm btn--danger role-gated" data-modal-open="delModal">삭제</button></td></tr>
+            <tr data-owner="staff.jung@sejonglog.co.kr" data-company="세종모터스" data-managed-by="dealer.park@sejonglog.co.kr"><td class="strong">staff.jung@sejonglog.co.kr</td><td>정도현</td><td>딜러 직원</td><td>세종모터스</td><td><select class="inp group-select role-gated" aria-label="정도현 그룹"><option>기본그룹</option><option selected>테스트그룹</option><option>물류1팀</option><option>전체</option></select><span class="mute role-view-only">테스트그룹</span></td><td>010-****-5502</td><td>2025-02-20 15:07</td><td>2026-04-27 10:12</td><td class="c"><button class="btn btn--sm btn--pri role-gated" data-group-mode>그룹 저장</button> <button class="btn btn--sm btn--danger role-gated" data-modal-open="delModal">삭제</button></td></tr>
+            <tr data-owner="staff.kang@sejonglog.co.kr" data-company="한빛상사" data-managed-by="dealer.choi@sejonglog.co.kr"><td class="strong">staff.kang@sejonglog.co.kr</td><td>강서연</td><td>딜러 직원</td><td>한빛상사</td><td><select class="inp group-select role-gated" aria-label="강서연 그룹"><option selected>기본그룹</option><option>테스트그룹</option><option>물류1팀</option><option>전체</option></select><span class="mute role-view-only">기본그룹</span></td><td>010-****-6613</td><td>2025-04-03 11:33</td><td>2026-06-22 13:59</td><td class="c"><button class="btn btn--sm btn--pri role-gated" data-group-mode>그룹 저장</button> <button class="btn btn--sm btn--danger role-gated" data-modal-open="delModal">삭제</button></td></tr>
+            <tr data-owner="leader.yoon@customer.co.kr" data-company="(주)세종물류중부지점" data-managed-by="dealer.park@sejonglog.co.kr"><td class="strong">leader.yoon@customer.co.kr</td><td>윤태호</td><td>고객 대표</td><td>(주)세종물류중부지점</td><td><select class="inp group-select role-gated" aria-label="윤태호 그룹"><option>기본그룹</option><option>테스트그룹</option><option>물류1팀</option><option selected>전체</option></select><span class="mute role-view-only">전체</span></td><td>010-****-7724</td><td>2025-05-27 09:02</td><td>2026-03-11 17:40</td><td class="c"><button class="btn btn--sm btn--pri role-gated" data-group-mode>그룹 저장</button> <button class="btn btn--sm btn--danger role-gated" data-modal-open="delModal">삭제</button></td></tr>
+            <tr data-owner="leader.shin@customer.co.kr" data-company="동욱운수" data-managed-by="dealer.choi@sejonglog.co.kr"><td class="strong">leader.shin@customer.co.kr</td><td>신동욱</td><td>고객 대표</td><td>동욱운수</td><td><select class="inp group-select role-gated" aria-label="신동욱 그룹"><option>기본그룹</option><option>테스트그룹</option><option>물류1팀</option><option selected>전체</option></select><span class="mute role-view-only">전체</span></td><td>010-****-8830</td><td>2025-08-14 10:15</td><td>2026-06-05 08:27</td><td class="c"><button class="btn btn--sm btn--pri role-gated" data-group-mode>그룹 저장</button> <button class="btn btn--sm btn--danger role-gated" data-modal-open="delModal">삭제</button></td></tr>
+            <tr data-owner="user.oh@customer.co.kr" data-company="(주)세종물류중부지점" data-managed-by="leader.yoon@customer.co.kr"><td class="strong">user.oh@customer.co.kr</td><td>오하늘</td><td>고객 직원</td><td>(주)세종물류중부지점</td><td><select class="inp group-select role-gated" aria-label="오하늘 그룹"><option>전체</option><option>기본그룹</option><option>테스트그룹</option><option selected>물류1팀</option></select><span class="mute role-view-only">물류1팀</span></td><td>010-****-9941</td><td>2025-11-02 16:48</td><td>2026-02-18 12:03</td><td class="c"><button class="btn btn--sm btn--pri role-gated" data-group-mode>그룹 저장</button> <button class="btn btn--sm btn--danger role-gated" data-modal-open="delModal">삭제</button></td></tr>
+            <tr data-owner="user.lim@customer.co.kr" data-company="동욱운수" data-managed-by="leader.shin@customer.co.kr"><td class="strong">user.lim@customer.co.kr</td><td>임재현</td><td>고객 직원</td><td>동욱운수</td><td><select class="inp group-select role-gated" aria-label="임재현 그룹"><option>전체</option><option>기본그룹</option><option selected>테스트그룹</option><option>물류1팀</option></select><span class="mute role-view-only">테스트그룹</span></td><td>010-****-1057</td><td>2026-01-19 14:22</td><td>2026-06-18 10:36</td><td class="c"><button class="btn btn--sm btn--pri role-gated" data-group-mode>그룹 저장</button> <button class="btn btn--sm btn--danger role-gated" data-modal-open="delModal">삭제</button></td></tr>
+          </tbody>
+        </table>
+    </div>
+    </section>
+  </main>
+</div>
+
+<div class="dim" id="delModal">
+  <div class="modal sm">
+    <div class="modal__head"><div class="modal__title">사용자 삭제 확인</div><button class="modal__x" data-modal-close>✕</button></div>
+    <div class="modal__body">
+      <div style="font-size:13px;line-height:1.8;color:#444"><b>박민아 (dealer.park@sejonglog.co.kr)</b> 계정을 삭제하시겠습니까?</div>
+      <div class="mm-form-warning">삭제하면 로그인과 서비스 이용이 중지되며, 기존 이용 이력은 보존됩니다.</div>
+    </div>
+    <div class="modal__foot"><button class="btn" data-modal-close>취소</button><button class="btn btn--danger">삭제</button></div>
+  </div>
+</div>
+
+<div class="dim" id="userRequestModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="userRequestModalTitle">
+    <div class="modal__head"><div class="modal__title" id="userRequestModalTitle">계정신청 처리</div><button class="modal__x" type="button" data-user-request-close aria-label="계정신청 처리 창 닫기">✕</button></div>
+    <div class="modal__body">
+      <div class="mm-modal-guide" id="userRequestModalGuide">신청자와 생성될 권한을 확인한 후 처리해 주세요.</div>
+      <div class="tabs mm-decision-tabs" id="userRequestDecisionTabs" role="tablist" aria-label="계정신청 처리 선택">
+        <button class="active" type="button" role="tab" aria-selected="true" tabindex="0" data-user-request-decision="APRV">승인</button>
+        <button type="button" role="tab" aria-selected="false" tabindex="-1" data-user-request-decision="RJCT" data-i18n-key="request.action.reject">반려</button>
+      </div>
+      <dl class="mm-approval-grid" id="userRequestPreview"></dl>
+      <div class="mm-user-request-group is-hidden" id="userRequestGroupArea"><label for="userRequestGroup">배정 그룹</label><select class="inp" id="userRequestGroup"><option value="">그룹을 선택하세요</option><option>전체</option><option>기본그룹</option><option>테스트그룹</option><option>물류1팀</option></select><p>고객 직원 승인 시 실제 운영 그룹을 함께 배정합니다.</p></div>
+      <div class="mm-user-request-reason is-hidden" id="userRequestReasonArea"><label for="userRequestReason">반려 사유 <span aria-hidden="true">*</span></label><textarea class="inp" id="userRequestReason" maxlength="200" rows="3" placeholder="신청자에게 안내할 반려 사유를 입력하세요."></textarea><p class="mm-field-error is-hidden" id="userRequestReasonError">반려 사유를 입력해 주세요.</p></div>
+    </div>
+    <div class="modal__foot"><button class="btn" type="button" data-user-request-close>취소</button><button class="btn btn--pri" type="button" id="userRequestSubmit">승인 처리</button></div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+</body>
+</html>

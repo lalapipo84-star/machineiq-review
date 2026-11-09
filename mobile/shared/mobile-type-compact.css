@@ -1,0 +1,159 @@
+/* B and C share only typography. No colors, spacing, icons or layout rules here. */
+body.mobile-type-compact {
+  --linq-font-caption: 12px;
+  --linq-font-control: 14px;
+  --linq-font-body: 14px;
+  --linq-font-section: 16px;
+  --linq-font-page: 20px;
+  --mobile-font-min: 12px;
+  --mobile-font-label: 14px;
+  --mobile-font-body: 14px;
+  --mobile-font-row-title: 15px;
+  --mobile-font-kpi: 26px;
+  font-size: var(--linq-font-body);
+}
+
+/* Keep the approved main scale identical in both variants. */
+.mobile-type-compact :is(
+  .dashboard-panel__head button,
+  .dashboard-period strong,
+  .dashboard-legend span,
+  .dashboard-legend strong,
+  .mobile-inline-count-summary small
+) {
+  font-size: var(--linq-font-control);
+}
+.mobile-type-compact .dashboard-kpi strong {
+  font-size: var(--mobile-font-kpi);
+}
+
+/* Primary row identifiers, including dynamically rendered lists. */
+.mobile-type-compact :is(
+  .dashboard-alert strong,
+  .vehicle-mobile-row__head strong,
+  .service-mobile-row__head strong,
+  .service-overview-card__head strong,
+  .customer-mobile-row__head strong,
+  .approval-card__head strong,
+  .notification-history-copy header strong,
+  .priority-item__top strong,
+  .customer-vehicle-list strong,
+  .account-card strong,
+  .dialog-summary strong
+) {
+  font-size: var(--mobile-font-row-title);
+}
+
+/* Page and section headings; logo artwork is never resized by this sheet. */
+.mobile-type-compact :is(.sub-head h1, .settings-head h1, .login-card h1,
+  .signup-stage__heading h1, .signup-complete h1) {
+  font-size: var(--linq-font-page);
+}
+.mobile-type-compact :is(
+  .header-title,
+  .detail-hero h1,
+  .dashboard-panel__head h2,
+  .detail-card h2,
+  .settings-group h2,
+  .bottom-dialog__head h2,
+  .location-dialog header h2,
+  .sheet-head h2,
+  .signup-card h2,
+  .signup-summary h2,
+  .recovery-stage h2
+) {
+  font-size: var(--linq-font-section);
+}
+
+/* Regular information, controls and field values. */
+.mobile-type-compact :is(
+  .vehicle-search input,
+  .service-mobile-row p,
+  .notification-history-copy p,
+  .detail-definition dd,
+  .dialog-info dd,
+  .detail-service-list strong,
+  .setting-row strong,
+  .select-row strong,
+  .select-row select,
+  .settings-link-row strong,
+  .role-switch strong,
+  .role-quick-actions strong,
+  .customer-mobile-row__summary b,
+  .completion-check strong,
+  .dialog-field > span,
+  .dialog-field input,
+  .dialog-field select,
+  .dialog-field textarea,
+  .guide-copy h3,
+  .guide-copy p,
+  .pdf-download strong,
+  .contact-card > p,
+  .role-preview-settings > p,
+  .approval-review-note,
+  .approval-result-section > p strong,
+  .approval-result-section > p span,
+  .approval-queue-summary,
+  .approval-permission-preview > p,
+  .approval-dialog-section > h3,
+  .approval-bulk-list strong,
+  .signup-summary dd,
+  .agreement-item > p
+) {
+  font-size: var(--linq-font-body);
+}
+.mobile-type-compact :is(
+  .period-tabs button,
+  .mobile-status-tabs span,
+  .service-counts span,
+  .mobile-metric-tabs span,
+  .vehicle-filter-chips span,
+  .customer-mobile-row__actions a,
+  .customer-mobile-row__actions button,
+  .contact-actions a,
+  .contact-actions button,
+  .sub-primary-action,
+  .detail-primary-button,
+  .detail-secondary-button,
+  .approval-card__actions button,
+  .approval-inline-reject button,
+  .supply-bulk-cancel,
+  .supply-bulk-complete,
+  .dialog-company-link,
+  .logout-button,
+  .signup-control-row button,
+  .agreement-item button,
+  .recovery-control-row button
+) {
+  font-size: var(--linq-font-control);
+}
+.mobile-type-compact .filter-chips:not(.vehicle-filter-chips):not(.mobile-metric-tabs) button {
+  font-size: var(--linq-font-control);
+}
+
+/* Metadata, counts and bottom navigation retain their compact hierarchy. */
+.mobile-type-compact :is(.dashboard-alert small, .dashboard-alert time,
+  .dashboard-donut span, .bottom-nav span, .notification-item time,
+  .vehicle-approval-shortcut__copy small, .vehicle-approval-shortcut__count small,
+  .approval-workflow li, .approval-dialog-workflow li,
+  .approval-workflow b, .approval-dialog-workflow b, .approval-dialog-summary em,
+  .approval-date-filter span, .approval-date-filter i,
+  .approval-date-filter input, .approval-processor,
+  .approval-nickname-field > span small, .audit-summary p) {
+  font-size: var(--linq-font-caption);
+}
+
+/* Preserve the existing narrow-screen arrangements, including the single-line toolbar. */
+@media (max-width: 400px) {
+  .mobile-type-compact .notification-toolbar .period-tabs button,
+  .mobile-type-compact .notification-state-filters.filter-chips:not(.vehicle-filter-chips):not(.mobile-metric-tabs) button {
+    font-size: var(--linq-font-caption);
+  }
+}
+@media (max-width: 360px) {
+  .mobile-type-compact .mobile-inline-count-summary small,
+  .mobile-type-compact .dashboard-kpi__label > span,
+  .mobile-type-compact .mobile-status-tabs span {
+    font-size: var(--linq-font-caption);
+  }
+}

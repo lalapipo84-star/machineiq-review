@@ -1,0 +1,35 @@
+/* 운영관리 > 차량 소속 관리. 목록·필터·모달은 operations.css를 그대로 쓰고, 단계 카드와 점검 표시만 둔다. */
+body[data-ops-page="affiliation"] .vaf-sap{margin:0 0 16px;padding:10px 14px;border-radius:4px;background:var(--c-warn-bg,#fff9db);color:#8a5a00;font-size:13px;line-height:1.6}
+body[data-ops-page="affiliation"] .vaf-sap b{margin-right:8px;color:#b25b00}
+body[data-ops-page="affiliation"] .vaf-sap--inline{margin:0}
+body[data-ops-page="affiliation"] .vaf-steps{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin:0 0 16px}
+body[data-ops-page="affiliation"] .vaf-step{display:flex;flex-direction:column;gap:10px;padding:16px 18px;background:#fff;border:1px solid var(--c-line,#e0e0e0);border-radius:4px;min-width:0}
+body[data-ops-page="affiliation"] .vaf-step--wide{margin-bottom:16px}
+body[data-ops-page="affiliation"] .vaf-step__title{display:flex;align-items:center;gap:8px;margin:0;font-size:15px;font-weight:700}
+body[data-ops-page="affiliation"] .vaf-no{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--c-primary,#ff3600);color:#fff;font-size:12px;font-weight:700}
+body[data-ops-page="affiliation"] .vaf-step .ops-field{display:flex;flex-direction:column;gap:6px;font-size:13px}
+body[data-ops-page="affiliation"] .vaf-step .ops-field>span{color:var(--c-mute,#888);font-size:12px}
+body[data-ops-page="affiliation"] .vaf-step .inp{width:100%;height:40px}
+body[data-ops-page="affiliation"] .vaf-vins.inp{height:auto;min-height:150px;padding:8px 10px;font-family:Consolas,"D2Coding",monospace;resize:vertical}
+body[data-ops-page="affiliation"] .vaf-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+body[data-ops-page="affiliation"] .vaf-step .ops-inline-message{margin:0}
+body[data-ops-page="affiliation"] .vaf-step .ops-inline-actions{margin-top:auto}
+body[data-ops-page="affiliation"] .vaf-checks{display:flex;flex-wrap:wrap;gap:8px 20px;margin:0;padding:0;list-style:none;font-size:13px}
+body[data-ops-page="affiliation"] .vaf-checks li{display:inline-flex;align-items:center;gap:6px;color:#555}
+body[data-ops-page="affiliation"] .vaf-checks li span{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;font-size:11px;font-weight:800}
+body[data-ops-page="affiliation"] .vaf-checks .is-ok span{background:var(--c-ok-bg,#e6f7ec);color:var(--c-ok,#2b8a3e)}
+body[data-ops-page="affiliation"] .vaf-checks .is-warn span{background:var(--c-warn-bg,#fff9db);color:#b25b00}
+body[data-ops-page="affiliation"] .vaf-checks .is-bad span{background:var(--c-bad-bg,#ffe3e3);color:var(--c-bad,#e03131)}
+body[data-ops-page="affiliation"] .vaf-checks b{color:#000}
+body[data-ops-page="affiliation"] .vaf-summary{margin:0;font-size:13px;color:#555}
+body[data-ops-page="affiliation"] .vaf-summary b{color:#000}
+body[data-ops-page="affiliation"] .vaf-sep{margin:0 6px;color:#ccc}
+body[data-ops-page="affiliation"] .vaf-muted{color:var(--c-mute,#888)}
+body[data-ops-page="affiliation"] .vaf-form{display:grid;gap:12px;margin-top:14px}
+body[data-ops-page="affiliation"] .vaf-form textarea.inp{width:100%;min-height:76px;padding:8px 10px;resize:vertical}
+body[data-ops-page="affiliation"] .vaf-check{display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.5}
+body[data-ops-page="affiliation"] .vaf-check input,body[data-ops-page="affiliation"] .vaf-pick{width:16px;height:16px;margin:2px 0 0;accent-color:var(--c-primary,#ff3600);flex-shrink:0}
+body[data-ops-page="affiliation"] .vaf-picked{font-size:13px;color:var(--c-mute,#888);white-space:nowrap}
+body[data-ops-page="affiliation"] .vaf-picked b{color:var(--c-primary,#ff3600)}
+body[data-ops-page="affiliation"] .ops-list-head{flex-wrap:wrap;row-gap:8px}
+@media(max-width:1100px){body[data-ops-page="affiliation"] .vaf-steps{grid-template-columns:1fr}body[data-ops-page="affiliation"] .vaf-fields{grid-template-columns:1fr}}

@@ -1,0 +1,37 @@
+[Bobcat Machine IQ] Monatsbericht - 한빛물류 주식회사 / 기본그룹
+
+한빛물류 주식회사 / 기본그룹
+2026.09.01 – 2026.09.30 (Asia/Seoul)
+Aggregierte Ergebnisse für den Berichtszeitraum.
+Monatsvergleich
+Auslastung: 48 % → 50 % / Änderung +2 Pp.
+Betriebseffizienz: 80 % → 82 % / Änderung +2 Pp.
+Stöße: 60 Ereign. → 46 Ereign. / Änderung -14 Ereign.
+Kraftstoffverbrauch pro Stunde: 4,6 L/h → 4,2 L/h / Änderung -0,4 L/h
+Batterieladestand: 55 % → 58 % / Änderung +3 Pp.
+Fahrstrecke: 1.100 km → 1.216 km / Änderung +116 km
+Betriebszeit: 480 h → 500 h / Änderung +20 h
+Wartungsvorgänge: 3 Ereign.
+Fälliges Verbrauchsmaterial: 5 Positionen
+Fahrzeugfehler: 7 Ereign.
+Batteriefehler: 2 Ereign.
+Arbeitszeit: 410 h / 41 %
+Leerlaufzeit: 90 h / 9 %
+Ungenutzte Zeit: 500 h / 50 %
+Empfindlich · Stufe 3: 30 Ereign.
+Vorsicht · Stufe 4: 12 Ereign.
+Warnung · Stufe 5: 4 Ereign.
+Vorsicht + Warnung: 16 Ereign.
+
+Fälliges Verbrauchsmaterial · Stand: 2026.10.01 09:00 · Asia/Seoul
+
+Differenzen von Quoten werden in Prozentpunkten (Pp.) angezeigt. — bedeutet fehlend oder nicht berechenbar und ist kein gemessener Nullwert.
+Wartungen und Fehler sind Ereignisse im Berichtszeitraum. Verbrauchsmaterial umfasst zum angegebenen Zeitpunkt fällige Austauschpositionen.
+Zeitanteile beziehen sich auf die Summe aus Arbeits-, Leerlauf- und ungenutzter Zeit. Bei Summe null oder fehlender Grundlage werden keine Anteile angezeigt.
+Empfindlich, Vorsicht und Warnung sind getrennte Ereigniszahlen. Vorsicht + Warnung addiert diese beiden Stufen; Stufe 3 allein ist nicht die Gesamtzahl.
+Nach der Anmeldung können Sie den Monatsbericht unter Mein Konto → E-Mail-Einstellungen für regelmäßige Berichte ändern.
+Stand: 2026.10.01 09:00 · Asia/Seoul
+Dieser Bericht entspricht dem angegebenen Datenstand. Die Website kann später andere Informationen zeigen.
+Diese E-Mail erhalten Kunden, die Monatsberichte abonniert haben.
+Diese E-Mail wurde automatisch versendet. Bei Fragen wenden Sie sich bitte an den Kundendienst.
+Kundendienst: help.machineiq@doosan.com

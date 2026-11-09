@@ -1,0 +1,4 @@
+/* Existing Korean/shared layout rules; translation styles excluded. */
+html body[class] .hm__x { white-space: normal; overflow-wrap: anywhere; line-height: 1.3; }
+html[lang="ko"] .affiliation .vehicle-type { flex-wrap: wrap; }
+body.miq-current-shell .tbl-wrap:has(> table[data-wide-vehicle-list]) { overflow-x: auto !important; }

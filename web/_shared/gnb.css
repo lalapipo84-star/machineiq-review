@@ -1,0 +1,65 @@
+/* ══════════════════════════════════════════════════════════════
+   Bobcat MachineIQ '26 — GNB 전용 스타일 (레거시 페이지용)
+   자체 CSS를 완결적으로 갖고 있는 기존 페이지에 mockup.css 전체를 얹으면
+   .flag / .chip / .legend / .btn / .cell 등 콘텐츠 클래스가 충돌해 레이아웃이 깨진다.
+   그래서 nav.js 가 생성하는 GNB 마크업에 필요한 규칙만 분리해 제공한다.
+   (신규 페이지는 mockup.css 를 그대로 사용 — gnb.css 를 함께 넣지 말 것)
+   ══════════════════════════════════════════════════════════════ */
+
+.gnb{display:flex;align-items:center;height:52px;background:#ff3600;color:#fff;padding:0 20px;gap:28px;position:relative;z-index:100}
+.gnb__logo{display:flex;align-items:center;gap:6px;font-weight:700;font-size:16px;color:#fff;white-space:nowrap}
+.gnb__logo .iq{font-size:11px;vertical-align:super}
+.gnb__menu{display:flex;gap:24px;font-size:14px;font-weight:500;height:100%;align-items:center}
+.gnb__item{position:relative;height:100%;display:flex;align-items:center}
+.gnb__item>a{cursor:pointer;color:#fff;opacity:.9;padding:16px 0;display:block;text-decoration:none}
+.gnb__item.active>a{opacity:1;font-weight:700;box-shadow:inset 0 -2px 0 #fff}
+.gnb__item:hover>a{opacity:1}
+.gnb__sub{display:none;position:absolute;top:52px;left:-14px;min-width:184px;background:#fff;border:1px solid #e0e0e0;border-radius:0 0 4px 4px;box-shadow:0 6px 20px rgba(0,0,0,.12);padding:6px 0}
+.gnb__item:hover .gnb__sub{display:block}
+.gnb__sub a{display:block;padding:9px 16px;font-size:13px;color:#000000;font-weight:500;white-space:nowrap;text-decoration:none}
+.gnb__sub a small{font-size:10px;color:#aaa;font-weight:400}
+.gnb__sub a:hover{background:#fff5f3;color:#ff3600}
+.gnb__sub a.on{color:#ff3600;font-weight:700;background:#fff5f3}
+.gnb__right{margin-left:auto;display:flex;gap:16px;font-size:12px;color:#fff;opacity:.9;align-items:center;white-space:nowrap}
+.gnb__right .home{border:1px solid rgba(255,255,255,.55);border-radius:20px;padding:3px 10px;opacity:1;color:#fff;text-decoration:none}
+.gnb__right .home:hover{background:rgba(255,255,255,.15)}
+
+/* AS-IS 변형: 현행 다크 GNB */
+.gnb--asis{background:#1a1a1a}
+.gnb--asis .gnb__logo .bob{color:#ff3600}
+.gnb--asis .gnb__logo .iq{color:#ff3600}
+.gnb--asis .gnb__item>a{opacity:.85}
+.gnb--asis .gnb__item.active>a{box-shadow:inset 0 -2px 0 #ff3600}
+.gnb--asis .gnb__right{opacity:.8}
+.gnb--asis .gnb__right .home{border-color:rgba(255,255,255,.35)}
+
+/* MVP 진행상태 색상 구분 (미진행 화면은 GNB에서 도달 가능하되 구분 표시) */
+.gnb__sub a.nd{color:#9aa0a6}
+.gnb__sub a.nd::after{content:'미진행';float:right;margin-left:14px;font-size:10px;color:#b9bec4;border:1px solid #dcdfe3;border-radius:8px;padding:0 6px;line-height:15px}
+.gnb__sub a.nd:hover{background:#f4f5f7;color:#5f6368}
+.gnb__sub a.dl{color:#c8a0a0;text-decoration:line-through}
+.gnb__sub a.dl::after{content:'삭제';float:right;margin-left:14px;font-size:10px;color:#e03131;border:1px solid #f5c2c2;border-radius:8px;padding:0 6px;line-height:15px;text-decoration:none}
+
+/* 내비게이션 링크 리셋 — 레거시 페이지는 전역 a 규칙이 없어 밑줄/기본색이 남는다 */
+a.lnb__item{text-decoration:none;color:inherit;display:block}
+.page-head__bc a,.breadcrumb a{color:inherit;text-decoration:none}
+.page-head__bc a:hover,.breadcrumb a:hover{color:#ff3600;text-decoration:underline}
+
+/* 요구사항 반영 공통 조회 대상 — 기존 GNB/LNB를 건드리지 않고 GNB 바로 아래에만 배치 */
+.miq-target-selector{background:#fff;border-bottom:1px solid #ddd;color:#000000;position:relative;z-index:90;font-family:inherit}
+.miq-target-selector__row{height:64px;display:flex;align-items:center;gap:12px;padding:0 40px;box-sizing:border-box}
+.miq-target-selector__row>strong{font-size:18px;white-space:nowrap;margin-right:4px}
+.miq-target-selector__row label{display:flex;align-items:center;gap:8px;color:#555;font-size:13px;font-weight:700;white-space:nowrap}
+.miq-target-selector select{height:38px;border:1px solid #d7d7d7;border-radius:4px;background:#fff;padding:0 34px 0 12px;color:#000000;font:inherit;min-width:248px}
+.miq-target-selector__current{height:38px;display:inline-flex;align-items:center;padding:0 12px;border:1px solid #ffb7a6;border-radius:4px;background:#fff5f2;color:#e9360b;font-size:13px;font-weight:700;white-space:nowrap}
+.miq-target-selector__detail{margin-left:auto;height:38px;padding:0 18px;border:1px solid #aaa;border-radius:4px;background:#fff;color:#000000;font:inherit;font-weight:700;cursor:pointer;white-space:nowrap}
+.miq-target-selector__detail:hover{border-color:#ff3600;color:#ff3600}
+.miq-target-selector__panel{padding:14px 40px 18px;border-top:1px solid #eee;background:#fafafa}
+.miq-target-selector__panel[hidden]{display:none}
+.miq-target-selector__panel-head{display:flex;align-items:baseline;gap:12px;margin-bottom:10px}
+.miq-target-selector__panel-head strong{font-size:16px}.miq-target-selector__panel-head span{font-size:12px;color:#777}
+.miq-target-selector__search{display:flex;max-width:580px}.miq-target-selector__search input{flex:1;height:38px;border:1px solid #ccc;border-radius:4px 0 0 4px;padding:0 12px;font:inherit}.miq-target-selector__search button{width:72px;border:0;border-radius:0 4px 4px 0;background:#ff3600;color:#fff;font-weight:700;cursor:pointer}
+.miq-target-selector__results{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px;max-height:150px;overflow:auto;color:#777;font-size:13px}
+.miq-target-selector__results button{display:flex;flex-direction:column;align-items:flex-start;gap:3px;border:1px solid #ddd;border-radius:4px;background:#fff;padding:9px 11px;text-align:left;cursor:pointer}.miq-target-selector__results button:hover{border-color:#ff3600}.miq-target-selector__results button span{font-size:11px;color:#777}
+.miq-target-selector.is-vehicle-scope select:disabled{opacity:1;color:#000000;background:#fff;cursor:default;-webkit-text-fill-color:#000000}
+@media(max-width:1280px){.miq-target-selector__row{padding:0 20px}.miq-target-selector select{min-width:190px}.miq-target-selector__current{display:none}.miq-target-selector__results{grid-template-columns:repeat(2,minmax(0,1fr))}}

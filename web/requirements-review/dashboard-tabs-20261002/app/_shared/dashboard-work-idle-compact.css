@@ -1,0 +1,85 @@
+/* Comparison-page additions. Shared dashboard assets remain unchanged. */
+.dc-canvas .dc-card>.dc-head{gap:12px}
+.dc-canvas .dc-card-meta{margin-left:0;justify-content:flex-start}
+.dc-canvas .dc-basis.is-period::before{content:'';display:inline-block;width:4px;height:4px;margin-right:5px;vertical-align:2px;background:var(--dc-orange);border-radius:50%}
+#dcLive>.dc-head,#dcPeriod>.dc-head{flex-wrap:wrap}
+#dcLive .dc-card-meta,#dcPeriod .dc-card-meta{gap:8px;font-size:12px;line-height:18px;color:var(--dc-muted)}
+#dcLive .dc-table-tools,#dcPeriod .dc-table-tools{flex-shrink:0}
+#dcSummary .dc-period-fault{margin-left:auto}
+#dcSummary .dc-scope-count{font-size:12px;color:var(--dc-muted);white-space:nowrap}
+/* Reuse the former footer row for the charts; actions stay at the top right. */
+.dc-overview-row>.dc-card>.dc-foot{display:none}
+.dc-overview-row .dc-head-link{margin-left:auto;flex-shrink:0;color:#71818d;font-size:12px;line-height:17px;white-space:nowrap}
+.dc-overview-row .dc-body{padding:4px 16px 12px}
+#dcFleet .dc-body{align-items:center}
+#dcFleet .dc-donut{width:106px;height:106px}
+#dcFleet .dc-donut>div{width:84px;height:84px}
+#dcFleet .dc-donut strong{font-size:29px}
+#dcAttention .dc-body{justify-content:center}
+#dcAttention .dc-maintenance{grid-template-columns:repeat(3,minmax(0,1fr));gap:0;min-height:148px}
+#dcAttention .dc-maintenance-supplies{display:contents}
+#dcAttention .dc-maintenance-fault,#dcAttention .dc-maintenance-supply{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:6px 8px;border:0;border-radius:0;background:transparent;text-align:center}
+#dcAttention .dc-maintenance-fault{border-right:1px solid #edf0f3}
+#dcAttention .dc-maintenance-supply+.dc-maintenance-supply{border-left:1px solid #edf0f3}
+#dcAttention .dc-alert-icon{width:34px;height:34px;border-radius:8px}
+#dcAttention .dc-alert-icon svg{width:22px;height:22px}
+#dcAttention .dc-maintenance-fault .dc-alert-icon{background:#fff0f1;color:var(--dc-fault)}
+#dcAttention .dc-maintenance-label{color:var(--dc-ink);font-weight:500}
+#dcAttention .dc-maintenance-value{height:39px;align-items:baseline;align-self:center;justify-content:center}
+#dcAttention .dc-maintenance-value strong{font-size:34px;line-height:39px}
+#dcAttention .dc-maintenance-supply.is-need:not(.is-zero) .dc-maintenance-value strong{color:var(--dc-need)}
+#dcAttention .dc-maintenance-supply.is-soon:not(.is-zero) .dc-maintenance-value strong{color:var(--dc-soon)}
+#dcAttention .dwi-maintenance-action{display:flex;align-items:center;gap:5px;font-size:12px;line-height:17px;color:var(--dc-muted)}
+#dcAttention .dwi-maintenance-action>span{font-size:16px;color:#81909a}
+#dcLive [data-service-kind="error"] .dc-company-alert-label svg{color:var(--dc-fault)}
+#dcLive [data-service-kind="need"] .dc-company-alert-label svg{color:var(--dc-need)}
+#dcLive [data-service-kind="soon"] .dc-company-alert-label svg{color:var(--dc-soon)}
+/* Operating-efficiency contents retain the original outer card dimensions. */
+#dcToday.dwi-card .dc-body{align-items:center}
+#dcToday .dwi-layout{display:flex;align-items:center;justify-content:center;gap:28px;width:100%;max-width:510px;margin:0 auto;min-width:0}
+#dcToday .dwi-ring{width:144px;height:144px;flex:0 0 144px;border-radius:50%;display:grid;place-items:center}
+#dcToday .dwi-ring-center{width:112px;height:112px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+#dcToday .dwi-ring-center>div{display:flex;align-items:baseline;gap:2px;line-height:31px}
+#dcToday .dwi-ring strong{font-size:33px;line-height:35px;font-weight:600;letter-spacing:-.7px;color:var(--dc-ink)}
+#dcToday .dwi-ring small{font-size:12px;color:var(--dc-muted)}
+#dcToday .dwi-ring-center>span{font-size:11px;color:var(--dc-muted);white-space:nowrap;line-height:18px}
+#dcToday .dwi-metrics{flex:1;min-width:0;display:grid;gap:9px}
+#dcToday .dwi-row{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:29px}
+#dcToday .dwi-label{display:flex;align-items:center;gap:7px;font-size:13px;line-height:20px;color:var(--dc-muted);white-space:nowrap}
+#dcToday .dwi-dot{width:7px;height:7px;border-radius:50%;flex:none}.dwi-dot.is-work{background:#ff3600}.dwi-dot.is-idle{background:#bbc9d2}
+#dcToday .dwi-value{display:flex;align-items:baseline;justify-content:flex-end;gap:4px;white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--dc-ink)}
+#dcToday .dwi-value strong{font-size:25px;line-height:29px;font-weight:600;letter-spacing:-.55px}
+#dcToday .dwi-value small{font-size:12px;color:var(--dc-muted)}
+#dcToday .dwi-total{border-top:1px solid #e9edf1;padding-top:8px;margin-top:1px}
+#dcToday .dwi-total strong{font-size:17px;line-height:22px;letter-spacing:-.25px}
+@container dashboard-content (min-width:1041px) and (max-width:1400px){
+ .dc-overview-row .dc-head-link{font-size:11px}
+ #dcFleet .dc-ratio-body{gap:8px}
+ #dcFleet .dc-donut{width:94px;height:94px}
+ #dcFleet .dc-donut>div{width:74px;height:74px}
+ #dcToday .dwi-layout{gap:14px}
+ #dcToday .dwi-ring{width:120px;height:120px;flex-basis:120px}
+ #dcToday .dwi-ring-center{width:92px;height:92px}
+ #dcToday .dwi-ring strong{font-size:29px}
+ #dcToday .dwi-ring-center>span{font-size:10px}
+ #dcToday .dwi-label{font-size:12px;gap:5px}
+ #dcToday .dwi-value strong{font-size:22px}
+ #dcToday .dwi-total strong{font-size:16px}
+}
+@container dashboard-content (max-width:1040px){
+ #dcToday .dwi-layout{gap:22px;max-width:580px}
+ #dcToday .dwi-ring{width:92px;height:92px;flex-basis:92px}
+ #dcToday .dwi-ring-center{width:70px;height:70px}
+ #dcToday .dwi-ring strong{font-size:23px;line-height:25px}
+ #dcToday .dwi-ring-center>span{font-size:9px;line-height:14px}
+ #dcToday .dwi-metrics{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+ #dcToday .dwi-row{display:grid;justify-content:center;gap:5px}
+ #dcToday .dwi-label{font-size:12px}
+ #dcToday .dwi-value{justify-content:center}
+ #dcToday .dwi-value strong{font-size:22px}
+ #dcToday .dwi-total{border-top:0;border-left:1px solid #e9edf1;padding-top:0;padding-left:16px;margin-top:0}
+}
+@container dashboard-content (min-width:1041px) and (max-width:1200px){
+ html[lang="en"] #dcToday .dc-head-link>span{display:none}
+ html[lang="en"] #dcToday .dc-head-link{font-size:16px;min-width:24px;text-align:center}
+}

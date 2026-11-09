@@ -1,0 +1,15 @@
+/* 현황관리 > 전체 사용자. 목록·필터·모달 레이아웃은 operations.css를 그대로 쓰고, 이 화면에만 필요한 표시만 둔다. */
+body[data-ops-page="admin-all-users"] .aau-muted{color:var(--c-mute,#888)}
+body[data-ops-page="admin-all-users"] .aau-risk{color:var(--c-bad,#e03131);font-weight:700}
+body[data-ops-page="admin-all-users"] .aau-detail-actions{margin:14px 0 4px}
+body[data-ops-page="admin-all-users"] .aau-subtitle{margin:18px 0 8px;font-size:14px;font-weight:700}
+body[data-ops-page="admin-all-users"] .aau-history{margin:0;padding:0 0 0 18px;font-size:13px;line-height:1.8;color:#333}
+body[data-ops-page="admin-all-users"] .aau-form{display:grid;gap:12px;margin-top:14px}
+body[data-ops-page="admin-all-users"] .aau-form textarea.inp{width:100%;min-height:76px;padding:8px 10px;resize:vertical}
+body[data-ops-page="admin-all-users"] .aau-check{display:flex;align-items:center;gap:8px;font-size:13px}
+body[data-ops-page="admin-all-users"] .aau-check input{width:16px;height:16px;accent-color:var(--c-primary,#ff3600)}
+body[data-ops-page="admin-all-users"] .aau-warn{color:var(--c-bad,#e03131);font-weight:600}
+body[data-ops-page="admin-all-users"] .aau-pw-table{width:100%;margin-top:8px}
+body[data-ops-page="admin-all-users"] .aau-pw{font-family:Consolas,"D2Coding",monospace;font-size:15px;font-weight:700;letter-spacing:.5px;padding:2px 6px;border-radius:4px;background:var(--c-soft,#fafbfc);border:1px solid var(--c-line2,#e5e7eb);user-select:all}
+body[data-ops-page="admin-all-users"] .ops-list-head{flex-wrap:wrap;row-gap:8px}
+body[data-ops-page="admin-all-users"] .ops-list-head .ops-actions{flex-wrap:wrap;justify-content:flex-end}

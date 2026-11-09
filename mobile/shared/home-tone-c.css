@@ -1,0 +1,44 @@
+/* C shares B's joined status tabs; all other C surfaces remain unchanged. */
+.mobile-tone-c .mobile-status-tabs {
+  --tone-line:#dfe2e5;
+  --tone-charcoal:#333333;
+  gap:0;
+  padding:0;
+  overflow:hidden;
+  border:1px solid var(--tone-line);
+  border-radius:var(--linq-radius-control);
+  background:#ffffff;
+}
+
+.mobile-tone-c .mobile-status-tabs button {
+  display:flex;
+  flex-wrap:nowrap;
+  white-space:nowrap;
+  color:var(--tone-charcoal);
+  border-radius:0;
+  background:#ffffff;
+  box-shadow:none;
+}
+
+.mobile-tone-c .mobile-status-tabs button > svg,
+.mobile-tone-c .mobile-status-tabs button > strong {
+  flex:none;
+}
+
+.mobile-tone-c .mobile-status-tabs .mobile-status-tabs__label {
+  min-width:0;
+}
+
+.mobile-tone-c .mobile-status-tabs button + button {
+  border-left:1px solid var(--tone-line);
+}
+
+.mobile-tone-c .mobile-status-tabs button.is-active {
+  color:#ffffff;
+  background:var(--linq-color-brand);
+  box-shadow:none;
+}
+
+.mobile-tone-c .mobile-status-tabs button.is-active :is(span, strong, svg) {
+  color:#ffffff;
+}

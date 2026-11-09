@@ -1,0 +1,37 @@
+[Bobcat Machine IQ] Monthly report - 한빛물류 주식회사 / 기본그룹
+
+한빛물류 주식회사 / 기본그룹
+2026.09.01 – 2026.09.30 (Asia/Seoul)
+No collected data is available for this period. Missing values are not shown as zero.
+Month comparison
+Utilization: — (No data) → — (No data) / Change — (No data)
+Operating efficiency: — (No data) → — (No data) / Change — (No data)
+Impacts: — (No data) → — (No data) / Change — (No data)
+Fuel consumption per hour: — (No data) → — (No data) / Change — (No data)
+Battery charge level: — (No data) → — (No data) / Change — (No data)
+Distance traveled: — (No data) → — (No data) / Change — (No data)
+Operating time: — (No data) → — (No data) / Change — (No data)
+Maintenance records: — (No data)
+Consumables due: — (No data)
+Vehicle faults: — (No data)
+Battery faults: — (No data)
+Working time: — (No data) / — (No data)
+Idle time: — (No data) / — (No data)
+Unused time: — (No data) / — (No data)
+Sensitive · Level 3: — (No data)
+Caution · Level 4: — (No data)
+Warning · Level 5: — (No data)
+Caution + warning: — (No data)
+
+Consumables due · As of: 2026.10.01 09:00 · Asia/Seoul
+
+Rate differences are percentage points (pp). — means unavailable or not calculable, and is distinct from a measured zero.
+Maintenance and faults are event counts within the reporting period. Consumables are items due for replacement at the stated reference time.
+Time shares use the sum of working, idle and unused time. Shares are omitted when the total is zero or the basis is unavailable.
+Sensitive, caution and warning are separate event counts. Caution + warning combines those two levels; sensitive events alone are not the total.
+After signing in, change monthly report delivery in My account → Regular report Email settings.
+As of: 2026.10.01 09:00 · Asia/Seoul
+This report reflects the stated reference time. Information on the website may change later.
+This email is provided to customers who have opted in to monthly reports.
+This is an automated email. Please contact customer support if you need help.
+Customer support: help.machineiq@doosan.com

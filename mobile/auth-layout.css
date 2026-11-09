@@ -1,0 +1,7 @@
+/* Customer auth only: keep the existing form inside narrow viewports. */
+.login-page { grid-template-columns:minmax(0,1fr); }
+.login-card,.login-field,.password-input { min-width:0; }
+#mobile-login-form,#forced-password-form { grid-template-columns:minmax(0,1fr); }
+.login-field input { min-width:0; }
+.save-id-row { flex-wrap:wrap; row-gap:6px; }
+.save-id-help { white-space:normal; word-break:keep-all; }

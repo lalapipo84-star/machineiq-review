@@ -1,0 +1,6 @@
+.miq-list-pagination{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:14px;color:#647889;font-size:13px}.miq-list-pagination[hidden]{display:none}.miq-list-pagination nav{display:flex;gap:5px}.miq-list-pagination:not(.miq-list-pagination--operations) button{min-width:32px;height:32px;padding:0 10px;background:#fff;border:1px solid #dce1e6;border-radius:4px;color:inherit;font:inherit;cursor:pointer}.miq-list-pagination:not(.miq-list-pagination--operations) button[aria-current=page]{border-color:#ff3600;color:#ff3600}.miq-list-pagination:not(.miq-list-pagination--operations) button:disabled{opacity:.4;cursor:default}
+/* Management uses the existing operations footer: outside the table, range
+   on the left and the same 30px filled-current-page buttons on the right. */
+.miq-list-pagination--operations{margin:16px 0;font-size:12px;color:var(--c-mute)}
+.miq-list-pagination--operations nav{gap:4px}
+.miq-list-pagination--operations .btn{min-width:30px;height:30px}

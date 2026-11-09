@@ -1,0 +1,157 @@
+/* GENERATED from master/observation-profiles.json. Build: node scripts/build-web-observation-profiles.cjs */
+(function(root){root.MIQ_MOCK_DATA=root.MIQ_MOCK_DATA||{};root.MIQ_MOCK_DATA.observationProfiles={
+  "schemaVersion": "1.0.0",
+  "kind": "demo-generation-profiles",
+  "measuredTelemetry": false,
+  "timeZone": "Asia/Seoul",
+  "schedule": {
+    "startHour": 8,
+    "endHour": 18,
+    "description": "Demo only: 10 hours per calendar day; not a production working calendar."
+  },
+  "provenance": "2026-09-24: explicitly calibrated from the 13 existing metric records using 22 demo operating days. The original undated snapshot is not measured daily telemetry. Missing catalog vehicles have no profile.",
+  "profiles": [
+    {
+      "vin": "FBA32_224250271",
+      "companyId": "1933",
+      "dailyRunningMinutes": 21,
+      "workingShare": 0.9327548806941431,
+      "kmPerRunningHour": 2.0824295010845986,
+      "dailyShockCount": 0.09090909090909091,
+      "fuelLitresPerHour": null,
+      "batteryKwhPerHour": 2.4,
+      "batteryGaugeSource": "fleet.soc.fixed-demo"
+    },
+    {
+      "vin": "FBD25_113920044",
+      "companyId": "1933",
+      "dailyRunningMinutes": 262,
+      "workingShare": 0.77997227997228,
+      "kmPerRunningHour": 2.2037422037422036,
+      "dailyShockCount": 0.4090909090909091,
+      "fuelLitresPerHour": 3.8,
+      "batteryKwhPerHour": null
+    },
+    {
+      "vin": "FBA18_224250094",
+      "companyId": "1933",
+      "dailyRunningMinutes": 45,
+      "workingShare": 0.644,
+      "kmPerRunningHour": 0.8999999999999999,
+      "dailyShockCount": 0.045454545454545456,
+      "fuelLitresPerHour": null,
+      "batteryKwhPerHour": 1.9
+    },
+    {
+      "vin": "FBA20_224250312",
+      "companyId": "1933",
+      "dailyRunningMinutes": 58,
+      "workingShare": 0.8861660079051383,
+      "kmPerRunningHour": 1.6126482213438735,
+      "dailyShockCount": 0.13636363636363635,
+      "fuelLitresPerHour": null,
+      "batteryKwhPerHour": 2.1,
+      "batteryGaugeSource": "fleet.soc.fixed-demo"
+    },
+    {
+      "vin": "FBA25_224250188",
+      "companyId": "1933",
+      "dailyRunningMinutes": 118,
+      "workingShare": 0.9141647421093149,
+      "kmPerRunningHour": 1.3394919168591224,
+      "dailyShockCount": 0.22727272727272727,
+      "fuelLitresPerHour": null,
+      "batteryKwhPerHour": 2.8,
+      "batteryGaugeSource": "fleet.soc.fixed-demo"
+    },
+    {
+      "vin": "FBD30_113920117",
+      "companyId": "1933",
+      "dailyRunningMinutes": 241,
+      "workingShare": 0.7399660825325043,
+      "kmPerRunningHour": 2.114188807235726,
+      "dailyShockCount": 0.3181818181818182,
+      "fuelLitresPerHour": 4.1,
+      "batteryKwhPerHour": null
+    },
+    {
+      "vin": "FBA16_224250045",
+      "companyId": "1933",
+      "dailyRunningMinutes": 27,
+      "workingShare": 0.9493243243243243,
+      "kmPerRunningHour": 1.2162162162162162,
+      "dailyShockCount": 0,
+      "fuelLitresPerHour": null,
+      "batteryKwhPerHour": 1.6,
+      "batteryGaugeSource": "fleet.soc.fixed-demo"
+    },
+    {
+      "vin": "FBA35_224250403",
+      "companyId": "1933",
+      "dailyRunningMinutes": 168,
+      "workingShare": 0.8971026265908475,
+      "kmPerRunningHour": 1.2347684809098294,
+      "dailyShockCount": 0.18181818181818182,
+      "fuelLitresPerHour": null,
+      "batteryKwhPerHour": 3.2,
+      "batteryGaugeSource": "fleet.soc.fixed-demo"
+    },
+    {
+      "vin": "FBD18_113920062",
+      "companyId": "1933",
+      "dailyRunningMinutes": 142,
+      "workingShare": 0.8200703100031959,
+      "kmPerRunningHour": 2.7420901246404603,
+      "dailyShockCount": 0.2727272727272727,
+      "fuelLitresPerHour": 3.5,
+      "batteryKwhPerHour": null
+    },
+    {
+      "vin": "FBA22_224250226",
+      "companyId": "1933",
+      "dailyRunningMinutes": 50,
+      "workingShare": 0.7119565217391305,
+      "kmPerRunningHour": 1.1956521739130437,
+      "dailyShockCount": 0.09090909090909091,
+      "fuelLitresPerHour": null,
+      "batteryKwhPerHour": 2
+    },
+    {
+      "vin": "FBA32_DEMO_CS01",
+      "companyId": "1933",
+      "dailyRunningMinutes": 98,
+      "workingShare": 0.8796296296296297,
+      "kmPerRunningHour": 2.3333333333333335,
+      "dailyShockCount": 0.09090909090909091,
+      "fuelLitresPerHour": null,
+      "batteryKwhPerHour": 2.8,
+      "batteryGaugeSource": "fleet.soc.fixed-demo"
+    },
+    {
+      "vin": "FBA18_DEMO_CS02",
+      "companyId": "1933",
+      "dailyRunningMinutes": 44,
+      "workingShare": 0.75,
+      "kmPerRunningHour": 2.25,
+      "dailyShockCount": 0,
+      "fuelLitresPerHour": null,
+      "batteryKwhPerHour": 3.2,
+      "batteryGaugeSource": "fleet.soc.fixed-demo"
+    },
+    {
+      "vin": "FBD30_DEMO_CS03",
+      "companyId": "1933",
+      "dailyRunningMinutes": 128,
+      "workingShare": 0.8191489361702128,
+      "kmPerRunningHour": 2.6808510638297873,
+      "dailyShockCount": 0.045454545454545456,
+      "fuelLitresPerHour": 3.7,
+      "batteryKwhPerHour": null
+    }
+  ],
+  "batteryChargeScenario": {
+    "kind": "fixed-demo-from-existing-master-soc",
+    "measuredHistory": false,
+    "description": "Explicit constant demo charge levels across sample dates. Numeric source stays only in fleet.vehicles[].soc; not production historical readings. Real reports use server batteryRate derived from GAUGE_RATE. Missing/non-battery values remain unavailable; no energy conversion."
+  }
+};}(window));

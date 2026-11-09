@@ -1,0 +1,14 @@
+/* Comparison-report chart tokens; preserve each chart's metric colors and layout. */
+body[class] .line-chart text,body[class] .bar-chart text,body[class] .miq-chart text{font-family:'Noto Sans KR',sans-serif;font-size:12px;fill:#767676}
+body[class] .line-chart .grid,body[class] .bar-chart .grid,body[class] .miq-chart .grid{stroke:#f1f3f5;stroke-width:1;stroke-dasharray:3 3}
+body[class] .line-chart .axis,body[class] .bar-chart .axis,body[class] .miq-chart .axis{stroke:#e9ecef;stroke-width:1}
+body[class] .line-chart .ln,body[class] .miq-chart .ln{fill:none;stroke-width:2.2;vector-effect:non-scaling-stroke}
+body .line-chart .hit,body .bar-chart .hit,body .miq-chart .hit{fill:transparent;cursor:crosshair}
+body .line-chart .vline,body .bar-chart .vline,body .miq-chart .vline{stroke:#dee2e6;stroke-width:1;display:none}
+body .line-chart .col.on .vline,body .bar-chart .col.on .vline,body .miq-chart .col.on .vline{display:block}
+body[class] .miq-chart-tip,body[class] .tip-box,body[class] .battery-chart-tip,body[class] .metrics-tip{background:#1a1a1a;color:#fff;border:0;border-radius:6px;padding:8px 10px;font-family:'Noto Sans KR',sans-serif;font-size:12px;line-height:1.65;box-shadow:0 4px 14px rgba(0,0,0,.18);pointer-events:none}
+body .miq-chart-tip{position:fixed;z-index:1300;white-space:pre-line;max-width:min(360px,calc(100vw - 16px))}
+body .miq-chart-tip[hidden]{display:none}
+body[class] .tip-box b{font-size:13px}
+body [data-chart-tip]:focus-visible{outline:2px solid #525962;outline-offset:2px}
+body[class] .hm__x{font-family:'Noto Sans KR',sans-serif;font-size:12px;color:#767676;white-space:nowrap;overflow:visible}

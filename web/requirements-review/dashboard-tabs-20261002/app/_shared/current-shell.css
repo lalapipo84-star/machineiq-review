@@ -1,0 +1,1312 @@
+/* Machine IQ 현재 화면 공통 셸
+   요구사항 본문 컴포넌트에는 관여하지 않고 GNB·조회 대상·LNB·푸터만 정렬한다. */
+body.miq-current-shell {
+  --miq-orange: #ff3600;
+  --miq-action: #ff3600;
+  --miq-action-hover: #d92e00;
+  --miq-action-active: #cc2b00;
+  --miq-line: #dedede;
+  --miq-side: 240px;
+  margin: 0;
+  min-width: 1180px;
+  color: #000000;
+  background: #fff;
+  font-family: "Noto Sans KR", "Malgun Gothic", Arial, sans-serif;
+}
+
+/* 목업 검토용 설명은 DOM을 유지하되 고객용 구현 화면에서는 노출하지 않는다. */
+body.miq-current-shell [hidden],
+body.miq-current-shell .role-picker[hidden],
+body.miq-current-shell .policy-callout[hidden],
+body.miq-current-shell .note[hidden],
+body.miq-current-shell .mockup-only[hidden] {
+  display: none !important;
+}
+
+body.miq-current-shell .gnb {
+  position: relative;
+  z-index: 120;
+  display: flex;
+  align-items: stretch;
+  height: 64px;
+  min-height: 64px;
+  padding: 0 30px;
+  color: #fff;
+  background: var(--miq-orange);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+}
+body.miq-current-shell .gnb__logo {
+  display: flex;
+  align-items: center;
+  flex: 0 0 270px;
+  gap: 8px;
+  padding: 0;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+body.miq-current-shell .gnb__logo img {
+  width: 235px;
+  height: 50px;
+  object-fit: contain;
+  object-position: left center;
+}
+body.miq-current-shell .gnb__menu {
+  display: flex;
+  align-items: stretch;
+  flex: 1 1 auto;
+  height: 64px;
+  gap: 0;
+}
+body.miq-current-shell .gnb__item {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  flex: 0 1 120px;
+  min-width: 92px;
+  height: 64px;
+  padding: 0;
+}
+body.miq-current-shell .gnb__item > a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 64px;
+  padding: 0 10px;
+  color: rgba(255, 255, 255, .78);
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+body.miq-current-shell .gnb__item.active > a { color: #fff; }
+body.miq-current-shell .gnb__item.active > a::after { display: none; }
+body.miq-current-shell .gnb__sub { display: none !important; }
+body.miq-current-shell .gnb__mega {
+  position: absolute;
+  z-index: 119;
+  top: 64px;
+  left: 0;
+  display: none;
+  width: 100%;
+  min-height: 260px;
+  padding: 30px 0 34px;
+  border-bottom: 1px solid #ddd;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
+  box-sizing: border-box;
+}
+body.miq-current-shell .gnb__mega.is-open { display: block; }
+body.miq-current-shell .gnb__mega-inner {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(120px, 1fr));
+  gap: 34px;
+  width: min(1180px, calc(100% - 120px));
+  margin: 0 auto;
+}
+body.miq-current-shell .gnb__mega-column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+body.miq-current-shell .gnb__mega-column strong {
+  margin: 0 0 4px;
+  color: #000000;
+  font-size: 17px;
+  font-weight: 800;
+}
+body.miq-current-shell .gnb__mega-column a {
+  color: #606060;
+  font-size: 14px;
+  line-height: 1.45;
+  text-decoration: none;
+}
+body.miq-current-shell .gnb__mega-column a:hover,
+body.miq-current-shell .gnb__mega-column a.active {
+  color: var(--miq-orange);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+body.miq-current-shell .gnb__right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 0 318px;
+  min-width: 300px;
+  height: 64px;
+  margin-left: auto;
+  gap: 0;
+  white-space: nowrap;
+}
+body.miq-current-shell .gnb__right .home,
+body.miq-current-shell .gnb__right > span {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  margin: 0;
+  padding: 0 14px;
+  color: #fff;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+body.miq-current-shell .gnb__right .gnb__logout { border-left: 1px solid rgba(255,255,255,.45); }
+body.miq-current-shell .miq-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+body.miq-current-shell .gnb__language {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin-right: 4px;
+}
+body.miq-current-shell .gnb__language select {
+  width: 62px;
+  height: 30px;
+  padding: 0 22px 0 10px;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.6);
+  border-radius: 3px;
+  outline: 0;
+  background: transparent;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: none;
+}
+body.miq-current-shell .gnb__language::after {
+  content: "";
+  position: absolute;
+  right: 9px;
+  top: 13px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #fff;
+  pointer-events: none;
+}
+body.miq-current-shell .gnb__language option { color: #000000; background: #fff; }
+
+/* 로그인 권한에 따른 화면 차이를 모든 TO-BE 화면에서 같은 위치에서 확인한다. */
+body.miq-current-shell[data-variant="tobe"] .gnb__right {
+  flex-basis: 470px;
+  min-width: 450px;
+}
+body.miq-current-shell[data-variant="tobe"] .gnb__role {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 30px;
+  margin-right: 8px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+body.miq-current-shell[data-variant="tobe"] .gnb__role select {
+  width: 112px;
+  height: 30px;
+  padding: 0 25px 0 9px;
+  border: 1px solid rgba(255,255,255,.65);
+  border-radius: 3px;
+  outline: 0;
+  background: transparent;
+  color: #fff;
+  font: 700 12px "Noto Sans KR", sans-serif;
+  cursor: pointer;
+  appearance: none;
+}
+body.miq-current-shell[data-variant="tobe"] .gnb__role::after {
+  content: "";
+  position: absolute;
+  right: 9px;
+  top: 13px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #fff;
+  pointer-events: none;
+}
+body.miq-current-shell[data-variant="tobe"] .gnb__role option {
+  color: #000000;
+  background: #fff;
+}
+
+/* 기간 조회 공통: 기존 화면의 우측 정렬·40px 제어 높이를 재사용한다. */
+body.miq-current-shell .filter-bar.miq-period-filter,
+body.miq-current-shell .finder.miq-period-filter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  min-height: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  gap: 6px;
+  flex: 0 0 auto;
+  border: 0;
+  background: transparent;
+}
+/* 제목 행 안으로 합쳐지지 않는 차량 상세형 기간 조회도 다음 카드와 16px 간격을 둔다. */
+body.miq-current-shell .layout > .main > .filter-bar.miq-period-filter {
+  margin-bottom: 16px;
+}
+body.miq-current-shell .miq-period-filter .period-tabs {
+  display: inline-flex;
+  align-items: stretch;
+  margin: 0;
+  gap: 0;
+  border: 0;
+}
+body.miq-current-shell .miq-period-filter .period-tabs button,
+body.miq-current-shell .miq-period-filter .btn-search,
+body.miq-current-shell .miq-period-filter > button,
+body.miq-current-shell .miq-period-filter .date-range,
+body.miq-current-shell .miq-period-filter input,
+body.miq-current-shell .miq-period-filter select {
+  height: 40px;
+  min-height: 40px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 14px;
+}
+body.miq-current-shell .miq-period-filter .period-tabs button {
+  min-width: 55px;
+  padding: 0 14px;
+  color: #000000;
+  border: 1px solid #ddd;
+  border-right: 0;
+  border-radius: 0;
+  background: #fff;
+}
+body.miq-current-shell .miq-period-filter .period-tabs button:first-child { border-radius: 4px 0 0 4px; }
+body.miq-current-shell .miq-period-filter .period-tabs button:last-child {
+  border-right: 1px solid #ddd;
+  border-radius: 0 4px 4px 0;
+}
+body.miq-current-shell .miq-period-filter .period-tabs button:nth-child(4):last-child {
+  min-width: 104px;
+}
+body.miq-current-shell .miq-period-filter .period-tabs button.active {
+  color: #fff;
+  border-color: #111;
+  background: #111;
+}
+body.miq-current-shell .miq-period-filter .date-range,
+body.miq-current-shell .ops-query-controls .date-range {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  padding: 0;
+  gap: 6px;
+  color: #777;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+body.miq-current-shell .miq-period-filter .btn-search {
+  min-width: 68px;
+  padding: 0 18px;
+  color: #fff;
+  border: 1px solid var(--miq-action) !important;
+  border-radius: 4px !important;
+  background: var(--miq-action) !important;
+  font-weight: 700;
+}
+body.miq-current-shell .miq-period-filter .btn-search:hover,
+body.miq-current-shell .miq-period-filter .btn-search:focus-visible {
+  border-color: #cc2b00 !important;
+  background: var(--miq-action-hover) !important;
+}
+body.miq-current-shell .miq-period-filter .btn-search:active {
+  border-color: #bf2900 !important;
+  background: var(--miq-action-active) !important;
+}
+body.miq-current-shell .miq-period-filter .miq-date-input {
+  width: 132px;
+  height: 40px;
+  min-height: 40px;
+  padding: 0 10px;
+  color: #777;
+  border: 1px solid #dfdfdf;
+  border-radius: 4px;
+  background: #f5f5f5;
+  font: 500 13px/1 "Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+body.miq-current-shell .miq-period-filter .miq-date-input.is-enabled {
+  color: #000000;
+  background: #fff;
+  cursor: pointer;
+}
+body.miq-current-shell .miq-period-filter .miq-date-input[hidden],
+body.miq-current-shell .miq-period-filter .miq-date-separator[hidden] {
+  display: none !important;
+}
+body.miq-current-shell .miq-period-filter .miq-date-separator {
+  color: #777;
+  font-size: 13px;
+}
+
+/* 화면 위치 안내는 모든 TO-BE 서브 화면에서 같은 위치와 간격으로 제공한다. */
+body.miq-current-shell .miq-breadcrumb {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  min-height: 18px;
+  margin: 0 0 12px;
+  color: #888;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  white-space: nowrap;
+}
+body.miq-current-shell .miq-breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+body.miq-current-shell .miq-breadcrumb a:hover,
+body.miq-current-shell .miq-breadcrumb a:focus-visible {
+  color: var(--miq-orange);
+  text-decoration: underline;
+}
+body.miq-current-shell .miq-breadcrumb__separator { color: #bbb; }
+
+body.miq-current-shell .layout > .main > .page-head,
+body.miq-current-shell .summary-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 40px;
+  margin: 0 0 16px;
+}
+body.miq-current-shell .summary-titlebar .summary-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+body.miq-current-shell .layout > .main > .page-head .miq-title-scope-heading,
+body.miq-current-shell .miq-title-period-row .miq-title-scope-heading,
+body.miq-current-shell .miq-service-header-row .miq-title-scope-heading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+body.miq-current-shell .layout > .main > .page-head .miq-title-scope-heading .page-head__title,
+body.miq-current-shell .miq-title-period-row .miq-title-scope-heading .page-head__title,
+body.miq-current-shell .miq-title-period-row .miq-title-scope-heading .page-title,
+body.miq-current-shell .miq-service-header-row .miq-title-scope-heading .page-title {
+  flex: 0 0 auto;
+}
+body.miq-current-shell [data-miq-title-scope] {
+  min-height: 28px;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+body.miq-current-shell .layout > .main > .page-head .page-head__title,
+body.miq-current-shell .miq-title-period-row .page-head__title,
+body.miq-current-shell .miq-title-period-row .page-title,
+body.miq-current-shell .miq-service-header-row .page-title,
+body.miq-current-shell .summary-titlebar .miq-page-title {
+  font-size: 24px;
+  line-height: 32px;
+}
+body.miq-current-shell .section-top.miq-empty-section-top { display: none !important; }
+
+/* 지도·관리 목록의 검색 컨트롤은 같은 40px 기준선으로 맞춘다. */
+body.miq-current-shell .miq-list-search > .inp,
+body.miq-current-shell .miq-list-search > button,
+body.miq-current-shell .miq-list-actions > .btn,
+body.miq-current-shell.miq-section-ops .ops-query-controls > .btn,
+body.miq-current-shell.miq-section-ops .ops-query-controls > .btn-search,
+body.miq-current-shell.miq-section-mgmt[data-variant="tobe"] .filter-bar > .inp,
+body.miq-current-shell.miq-section-mgmt[data-variant="tobe"] .filter-bar > .btn,
+body.miq-current-shell.miq-section-mgmt[data-variant="tobe"] .filter-bar > .btn-search {
+  height: 40px !important;
+  min-height: 40px;
+  box-sizing: border-box;
+}
+
+/* 서비스 4개 화면: 합의된 타이틀·조회 조건 한 줄 배치를 공통 적용한다. */
+body.miq-current-shell .miq-title-period-row,
+body.miq-current-shell .miq-service-header-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: 40px;
+  margin: 0 0 16px;
+}
+body.miq-current-shell .miq-title-period-row .page-head__title,
+body.miq-current-shell .miq-title-period-row .page-title,
+body.miq-current-shell .miq-service-header-row .page-title {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 40px;
+  min-height: 40px;
+  line-height: 1.25;
+  white-space: nowrap;
+  margin: 0;
+}
+body.miq-current-shell .miq-title-period-row .miq-period-filter,
+body.miq-current-shell .summary-titlebar .miq-period-filter,
+body.miq-current-shell .dashboard-period .period-heading > .miq-period-filter,
+body.miq-current-shell .miq-service-header-row .finder,
+body.miq-current-shell .miq-service-header-row .section-actions {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+body.miq-current-shell .miq-service-header-row .section-actions .btn {
+  height: 40px;
+  min-height: 40px;
+  padding-block: 0;
+}
+@media (max-width: 1360px) {
+  body.miq-current-shell .summary-titlebar {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  body.miq-current-shell .summary-titlebar .summary-heading {
+    flex: 1 0 100%;
+    min-height: 40px;
+  }
+  body.miq-current-shell .summary-titlebar .miq-period-filter {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+@media (max-width: 1360px) {
+  body.miq-current-shell .miq-title-period-row,
+  body.miq-current-shell .miq-service-header-row {
+    flex-wrap: wrap;
+  }
+  body.miq-current-shell .miq-title-period-row .miq-title-scope-heading,
+  body.miq-current-shell .miq-service-header-row .miq-title-scope-heading {
+    flex: 1 0 100%;
+    min-height: 40px;
+  }
+  body.miq-current-shell .miq-title-period-row .miq-period-filter,
+  body.miq-current-shell .miq-service-header-row .finder,
+  body.miq-current-shell .miq-service-header-row .section-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+body.miq-current-shell .miq-target-selector {
+  position: relative;
+  z-index: 110;
+  border: 0;
+  background: #fff;
+}
+
+body.miq-current-shell .miq-report-subnav {
+  position: relative;
+  z-index: 110;
+  height: 58px;
+  border-bottom: 1px solid #ddd;
+  background: #fff;
+  box-sizing: border-box;
+}
+body.miq-current-shell .miq-report-subnav__inner {
+  display: flex;
+  align-items: stretch;
+  gap: 42px;
+  height: 100%;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+body.miq-current-shell .miq-report-subnav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 118px;
+  padding: 0 4px;
+  color: #666;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+body.miq-current-shell .miq-report-subnav__link:hover,
+body.miq-current-shell .miq-report-subnav__link:focus-visible {
+  color: var(--miq-orange);
+}
+body.miq-current-shell .miq-report-subnav__link.is-active {
+  color: var(--miq-orange);
+  font-weight: 800;
+}
+/* 화면 제목은 화면명만 담당한다. 조회 범위는 결과 영역의 공통 계층 요약에서만 표시한다. */
+body.miq-current-shell .miq-page-scope,
+body.miq-current-shell .page-title [data-lnb-label],
+body.miq-current-shell .page-head__title [data-lnb-label] {
+  display: none !important;
+}
+
+body.miq-current-shell .miq-scope-summary {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  max-width: 100%;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1;
+  white-space: nowrap;
+}
+body.miq-current-shell .miq-scope-summary__count,
+body.miq-current-shell .miq-scope-summary__path {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 3px 10px;
+  box-sizing: border-box;
+  border-radius: 14px;
+}
+body.miq-current-shell .miq-scope-summary__count {
+  flex: 0 0 auto;
+  color: #000000;
+  border: 1px solid #d5dee3;
+  background: #fff;
+  font-weight: 700;
+}
+body.miq-current-shell .miq-scope-summary__separator {
+  display: none;
+}
+body.miq-current-shell .miq-scope-summary__path {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 520px;
+  overflow: hidden;
+  gap: 4px;
+  color: #d92e00;
+  border: 1px solid #ffb9a8;
+  background: #fff3ef;
+  font-weight: 700;
+}
+body.miq-current-shell .miq-scope-summary__path-label {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+body.miq-current-shell .miq-scope-summary__reset {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin: -1px -4px -1px 2px;
+  padding: 0;
+  color: inherit;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  font: inherit;
+  font-size: 17px;
+  line-height: 1;
+  cursor: pointer;
+}
+body.miq-current-shell .miq-scope-summary__reset:hover {
+  color: var(--miq-orange);
+  background: #ffe3db;
+}
+body.miq-current-shell .miq-scope-summary__reset:focus-visible {
+  outline: 2px solid var(--miq-orange);
+  outline-offset: 1px;
+}
+body.miq-current-shell .miq-analysis-scope {
+  display: flex;
+  align-items: center;
+  min-height: 34px;
+  margin: -6px 0 12px;
+  padding: 0 2px;
+}
+body.miq-current-shell .miq-analysis-return {
+  display: flex;
+  align-items: center;
+  min-height: 34px;
+  margin: 0 0 10px;
+  gap: 12px;
+}
+body.miq-current-shell .miq-analysis-return__link,
+body.miq-current-shell .main .back-link {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  min-height: 31px;
+  gap: 5px;
+  padding: 5px 12px;
+  line-height: normal;
+  color: #ff3600;
+  border: 1px solid #ffd0c4;
+  border-radius: 4px;
+  background: #fff5f3;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+body.miq-current-shell .miq-analysis-return__link:hover,
+body.miq-current-shell .miq-analysis-return__link:focus-visible,
+body.miq-current-shell .main .back-link:hover,
+body.miq-current-shell .main .back-link:focus-visible {
+  background: #ffe9e3;
+}
+body.miq-current-shell .miq-analysis-return__scope {
+  min-width: 0;
+  overflow: hidden;
+}
+body.miq-current-shell .miq-report-subnav__link.is-active::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: var(--miq-orange);
+}
+
+body.miq-current-shell .miq-target-selector__row {
+  display: flex;
+  align-items: center;
+  min-height: 58px;
+  height: 58px;
+  padding: 0 100px 0 256px;
+  gap: 12px;
+  border-bottom: 1px solid var(--miq-line);
+  box-sizing: border-box;
+}
+body.miq-current-shell .miq-target-selector__row > strong {
+  flex: 0 0 auto;
+  margin-right: 4px;
+  font-size: 18px;
+  font-weight: 800;
+}
+body.miq-current-shell .miq-target-selector__row label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: #666;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+body.miq-current-shell .miq-target-selector__row select {
+  height: 38px;
+  min-height: 38px;
+  padding: 0 38px 0 14px;
+  border: 1px solid #d7d7d7;
+  border-radius: 4px;
+  color: #000000;
+  background: #fff;
+  font: 500 14px/1 "Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+body.miq-current-shell [data-target-company] { width: 248px; }
+body.miq-current-shell [data-target-vehicle] { width: 228px; }
+body.miq-current-shell .miq-target-selector__current {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 12px;
+  color: #e52d0a;
+  border: 1px solid #ffc0b2;
+  border-radius: 4px;
+  background: #fff6f3;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+body.miq-current-shell .miq-target-selector__detail {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  height: 38px;
+  margin-left: auto;
+  padding: 0 18px;
+  color: #000000;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+body.miq-current-shell .miq-target-selector__detail-icon {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+body.miq-current-shell .miq-target-selector__panel {
+  position: absolute;
+  top: 58px;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 24px;
+  width: auto;
+  max-height: 230px;
+  padding: 16px 100px 20px 256px;
+  overflow: hidden;
+  border: 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0;
+  background: #fff;
+  box-shadow: 0 10px 20px rgba(0,0,0,.08);
+  box-sizing: border-box;
+}
+body.miq-current-shell .miq-target-selector__panel[hidden] { display: none !important; }
+body.miq-current-shell .miq-target-selector__search-field > span {
+  display: block;
+  margin-bottom: 8px;
+  color: #000000;
+  font-size: 13px;
+  font-weight: 700;
+}
+body.miq-current-shell .miq-target-selector__search-control {
+  display: flex;
+  gap: 8px;
+}
+body.miq-current-shell .miq-target-selector__search-control input {
+  min-width: 0;
+  width: auto;
+  height: 36px;
+  flex: 1;
+  padding: 0 14px;
+  border: 1px solid #d7d7d7;
+  border-radius: 4px;
+  color: #000000;
+  background: #fff;
+  font: 500 13px/1 "Noto Sans KR", "Malgun Gothic", sans-serif;
+  box-sizing: border-box;
+}
+body.miq-current-shell .miq-target-selector__search-control button {
+  flex: 0 0 68px;
+  height: 36px;
+  padding: 0;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  background: var(--miq-orange);
+  font: 700 13px/1 "Noto Sans KR", "Malgun Gothic", sans-serif;
+  cursor: pointer;
+}
+body.miq-current-shell .miq-target-selector__search-field small {
+  display: block;
+  margin-top: 7px;
+  color: #777;
+  font-size: 11px;
+  line-height: 17px;
+}
+body.miq-current-shell .miq-target-selector__result-area { min-width: 0; }
+body.miq-current-shell .miq-target-selector__result-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+body.miq-current-shell .miq-target-selector__result-head strong {
+  color: #000000;
+  font-size: 14px;
+}
+body.miq-current-shell .miq-target-selector__result-head span {
+  color: #888;
+  font-size: 11px;
+}
+body.miq-current-shell .miq-target-selector__results {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  max-height: 152px;
+  padding-right: 4px;
+  overflow-y: auto;
+}
+body.miq-current-shell .miq-target-selector__results button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  height: 52px;
+  padding: 6px 12px;
+  overflow: hidden;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+body.miq-current-shell .miq-target-selector__results button:hover {
+  border-color: var(--miq-orange);
+  background: #fff6f3;
+}
+body.miq-current-shell .miq-target-selector__results button strong,
+body.miq-current-shell .miq-target-selector__results button span {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+body.miq-current-shell .miq-target-selector__results button strong {
+  color: #000000;
+  font-size: 13px;
+}
+body.miq-current-shell .miq-target-selector__results button span {
+  color: #777;
+  font-size: 11px;
+}
+body.miq-current-shell .miq-target-selector__result-guide {
+  grid-column: 1 / -1;
+  margin: 12px 0 0;
+  color: #777;
+  font-size: 11px;
+}
+
+body.miq-current-shell .layout {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  min-height: calc(100vh - 252px);
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+body.miq-current-shell .layout > aside.lnb {
+  position: relative;
+  z-index: 10;
+  flex: 0 0 var(--miq-side);
+  width: var(--miq-side);
+  min-width: var(--miq-side);
+  max-width: var(--miq-side);
+  min-height: 760px;
+  margin: 0;
+  padding: 28px 24px;
+  border: 0;
+  border-radius: 0;
+  background: #f7f7f7;
+  box-sizing: border-box;
+  overflow: visible;
+}
+body.miq-current-shell .miq-side-title {
+  margin: 0 0 22px;
+  color: #000000;
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+body.miq-current-shell .miq-side-menu {
+  overflow: hidden;
+  width: 192px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: #fff;
+  box-sizing: border-box;
+}
+body.miq-current-shell .miq-side-item {
+  display: flex;
+  align-items: center;
+  min-height: 45px;
+  padding: 0 20px;
+  color: #000000;
+  border-bottom: 1px dashed #ddd;
+  background: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+body.miq-current-shell .miq-side-item > span:first-child { min-width: 0; }
+body.miq-current-shell .miq-side-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  margin-left: auto;
+  padding: 0 7px;
+  color: var(--miq-orange);
+  border-radius: 999px;
+  background: #fff0ec;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1;
+}
+body.miq-current-shell .miq-side-item.active .miq-side-count {
+  color: var(--miq-orange);
+  background: #fff;
+}
+body.miq-current-shell .miq-side-item:last-child { border-bottom: 0; }
+body.miq-current-shell .miq-side-item.active {
+  color: #fff;
+  border-color: rgba(255,255,255,.45);
+  background: var(--miq-orange);
+}
+body.miq-current-shell .miq-side-toggle {
+  position: absolute;
+  z-index: 25;
+  top: 12px;
+  left: var(--miq-side);
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 86px;
+  padding: 0;
+  color: #000000;
+  border: 0;
+  background: #e7e8e9;
+  clip-path: polygon(0 0, 100% 22%, 100% 78%, 0 100%);
+  cursor: pointer;
+}
+body.miq-current-shell .miq-side-toggle span { font-size: 31px; font-weight: 300; transform: translateX(-2px); }
+body.miq-current-shell[data-variant="tobe"] .miq-side-toggle {
+  position: fixed;
+  z-index: 111;
+  top: 50%;
+  transform: translateY(-50%);
+}
+body.miq-current-shell .layout.miq-side-collapsed > aside.lnb { display: none; }
+body.miq-current-shell .layout.miq-side-collapsed .miq-side-toggle { left: 0; }
+body.miq-current-shell .layout > .main {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+  max-width: none;
+  min-height: 760px;
+  margin: 0;
+  padding: 24px 100px 96px;
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+  box-sizing: border-box;
+}
+body.miq-current-shell .layout > .main.main--wide { padding-left: 100px; padding-right: 100px; }
+body.miq-current-shell .layout.miq-no-side > .main {
+  width: 100%;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+/* 차량을 선택한 뒤 진입하는 배터리 상세에서는 상단 조회 대상이 현재
+   업체·차량 문맥을 담당한다. 본문 안의 중복 차량 선택과 차량 에러 표는
+   각각 중복 제어와 서비스 > 차량 에러 통합 요구에 따라 숨긴다. */
+body.miq-current-shell.miq-page-engine .veh-pick,
+body.miq-current-shell.miq-page-lithium .veh-pick,
+body.miq-current-shell.miq-lithium-detail [data-chart="err"] {
+  display: none !important;
+}
+
+body.miq-current-shell .eff__k,
+body.miq-current-shell .usage__k,
+body.miq-current-shell .ovc__k {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+body.miq-current-shell .miq-page-foot {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr) 320px;
+  align-items: center;
+  min-height: 130px;
+  padding: 28px 40px;
+  color: #fff;
+  background: #303030;
+  box-sizing: border-box;
+}
+body.miq-current-shell .miq-page-foot__brand,
+body.miq-current-shell .miq-page-foot__links,
+body.miq-current-shell .miq-page-foot__help { display: flex; align-items: center; }
+body.miq-current-shell .miq-page-foot__brand img { width: 128px; height: 34px; object-fit: contain; object-position: left center; }
+body.miq-current-shell .miq-page-foot__links { flex-wrap: wrap; gap: 10px 18px; font-size: 13px; }
+body.miq-current-shell .miq-page-foot__links > button { appearance: none; background: none; border: 0; padding: 0; margin: 0; color: inherit; font: inherit; font-weight: 700; line-height: inherit; text-align: start; cursor: pointer; }
+body.miq-current-shell .miq-page-foot__links > button:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+body.miq-current-shell .miq-page-foot__links small { flex-basis: 100%; margin-top: 5px; }
+body.miq-current-shell .miq-page-foot__help { align-items: flex-start; flex-direction: column; padding-left: 50px; font-size: 13px; }
+body.miq-current-shell .miq-page-foot__help strong { font-size: 17px; }
+
+/* Shared read-only legal dialog; same dimensions, colors and spacing as existing large dialogs. */
+.miq-legal-modal { border: 0; padding: 0; margin: auto; width: calc(100% - 48px); max-width: 820px; max-height: 88vh; border-radius: 8px; background: #fff; color: #000000; box-shadow: 0 12px 40px rgba(0,0,0,.22); font-family: inherit; font-size: 14px; }
+.miq-legal-modal[open] { display: flex; flex-direction: column; }
+.miq-legal-modal::backdrop { background: rgba(0,0,0,.42); }
+.miq-legal-modal__head { display: flex; align-items: center; gap: 16px; padding: 16px 20px; border-bottom: 1px solid #f0f0f0; flex-shrink: 0; }
+.miq-legal-modal__head h2 { margin: 0; font-size: 16px; font-weight: 700; line-height: 1.5; }
+.miq-legal-modal__head h2:focus { outline: none; }
+.miq-legal-modal__x { margin-inline-start: auto; padding: 0; border: 0; background: none; color: #aaa; font: inherit; font-size: 24px; cursor: pointer; flex-shrink: 0; }
+.miq-legal-modal__body { padding: 20px; min-height: 0; overflow: auto; overscroll-behavior: contain; line-height: 1.7; text-align: left; }
+.miq-legal-modal__body pre { margin: 0; font: inherit; white-space: pre-wrap; overflow-wrap: anywhere; }
+.miq-legal-modal__body h1 { font-size: 20px; line-height: 1.5; margin: 0 0 16px; }
+.miq-legal-modal__body h2 { font-size: 16px; line-height: 1.6; margin: 16px 0 8px; }
+.miq-legal-modal__body p { margin: 0 0 12px; }
+.miq-legal-modal__body table { width: 100%; table-layout: fixed; border-collapse: collapse; white-space: normal; font: inherit; margin: 12px 0; }
+.miq-legal-modal__body td { border: 1px solid #dfdfdf; padding: 8px; vertical-align: top; overflow-wrap: anywhere; }
+.miq-legal-modal__foot { display: flex; justify-content: flex-end; padding: 14px 20px; border-top: 1px solid #f0f0f0; background: #fcfcfc; flex-shrink: 0; }
+.miq-legal-modal__close { border: 1px solid #dfdfdf; background: #fff; color: #000000; border-radius: 4px; padding: 7px 14px; font: inherit; font-size: 13px; font-weight: 500; cursor: pointer; }
+.miq-legal-modal button:focus-visible, .miq-legal-modal__body:focus-visible { outline: 2px solid #ff3600; outline-offset: 2px; }
+
+@media (max-width: 1450px) {
+  body.miq-current-shell .gnb__logo { flex-basis: 230px; }
+  body.miq-current-shell .gnb__item { min-width: 82px; }
+  body.miq-current-shell .gnb__item > a { font-size: 16px; }
+  body.miq-current-shell .gnb__right { flex-basis: 284px; min-width: 270px; }
+  body.miq-current-shell[data-variant="tobe"] .gnb__right { flex-basis: 400px; min-width: 390px; }
+  body.miq-current-shell[data-variant="tobe"] .gnb__role { gap: 0; }
+  body.miq-current-shell[data-variant="tobe"] .gnb__role > span { display: none; }
+  body.miq-current-shell .miq-target-selector__row { padding-left: 256px; padding-right: 50px; }
+  body.miq-current-shell .miq-target-selector__panel { padding-left: 256px; padding-right: 50px; }
+  body.miq-current-shell .layout > .main { padding-left: 70px; padding-right: 70px; }
+}
+
+@media (max-width: 1350px) {
+  html[lang="ko"] body.miq-current-shell .gnb { column-gap: 0; }
+  html[lang="ko"] body.miq-current-shell[data-variant="tobe"] .gnb__right { flex-basis: 390px; }
+  body.miq-current-shell .miq-target-selector__row {
+    padding-left: 240px;
+    padding-right: 20px;
+    gap: 8px;
+  }
+  body.miq-current-shell .miq-target-selector__row [data-target-company] { width: 210px; }
+  body.miq-current-shell .miq-target-selector__row [data-target-vehicle] { width: 205px; }
+  body.miq-current-shell .miq-target-selector__current { display: none; }
+  body.miq-current-shell .miq-target-selector__panel {
+    grid-template-columns: 280px minmax(0, 1fr);
+    padding-left: 240px;
+    padding-right: 20px;
+  }
+}
+
+/* TO-BE 공통 조회 범위: 업체 → 그룹 → 분류 → 차량
+   기존 AS-IS 2단 조회 영역과 규칙을 분리해 현행 화면은 그대로 보존한다. */
+body.miq-current-shell .miq-target-selector.is-hierarchy .miq-target-selector__row {
+  gap: 10px;
+}
+body.miq-current-shell .miq-target-selector.is-hierarchy .miq-target-selector__control {
+  display: inline-flex;
+  flex: 0 1 auto;
+  min-width: 0;
+  gap: 6px;
+}
+body.miq-current-shell .miq-target-selector.is-hierarchy .miq-target-selector__control > select {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+body.miq-current-shell .miq-target-selector.is-hierarchy .miq-target-selector__control.is-disabled {
+  opacity: .58;
+}
+body.miq-current-shell .miq-target-selector.is-hierarchy .miq-target-selector__control.is-disabled select,
+body.miq-current-shell .miq-target-selector.is-hierarchy .miq-target-selector__control.is-disabled .miq-target-selector__icon {
+  cursor: not-allowed;
+}
+body.miq-current-shell .miq-target-selector.is-hierarchy [hidden] {
+  display: none !important;
+}
+body.miq-current-shell .miq-target-selector.is-hierarchy .miq-target-selector__icon {
+  display: inline-flex;
+  flex: 0 0 24px;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: #666;
+  border: 1px solid #d8d8d8;
+  border-radius: 4px;
+  background: #fff;
+  box-sizing: border-box;
+}
+body.miq-current-shell .miq-target-selector.is-hierarchy .miq-target-selector__icon svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+body.miq-current-shell .miq-target-selector.is-hierarchy [data-target-company] { width: 274px; }
+body.miq-current-shell .miq-target-selector.is-hierarchy [data-target-group] { width: 180px; }
+body.miq-current-shell .miq-target-selector.is-hierarchy [data-target-type] { width: 160px; }
+body.miq-current-shell .miq-target-selector.is-hierarchy [data-target-vehicle] { width: 224px; }
+body.miq-current-shell .miq-target-selector.is-hierarchy .miq-target-selector__current {
+  max-width: 184px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body.miq-current-shell .miq-target-selector.is-hierarchy.is-profile-aggregate .miq-target-selector__current {
+  margin-left: 2px;
+}
+body.miq-current-shell .miq-target-selector.is-hierarchy .miq-target-selector__panel {
+  top: 100%;
+}
+
+@media (max-width: 1650px) {
+  body.miq-current-shell .miq-target-selector.is-hierarchy [data-target-company] { width: 230px; }
+  body.miq-current-shell .miq-target-selector.is-hierarchy [data-target-group] { width: 155px; }
+  body.miq-current-shell .miq-target-selector.is-hierarchy [data-target-type] { width: 140px; }
+  body.miq-current-shell .miq-target-selector.is-hierarchy [data-target-vehicle] { width: 200px; }
+  body.miq-current-shell .miq-target-selector.is-hierarchy .miq-target-selector__current { max-width: 116px; }
+}
+
+@media (max-width: 1350px) {
+  body.miq-current-shell .miq-target-selector.is-hierarchy [data-target-company] { width: 195px; }
+  body.miq-current-shell .miq-target-selector.is-hierarchy [data-target-group] { width: 140px; }
+  body.miq-current-shell .miq-target-selector.is-hierarchy [data-target-type] { width: 125px; }
+  body.miq-current-shell .miq-target-selector.is-hierarchy [data-target-vehicle] { width: 180px; }
+  body.miq-current-shell .miq-target-selector.is-hierarchy .miq-target-selector__detail {
+    width: 38px;
+    min-width: 38px;
+    padding: 0;
+  }
+  body.miq-current-shell .miq-target-selector.is-hierarchy .miq-target-selector__detail > span { display: none; }
+  body.miq-current-shell .miq-target-selector.is-hierarchy .miq-target-selector__detail[aria-expanded="true"] {
+    width: auto;
+    padding: 0 18px;
+  }
+  body.miq-current-shell .miq-target-selector.is-hierarchy .miq-target-selector__detail[aria-expanded="true"] > span {
+    display: inline;
+  }
+}
+
+@media (max-width: 1100px) {
+  body.miq-current-shell .miq-analysis-return {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+/* 제목·기간 아래 공통 차량 검색. 보이는 위/아래 간격은 각각 16px이다.
+   검색 행의 내부 10px + 외부 6px. 펼친 상세검색은 본문 높이를 확보한다. */
+body.miq-current-shell.miq-content-target-search .main .miq-target-search-heading {
+  margin-bottom: 6px;
+}
+body.miq-current-shell.miq-content-target-search .main .miq-target-selector {
+  margin-bottom: 6px;
+}
+body.miq-current-shell.miq-content-target-search .miq-target-selector + .mm-map-toolbar {
+  margin-top: 0;
+}
+body.miq-current-shell.miq-content-target-search .miq-target-selector.is-hierarchy .miq-target-selector__row {
+  padding-left: 0;
+  padding-right: 0;
+  border-bottom: 0;
+}
+body.miq-current-shell.miq-content-target-search .miq-target-selector.is-hierarchy .miq-target-selector__panel {
+  position: static;
+  max-height: none;
+  overflow: visible;
+  padding-left: 0;
+  padding-right: 0;
+  box-shadow: none;
+}
+body.miq-current-shell.miq-content-target-search .main .miq-target-selector:has(.miq-target-selector__panel:not([hidden])) {
+  margin-bottom: 16px;
+}
+body.miq-current-shell.miq-content-target-search .miq-target-selector__results {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+}
+body.miq-current-shell.miq-content-target-search .miq-target-selector__result-head {
+  flex-wrap: wrap;
+}
+body.miq-current-shell[data-variant="tobe"].miq-content-summary .kpi-strip-a {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+/* 확정된 리포트 지표 6종은 3×2로 배치해 불필요한 빈 열을 만들지 않는다. */
+body.miq-current-shell.miq-page-rptstatus .kpi-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+/* 서비스 표는 기존 화면 폭 안에서 읽히도록 유지한다.
+   목업의 열 구성은 보존하되 별도 가로 스크롤은 만들지 않는다. */
+body.miq-current-shell.miq-page-maintenance .table-wrap,
+body.miq-current-shell.miq-page-supply .table-wrap {
+  overflow-x: hidden !important;
+}
+body.miq-current-shell.miq-page-maintenance .table-wrap table,
+body.miq-current-shell.miq-page-supply .table-wrap table {
+  width: 100% !important;
+  min-width: 0 !important;
+  table-layout: fixed;
+}
+body.miq-current-shell.miq-page-maintenance .table-wrap th,
+body.miq-current-shell.miq-page-maintenance .table-wrap td,
+body.miq-current-shell.miq-page-supply .table-wrap th,
+body.miq-current-shell.miq-page-supply .table-wrap td {
+  padding-left: 6px;
+  padding-right: 6px;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+body.miq-current-shell.miq-page-maintenance .table-wrap th:nth-child(1) { width: 8%; }
+body.miq-current-shell.miq-page-maintenance .table-wrap th:nth-child(2) { width: 10%; }
+body.miq-current-shell.miq-page-maintenance .table-wrap th:nth-child(3) { width: 8%; }
+body.miq-current-shell.miq-page-maintenance .table-wrap th:nth-child(4) { width: 11%; }
+body.miq-current-shell.miq-page-maintenance .table-wrap th:nth-child(5) { width: 12%; }
+body.miq-current-shell.miq-page-maintenance .table-wrap th:nth-child(6) { width: 11%; }
+body.miq-current-shell.miq-page-maintenance .table-wrap th:nth-child(7) { width: 10%; }
+body.miq-current-shell.miq-page-maintenance .table-wrap th:nth-child(8) { width: 22%; }
+body.miq-current-shell.miq-page-maintenance .table-wrap th:nth-child(9) { width: 8%; }
+
+body.miq-current-shell.miq-page-supply .table-wrap th:nth-child(1) { width: 4%; }
+body.miq-current-shell.miq-page-supply .table-wrap th:nth-child(2) { width: 8%; }
+body.miq-current-shell.miq-page-supply .table-wrap th:nth-child(3) { width: 9%; }
+body.miq-current-shell.miq-page-supply .table-wrap th:nth-child(4) { width: 8%; }
+body.miq-current-shell.miq-page-supply .table-wrap th:nth-child(5) { width: 11%; }
+body.miq-current-shell.miq-page-supply .table-wrap th:nth-child(6) { width: 15%; }
+body.miq-current-shell.miq-page-supply .table-wrap th:nth-child(7) { width: 15%; }
+body.miq-current-shell.miq-page-supply .table-wrap th:nth-child(8) { width: 22%; }
+body.miq-current-shell.miq-page-supply .table-wrap th:nth-child(9) { width: 8%; }
+body.miq-current-shell.miq-page-supply .progress { min-width: 0; }
+
+@media (max-width: 900px) {
+  body.miq-current-shell.miq-page-rptstatus .kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* Meeting: detail context is selected from the summary list. */
+body.miq-current-shell.miq-vehicle-scoped .miq-target-selector{display:none!important}
+body.miq-current-shell.miq-page-detail .veh-pick,body.miq-current-shell.miq-page-shock .veh-pick{display:none!important}
+body.miq-current-shell.miq-page-detail .section[hidden]{display:none!important}
+body.miq-current-shell.miq-page-summary .kpi-strip-a{grid-template-columns:repeat(5,minmax(0,1fr))}
+body.miq-current-shell.miq-vehicle-scoped .miq-analysis-return__link:not([data-lithium-list-return]):not([data-vehicle-detail-return]){display:none!important}
+body.miq-current-shell.miq-page-detail .card[hidden]{display:none!important}
