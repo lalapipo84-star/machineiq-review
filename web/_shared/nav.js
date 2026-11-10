@@ -407,10 +407,9 @@
   }
 
   // Admin pages have a separate portal, without changing the five account roles.
+  // 검수 저장소에는 어드민 화면만 남아 있으므로, 어드민 주소 없이 열면 어드민 첫 화면(권한관리)으로 보낸다.
   if (ADMIN_PAGE && !ADMIN_ACTIVE) {
-    var blockedOpsTarget = new URL(BASE + 'Dashboard/group-dashboard-tobe-v2.html', location.href);
-    blockedOpsTarget.searchParams.set('role', MANAGEMENT_ROLE);
-    location.replace(blockedOpsTarget.href);
+    location.replace(adminContext ? adminContext.href(BASE + adminContext.landing, location.href) : BASE + 'Admin/customer-management.html?role=internal&portal=admin');
     return;
   }
   if (ADMIN_ACTIVE && !ADMIN_PAGE && ACT !== 'myacct') {
@@ -451,7 +450,8 @@
     if (acctHref && ADMIN_ACTIVE) acctHref = adminContext.href(acctHref, location.href);
 
     var managementRoleControl = '';
-    if (VARIANT === 'tobe') {
+    // 어드민 화면에는 권한 설정 드롭다운을 두지 않는다 (2026-11-10 요청). 고객·딜러 등 일반 화면은 그대로.
+    if (VARIANT === 'tobe' && !ADMIN_ACTIVE) {
       managementRoleControl = '<label class="gnb__role"><span>권한 설정</span>' +
         '<select id="account-role" data-account-role aria-label="화면 권한 설정">' +
         MANAGEMENT_ROLES.map(function (role) {
@@ -462,9 +462,11 @@
     html += '</nav><div class="gnb__right">' + managementRoleControl +
       '<label class="gnb__language"><span class="miq-sr-only">언어 선택</span>' +
         '<select aria-label="언어 선택">'+"<option value=\"ko\" lang=\"ko\" dir=\"ltr\" translate=\"no\" selected>KO</option><option value=\"en\" lang=\"en\" dir=\"ltr\" translate=\"no\">English</option><option value=\"de\" lang=\"de\" dir=\"ltr\" translate=\"no\">Deutsch</option><option value=\"ar\" lang=\"ar\" dir=\"rtl\" translate=\"no\">العربية</option><option value=\"es\" lang=\"es\" dir=\"ltr\" translate=\"no\">Español</option><option value=\"fr\" lang=\"fr\" dir=\"ltr\" translate=\"no\">Français</option><option value=\"it\" lang=\"it\" dir=\"ltr\" translate=\"no\">Italiano</option><option value=\"ja\" lang=\"ja\" dir=\"ltr\" translate=\"no\">日本語</option>"+'</select></label>' +
+      // 어드민 화면: 내 계정·로그인 화면이 없으므로 계정명은 글자로만 보이고 로그아웃은 두지 않는다.
+      (ADMIN_ACTIVE ? '<span class="home gnb__account">' + MIQCommon.view.get(accountLabel,"innerHTML") + '</span></div></div>' :
       (acctHref ? '<a class="home gnb__account" href="' + acctHref + '"' + (VARIANT === 'tobe' ? ' data-account-modal aria-haspopup="dialog"' : '') + (ACT === 'myacct' ? ' style="background:rgba(255,255,255,.22)"' : '') +
         '>' + (VARIANT === 'tobe' ? MIQCommon.view.get(accountLabel,"innerHTML") : '세종물류 - 관리자') + '</a>' : '<span>세종물류 - 관리자</span>') +
-      '<a class="home gnb__logout" href="' + BASE + enc('Login') + '/login-' + VARIANT + '.html' + (ADMIN_ACTIVE ? '?portal=admin' : '') + '">로그아웃</a></div></div>';
+      '<a class="home gnb__logout" href="' + BASE + enc('Login') + '/login-' + VARIANT + '.html">로그아웃</a></div></div>');
 
     MIQCommon.view.set(mount,"outerHTML",html);
     var accountLink = document.querySelector('.gnb__account[data-account-modal]');

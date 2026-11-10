@@ -3,12 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MACHINE IQ</title>
+  <title>MACHINE IQ 어드민</title>
   <script>
-    const destination = new URL('Dashboard/group-dashboard-tobe-v2.html', window.location.href);
-    destination.search = window.location.search;
+    // 첫 화면은 어드민 > 권한관리(고객정보관리). 어드민 화면은 role·portal 값이 있어야 열린다.
+    const destination = new URL('Admin/customer-management.html', window.location.href);
+    const params = new URLSearchParams(window.location.search);
+    params.set('role', 'internal');
+    params.set('portal', 'admin');
+    destination.search = params.toString();
     window.location.replace(destination.href);
   </script>
 </head>
-<body><a href="Dashboard/group-dashboard-tobe-v2.html">MACHINE IQ 대시보드 열기</a></body>
+<body><a href="Admin/customer-management.html?role=internal&amp;portal=admin">MACHINE IQ 어드민 열기</a></body>
 </html>
