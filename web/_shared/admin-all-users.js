@@ -54,6 +54,8 @@
   function clone(v) { return JSON.parse(JSON.stringify(v)); }
   function e(v) { return O.esc(v == null ? '' : v); }
   function norm(v) { return String(v || '').replace(/\s/g, '').toLocaleLowerCase(); }
+  // 사용자 이름 마스킹: 첫 글자와 마지막 글자만 보이고 가운데는 * (두 글자면 뒤 글자를 *). 예) 김정수 → 김*수, 남궁민수 → 남**수
+  function maskName(v) { var c = Array.from(String(v || '')); return c.length <= 1 ? c.join('') : c.length === 2 ? c[0] + '*' : c[0] + new Array(c.length - 1).join('*') + c[c.length - 1]; }
   function seedData() {
     var users = clone(seed.users).map(function (u) {
       return Object.assign({ id: u.email, email: u.email, name: u.name, role: u.role, company: u.company, created: u.created, lastLogin: u.lastLogin || '',
@@ -156,7 +158,7 @@
       var list = rows();
       var columns = [
         { key: 'email', label: '사용자 ID(이메일)', minWidth: 210 },
-        { key: 'name', label: '사용자명', minWidth: 80 },
+        { key: 'name', label: '사용자명', minWidth: 80, render: function (r) { return e(maskName(r.name)); }, exportValue: function (r) { return maskName(r.name); } },
         { key: 'role', label: '권한', minWidth: 96 },
         { key: 'company', label: '업체명', minWidth: 120 },
         { key: 'status', label: '계정 상태', minWidth: 80, render: badge },
@@ -193,7 +195,7 @@
       if (!list.length) { O.notify('다운로드할 계정이 없습니다.'); return; }
       O.exportCsv('자동휴면_1년미접속_정기검토_' + BASE.replace(/-/g, ''),
         ['사용자 ID(이메일)', '사용자명', '권한', '업체명', '계정 상태', '마지막 로그인', '미접속 일수', '휴면 전환일', '계정 생성일', '검토 결과(휴면 유지/계정 삭제)', '검토자', '검토일'],
-        list.slice().sort(function (a, b) { return b.idle - a.idle; }).map(function (r) { return [r.email, r.name, r.role, r.company, r.status, r.lastLogin || '로그인 이력 없음', r.idle, r.autoAt, String(r.created).slice(0, 10), '', '', '']; }));
+        list.slice().sort(function (a, b) { return b.idle - a.idle; }).map(function (r) { return [r.email, maskName(r.name), r.role, r.company, r.status, r.lastLogin || '로그인 이력 없음', r.idle, r.autoAt, String(r.created).slice(0, 10), '', '', '']; }));
       data.logs.push({ id: 'log-' + Date.now(), at: now(), action: '자동 휴면(1년 미접속) 목록 다운로드', users: list.map(function (r) { return { id: r.id, name: r.name }; }), by: ACTOR, reason: '보안 감사 정기 검토', detail: list.length + '명' });
       save(); render();
     }
@@ -201,7 +203,7 @@
     // ---------- 상세 ----------
     function detail(id) {
       var u = find(id); if (!u) return;
-      var items = [['사용자 ID(이메일)', u.email], ['사용자명', u.name], ['권한', u.role], ['업체명', u.company], ['계정 상태', status(u)],
+      var items = [['사용자 ID(이메일)', u.email], ['사용자명', maskName(u.name)], ['권한', u.role], ['업체명', u.company], ['계정 상태', status(u)],
         ['마지막 로그인', u.lastLogin || '로그인 이력 없음'], ['미접속', idleDays(u) + '일 (' + idleFrom(u).slice(0, 10) + ' 기준)'], ['계정 생성일', u.created],
         ['비밀번호 만료일', u.mustChange ? '다음 로그인 시 변경' : pwExpire(u)]];
       if (u.locked) items.push(['잠금', u.lockedAt + ' · 연속 실패 ' + u.failCount + '회']);
@@ -222,7 +224,7 @@
       if (!users.length) { O.notify('사용자를 찾지 못했습니다. 목록을 다시 조회해 주세요.'); return; }
       var ok = users.filter(a.can), skip = users.filter(function (u) { return !a.can(u); });
       if (!ok.length) { O.notify(a.why); return; }
-      var names = function (list) { return list.map(function (u) { return e(u.name) + ' <span class="aau-muted">' + e(u.email) + '</span>'; }).join('<br>'); };
+      var names = function (list) { return list.map(function (u) { return e(maskName(u.name)) + ' <span class="aau-muted">' + e(u.email) + '</span>'; }).join('<br>'); };
       var notes = {
         unlock: '연속 실패 횟수를 0으로 되돌리고 로그인을 다시 허용합니다. 비밀번호는 바뀌지 않습니다.',
         temp: '임시 비밀번호를 만들어 이 화면에 한 번만 보여 주고, 사용자 이메일로도 자동 발송합니다. 잠금 상태면 함께 해제되고, 사용자는 다음 로그인 때 비밀번호를 바꿔야 합니다.',
@@ -269,7 +271,7 @@
       O.modal({ title: '임시 비밀번호 발급 결과', wide: true, submitLabel: '닫기',
         body: '<p class="ops-inline-message aau-warn">이 창을 닫으면 임시 비밀번호를 다시 볼 수 없습니다. 사용자 이메일로도 발송했습니다(시연: 실제 발송 없음).</p>' +
           '<table class="tbl aau-pw-table"><thead><tr><th scope="col">사용자</th><th scope="col">사용자 ID(이메일)</th><th scope="col">임시 비밀번호</th><th scope="col">메일 발송</th></tr></thead><tbody>' +
-          list.map(function (x) { return '<tr><td>' + e(x.user.name) + '</td><td>' + e(x.user.email) + '</td><td><code class="aau-pw">' + e(x.pw) + '</code> <button type="button" class="btn btn--sm" data-aau-copy="' + e(x.pw) + '">복사</button></td><td><span class="badge ok">발송 완료</span></td></tr>'; }).join('') + '</tbody></table>',
+          list.map(function (x) { return '<tr><td>' + e(maskName(x.user.name)) + '</td><td>' + e(x.user.email) + '</td><td><code class="aau-pw">' + e(x.pw) + '</code> <button type="button" class="btn btn--sm" data-aau-copy="' + e(x.pw) + '">복사</button></td><td><span class="badge ok">발송 완료</span></td></tr>'; }).join('') + '</tbody></table>',
         onOpen: function (form) {
           form.addEventListener('click', function (ev) {
             var b = ev.target.closest('[data-aau-copy]'); if (!b) return;
@@ -284,7 +286,7 @@
       filterForm(false);
       var q = norm(filters.q);
       var list = data.logs.filter(function (l) { return !q || norm(l.by).indexOf(q) >= 0 || l.users.some(function (x) { return norm(x.id).indexOf(q) >= 0 || norm(x.name).indexOf(q) >= 0; }); })
-        .map(function (l) { return Object.assign({}, l, { target: l.users.length === 1 ? l.users[0].name + ' (' + l.users[0].id + ')' : l.users[0].name + ' 외 ' + (l.users.length - 1) + '명' }); });
+        .map(function (l) { return Object.assign({}, l, { target: l.users.length === 1 ? maskName(l.users[0].name) + ' (' + l.users[0].id + ')' : maskName(l.users[0].name) + ' 외 ' + (l.users.length - 1) + '명' }); });
       O.grid(ctx.el.querySelector('[data-aau-table]'), {
         rows: list, pageSize: 15, caption: '처리 이력', exportName: '전체사용자_처리이력_' + BASE.replace(/-/g, ''), defaultSort: { key: 'at', dir: 'desc' },
         toolbar: '<button type="button" class="btn" data-aau-reset>시연 데이터 초기화</button>',
@@ -292,7 +294,7 @@
         columns: [
           { key: 'at', label: '처리 일시', minWidth: 140 },
           { key: 'action', label: '처리', minWidth: 130 },
-          { key: 'target', label: '대상', minWidth: 200, render: function (r) { return '<span title="' + e(r.users.map(function (x) { return x.name + ' ' + x.id; }).join(', ')) + '">' + e(r.target) + '</span>'; }, exportValue: function (r) { return r.users.map(function (x) { return x.name + ' ' + x.id; }).join(', '); } },
+          { key: 'target', label: '대상', minWidth: 200, render: function (r) { return '<span title="' + e(r.users.map(function (x) { return maskName(x.name) + ' ' + x.id; }).join(', ')) + '">' + e(r.target) + '</span>'; }, exportValue: function (r) { return r.users.map(function (x) { return maskName(x.name) + ' ' + x.id; }).join(', '); } },
           { key: 'by', label: '처리자', minWidth: 100 },
           { key: 'reason', label: '사유', minWidth: 200 },
           { key: 'note', label: '내용', minWidth: 160, render: function (r) { return e(r.detail || '—'); }, exportValue: function (r) { return r.detail; } }
