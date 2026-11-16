@@ -31,10 +31,6 @@
   .icon svg { width: 32px; height: 32px; }
   h1 { margin: 0 0 12px; font-size: 26px; line-height: 1.35; font-weight: 700; color: var(--ink); }
   .lead { margin: 0 0 24px; font-size: 15px; color: var(--body); }
-  .info { margin: 0 0 16px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-  .info > div { display: grid; grid-template-columns: 120px 1fr; gap: 12px; padding: 14px 18px; }
-  .info dt { color: var(--mute); font-size: 14px; }
-  .info dd { margin: 0; color: var(--ink); font-weight: 600; }
   .note { margin: 0; padding: 14px 18px; border-radius: 8px; background: var(--soft); font-size: 14px; color: var(--body); }
   footer { padding: 20px 16px 28px; text-align: center; color: #9aa1ab; font-size: 12px; }
   @media (max-width: 640px) {
@@ -43,7 +39,6 @@
     main { padding: 24px 16px 28px; }
     .card { padding: 28px 20px 24px; border-radius: 10px; }
     h1 { font-size: 22px; }
-    .info > div { grid-template-columns: 1fr; gap: 2px; padding: 12px 14px; }
   }
 </style>
 </head>
@@ -64,10 +59,6 @@
     <h1 id="title" data-t="title"></h1>
     <p class="lead" data-t="lead"></p>
 
-    <dl class="info">
-      <div><dt data-t="scopeLabel"></dt><dd data-t="scope"></dd></div>
-    </dl>
-
     <p class="note" data-t="note"></p>
   </section>
 </main>
@@ -80,13 +71,11 @@
     ko: {
       title: '서비스를 일시적으로 중단합니다',
       lead: 'MACHINE IQ 서비스를 한시적으로 중단합니다. 중단 기간에는 서비스를 이용할 수 없습니다. 이용에 불편을 드려 죄송합니다.',
-      scopeLabel: '중단 대상', scope: 'MACHINE IQ 웹',
       note: '서비스가 재개되면 별도 조치 없이 다시 로그인해 이용하실 수 있습니다.'
     },
     en: {
       title: 'Service temporarily suspended',
       lead: 'MACHINE IQ services are temporarily suspended. You cannot use the service while it is suspended. We apologize for the inconvenience.',
-      scopeLabel: 'Affected', scope: 'MACHINE IQ web',
       note: 'Once the service resumes, you can sign in again and continue as usual.'
     }
   };
