@@ -9,12 +9,12 @@
 <!--
   MACHINE IQ 서비스 일시 중단 안내 페이지 (운영계 테스트·작업 기간에 일반 사용자에게 보여 주는 화면)
   - 이 폴더(index.html, logo.svg, favicon.ico)만 있으면 단독으로 동작합니다. 다른 파일을 불러오지 않습니다.
-  - 중단 기간·연락처는 아래 <script> 맨 위 NOTICE 값만 바꾸면 됩니다.
+  - 문구는 아래 <script>의 TEXT 값(한국어 ko / English en)에서 바꿉니다. 중단 기간·문의처는 정해지지 않아 넣지 않았습니다.
   - 서버에서 중단 기간 동안 모든 요청을 이 페이지로 보낼 때는 HTTP 503 상태와 Retry-After 헤더를 함께 보내는 것을 권장합니다
     (검색엔진·앱이 '일시 중단'으로 인식). 이 페이지 자체는 상태 코드를 바꿀 수 없습니다.
 -->
 <style>
-  :root { --brand: #ff360d; --brand-dark: #d92d0a; --ink: #111; --body: #333; --mute: #6b7280; --line: #e5e7eb; --soft: #f7f7f8; --bg: #f4f5f7; }
+  :root { --brand: #ff360d; --ink: #111; --body: #333; --mute: #6b7280; --line: #e5e7eb; --soft: #f7f7f8; --bg: #f4f5f7; }
   * { box-sizing: border-box; }
   html, body { margin: 0; }
   body { min-height: 100vh; display: flex; flex-direction: column; background: var(--bg); color: var(--body);
@@ -26,31 +26,17 @@
   .lang button[aria-pressed="true"] { background: #fff; color: var(--brand); }
   .lang button:focus-visible { outline: 3px solid rgba(255,255,255,.7); outline-offset: -3px; }
   main { flex: 1; display: flex; justify-content: center; padding: 48px 16px 40px; }
-  .card { width: 100%; max-width: 640px; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 40px 40px 32px; box-shadow: 0 6px 24px rgba(15,23,42,.06); }
+  .card { width: 100%; max-width: 640px; height: fit-content; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 40px; box-shadow: 0 6px 24px rgba(15,23,42,.06); }
   .icon { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #fff1ec; color: var(--brand); margin: 0 0 20px; }
   .icon svg { width: 32px; height: 32px; }
   h1 { margin: 0 0 12px; font-size: 26px; line-height: 1.35; font-weight: 700; color: var(--ink); }
-  .lead { margin: 0 0 28px; font-size: 15px; color: var(--body); }
-  .info { margin: 0 0 24px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .lead { margin: 0 0 24px; font-size: 15px; color: var(--body); }
+  .info { margin: 0 0 16px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
   .info > div { display: grid; grid-template-columns: 120px 1fr; gap: 12px; padding: 14px 18px; }
-  .info > div + div { border-top: 1px solid var(--line); }
   .info dt { color: var(--mute); font-size: 14px; }
   .info dd { margin: 0; color: var(--ink); font-weight: 600; }
-  .info dd small { display: block; margin-top: 2px; color: var(--mute); font-weight: 400; font-size: 13px; }
-  .state { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 10px; font-size: 12px; font-weight: 700; vertical-align: 1px; }
-  .state.on { background: #fff1ec; color: var(--brand-dark); }
-  .state.soon { background: #eef2ff; color: #3b5bdb; }
-  .state.done { background: #e6f7ec; color: #2b8a3e; }
-  .note { margin: 0 0 28px; padding: 14px 18px; border-radius: 8px; background: var(--soft); font-size: 14px; color: var(--body); }
-  .note p { margin: 0; }
-  .note p + p { margin-top: 6px; }
-  .note a { color: var(--brand-dark); font-weight: 600; }
-  .actions { display: flex; gap: 8px; }
-  .btn { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 24px; border-radius: 6px; border: 1px solid var(--brand); background: var(--brand); color: #fff; font: 700 15px/1 inherit; cursor: pointer; text-decoration: none; }
-  .btn:hover { background: var(--brand-dark); border-color: var(--brand-dark); }
-  .btn:focus-visible { outline: 3px solid rgba(255,54,13,.35); outline-offset: 2px; }
+  .note { margin: 0; padding: 14px 18px; border-radius: 8px; background: var(--soft); font-size: 14px; color: var(--body); }
   footer { padding: 20px 16px 28px; text-align: center; color: #9aa1ab; font-size: 12px; }
-  [hidden] { display: none !important; }
   @media (max-width: 640px) {
     .top { height: 56px; padding: 0 16px; }
     .top img { width: 170px; height: 40px; }
@@ -58,7 +44,6 @@
     .card { padding: 28px 20px 24px; border-radius: 10px; }
     h1 { font-size: 22px; }
     .info > div { grid-template-columns: 1fr; gap: 2px; padding: 12px 14px; }
-    .btn { width: 100%; }
   }
 </style>
 </head>
@@ -80,90 +65,46 @@
     <p class="lead" data-t="lead"></p>
 
     <dl class="info">
-      <div><dt data-t="periodLabel"></dt><dd><span id="period"></span><span class="state" id="state" hidden></span><small data-t="timezone"></small></dd></div>
       <div><dt data-t="scopeLabel"></dt><dd data-t="scope"></dd></div>
     </dl>
 
-    <div class="note">
-      <p data-t="note1"></p>
-      <p><span data-t="contact"></span> <a id="mail" href="#"></a></p>
-    </div>
-
-    <div class="actions">
-      <button type="button" class="btn" id="retry" data-t="retry"></button>
-    </div>
+    <p class="note" data-t="note"></p>
   </section>
 </main>
 
 <footer>©2024 Bobcat Company. ALL RIGHTS RESERVED.</footer>
 
 <script>
-  // ===== 운영 담당자가 바꾸는 값 =====
-  var NOTICE = {
-    start: '2026-11-20T00:00:00+09:00',   // 서비스 중단 시작 (한국 시간)
-    end:   '2026-11-20T06:00:00+09:00',   // 서비스 재개 예정
-    email: 'help.machineiq@doosan.com'    // 문의처
-  };
-  // ===================================
-
+  // 화면 문구 (한국어 / English)
   var TEXT = {
     ko: {
       title: '서비스를 일시적으로 중단합니다',
-      lead: '아래 기간 동안 MACHINE IQ 서비스를 한시적으로 중단합니다. 중단 기간에는 서비스를 이용할 수 없습니다. 이용에 불편을 드려 죄송합니다.',
-      periodLabel: '중단 기간', timezone: '한국 시간(KST) 기준이며, 상황에 따라 일찍 재개되거나 늦어질 수 있습니다.',
-      scopeLabel: '중단 대상', scope: 'MACHINE IQ 웹 · 모바일 앱 전체',
-      note1: '서비스가 재개되면 별도 조치 없이 다시 로그인해 이용하실 수 있습니다.',
-      contact: '문의:', retry: '다시 확인하기',
-      soon: '중단 예정', on: '중단 중', done: '재개됨',
-      days: ['일', '월', '화', '수', '목', '금', '토']
+      lead: 'MACHINE IQ 서비스를 한시적으로 중단합니다. 중단 기간에는 서비스를 이용할 수 없습니다. 이용에 불편을 드려 죄송합니다.',
+      scopeLabel: '중단 대상', scope: 'MACHINE IQ 웹',
+      note: '서비스가 재개되면 별도 조치 없이 다시 로그인해 이용하실 수 있습니다.'
     },
     en: {
       title: 'Service temporarily suspended',
-      lead: 'MACHINE IQ services will be temporarily suspended during the period below. You cannot use the service while it is suspended. We apologize for the inconvenience.',
-      periodLabel: 'Suspension period', timezone: 'Korea Standard Time (KST). The service may resume earlier or later than planned.',
-      scopeLabel: 'Affected', scope: 'All MACHINE IQ web and mobile app services',
-      note1: 'Once the service resumes, you can sign in again and continue as usual.',
-      contact: 'Contact:', retry: 'Check again',
-      soon: 'Scheduled', on: 'Suspended', done: 'Resumed',
-      days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+      lead: 'MACHINE IQ services are temporarily suspended. You cannot use the service while it is suspended. We apologize for the inconvenience.',
+      scopeLabel: 'Affected', scope: 'MACHINE IQ web',
+      note: 'Once the service resumes, you can sign in again and continue as usual.'
     }
   };
 
   var lang = /^ko/i.test(navigator.language || 'ko') ? 'ko' : 'en';
   try { var saved = localStorage.getItem('miq.maintenance.lang'); if (saved === 'ko' || saved === 'en') lang = saved; } catch (e) {}
 
-  // 한국 시간으로 날짜 표시 (보는 사람 PC의 시간대와 관계없이)
-  function kst(iso) {
-    var d = new Date(new Date(iso).getTime() + 9 * 3600000);
-    return { y: d.getUTCFullYear(), m: d.getUTCMonth() + 1, d: d.getUTCDate(), w: d.getUTCDay(), hh: ('0' + d.getUTCHours()).slice(-2), mm: ('0' + d.getUTCMinutes()).slice(-2) };
-  }
-  function period(t) {
-    var s = kst(NOTICE.start), e = kst(NOTICE.end), same = s.y === e.y && s.m === e.m && s.d === e.d;
-    if (lang === 'ko') {
-      var day = function (x) { return x.y + '년 ' + x.m + '월 ' + x.d + '일(' + t.days[x.w] + ')'; };
-      return day(s) + ' ' + s.hh + ':' + s.mm + ' ~ ' + (same ? '' : day(e) + ' ') + e.hh + ':' + e.mm;
-    }
-    var dayEn = function (x) { return t.days[x.w] + ', ' + x.y + '-' + ('0' + x.m).slice(-2) + '-' + ('0' + x.d).slice(-2); };
-    return dayEn(s) + ' ' + s.hh + ':' + s.mm + ' – ' + (same ? '' : dayEn(e) + ' ') + e.hh + ':' + e.mm;
-  }
-
   function render() {
     var t = TEXT[lang];
     document.documentElement.lang = lang;
     document.title = (lang === 'ko' ? '서비스 일시 중단 안내' : 'Service temporarily suspended') + ' · MACHINE IQ';
     document.querySelectorAll('[data-t]').forEach(function (el) { el.textContent = t[el.getAttribute('data-t')]; });
-    document.getElementById('period').textContent = period(t);
-    var now = Date.now(), s = new Date(NOTICE.start).getTime(), e = new Date(NOTICE.end).getTime();
-    var st = document.getElementById('state'), key = now < s ? 'soon' : now <= e ? 'on' : 'done';
-    st.textContent = t[key]; st.className = 'state ' + key; st.hidden = false;
-    var mail = document.getElementById('mail'); mail.textContent = NOTICE.email; mail.href = 'mailto:' + NOTICE.email;
     document.querySelectorAll('[data-lang]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang)); });
   }
 
   document.querySelectorAll('[data-lang]').forEach(function (b) {
     b.addEventListener('click', function () { lang = b.getAttribute('data-lang'); try { localStorage.setItem('miq.maintenance.lang', lang); } catch (e) {} render(); });
   });
-  document.getElementById('retry').addEventListener('click', function () { location.reload(); });
   render();
 </script>
 </body>
