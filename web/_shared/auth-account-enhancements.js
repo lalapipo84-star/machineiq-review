@@ -61,9 +61,15 @@
     });
   }
 
+  // 어드민 로그인(?portal=admin): 로그인하면 어드민 첫 화면(권한관리)으로 가고, 어드민에 없는 회원가입·비밀번호 찾기 링크는 숨긴다.
+  var ADMIN_LOGIN = new URLSearchParams(location.search).get('portal') === 'admin';
+  var ADMIN_HOME = '../Admin/customer-management.html?role=internal&portal=admin';
   function initLogin() {
     var form = one('#loginForm');
     if (!form) return;
+    if (ADMIN_LOGIN) all('a[href*="Find%20Password"], a[href*="registration/"]').forEach(function (link) {
+      var box = link.closest('.aae-link-row') || link; box.hidden = true;
+    });
     var identifier = one('#loginIdentifier');
     var password = one('#loginPassword');
     var remember = one('#rememberIdentifier');
@@ -144,6 +150,11 @@
       var access = window.MIQCustomerAccess;
       var account = access ? access.login(idValue) : null;
       var needsVehicle = account && access.requiresVehicle(account.role);
+      if (ADMIN_LOGIN) {
+        setAlert(status, '인증되었습니다. 어드민 화면으로 이동합니다.', 'success');
+        window.setTimeout(function () { location.href = ADMIN_HOME; }, 350);
+        return;
+      }
       setAlert(status, needsVehicle ? '인증되었습니다. 차량 등록 안내로 이동합니다.' : '인증되었습니다. 대시보드로 이동합니다.', 'success');
       window.setTimeout(function () { location.href = account ? access.url(needsVehicle ? 'required' : 'dashboard', account.role) : '../Dashboard/group-dashboard-tobe-v2.html'; }, 350);
     });
@@ -170,8 +181,8 @@
         if (!ok) { focusFirstInvalid(forcedForm); return; }
         storageRemove(sessionStorage, 'miq-temporary-password');
         storageRemove(sessionStorage, 'miq-force-password-change');
-        setAlert(one('#forcedPasswordStatus'), '비밀번호가 변경되었습니다. 대시보드로 이동합니다.', 'success');
-        window.setTimeout(function () { location.href = '../Dashboard/group-dashboard-tobe-v2.html'; }, 450);
+        setAlert(one('#forcedPasswordStatus'), ADMIN_LOGIN ? '비밀번호가 변경되었습니다. 어드민 화면으로 이동합니다.' : '비밀번호가 변경되었습니다. 대시보드로 이동합니다.', 'success');
+        window.setTimeout(function () { location.href = ADMIN_LOGIN ? ADMIN_HOME : '../Dashboard/group-dashboard-tobe-v2.html'; }, 450);
       });
     }
 

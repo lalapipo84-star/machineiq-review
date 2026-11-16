@@ -462,8 +462,9 @@
     html += '</nav><div class="gnb__right">' + managementRoleControl +
       '<label class="gnb__language"><span class="miq-sr-only">언어 선택</span>' +
         '<select aria-label="언어 선택">'+"<option value=\"ko\" lang=\"ko\" dir=\"ltr\" translate=\"no\" selected>KO</option><option value=\"en\" lang=\"en\" dir=\"ltr\" translate=\"no\">English</option><option value=\"de\" lang=\"de\" dir=\"ltr\" translate=\"no\">Deutsch</option><option value=\"ar\" lang=\"ar\" dir=\"rtl\" translate=\"no\">العربية</option><option value=\"es\" lang=\"es\" dir=\"ltr\" translate=\"no\">Español</option><option value=\"fr\" lang=\"fr\" dir=\"ltr\" translate=\"no\">Français</option><option value=\"it\" lang=\"it\" dir=\"ltr\" translate=\"no\">Italiano</option><option value=\"ja\" lang=\"ja\" dir=\"ltr\" translate=\"no\">日本語</option>"+'</select></label>' +
-      // 어드민 화면: 내 계정·로그인 화면이 없으므로 계정명은 글자로만 보이고 로그아웃은 두지 않는다.
-      (ADMIN_ACTIVE ? '<span class="home gnb__account">' + MIQCommon.view.get(accountLabel,"innerHTML") + '</span></div></div>' :
+      // 어드민 화면: 내 계정 화면이 없으므로 계정명은 글자로만 보이고, 로그아웃은 어드민 로그인 화면으로 간다.
+      (ADMIN_ACTIVE ? '<span class="home gnb__account">' + MIQCommon.view.get(accountLabel,"innerHTML") + '</span>' +
+        '<a class="home gnb__logout" href="' + BASE + enc('Login') + '/login-' + VARIANT + '.html?portal=admin">로그아웃</a></div></div>' :
       (acctHref ? '<a class="home gnb__account" href="' + acctHref + '"' + (VARIANT === 'tobe' ? ' data-account-modal aria-haspopup="dialog"' : '') + (ACT === 'myacct' ? ' style="background:rgba(255,255,255,.22)"' : '') +
         '>' + (VARIANT === 'tobe' ? MIQCommon.view.get(accountLabel,"innerHTML") : '세종물류 - 관리자') + '</a>' : '<span>세종물류 - 관리자</span>') +
       '<a class="home gnb__logout" href="' + BASE + enc('Login') + '/login-' + VARIANT + '.html">로그아웃</a></div></div>');

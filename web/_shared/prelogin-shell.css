@@ -1,0 +1,110 @@
+:root {
+  --miq-auth-orange: #ff360d;
+  --miq-auth-border: rgba(255, 255, 255, .58);
+}
+
+.miq-auth-header {
+  position: relative;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 64px;
+  padding: 0 32px;
+  background: var(--miq-auth-orange);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
+  color: #fff;
+}
+
+.miq-auth-brand {
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.miq-auth-brand img {
+  width: 235px;
+  height: 50px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.miq-auth-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.miq-auth-language {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  border: 1px solid var(--miq-auth-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.miq-auth-language::after {
+  content: '';
+  position: absolute;
+  right: 11px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  transform: translateY(-68%) rotate(45deg);
+  pointer-events: none;
+}
+
+.miq-auth-language select {
+  min-width: 112px;
+  height: 100%;
+  padding: 0 30px 0 12px;
+  border: 0;
+  outline: 0;
+  appearance: none;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.miq-auth-language option {
+  background: #fff;
+  color: #000000;
+}
+
+.miq-auth-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  height: 36px;
+  padding: 0 16px;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  background: #fff;
+  color: #c92d08;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.miq-auth-login:hover,
+.miq-auth-login:focus-visible {
+  background: #fff5f2;
+  color: #9f2306;
+}
+
+@media (max-width: 720px) {
+  .miq-auth-header { padding: 0 16px; }
+  .miq-auth-brand img { width: 195px; height: 44px; }
+  .miq-auth-language select { min-width: 78px; }
+}
