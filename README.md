@@ -2,7 +2,7 @@
 
 - 검수 URL: https://lalapipo84-star.github.io/machineiq-review/ (첫 화면: 권한관리 > 고객정보관리)
 - 포함 화면: **권한관리 · 현황관리 · 운영관리** 메뉴의 어드민 화면만 남겼습니다. 대시보드·운행이력·서비스·리포트·지도·관리·관심차량, 로그인·회원가입, 모바일 화면은 이 검수 저장소에서 뺐습니다.
-- 서비스 점검 안내 페이지: https://lalapipo84-star.github.io/machineiq-review/maintenance/ (운영계 점검·테스트 때 일반 사용자에게 보여 줄 화면. `maintenance/` 폴더만 있으면 단독으로 동작하며, 점검 일시·문의처는 index.html의 NOTICE 값에서 바꿉니다.)
+- 서비스 일시 중단 안내 페이지: https://lalapipo84-star.github.io/machineiq-review/maintenance/ (운영계 테스트·작업 때 일반 사용자에게 보여 줄 화면. `maintenance/` 폴더만 있으면 단독으로 동작하며, 중단 기간·문의처는 index.html의 NOTICE 값에서 바꿉니다.)
 - 원본: giry02/machineiq (main 873a050) 기준. 이 저장소는 검수용이며, 검수가 끝난 어드민 변경분만 담당자에게 파일로 전달합니다.
 
 | 메뉴 | 화면 |

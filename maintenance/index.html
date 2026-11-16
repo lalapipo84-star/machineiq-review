@@ -4,13 +4,13 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="robots" content="noindex"/>
-<title>서비스 점검 안내 · MACHINE IQ</title>
+<title>서비스 일시 중단 안내 · MACHINE IQ</title>
 <link rel="icon" href="favicon.ico"/>
 <!--
-  MACHINE IQ 서비스 점검 안내 페이지 (운영계 테스트·점검 기간에 일반 사용자에게 보여 주는 화면)
+  MACHINE IQ 서비스 일시 중단 안내 페이지 (운영계 테스트·작업 기간에 일반 사용자에게 보여 주는 화면)
   - 이 폴더(index.html, logo.svg, favicon.ico)만 있으면 단독으로 동작합니다. 다른 파일을 불러오지 않습니다.
-  - 점검 일시·연락처는 아래 <script> 맨 위 NOTICE 값만 바꾸면 됩니다.
-  - 서버에서 점검 중 모든 요청을 이 페이지로 보낼 때는 HTTP 503 상태와 Retry-After 헤더를 함께 보내는 것을 권장합니다
+  - 중단 기간·연락처는 아래 <script> 맨 위 NOTICE 값만 바꾸면 됩니다.
+  - 서버에서 중단 기간 동안 모든 요청을 이 페이지로 보낼 때는 HTTP 503 상태와 Retry-After 헤더를 함께 보내는 것을 권장합니다
     (검색엔진·앱이 '일시 중단'으로 인식). 이 페이지 자체는 상태 코드를 바꿀 수 없습니다.
 -->
 <style>
@@ -74,7 +74,7 @@
 <main>
   <section class="card" aria-labelledby="title">
     <div class="icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.2L3 17.8V21h3.2l6.3-6.3a4 4 0 0 0 5.2-5.4l-2.6 2.6-2.4-.6-.6-2.4z"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 9v6M14 9v6"/></svg>
     </div>
     <h1 id="title" data-t="title"></h1>
     <p class="lead" data-t="lead"></p>
@@ -100,31 +100,31 @@
 <script>
   // ===== 운영 담당자가 바꾸는 값 =====
   var NOTICE = {
-    start: '2026-11-20T00:00:00+09:00',   // 점검 시작 (한국 시간)
-    end:   '2026-11-20T06:00:00+09:00',   // 점검 종료 예정
+    start: '2026-11-20T00:00:00+09:00',   // 서비스 중단 시작 (한국 시간)
+    end:   '2026-11-20T06:00:00+09:00',   // 서비스 재개 예정
     email: 'help.machineiq@doosan.com'    // 문의처
   };
   // ===================================
 
   var TEXT = {
     ko: {
-      title: '서비스 점검 중입니다',
-      lead: '더 안정적인 서비스를 제공하기 위해 시스템 점검을 진행하고 있습니다. 점검 시간에는 MACHINE IQ 서비스를 이용할 수 없습니다. 이용에 불편을 드려 죄송합니다.',
-      periodLabel: '점검 일시', timezone: '한국 시간(KST) 기준이며, 작업 상황에 따라 일찍 끝나거나 늦어질 수 있습니다.',
-      scopeLabel: '점검 대상', scope: 'MACHINE IQ 웹 · 모바일 앱 전체',
-      note1: '점검이 끝나면 별도 조치 없이 다시 로그인해 이용하실 수 있습니다.',
+      title: '서비스를 일시적으로 중단합니다',
+      lead: '아래 기간 동안 MACHINE IQ 서비스를 한시적으로 중단합니다. 중단 기간에는 서비스를 이용할 수 없습니다. 이용에 불편을 드려 죄송합니다.',
+      periodLabel: '중단 기간', timezone: '한국 시간(KST) 기준이며, 상황에 따라 일찍 재개되거나 늦어질 수 있습니다.',
+      scopeLabel: '중단 대상', scope: 'MACHINE IQ 웹 · 모바일 앱 전체',
+      note1: '서비스가 재개되면 별도 조치 없이 다시 로그인해 이용하실 수 있습니다.',
       contact: '문의:', retry: '다시 확인하기',
-      soon: '점검 예정', on: '점검 중', done: '점검 종료',
+      soon: '중단 예정', on: '중단 중', done: '재개됨',
       days: ['일', '월', '화', '수', '목', '금', '토']
     },
     en: {
-      title: 'Service under maintenance',
-      lead: 'We are performing scheduled system maintenance to provide a more stable service. MACHINE IQ services are unavailable during this time. We apologize for the inconvenience.',
-      periodLabel: 'Schedule', timezone: 'Korea Standard Time (KST). The work may finish earlier or later than planned.',
+      title: 'Service temporarily suspended',
+      lead: 'MACHINE IQ services will be temporarily suspended during the period below. You cannot use the service while it is suspended. We apologize for the inconvenience.',
+      periodLabel: 'Suspension period', timezone: 'Korea Standard Time (KST). The service may resume earlier or later than planned.',
       scopeLabel: 'Affected', scope: 'All MACHINE IQ web and mobile app services',
-      note1: 'Once maintenance is complete, you can sign in again and continue as usual.',
+      note1: 'Once the service resumes, you can sign in again and continue as usual.',
       contact: 'Contact:', retry: 'Check again',
-      soon: 'Scheduled', on: 'In progress', done: 'Completed',
+      soon: 'Scheduled', on: 'Suspended', done: 'Resumed',
       days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
     }
   };
@@ -150,7 +150,7 @@
   function render() {
     var t = TEXT[lang];
     document.documentElement.lang = lang;
-    document.title = (lang === 'ko' ? '서비스 점검 안내' : 'Service maintenance') + ' · MACHINE IQ';
+    document.title = (lang === 'ko' ? '서비스 일시 중단 안내' : 'Service temporarily suspended') + ' · MACHINE IQ';
     document.querySelectorAll('[data-t]').forEach(function (el) { el.textContent = t[el.getAttribute('data-t')]; });
     document.getElementById('period').textContent = period(t);
     var now = Date.now(), s = new Date(NOTICE.start).getTime(), e = new Date(NOTICE.end).getTime();
