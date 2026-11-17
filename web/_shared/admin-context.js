@@ -21,7 +21,6 @@
       { key: 'users', label: '전체 사용자', tobe: 'all-users.html' }
     ] },
     { key: 'ops', label: '운영관리', dir: 'Operations', subs: [
-      { key: 'data', label: '차량 데이터 관리', tobe: 'operations-data.html' },
       { key: 'affiliation', label: '차량 소속 관리', tobe: 'operations-affiliation.html' },
       { key: 'dealer', label: '딜러 업체 생성', tobe: 'operations-dealer.html' },
       { key: 'equipment', label: '장비 코드 관리', tobe: 'operations-equipment.html' },
