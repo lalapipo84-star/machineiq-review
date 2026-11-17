@@ -251,7 +251,7 @@
 
   function menuSeed() {
     var definitions = {
-      ADMIN: [['DASH','대시보드','/dashboard',''],['MGMT','운영관리','/operations',''],['DATA','차량 데이터','/operations/data','MGMT'],['EQUIPMENT','장비코드','/operations/equipment','MGMT'],['CODES','공통코드','/operations/codes','MGMT'],['LANG','다국어','/operations/languages','MGMT'],['NOTICE','공지','/operations/notices','MGMT'],['USERS','내부계정','/operations/accounts','MGMT'],['MENUS','메뉴·접근권한','/operations/menus','MGMT'],['HISTORY','접속 이력','/operations/history','MGMT']],
+      ADMIN: [['DASH','대시보드','/dashboard',''],['MGMT','운영관리','/operations',''],['EQUIPMENT','장비코드','/operations/equipment','MGMT'],['CODES','공통코드','/operations/codes','MGMT'],['LANG','다국어','/operations/languages','MGMT'],['NOTICE','공지','/operations/notices','MGMT'],['USERS','내부계정','/operations/accounts','MGMT'],['MENUS','메뉴·접근권한','/operations/menus','MGMT'],['HISTORY','접속 이력','/operations/history','MGMT']],
       FLEET: [['DASH','대시보드','/fleet/dashboard',''],['ANALYSIS','운행이력','/fleet/analysis',''],['SUMMARY','요약정보','/fleet/analysis/summary','ANALYSIS'],['SHOCK','충격','/fleet/analysis/shock','ANALYSIS'],['BATTERY','리튬 배터리','/fleet/analysis/lithium','ANALYSIS'],['MAP','지도','/fleet/map',''],['SERVICE','서비스','/fleet/service',''],['REPORT','리포트','/fleet/report',''],['MGMT','관리','/fleet/management',''],['GROUP','그룹','/fleet/management/group','MGMT'],['USER','사용자','/fleet/management/user','MGMT']],
       RENTAL: [['DASH','대시보드','/rental/dashboard',''],['OPERATING','운영현황','/rental/operating',''],['EQUIPMENT','차량관리','/rental/equipment',''],['CONTRACT','계약관리','/rental/contract',''],['REPORT','수익 리포트','/rental/report',''],['GROUP','그룹관리','/rental/group','']],
       APP: [['HOME','홈','/app/home',''],['VEHICLE','차량','/app/vehicle',''],['SCAN','차량 조회','/app/scan',''],['SERVICE','서비스','/app/service',''],['NOTICE','공지','/app/notice',''],['ACCOUNT','내 정보','/app/account','']]
@@ -264,7 +264,8 @@
     }); }); return items;
   }
   api.register('menus', function (ctx) {
-    var data = read('menus', menuSeed()), state = { tab: 'structure', site: 'ADMIN', query: '', active: '' };
+    // 차량 데이터 관리 메뉴는 삭제됨(2026-11-17): 예전에 저장된 메뉴 목록에서도 뺀다
+    var data = read('menus', menuSeed()).filter(function (r) { return r.id !== 'ADMIN_DATA'; }), state = { tab: 'structure', site: 'ADMIN', query: '', active: '' };
     function edit(existing) {
       var item = existing || { id: '', site: state.site, name: '', path: '', parent: '', order: data.filter(function (r) { return r.site === state.site; }).length + 1, active: true };
       var parents = [['','최상위']].concat(data.filter(function (r) { return r.site === item.site && !r.parent && r.id !== item.id; }).map(function (r) { return [r.id, r.name]; }));
