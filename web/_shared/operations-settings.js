@@ -27,7 +27,7 @@
   function read(key, seed) { return api.read(KEYS[key], seed); }
   function save(key, data, action, target) {
     api.write(KEYS[key], data);
-    var records = read('history', historySeed());
+    var records = read('history', historySeed()).filter(notRemovedMenu);
     records.unshift({ id: uid('LOG'), date: now(), user: '운영 담당자', role: 'ADMIN', site: 'ADMIN', menu: target, action: action, result: '성공', ip: '현재 브라우저', detail: target + ' ' + action + ' 완료' });
     api.write(KEYS.history, records.slice(0, 500));
   }
@@ -303,9 +303,11 @@
     render();
   });
 
+  // 삭제된 메뉴(차량 데이터 관리, 2026-11-17)의 예전 접속 기록은 보여 주지 않는다
+  function notRemovedMenu(r) { return r.menu !== '차량 데이터'; }
   function historySeed() {
     var contexts = [
-      { site: 'ADMIN', roles: ['ADMIN'], menus: ['차량 데이터','장비코드','공통코드','다국어','공지','내부계정','메뉴·접근권한','접속 이력'] },
+      { site: 'ADMIN', roles: ['ADMIN'], menus: ['장비코드','공통코드','다국어','공지','내부계정','메뉴·접근권한','접속 이력'] },
       { site: 'FLEET', roles: ['FLEET','FLEET_GROUP','DEALER','DEALER_GROUP'], menus: ['대시보드','요약정보','충격','리튬 배터리','지도','수리이력','소모품 관리','차량 에러','현황 리포트'] },
       { site: 'RENTAL', roles: ['RENTAL','RENTAL_GROUP'], menus: ['대시보드','운영현황','차량관리','수익 리포트'] },
       { site: 'APP', roles: ['FLEET','FLEET_GROUP','DEALER','DEALER_GROUP'], menus: ['홈','차량','차량 조회','서비스','공지','내 정보'] }
@@ -317,7 +319,7 @@
     });
   }
   api.register('history', function (ctx) {
-    var data = read('history', historySeed()), state = { from: day(-7), to: day(0), query: '', site: '', role: '', result: '' };
+    var data = read('history', historySeed()).filter(notRemovedMenu), state = { from: day(-7), to: day(0), query: '', site: '', role: '', result: '' };
     function detail(row) {
       api.modal({ title: '접속 이력 상세', wide: true, body: '<div class="form-grid">' + field('이력 번호', esc(row.id)) + field('일시', esc(row.date)) + field('사용자', esc(row.user)) + field('역할', esc((roles.find(function (r) { return r[0] === row.role; }) || ['',row.role])[1])) + field('사이트', esc((sites.find(function (r) { return r[0] === row.site; }) || ['',row.site])[1])) + field('메뉴', esc(row.menu)) + field('작업', esc(row.action)) + field('결과', esc(row.result)) + field('접속 IP', esc(row.ip), true) + field('처리 내용', '<div class="ops-pre">' + esc(row.detail) + '</div>', true) + '</div>', submitLabel: '닫기', onSubmit: function (form, close) { close(); } });
     }
