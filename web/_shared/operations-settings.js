@@ -203,7 +203,7 @@
   });
 
   function noticeSeed() {
-    var titles = ['시스템 정기 점검 안내','차량 데이터 조회 기능 안내','서비스 운영시간 안내','배터리 관리 안내','운행 리포트 확인 안내','계정 보안 점검 안내','그룹별 차량 조회 안내','장비 연결 상태 확인 안내'];
+    var titles = ['시스템 정기 점검 안내','데이터 수신 현황 조회 기능 안내','서비스 운영시간 안내','배터리 관리 안내','운행 리포트 확인 안내','계정 보안 점검 안내','그룹별 차량 조회 안내','장비 연결 상태 확인 안내'];
     return Array.from({ length: 23 }, function (_, i) { return { id: 'NOTICE-' + String(i + 1).padStart(3, '0'), title: titles[i % titles.length] + (i > 7 ? ' (' + (Math.floor(i / 8) + 1) + ')' : ''), kind: /점검|서비스 운영시간|장비 연결/.test(titles[i % titles.length]) ? 'SERVICE' : 'GENERAL', target: ['ALL','INTERNAL','DEALER','CUSTOMER'][i % 4], state: i % 7 === 0 ? 'DRAFT' : i % 6 === 0 ? 'STOPPED' : 'PUBLISHED', from: day(i === 2 ? 2 : -i - 1), to: day(i === 3 ? -1 : 30 - i), pinned: i < 2, body: titles[i % titles.length] + '\n\n안내 내용을 확인해 주세요.\n상세 문의는 담당 서비스 창구로 연락해 주시기 바랍니다.', author: '운영 담당자', updated: day(-i) }; });
   }
   var noticeTargets = [['ALL','전체'],['INTERNAL','내부 사용자'],['DEALER','딜러'],['CUSTOMER','고객']];
@@ -212,7 +212,8 @@
     var noticeKinds = window.MIQNoticeKinds;
     if (!noticeKinds) throw new Error('공지 종류 설정을 불러오지 못했습니다.');
     var kindOptions = Object.keys(noticeKinds).map(function (key) { return [key, noticeKinds[key]]; });
-    var data = read('notices', noticeSeed()), state = { query: '', kind: '', target: '', status: '' };
+    // 예전에 저장된 예시 공지 제목도 새 이름으로 맞춘다 (차량 데이터 관리 메뉴 삭제, 2026-11-17)
+    var data = read('notices', noticeSeed()).map(function (r) { if (r.title === '차량 데이터 조회 기능 안내') r.title = '데이터 수신 현황 조회 기능 안내'; return r; }), state = { query: '', kind: '', target: '', status: '' };
     function noticeKind(row) { return Object.prototype.hasOwnProperty.call(noticeKinds, row.kind) ? row.kind : 'GENERAL'; }
     function edit(existing) {
       var item = existing || { title: '', kind: 'GENERAL', target: 'ALL', from: day(0), to: day(30), pinned: false, body: '', state: 'DRAFT' };
